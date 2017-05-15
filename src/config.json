@@ -1,0 +1,34 @@
+{
+  "appName": "App Template",
+  "unitTitle": "RICRO",
+  "unitUrl": "https://vpr.colostate.edu/ricro/",
+  "muiTheme": {
+    "palette": {
+      "primary1Color": "#1E4D2B",
+      "primary2Color": "#C8C372",
+      "primary3Color": "#59595B",
+      "accent1Color": "#D9782D",
+      "accent2Color": "#FFFFFF",
+      "accent3Color": "#105456"
+    }
+  },
+  "unitsBaseUrl": "https://services.ricro.colostate.edu/_external/signatures/",
+  "units": {
+    "ricro": {
+      "name": "Research Integrity & Compliance Review Office",
+      "website": "https://vpr.colostate.edu/ricro/",
+      "imgUrl": "ResInt-VPR-CSU-2-H357-96.png",
+      "officePhone": 9704911553,
+      "campusDelivery": 2011,
+      "physicalAddress": "208 University Services Center"
+    }
+  },
+  "defaults": {
+    "App": {
+      "unitId": "ricro",
+      "title": "",
+      "phone": "",
+      "position": ""
+    }
+  }
+}
