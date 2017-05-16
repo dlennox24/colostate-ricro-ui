@@ -31,6 +31,10 @@
   padding: 20px 2em;
 }
 
+.display-none {
+  display: none;
+}
+
 #map-container {
   position: absolute;
   left: 0;

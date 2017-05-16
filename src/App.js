@@ -1,12 +1,12 @@
 import React, {
   Component
 } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
 import {
   Toolbar,
-  ToolbarTitle
+  ToolbarTitle,
+  ToolbarGroup
 } from 'material-ui/Toolbar';
 
 import CsuSvgLogo from './CsuBranding';
@@ -14,24 +14,29 @@ import CsuSvgLogo from './CsuBranding';
 import config from './config.json';
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
 document.title = document.title === '' ? config.appName + ' - ' + config.unitTitle : document.title;
 
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme(config.muiTheme)}>
-        <div>
-          <AppBar
-            iconElementLeft={<CsuSvgLogo />} />
-          <Toolbar>
-            <ToolbarTitle text={config.appName} />
-          </Toolbar>
-          <div id="main-content">
-            <h2 className='text-center'>#main-content</h2>
-          </div>
+      <div>
+        <AppBar
+          iconElementLeft={<CsuSvgLogo />} />
+        <Toolbar>
+          <ToolbarTitle text={config.appName} />
+          <ToolbarGroup>
+            <IconButton
+              href='/'
+              tooltip='Home'
+              iconClassName='fa fa-home' />
+          </ToolbarGroup>
+        </Toolbar>
+        <div id="main-content">
+          <h2 className='text-center'>#main-content</h2>
         </div>
-      </MuiThemeProvider>
+      </div>
     );
   }
 }
