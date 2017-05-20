@@ -2,6 +2,7 @@
   "appName": "App Template",
   "unitTitle": "RICRO",
   "unitUrl": "https://vpr.colostate.edu/ricro/",
+  "unitContact": "https://vpr.colostate.edu/ricro/contact-us",
   "muiTheme": {
     "palette": {
       "primary1Color": "#1E4D2B",
