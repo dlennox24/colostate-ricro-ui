@@ -12,5 +12,11 @@
       "accent2Color": "#FFFFFF",
       "accent3Color": "#105456"
     }
+  },
+  "statusTheme": {
+    "danger": "#f44336",
+    "success": "#4caf50",
+    "info": "#03a9f4",
+    "warning": "#ff5722"
   }
 }

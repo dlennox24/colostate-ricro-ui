@@ -1,4 +1,4 @@
-#root, #root>section {
+#root, #root>div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -7,6 +7,7 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  position: relative;
 }
 
 #main-content {
@@ -26,23 +27,66 @@
   flex-direction: column;
   margin-right: auto;
   margin-left: auto;
-  width: 100%;
+  width: 90%;
   position: relative;
   padding: 20px 2em;
+  max-width: 1200px;
+  margin-bottom: 114px;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .display-none {
   display: none;
 }
 
-#map-container {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+.define-term {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 0;
+}
+
+.disclaimer {
+  font-size: 80%;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "prox-regular", sans-serif;
+  font-family: "prox-regular", sans-serif !important;
+}
+
+.section-container {
+  margin: 15px 0;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+@media (max-width: 992px) {
+  #main-content {
+    margin-bottom: 169px;
+  }
+  .container {
+    max-width: 940px;
+  }
+}
+
+@media (max-width: 768px) {
+  #main-content {
+    width: 100%;
+  }
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 544px) {
+  .container {
+    max-width: 576px;
+  }
 }
