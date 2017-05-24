@@ -34,16 +34,6 @@
   margin-bottom: 114px;
 }
 
-.sticky {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.display-none {
-  display: none;
-}
-
 .define-term {
   border-bottom: 1px solid #e0e0e0;
   padding: 10px 0;

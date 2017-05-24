@@ -1,38 +1,8 @@
-import React, {
-  Component
-} from 'react';
-import $ from 'jquery';
+import React from 'react';
 
-import config from './config.json';
-import './CsuBranding.css';
+import './CsuFooter.css';
 
-export default class CsuSvgLogo extends Component {
-  componentDidMount() {
-    $.getScript('https://static.colostate.edu/logo/reslogo/logo.min.js').done(function() {
-      $('#unit-title').removeClass('display-none');
-    });
-  }
-  render() {
-    return (
-      <div style={{marginTop: '-7px'}} className='signature'>
-        <section id='BrandLogo' className='fontLarge'>
-          <div className='responsiveLogoContainer'>
-            <div id='responsiveLogo' className='screenMD'></div>
-            <div id='responsiveLogoSubsytem'>
-              <h2>
-                <a id='unit-title' className='display-none' href={config.unitUrl}>
-                  {config.unitTitle}
-                </a>
-              </h2>
-            </div>
-          </div>
-        </section>
-      </div>
-    );
-  }
-}
-
-export const CsuFooter = () => {
+const CsuFooter = () => {
   return (
     <div className='footer'>
       <footer>
@@ -51,7 +21,7 @@ export const CsuFooter = () => {
                   <li><a href='https://www.colostate.edu/privacy'>Privacy Statement</a></li>
                   <li><a href='https://www.colostate.edu/disclaimer'>Disclaimer</a></li>
                 </ul>
-                <p className='copyright'>&copy; 2017 Colorado State University, Fort Collins, Colorado 80523 USA</p>
+                <p className='copyright'>&copy; {new Date().getFullYear()} Colorado State University, Fort Collins, Colorado 80523 USA</p>
               </div>
               <div className='col col-lg-4 col-md-6'>
                 <div className='bottomlogo'>
@@ -67,3 +37,5 @@ export const CsuFooter = () => {
     </div>
   );
 }
+
+export default CsuFooter;
