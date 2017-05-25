@@ -13,7 +13,6 @@ import '../../node_modules/font-awesome/css/font-awesome.min.css';
 class App extends Component {
   componentDidMount() {
     const adjustFooterSize = (extra) => {
-      console.log($('.footer').height());
       $('#main-content').css('margin-bottom', ($('.footer').height() + extra) + 'px');
     }
     adjustFooterSize(21);
