@@ -6,7 +6,7 @@ import $ from 'jquery';
 export default class CsuSvgUnitLogo extends Component {
   componentDidMount() {
     $.getScript('https://static.colostate.edu/logo/reslogo/logo.min.js').done(function() {
-      $('#unit-title').css('display','initial');
+      $('#unit-title').css('display', 'initial');
     });
   }
   render() {
@@ -18,7 +18,7 @@ export default class CsuSvgUnitLogo extends Component {
             <div id='responsiveLogoSubsytem'>
               <h2>
                 <a id='unit-title' style={{display: 'none'}} href={this.props.unit.site}>
-                  {this.props.unit.title}
+                  {this.props.unit.name}
                 </a>
               </h2>
             </div>
