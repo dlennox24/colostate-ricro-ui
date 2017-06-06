@@ -17,7 +17,7 @@ export default class CsuSvgUnitLogo extends Component {
             <div id='responsiveLogo' className='screenMD'></div>
             <div id='responsiveLogoSubsytem'>
               <h2>
-                <a id='unit-title' style={{display: 'none'}} href={this.props.unit.url}>
+                <a id='unit-title' style={{display: 'none'}} href={this.props.unit.siteHref}>
                   {this.props.unit.name}
                 </a>
               </h2>
