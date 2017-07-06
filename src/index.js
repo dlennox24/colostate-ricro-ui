@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
 
 import AppContainer from './csu-app-template/AppContainer';
 import config from './config.json';
@@ -14,6 +13,9 @@ import {
 } from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
+
+injectTapEventPlugin();
+
 const header = [
   <ToolbarTitle key={0} text={'test'} />,
   (<ToolbarGroup key={1}>
