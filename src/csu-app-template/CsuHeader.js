@@ -1,64 +1,98 @@
 import React, {
   Component
 } from 'react';
+import PropTypes from 'prop-types';
+import {
+  withStyles,
+  createStyleSheet
+} from 'material-ui/styles';
 import $ from 'jquery';
 import AppBar from 'material-ui/AppBar';
+import Typography from 'material-ui/Typography';
+import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
-import {
-  Toolbar,
-  ToolbarTitle,
-  ToolbarGroup,
-  ToolbarSeparator
-} from 'material-ui/Toolbar';
-import FontIcon from 'material-ui/FontIcon';
+import Icon from 'material-ui/Icon';
 
 import CsuSvgUnitLogo from './CsuSvgUnitLogo';
 
-import './CsuHeader.css';
+const csuLogoBarHeight = 61;
+const styleSheet = createStyleSheet('CsuHeader', {
+  root: {
+    width: '100%',
+  },
+  flex: {
+    flex: 1,
+  },
+  csuLogoBar: {
+    marginBottom: csuLogoBarHeight,
+  },
+  headerBar: {
+    marginTop: csuLogoBarHeight,
+  },
+});
 
-export default class CsuHeader extends Component {
+function stickyHeader(scrollTop, element) {
+  let margin;
+  console.log(scrollTop);
+  if (scrollTop <= csuLogoBarHeight) {
+    if (csuLogoBarHeight - scrollTop === 0) {
+      margin = '';
+    } else {
+      margin = csuLogoBarHeight - scrollTop;
+    }
+  } else {
+    margin = 0
+  }
+  element.animate({
+    marginTop: margin
+  }, 15);
+}
+
+class CsuHeader extends Component {
   componentWillMount() {
     document.title = document.title === '' ? this.props.appName + ' - ' + this.props.unit.title : document.title;
-    $(window).scroll(function() {
-      $('#logobar').css('margin-bottom', $('#top-toolbar').height() + 'px');
-      if ($(this).scrollTop() >= $('#logobar').height()) {
-        $('#top-toolbar').css('margin-top', 0);
-        $('#top-toolbar').addClass('sticky');
-      } else {
-        $('#top-toolbar').css('margin-top', '-' + $('#top-toolbar').height() + 'px');
-        $('#top-toolbar').removeClass('sticky');
+    $('body').on({
+      'touchmove': function(e) {
+        stickyHeader($(this).scrollTop(), $('#headerBar'))
       }
+    });
+    $(window).scroll(function() {
+      stickyHeader($(this).scrollTop(), $('#headerBar'))
     });
   }
   render() {
+    const classes = this.props.classes;
     const defaultHeader = [
-      <ToolbarTitle key={0} text={this.props.appName} />,
-      (<ToolbarGroup key={1}>
-        <IconButton
-          href='/'
-          tooltip='Home'>
-          <FontIcon className='material-icons'>home</FontIcon>
+      <Typography key={0} type="title" className={classes.flex}>{this.props.appName}</Typography>,
+      (<div key={1}>
+        <IconButton href='/' aria-label='Home'>
+          <Icon>home</Icon>
         </IconButton>
-        <ToolbarSeparator style={{marginLeft:0}} />
-        <IconButton
-          href={this.props.unit.contactHref}
-          tooltip='Contact Us'
-          tooltipPosition='bottom-left'>
-          <FontIcon className='material-icons'>email</FontIcon>
+        <IconButton href={this.props.unit.contactHref} aria-label='Contact us'>
+          <Icon>email</Icon>
         </IconButton>
-      </ToolbarGroup>)
+      </div>),
     ];
 
+    // {this.props.children == null ? defaultHeader : this.props.children}
     return (
-      <div>
-        <AppBar
-          style={{marginBottom: '56px'}}
-          id='logobar'
-          iconElementLeft={<CsuSvgUnitLogo unit={this.props.unit} />} />
-        <Toolbar id='top-toolbar' style={{marginTop: '-56px'}}>
-          {this.props.children == null ? defaultHeader : this.props.children}
-        </Toolbar>
+      <div className={classes.root}>
+        <AppBar id='csuLogoBar' position='static' className={classes.csuLogoBar}>
+          <CsuSvgUnitLogo unit={this.props.unit} />
+        </AppBar>
+        <AppBar id='headerBar' color='default' className={classes.headerBar}>
+          <Toolbar>
+            {defaultHeader}
+          </Toolbar>
+        </AppBar>
       </div>
     );
   }
 }
+
+CsuHeader.propTypes = {
+  classes: PropTypes.object.isRequired,
+  unit: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(CsuHeader);

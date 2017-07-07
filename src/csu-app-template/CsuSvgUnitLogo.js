@@ -11,7 +11,7 @@ export default class CsuSvgUnitLogo extends Component {
   }
   render() {
     return (
-      <div style={{marginTop: '-7px'}} className='signature'>
+      <div className='signature'>
         <section id='BrandLogo' className='fontLarge'>
           <div className='responsiveLogoContainer'>
             <div id='responsiveLogo' className='screenMD'></div>

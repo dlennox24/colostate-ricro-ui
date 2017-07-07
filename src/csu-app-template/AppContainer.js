@@ -1,7 +1,9 @@
 import React, {
   Component
 } from 'react';
+import PropTypes from 'prop-types';
 import $ from 'jquery';
+import Paper from 'material-ui/Paper';
 
 import CsuFooter from './CsuFooter';
 import CsuHeader from './CsuHeader';
@@ -26,12 +28,17 @@ class App extends Component {
         <CsuHeader unit={this.props.config.unit} appName={this.props.config.app.name}>
           {this.props.header}
         </CsuHeader>
-        <div id='main-content' style={this.props.style}>
+        <Paper id='main-content' square style={this.props.style}>
           {this.props.children}
-        </div>
+        </Paper>
         <CsuFooter/>
       </div>
     );
   }
 }
+
+App.propTypes = {
+  config: PropTypes.object.isRequired,
+};
+
 export default App;

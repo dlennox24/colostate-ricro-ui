@@ -1,38 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import registerServiceWorker from './registerServiceWorker';
+import {
+  MuiThemeProvider,
+  createMuiTheme
+} from 'material-ui/styles';
+import createPalette from 'material-ui/styles/palette';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import AppContainer from './csu-app-template/AppContainer';
 import config from './config.json';
 
-import {
-  ToolbarTitle,
-  ToolbarGroup
-} from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
+import Typography from 'material-ui/Typography';
 
 injectTapEventPlugin();
 
-const header = [
-  <ToolbarTitle key={0} text={'test'} />,
-  (<ToolbarGroup key={1}>
-        <IconButton
-          href={'\\test'}
-          tooltip='Contact Us'
-          tooltipPosition='bottom-left'>
-          <FontIcon className='material-icons'>email</FontIcon>
-        </IconButton>
-      </ToolbarGroup>)
-];
+const theme = createMuiTheme({
+  palette: createPalette(config.theme.palette)
+});
 
 ReactDOM.render(
-  <MuiThemeProvider muiTheme={getMuiTheme(config.muiTheme)}>
-    <AppContainer config={config} header={header} style={{border: '3px solid red', height: '1500px'}}>
-      <h2 className='text-center'>#main-content</h2>
+  <MuiThemeProvider theme={theme}>
+    <AppContainer config={config}>
+      <Typography type='display2' className='text-center'>#main-content</Typography>
     </AppContainer>
   </MuiThemeProvider>,
   document.getElementById('root')
 );
+registerServiceWorker();
