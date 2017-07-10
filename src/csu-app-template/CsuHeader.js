@@ -74,7 +74,6 @@ class CsuHeader extends Component {
       </div>),
     ];
 
-    // {this.props.children == null ? defaultHeader : this.props.children}
     return (
       <div className={classes.root}>
         <AppBar id='csuLogoBar' position='static' className={classes.csuLogoBar}>
@@ -82,7 +81,7 @@ class CsuHeader extends Component {
         </AppBar>
         <AppBar id='headerBar' color='default' className={classes.headerBar}>
           <Toolbar>
-            {defaultHeader}
+            {this.props.children == null ? defaultHeader : this.props.children}
           </Toolbar>
         </AppBar>
       </div>

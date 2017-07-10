@@ -3,7 +3,10 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
-import Paper from 'material-ui/Paper';
+import {
+  withStyles,
+  createStyleSheet
+} from 'material-ui/styles';
 
 import CsuFooter from './CsuFooter';
 import CsuHeader from './CsuHeader';
@@ -12,7 +15,24 @@ import './AppContainer.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
-class App extends Component {
+const styleSheet = createStyleSheet('AppContainer', theme => ({
+  '@global': {
+    body: {
+      margin: 0,
+      background: theme.palette.background.default,
+      WebkitFontSmoothing: 'antialiased', // Antialiasing.
+      MozOsxFontSmoothing: 'grayscale', // Antialiasing.
+    },
+    a: {
+      color: theme.palette.accent[500],
+      '&:hover': {
+        color: theme.palette.primary[500],
+      }
+    }
+  },
+}));
+
+class AppContainer extends Component {
   componentDidMount() {
     const adjustFooterSize = (extra) => {
       $('#main-content').css('margin-bottom', ($('.footer').height() + extra) + 'px');
@@ -28,17 +48,18 @@ class App extends Component {
         <CsuHeader unit={this.props.config.unit} appName={this.props.config.app.name}>
           {this.props.header}
         </CsuHeader>
-        <Paper id='main-content' square style={this.props.style}>
+        <main id='main-content' style={this.props.style}>
           {this.props.children}
-        </Paper>
+        </main>
         <CsuFooter/>
       </div>
     );
   }
 }
 
-App.propTypes = {
+AppContainer.propTypes = {
   config: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
-export default App;
+export default withStyles(styleSheet)(AppContainer);
