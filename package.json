@@ -1,6 +1,6 @@
 {
   "name": "csu-app-template",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
