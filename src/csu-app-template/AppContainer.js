@@ -35,7 +35,6 @@ const styleSheet = createStyleSheet('AppContainer', theme => ({
 class AppContainer extends Component {
   componentDidMount() {
     const adjustFooterSize = (extra) => {
-      console.log('adjustFooterSize', extra, $('.footer').height());
       $('#main-content').css('margin-bottom', ($('.footer').height() + extra) + 'px');
     }
     adjustFooterSize(25);

@@ -76,7 +76,6 @@ class CsuHeader extends Component {
   }
 
   handleClick = event => {
-    console.log(event.currentTarget.id);
     let state;
     switch (event.currentTarget.id) {
       case 'account-menu-button':
