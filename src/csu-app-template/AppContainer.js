@@ -35,17 +35,22 @@ const styleSheet = createStyleSheet('AppContainer', theme => ({
 class AppContainer extends Component {
   componentDidMount() {
     const adjustFooterSize = (extra) => {
+      console.log('adjustFooterSize', extra, $('.footer').height());
       $('#main-content').css('margin-bottom', ($('.footer').height() + extra) + 'px');
     }
-    adjustFooterSize(21);
-    $(window).scroll(adjustFooterSize);
-    $(window).resize(adjustFooterSize);
+    adjustFooterSize(25);
+    $(window).scroll(adjustFooterSize.bind(this, 25));
+    $(window).resize(adjustFooterSize.bind(this, 25));
   }
   render() {
     document.title = document.title === '' ? this.props.config.app.name + ' - ' + this.props.config.unit.name : document.title;
     return (
       <div>
-        <CsuHeader unit={this.props.config.unit} appName={this.props.config.app.name}>
+        <CsuHeader
+          unit={this.props.config.unit}
+          appName={this.props.config.app.name}
+          user={this.props.user}
+          >
           {this.props.header}
         </CsuHeader>
         <main id='main-content' style={this.props.style}>
@@ -60,6 +65,7 @@ class AppContainer extends Component {
 AppContainer.propTypes = {
   config: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
+  user: PropTypes.object,
 };
 
 export default withStyles(styleSheet)(AppContainer);
