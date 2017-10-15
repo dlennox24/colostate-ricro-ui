@@ -6,5 +6,10 @@
     "name": "RICRO",
     "siteHref": "https://vpr.colostate.edu/ricro/",
     "contactHref": "https://vpr.colostate.edu/ricro/contact-us"
+  },
+  "defaultState": {
+    "login": {
+      "user": {}
+    }
   }
 }

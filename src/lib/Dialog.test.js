@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppContainer from './AppContainer';
-import config from './config.json';
+import CsuDialog from './Dialog';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<AppContainer config={config} />, div);
+  ReactDOM.render(<CsuDialog open={false} onRequestClose={()=>{}} />, div);
 });

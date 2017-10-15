@@ -1,9 +1,10 @@
 import React, {
   Component
 } from 'react';
+import PropTypes from 'prop-types';
 import $ from 'jquery';
 
-export default class CsuSvgUnitLogo extends Component {
+class CsuSvgUnitLogo extends Component {
   componentDidMount() {
     $.getScript('https://static.colostate.edu/logo/reslogo/logo.min.js').done(function() {
       $('#unit-title').css('display', 'initial');
@@ -11,7 +12,7 @@ export default class CsuSvgUnitLogo extends Component {
   }
   render() {
     return (
-      <div style={{marginTop: '-7px'}} className='signature'>
+      <div className='signature'>
         <section id='BrandLogo' className='fontLarge'>
           <div className='responsiveLogoContainer'>
             <div id='responsiveLogo' className='screenMD'></div>
@@ -28,3 +29,9 @@ export default class CsuSvgUnitLogo extends Component {
     );
   }
 }
+
+CsuSvgUnitLogo.propTypes = {
+  unit: PropTypes.object.isRequired,
+};
+
+export default CsuSvgUnitLogo;

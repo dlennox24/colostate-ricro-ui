@@ -1,6 +1,6 @@
 {
   "short_name": "App Template",
-  "name": "App template for RICRO",
+  "name": "CSU RICRO App Template",
   "icons": [{
     "src": "favicon.ico",
     "sizes": "192x192",
@@ -8,6 +8,6 @@
   }],
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#1E4D2B",
+  "theme_color": "#000000",
   "background_color": "#ffffff"
 }
