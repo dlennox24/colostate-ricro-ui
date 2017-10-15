@@ -7,8 +7,8 @@ import {
   withStyles,
 } from 'material-ui/styles';
 
-import CsuFooter from './CsuFooter';
-import CsuHeader from './CsuHeader';
+import Footer from './Footer';
+import Header from './Header';
 
 const styles = theme => ({
   '@global': {
@@ -49,16 +49,16 @@ class AppTemplate extends Component {
   render() {
     return (
       <div>
-        <CsuHeader
+        <Header
           unit={this.props.config.unit}
           appName={this.props.config.app.name}
           >
           {this.props.header}
-        </CsuHeader>
+        </Header>
         <main id='main-content' className='container-fluid p-4' style={this.props.style}>
           {this.props.children}
         </main>
-        <CsuFooter/>
+        <Footer/>
       </div>
     );
   }

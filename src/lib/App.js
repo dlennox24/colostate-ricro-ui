@@ -14,7 +14,8 @@ import {
 } from 'react-redux'
 import {
   createStore
-} from 'redux';
+}
+from 'redux';
 
 import defaultTheme from './assets/theme2.json';
 import AppTemplate from './core/AppTemplate';

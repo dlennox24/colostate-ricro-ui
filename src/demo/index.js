@@ -1,20 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 
-import CsuApp from '../lib/AppContainer';
-import CsuDashboard from '../lib/CsuDashboard';
+import App from '../lib/App';
+import Dashboard from '../lib/Dashboard';
 import LoadMore from '../lib/LoadMore';
 
 import config from './config.json';
 import SnackbarsTest from './SnackbarsTest';
 
 // import themeTest from './themeTest.json';
-
-injectTapEventPlugin();
 
 const style = {
   button: {
@@ -23,10 +20,10 @@ const style = {
 };
 
 ReactDOM.render(
-  <CsuApp config={config} reduxMiddleware={window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()}>
+  <App config={config} reduxMiddleware={window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()}>
     <div className='row'>
       <div className='col-md-5'>
-        <CsuDashboard title='Typography'>
+        <Dashboard title='Typography'>
           <Typography type='display4'>display4</Typography>
           <Typography type='display3'>display3</Typography>
           <Typography type='display2'>display2</Typography>
@@ -41,10 +38,10 @@ ReactDOM.render(
           <a href=''>link text</a>
           <p>paragraph text</p>
           body text
-        </CsuDashboard>
+        </Dashboard>
       </div>
       <div className='col-md-7'>
-        <CsuDashboard title='Buttons'>
+        <Dashboard title='Buttons'>
           <Typography type='display1'>Flat Buttons</Typography>
           <div style={{background: 'whitesmoke', padding: '10px',}}>
             <Button style={style.button}>Default</Button>
@@ -69,19 +66,19 @@ ReactDOM.render(
             </label>
             <Button style={style.button} raised dense>Dense</Button>
           </div>
-        </CsuDashboard>
+        </Dashboard>
       </div>
     </div>
     <div className='row mt-4'>
       <div className='col-md-7'>
-        <CsuDashboard title='Other Components'>
+        <Dashboard title='Other Components'>
           <SnackbarsTest />
           <Typography className='mt-3' type='display1'>LoadingMore</Typography>
           <LoadMore />
-        </CsuDashboard>
+        </Dashboard>
       </div>
     </div>
-  </CsuApp>,
+  </App>,
   document.getElementById('root')
 );
 registerServiceWorker();

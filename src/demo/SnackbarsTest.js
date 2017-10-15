@@ -8,7 +8,7 @@ import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button';
 import Slide from 'material-ui/transitions/Slide';
 
-import CsuSnackbar from '../lib/CsuSnackbar';
+import CsuSnackbar from '../lib/Snackbar';
 
 const styles = theme => ({
   errorButton: {

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CsuSvgUnitLogo from './CsuSvgUnitLogo';
+import CsuDialog from './Dialog';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<CsuSvgUnitLogo />, div);
+  ReactDOM.render(<CsuDialog open={false} onRequestClose={()=>{}} />, div);
 });

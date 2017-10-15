@@ -8,7 +8,6 @@ import {
 import Snackbar from 'material-ui/Snackbar';
 import Slide from 'material-ui/transitions/Slide';
 import Icon from 'material-ui/Icon';
-import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
   success: {

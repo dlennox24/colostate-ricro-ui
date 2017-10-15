@@ -7,7 +7,7 @@ import {
 } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 
-import CsuDialog from './CsuDialog';
+import CsuDialog from './Dialog';
 
 const styles = theme => ({});
 
@@ -24,8 +24,8 @@ class UserAccount extends Component {
     const classes = this.props.classes;
     return (
       <CsuDialog title='User Account'>
-          body
-        </CsuDialog>
+        body
+      </CsuDialog>
     );
   }
 }
