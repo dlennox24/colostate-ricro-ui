@@ -3,7 +3,7 @@ import Dashboard from './Dashboard';
 import Dialog from './Dialog';
 import Snackbar from './Snackbar';
 import LoadMore from './LoadMore';
-import Login from './Login';
+import Login from './redux/Login';
 
 import apiCall from './utils/apiCall';
 import linkTo from './utils/linkTo';
