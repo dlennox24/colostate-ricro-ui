@@ -11,8 +11,6 @@ import LoadMore from '../lib/LoadMore';
 import config from './config.json';
 import SnackbarsTest from './SnackbarsTest';
 
-// import themeTest from './themeTest.json';
-
 const style = {
   button: {
     margin: '8px'

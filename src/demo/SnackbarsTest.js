@@ -9,6 +9,7 @@ import Button from 'material-ui/Button';
 import Slide from 'material-ui/transitions/Slide';
 
 import CsuSnackbar from '../lib/Snackbar';
+import Dialog from '../lib/Dialog';
 
 const styles = theme => ({
   errorButton: {
@@ -42,6 +43,28 @@ class SnackbarTest extends Component {
       warning: false,
       topCenter: false,
     },
+    dialogs: {
+      default: false,
+    },
+  }
+
+  onDialogClose = type => {
+    type = typeof type !== 'string' ? 'default' : type;
+    this.setState({
+      dialogs: {
+        ...this.state.dialogs,
+        [type]: false,
+      }
+    });
+  }
+
+  onDialogOpen = type => {
+    this.setState({
+      dialogs: {
+        ...this.state.dialogs,
+        [type]: true,
+      }
+    });
   }
 
   onRequestClose = type => {
@@ -65,6 +88,14 @@ class SnackbarTest extends Component {
 
   render() {
     let classes = this.props.classes;
+    const dialogActions = [
+      <Button onClick={this.onDialogClose} color="primary" key={0}>
+        Disagree
+      </Button>,
+      <Button onClick={this.onDialogClose} color="primary" raised key={1}>
+        Agree
+      </Button>,
+    ];
     return (
       <div>
         <Typography type='display1'>Snackbars</Typography>
@@ -99,8 +130,8 @@ class SnackbarTest extends Component {
               vertical: 'bottom',
               horizontal: 'right',
             },
-            transition:<Slide direction='left' />
-          }}
+            transition:<Slide direction='left' />}
+          }
           />
         <Button
           style={buttonStyle}
@@ -122,8 +153,8 @@ class SnackbarTest extends Component {
               vertical: 'top',
               horizontal: 'right',
             },
-            transition:<Slide direction='left' />
-          }}
+            transition:<Slide direction='left' />}
+          }
           />
         <Button
           style={buttonStyle}
@@ -145,8 +176,8 @@ class SnackbarTest extends Component {
               vertical: 'top',
               horizontal: 'left',
             },
-            transition:<Slide direction='right' />
-          }}
+            transition:<Slide direction='right' />}
+          }
           />
         <Button
           style={buttonStyle}
@@ -168,8 +199,8 @@ class SnackbarTest extends Component {
               vertical: 'bottom',
               horizontal: 'center',
             },
-            transition:<Slide direction='up' />
-          }}
+            transition:<Slide direction='up' />}
+          }
           />
         <Button
           style={buttonStyle}
@@ -190,9 +221,26 @@ class SnackbarTest extends Component {
               vertical: 'top',
               horizontal: 'center',
             },
-            transition:<Slide direction='down' />
-          }}
+            transition:<Slide direction='down' />}
+          }
           />
+        <Typography type='display1'>Dialogs</Typography>
+        <Button
+          style={buttonStyle}
+          className={classes.defaultButton}
+          onClick={this.onDialogOpen.bind(this, 'default')}
+          raised
+          >
+          Dialog
+        </Button>
+        <Dialog
+          title="Test Dialog Title"
+          onRequestClose={this.onDialogClose.bind(this, 'default')}
+          open={this.state.dialogs.default}
+          dialogActions={dialogActions}
+          >
+          body
+        </Dialog>
       </div>
     );
   }

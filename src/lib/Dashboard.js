@@ -36,7 +36,7 @@ const styles = theme => ({
   },
 });
 
-class CsuDashboard extends Component {
+class Dashboard extends Component {
   state = {
     index: 1,
   };
@@ -79,11 +79,11 @@ class CsuDashboard extends Component {
   }
 }
 
-CsuDashboard.propTypes = {
+Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   cardActions: PropTypes.node,
   alignCARight: PropTypes.bool,
 };
 
-export default withStyles(styles)(CsuDashboard);
+export default withStyles(styles)(Dashboard);

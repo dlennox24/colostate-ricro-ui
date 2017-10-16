@@ -47,7 +47,6 @@ class Login extends Component {
 
   handleRequestClose = event => {
     this.setState({
-      ...this.state.account,
       open: false,
     });
     if (event.currentTarget.id === 'logout') {
@@ -80,7 +79,7 @@ class Login extends Component {
 
     if (!_.isEmpty(this.props.height)) {
       if (!this.props.height.match(/^[0-9]+(em|ex|ch|rem|vw|vh|vmin|vmax|%|cm|mm|in|px|pt|pc)$/g)) {
-        console.error('csu-app-template/Login\nInvalid height value: ' + this.props.height);
+        console.error('ricror-app-template/Login\nInvalid height value: ' + this.props.height);
       }
     }
 
@@ -103,8 +102,8 @@ class Login extends Component {
               <Avatar className={classes.accountAvatar} src={defaultProfileImg} />
             </ListItemIcon>
             <ListItemText
-              primary={this.props.user.first_name + ' ' + this.props.user.last_name}
-              secondary={this.props.user.eId.toString().replace(/(.{3})/g, '$1 ')}
+              primary={this.props.user.displayName}
+              secondary={this.props.user.csuId.toString().replace(/(.{3})/g, '$1 ')}
               />
           </ListItem>
           <Menu
@@ -113,13 +112,7 @@ class Login extends Component {
             open={this.state.open}
             onRequestClose={this.handleRequestClose}
             >
-            <ListItem button onClick={this.handleRequestClose}>
-              <ListItemIcon>
-                <Icon>account_circle</Icon>
-              </ListItemIcon>
-              <ListItemText inset primary='Account Settings' />
-              <UserAccountSettings />
-            </ListItem>
+            <UserAccountSettings user={this.props.user}/>
             <ListItem id='logout' button onClick={this.handleRequestClose}>
               <ListItemIcon>
                 <Icon>exit_to_app</Icon>

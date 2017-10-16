@@ -17,13 +17,13 @@ import {
 }
 from 'redux';
 
-import defaultTheme from './assets/theme2.json';
+import defaultTheme from './assets/theme.json';
 import AppTemplate from './core/AppTemplate';
 
 // Redux reducers for lib
 import login from './redux/Login/reducers';
 
-class AppWrapper extends Component {
+class App extends Component {
   render() {
     document.title = document.title === '' ? this.props.config.app.name + ' - ' + this.props.config.unit.name : document.title;
     //combine lib reducers with app reducers if they exist
@@ -43,11 +43,11 @@ class AppWrapper extends Component {
   }
 }
 
-AppWrapper.propTypes = {
+App.propTypes = {
   config: PropTypes.object.isRequired,
   reducers: PropTypes.func,
   reduxMiddleware: PropTypes.func,
   theme: PropTypes.object,
 };
 
-export default AppWrapper;
+export default App;

@@ -1,5 +1,6 @@
 import $ from 'jquery';
 
+
 function complete(data) {
   try {
     console.log(
@@ -8,7 +9,7 @@ function complete(data) {
       data
     );
   } catch (e) {
-    console.error("Invalid JSON: " + e);
+    console.error("ricro-app-template/utils/linkTo:\n" + e);
   }
   return data;
 }
