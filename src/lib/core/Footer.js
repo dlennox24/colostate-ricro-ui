@@ -30,13 +30,13 @@ const styles = theme => ({
     },
   },
 });
-const CsuFooter = (props) => {
+const Footer = (props) => {
   let classes = props.classes;
   return (
     <footer className={classes.footer}>
       <div className='container'>
         <div className='row justify-content-between align-items-center'>
-          <div className='col-lg-8 col-md-6'>
+          <div className='col-lg-8 col-md-6 text-center text-lg-left'>
             <div className='links'>
               <span>
                 <a href='https://www.colostate.edu/contact/'>Contact CSU</a>
@@ -64,4 +64,4 @@ const CsuFooter = (props) => {
   );
 }
 
-export default withStyles(styles)(CsuFooter);
+export default withStyles(styles)(Footer);

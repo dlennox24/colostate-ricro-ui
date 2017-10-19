@@ -22,6 +22,7 @@ import AppTemplate from './core/AppTemplate';
 
 // Redux reducers for lib
 import login from './redux/Login/reducers';
+import defaults from './assets/defaults.json';
 
 class App extends Component {
   render() {
@@ -31,10 +32,11 @@ class App extends Component {
       login,
       ...this.props.reducers
     });
+    let config = this.props.config == null ? defaults : this.props.config;
     return (
-      <Provider store={createStore(reducers, this.props.config.defaultState, this.props.reduxMiddleware)}>
+      <Provider store={createStore(reducers, config.defaultState, this.props.reduxMiddleware)}>
         <MuiThemeProvider theme={createMuiTheme(this.props.theme == null ? defaultTheme : this.props.theme)}>
-          <AppTemplate config={this.props.config}>
+          <AppTemplate config={config} header={this.props.header} noGutters={this.props.noGutters}>
             {this.props.children}
           </AppTemplate>
         </MuiThemeProvider>
@@ -48,6 +50,9 @@ App.propTypes = {
   reducers: PropTypes.func,
   reduxMiddleware: PropTypes.func,
   theme: PropTypes.object,
+  header: PropTypes.node,
+  headerConfig: PropTypes.object,
+  noGutters: PropTypes.bool,
 };
 
 export default App;

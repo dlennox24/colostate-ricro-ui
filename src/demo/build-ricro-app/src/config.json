@@ -1,6 +1,21 @@
 {
+  "api": {
+    "location": "192.168.1.24:8080/api/"
+  },
   "app": {
-    "name": "App Template"
+    "name": "App Template",
+    "header": {
+      "login": false,
+      "moreMenu": [{
+        "name": "Home",
+        "icon": "home",
+        "link": "/"
+      }, {
+        "name": "Contact Us",
+        "icon": "email",
+        "link": "https://vpr.colostate.edu/ricro/contact-us"
+      }]
+    }
   },
   "unit": {
     "name": "RICRO",

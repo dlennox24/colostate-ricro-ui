@@ -1,6 +1,6 @@
 {
   "name": "ricro-app-template",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "Template for creating CSU RICRO branded react apps",
   "main": "build/index.js",
   "scripts": {

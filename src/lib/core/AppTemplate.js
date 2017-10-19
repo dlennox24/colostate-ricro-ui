@@ -47,15 +47,17 @@ const styles = theme => ({
 
 class AppTemplate extends Component {
   render() {
+    console.log(this.props.noGutters);
     return (
       <div>
-        <Header
-          unit={this.props.config.unit}
-          appName={this.props.config.app.name}
-          >
+        <Header config={this.props.config}>
           {this.props.header}
         </Header>
-        <main id='main-content' className='container-fluid p-4' style={this.props.style}>
+        <main
+          id='main-content'
+          className={this.props.noGutters ? null : 'container-fluid p-4'}
+          style={this.props.style}
+          >
           {this.props.children}
         </main>
         <Footer/>
@@ -68,7 +70,8 @@ AppTemplate.propTypes = {
   config: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   reduxMiddleware: PropTypes.func,
-  user: PropTypes.object,
+  header: PropTypes.node,
+  noGutters: PropTypes.bool,
 };
 
 export default withStyles(styles)(AppTemplate);
