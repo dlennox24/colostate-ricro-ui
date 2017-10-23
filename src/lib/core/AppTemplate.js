@@ -33,6 +33,7 @@ const styles = theme => ({
     '#main-content': {
       flex: 1,
       width: '100%',
+      overflowX: 'auto',
     },
     '#root, #root>div': {
       display: 'flex',
@@ -47,7 +48,6 @@ const styles = theme => ({
 
 class AppTemplate extends Component {
   render() {
-    console.log(this.props.noGutters);
     return (
       <div>
         <Header config={this.props.config}>

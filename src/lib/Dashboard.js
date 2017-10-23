@@ -22,9 +22,6 @@ TabContainer.propTypes = {
 };
 
 const styles = theme => ({
-  card: {
-    // maxWidth: 775,
-  },
   cardHeaderRoot: {
     backgroundColor: theme.palette.primary[500],
   },
@@ -33,6 +30,9 @@ const styles = theme => ({
   },
   flex: {
     flex: 1,
+  },
+  content: {
+    overflowX: 'auto',
   },
 });
 
@@ -64,9 +64,7 @@ class Dashboard extends Component {
             </Typography>
           } classes={cardHeaderClasses} color='inherit'
           />
-        <CardContent>
-          {this.props.children}
-        </CardContent>
+        <CardContent className={classes.content}>{this.props.children}</CardContent>
         {this.props.cardActions ?
           <CardActions>
             {this.props.alignCARight ? <div className={classes.flex}/> : null}

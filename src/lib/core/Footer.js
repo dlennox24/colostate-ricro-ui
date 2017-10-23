@@ -7,6 +7,7 @@ const styles = theme => ({
   'footer': {
     backgroundColor: theme.palette.primary[500],
     color: theme.palette.common.fullWhite,
+    fontSize: '0.85em',
     padding: '10px',
     '& .links': {
       lineHeight: '1.5em',

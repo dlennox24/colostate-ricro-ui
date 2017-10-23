@@ -24,8 +24,6 @@ import Login from '../redux/Login';
 import CsuSvgUnitLogo from './CsuSvgUnitLogo';
 import linkTo from '../utils/linkTo.js';
 
-const csuLogoBarHeight = 71;
-const appBarHeight = 67;
 const styles = theme => ({
   root: {
     width: '100%',
@@ -34,27 +32,25 @@ const styles = theme => ({
     flex: 1,
   },
   csuLogoBar: {
-    marginBottom: appBarHeight,
     '& .responsiveLogoContainer': {
       padding: '5px 10px',
     },
   },
   headerBar: {
-    top: csuLogoBarHeight,
     borderBottom: '3px solid ' + theme.palette.csuBrand.primary.gold,
   },
 });
 
 function stickyHeader(scrollTop, element) {
-  let top;
-  if (csuLogoBarHeight - scrollTop <= 0) {
-    top = 0;
+  let csuLogoBar = document.getElementById('csuLogoBar');
+  let headerBar = document.getElementById('headerBar');
+  if (csuLogoBar.offsetHeight - scrollTop <= 0) {
+    csuLogoBar.setAttribute('style', 'margin-bottom: ' + headerBar.offsetHeight + 'px;');
+    headerBar.setAttribute('style', 'position: fixed; top: 0px;');
   } else {
-    top = csuLogoBarHeight - scrollTop;
+    csuLogoBar.removeAttribute('style');
+    headerBar.removeAttribute('style');
   }
-  element.animate({
-    top: top
-  }, 0);
 }
 
 class Header extends Component {
@@ -84,10 +80,8 @@ class Header extends Component {
   };
 
   componentWillMount() {
-    document.title = document.title === '' ? this.props.appName + ' - ' + this.props.unit.title : document.title;
-    stickyHeader($(this).scrollTop(), $('#headerBar'));
     $(window).scroll(function() {
-      stickyHeader($(this).scrollTop(), $('#headerBar'));
+      stickyHeader($(this).scrollTop(), 'headerBar');
     });
   }
 
@@ -186,7 +180,7 @@ class Header extends Component {
           <CsuSvgUnitLogo unit={config.unit} />
         </AppBar>
         {this.props.children === 'none' ? null : (
-          <AppBar id='headerBar' position='fixed' color='default' className={classes.headerBar}>
+          <AppBar id='headerBar' position='static' color='default' className={classes.headerBar}>
             <Toolbar>
               {this.props.children == null ? defaultHeader : this.props.children}
             </Toolbar>

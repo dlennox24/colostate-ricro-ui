@@ -27,7 +27,7 @@ import defaults from './assets/defaults.json';
 class App extends Component {
   render() {
     document.title = document.title === '' ? this.props.config.app.name + ' - ' + this.props.config.unit.name : document.title;
-    //combine lib reducers with app reducers if they exist
+    // Combine lib reducers with app reducers if they exist
     const reducers = combineReducers({
       login,
       ...this.props.reducers
