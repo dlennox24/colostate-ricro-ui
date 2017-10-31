@@ -6,27 +6,20 @@ import {
 } from 'material-ui/styles';
 import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button';
-import Slide from 'material-ui/transitions/Slide';
+import TextField from 'material-ui/TextField';
+import MenuItem from 'material-ui/Menu/MenuItem';
 
 import CsuSnackbar from '../lib/Snackbar';
 import Dialog from '../lib/Dialog';
 
 const styles = theme => ({
-  errorButton: {
-    color: 'white',
-    backgroundColor: theme.palette.alerts.danger
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
   },
-  successButton: {
-    color: 'white',
-    backgroundColor: theme.palette.alerts.success
-  },
-  warningButton: {
-    // color: 'white',
-    backgroundColor: theme.palette.alerts.warning
-  },
-  infoButton: {
-    color: 'white',
-    backgroundColor: theme.palette.alerts.info
+  menu: {
+    width: 200,
   },
 });
 const buttonStyle = {
@@ -35,6 +28,11 @@ const buttonStyle = {
 
 class SnackbarTest extends Component {
   state = {
+    snackbarType: 'default',
+    snackbarPos: 'default',
+    snackbarSlide: 'default',
+    snackbarAutoHide: 6e3,
+    snackbar: false,
     snackbars: {
       default: false,
       error: false,
@@ -47,6 +45,18 @@ class SnackbarTest extends Component {
       default: false,
     },
   }
+
+  updateState = (key, value) => {
+    this.setState({
+      [key]: value,
+    });
+  }
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    });
+  };
 
   onDialogClose = type => {
     type = typeof type !== 'string' ? 'default' : type;
@@ -96,133 +106,112 @@ class SnackbarTest extends Component {
         Agree
       </Button>,
     ];
+    const snackbarTypes = ['default', 'error', 'success', 'info', 'warning'];
+    const snackbarSlide = ['default', 'left', 'right', 'up', 'down'];
+    const snackbarPos = ['default', 'bottom-left', 'bottom-center', 'bottom-right', 'top-left', 'top-center', 'top-right', ];
     return (
       <div>
         <Typography type='display1'>Snackbars</Typography>
-        <Button
-          style={buttonStyle}
-          className={classes.defaultButton}
-          onClick={this.onRequestOpen.bind(this, 'default')}
-          raised
+          <TextField
+            id="select-snackbar-type"
+            label="Type"
+            className={classes.textField}
+            value={this.state.snackbarType}
+            onChange={this.handleChange('snackbarType')}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu,
+              },
+            }}
+            margin="normal"
+            select
           >
-          default
-        </Button>
-        <CsuSnackbar
-          open={this.state.snackbars.default}
-          message='Default snackbar'
-          onRequestClose={this.onRequestClose.bind(this, 'default')}
+            {snackbarTypes.map(option => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            id="select-snackbar-pos"
+            label="Position"
+            className={classes.textField}
+            value={this.state.snackbarPos}
+            onChange={this.handleChange('snackbarPos')}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu,
+              },
+            }}
+            margin="normal"
+            select
+          >
+            {snackbarPos.map(option => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            id="select-snackbar-slide"
+            label="Slide"
+            className={classes.textField}
+            value={this.state.snackbarSlide}
+            onChange={this.handleChange('snackbarSlide')}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu,
+              },
+            }}
+            margin="normal"
+            select
+          >
+            {snackbarSlide.map(option => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+          id="autoHideDuration"
+          className={classes.textField}
+          label="Autohide Duration"
+          value={this.state.snackbarAutoHide}
+          onChange={this.handleChange('snackbarAutoHide')}
+          helperText="Milliseconds"
+          type="number"
+          margin="normal"
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+          <TextField
+            id="message"
+            label="Message"
+            className={classes.textField}
+            onChange={this.handleChange('snackbarMessage')}
+            margin="normal"
           />
         <Button
           style={buttonStyle}
-          className={classes.errorButton}
-          onClick={this.onRequestOpen.bind(this, 'error')}
+          onClick={this.updateState.bind(this, 'snackbar', true)}
           raised
           >
-          error
+          test snackbar
         </Button>
         <CsuSnackbar
-          open={this.state.snackbars.error}
-          message='Default snackbar'
-          onRequestClose={this.onRequestClose.bind(this, 'error')}
-          type='error'
-          snackbarProps={{
+          open={this.state.snackbar}
+          type={this.state.snackbarType !== 'default' ? this.state.snackbarType : null}
+          slideProps={this.state.snackbarSlide !== 'default' ? {direction: this.state.snackbarSlide} : null}
+          message={this.state.snackbarMessage === '' || this.state.snackbarMessage == null ? 'This is a snackbar with the type: '+this.state.snackbarType : this.state.snackbarMessage}
+          onRequestClose={this.updateState.bind(this, 'snackbar',false)}
+          autoHideDuration={Number(this.state.snackbarAutoHide)}
+          snackbarProps={this.state.snackbarPos === 'default' ? null : {
             anchorOrigin:{
-              vertical: 'bottom',
-              horizontal: 'right',
-            },
-            transition:<Slide direction='left' />}
-          }
-          />
-        <Button
-          style={buttonStyle}
-          className={classes.successButton}
-          onClick={this.onRequestOpen.bind(this, 'success')}
-          id='snackbar-success'
-          raised
-          >
-          success
-        </Button>
-        <CsuSnackbar
-          id='success'
-          open={this.state.snackbars.success}
-          message='Success snackbar'
-          onRequestClose={this.onRequestClose.bind(this,'success')}
-          type='success'
-          snackbarProps={{
-            anchorOrigin:{
-              vertical: 'top',
-              horizontal: 'right',
-            },
-            transition:<Slide direction='left' />}
-          }
-          />
-        <Button
-          style={buttonStyle}
-          className={classes.warningButton}
-          onClick={this.onRequestOpen.bind(this, 'warning')}
-          id='snackbar-warning'
-          raised
-          >
-          warning
-        </Button>
-        <CsuSnackbar
-          id='warning'
-          open={this.state.snackbars.warning}
-          message='Warning snackbar'
-          onRequestClose={this.onRequestClose.bind(this,'warning')}
-          type='warning'
-          snackbarProps={{
-            anchorOrigin:{
-              vertical: 'top',
-              horizontal: 'left',
-            },
-            transition:<Slide direction='right' />}
-          }
-          />
-        <Button
-          style={buttonStyle}
-          className={classes.infoButton}
-          onClick={this.onRequestOpen.bind(this, 'info')}
-          id='snackbar-info'
-          raised
-          >
-          info
-        </Button>
-        <CsuSnackbar
-          id='info'
-          open={this.state.snackbars.info}
-          message='Info snackbar'
-          onRequestClose={this.onRequestClose.bind(this,'info')}
-          type='info'
-          snackbarProps={{
-            anchorOrigin:{
-              vertical: 'bottom',
-              horizontal: 'center',
-            },
-            transition:<Slide direction='up' />}
-          }
-          />
-        <Button
-          style={buttonStyle}
-          className={classes.topCenterButton}
-          onClick={this.onRequestOpen.bind(this, 'topCenter')}
-          id='snackbar-topCenter'
-          raised
-          >
-          top-center
-        </Button>
-        <CsuSnackbar
-          id='topCenter'
-          open={this.state.snackbars.topCenter}
-          message='Top-center snackbar'
-          onRequestClose={this.onRequestClose.bind(this,'topCenter')}
-          snackbarProps={{
-            anchorOrigin:{
-              vertical: 'top',
-              horizontal: 'center',
-            },
-            transition:<Slide direction='down' />}
-          }
+              vertical: this.state.snackbarPos.split('-')[0],
+              horizontal: this.state.snackbarPos.split('-')[1],
+            }
+          }}
           />
         <Typography type='display1'>Dialogs</Typography>
         <Button

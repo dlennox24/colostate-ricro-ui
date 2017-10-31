@@ -1,6 +1,6 @@
 {
   "name": "ricro-app-template",
-  "version": "1.0.9",
+  "version": "1.0.22",
   "description": "Template for creating CSU RICRO branded react apps",
   "main": "build/index.js",
   "scripts": {
@@ -110,10 +110,10 @@
     "extends": "react-app"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-beta",
+    "bootstrap": "^4.0.0-beta.2",
     "jquery": "^3.2.1",
-    "material-ui": "^1.0.0-beta.17",
-    "react-popper": "^0.7.3",
+    "material-ui": "^1.0.0-beta.18",
+    "react-popper": "^0.7.4",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2"
   }

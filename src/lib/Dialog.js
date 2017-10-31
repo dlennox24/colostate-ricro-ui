@@ -37,6 +37,7 @@ class CsuDialog extends Component {
         open={this.props.open || false}
         onRequestClose={this.props.onRequestClose}
         maxWidth='md'
+        {...this.props.muiDialogProps}
         >
         <DialogTitle
           classes={{
@@ -74,8 +75,10 @@ class CsuDialog extends Component {
 CsuDialog.propTypes = {
   classes: PropTypes.object.isRequired,
   onRequestClose: PropTypes.func.isRequired,
+  title: PropTypes.string,
   open: PropTypes.bool,
   dialogActions: PropTypes.node,
+  muiDialogProps: PropTypes.object,
 };
 
 export default withStyles(styles)(CsuDialog);

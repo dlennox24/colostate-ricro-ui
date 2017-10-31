@@ -9,6 +9,7 @@ import {
 
 import Footer from './Footer';
 import Header from './Header';
+import IeWarning from './IeWarning';
 
 const styles = theme => ({
   '@global': {
@@ -58,6 +59,7 @@ class AppTemplate extends Component {
           className={this.props.noGutters ? null : 'container-fluid p-4'}
           style={this.props.style}
           >
+          <IeWarning/>
           {this.props.children}
         </main>
         <Footer/>

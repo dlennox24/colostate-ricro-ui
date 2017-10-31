@@ -1,28 +1,30 @@
 import $ from 'jquery';
 
-
 function complete(data) {
   try {
     console.log(
-      'COMPLETE:',
-      JSON.parse(data.responseText), '|',
+      '\tCOMPLETE: \n\t\t',
+      JSON.parse(data.responseText), '\n\t\t',
       data
     );
   } catch (e) {
-    console.error("ricro-app-template/utils/linkTo:\n" + e);
+    console.error("ricro-app-template/utils/apiCall:\n\t" + e);
   }
   return data;
 }
 
-export default function apiCall(uri = '/', settings = {}) {
-  if (!uri.match(/^([/].+[/])$/g)) {
+export default function apiCall(params) {
+  let {
+    url = "https://services.ricro.colostate.edu/api", uri = '', settings = {}
+  } = params;
+  if (!uri.match(/^(\w+\/*)+\w$/g)) {
     console.error('Invalid API URI syntax: ' + uri);
     return false;
   }
-  console.log('API Request: ', 'http://192.168.1.24:8080/api' + uri, settings);
+  console.log('API Request: ', url + '/' + uri + '/', settings);
   return $.ajax({
     dataType: 'json',
-    url: 'http://192.168.1.24:8080/api' + uri,
+    url: url + '/' + uri + '/',
     complete: complete.bind(this),
     ...settings,
   });

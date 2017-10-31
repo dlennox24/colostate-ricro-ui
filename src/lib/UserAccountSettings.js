@@ -27,7 +27,7 @@ const styles = theme => ({
 
 class UserAccount extends Component {
   state = {
-    open: true,
+    open: false,
   }
   handleRequestClose = () => {
     this.setState({

@@ -1,8 +1,13 @@
 {
+  "api": {
+    "auth": "https://services.ricro.colostate.edu/auth/sso/",
+    "location": "https://services.ricro.colostate.edu/api"
+  },
   "app": {
     "name": "App Template Defaults",
     "header": {
       "login": false,
+      "autoLogin": false,
       "moreMenu": [{
         "name": "Home Defaults",
         "icon": "home",

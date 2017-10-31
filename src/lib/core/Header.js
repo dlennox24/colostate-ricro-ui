@@ -166,7 +166,7 @@ class Header extends Component {
       </Typography>,
     );
     if (config.app.header.login) {
-      defaultHeader.push(<Login key={defaultHeader.length} height='64px'/>);
+      defaultHeader.push(<Login key={defaultHeader.length} api={config.api} autoLogin={config.app.header.autoLogin} height='64px'/>);
     }
     defaultHeader.push(this.createMoreList(config.app.header.moreMenu));
 

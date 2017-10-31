@@ -65,17 +65,30 @@ class CsuSnackbar extends Component {
           {this.props.message}
       </div>
     );
+    let transition;
+    if (this.props.transition == null) {
+      transition = this.props.slideProps == null ?
+        <Slide direction='up' /> :
+        <Slide {...this.props.slideProps}/>;
+    } else {
+      transition = this.props.transition;
+    }
+    let autohide;
+    if (this.props.autoHideDuration === 0) {
+      autohide = undefined;
+    } else if (this.props.autoHideDuration == null) {
+      autohide = 6e3;
+    } else {
+      autohide = this.props.autoHideDuration;
+    }
+
     return (
       <Snackbar
         classes={{root: classes[this.props.type ? this.props.type : 'default']}}
         open={this.props.open}
-        autoHideDuration={this.props.autoHideDuration ? this.props.autoHideDuration : 6e3}
+        autoHideDuration={autohide}
         onRequestClose={this.props.onRequestClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        transition={<Slide direction='right' />}
+        transition={transition}
         SnackbarContentProps={{
           'aria-describedby': 'message',
         }}
@@ -94,6 +107,8 @@ CsuSnackbar.propTypes = {
   autoHideDuration: PropTypes.number,
   snackbarProps: PropTypes.object,
   noIcon: PropTypes.bool,
+  transition: PropTypes.node,
+  slideProps: PropTypes.object,
 };
 
 export default withStyles(styles)(CsuSnackbar);
