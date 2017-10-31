@@ -9,6 +9,7 @@ import {
 
 import Footer from './Footer';
 import Header from './Header';
+import IeWarning from './IeWarning';
 
 const styles = theme => ({
   '@global': {
@@ -33,6 +34,7 @@ const styles = theme => ({
     '#main-content': {
       flex: 1,
       width: '100%',
+      overflowX: 'auto',
     },
     '#root, #root>div': {
       display: 'flex',
@@ -49,13 +51,15 @@ class AppTemplate extends Component {
   render() {
     return (
       <div>
-        <Header
-          unit={this.props.config.unit}
-          appName={this.props.config.app.name}
-          >
+        <Header config={this.props.config}>
           {this.props.header}
         </Header>
-        <main id='main-content' className='container-fluid p-4' style={this.props.style}>
+        <main
+          id='main-content'
+          className={this.props.noGutters ? null : 'container-fluid p-4'}
+          style={this.props.style}
+          >
+          <IeWarning/>
           {this.props.children}
         </main>
         <Footer/>
@@ -68,7 +72,8 @@ AppTemplate.propTypes = {
   config: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   reduxMiddleware: PropTypes.func,
-  user: PropTypes.object,
+  header: PropTypes.node,
+  noGutters: PropTypes.bool,
 };
 
 export default withStyles(styles)(AppTemplate);

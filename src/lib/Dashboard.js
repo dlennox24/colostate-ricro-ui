@@ -22,9 +22,6 @@ TabContainer.propTypes = {
 };
 
 const styles = theme => ({
-  card: {
-    // maxWidth: 775,
-  },
   cardHeaderRoot: {
     backgroundColor: theme.palette.primary[500],
   },
@@ -34,9 +31,12 @@ const styles = theme => ({
   flex: {
     flex: 1,
   },
+  content: {
+    overflowX: 'auto',
+  },
 });
 
-class CsuDashboard extends Component {
+class Dashboard extends Component {
   state = {
     index: 1,
   };
@@ -64,9 +64,7 @@ class CsuDashboard extends Component {
             </Typography>
           } classes={cardHeaderClasses} color='inherit'
           />
-        <CardContent>
-          {this.props.children}
-        </CardContent>
+        <CardContent className={classes.content}>{this.props.children}</CardContent>
         {this.props.cardActions ?
           <CardActions>
             {this.props.alignCARight ? <div className={classes.flex}/> : null}
@@ -79,11 +77,11 @@ class CsuDashboard extends Component {
   }
 }
 
-CsuDashboard.propTypes = {
+Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   cardActions: PropTypes.node,
   alignCARight: PropTypes.bool,
 };
 
-export default withStyles(styles)(CsuDashboard);
+export default withStyles(styles)(Dashboard);

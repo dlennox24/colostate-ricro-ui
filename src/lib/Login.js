@@ -18,6 +18,7 @@ import {
 } from 'material-ui/List';
 
 import UserAccountSettings from './UserAccountSettings';
+import Snackbar from './Snackbar';
 import apiCall from './utils/apiCall';
 import defaultProfileImg from './assets/images/default-profile.png';
 
@@ -34,45 +35,102 @@ const styles = theme => ({
 
 class Login extends Component {
   state = {
-    anchorEl: undefined,
-    open: false,
+    menuOpen: false,
+    menuAnchor: null,
+    snackbar: {
+      open: false,
+      message: '',
+      type: null,
+    }
   }
 
   handleClick = event => {
     this.setState({
-      open: true,
-      anchorEl: event.currentTarget,
+      menuOpen: true,
+      menuAnchor: event.currentTarget,
     });
   };
 
-  handleRequestClose = event => {
+  handleRequestClose = () => {
     this.setState({
-      ...this.state.account,
-      open: false,
+      menuOpen: false,
     });
-    if (event.currentTarget.id === 'logout') {
-      this.props.onLogout();
-    }
-    console.log(event.currentTarget.id);
   };
 
-  handleLogin(eId) {
-    console.log(new Date().getTime() + ': login event triggered');
-    $.when(apiCall('/user/login/', {
-      data: {
-        eId,
+  handleSnackbarOpen = (type = '', message = '') => {
+    this.setState({
+      snackbar: {
+        open: true,
+        type,
+        message,
+      }
+    });
+  }
+
+  handleSnackbarClose = () => {
+    this.setState({
+      snackbar: {
+        open: false,
+      }
+    });
+  }
+
+  loginRedirect = userLogin => {
+    if (this.props.autoLogin || userLogin) {
+      window.location = this.props.api.auth + "?return=" + window.location.pathname;
+    }
+  }
+
+  handleLogin = event => {
+    let userLogin = typeof event !== 'undefined';
+    let props = this.props;
+    let handleSnackbarOpen = this.handleSnackbarOpen;
+    let loginRedirect = this.loginRedirect;
+    $.ajax({
+      url: props.api.auth,
+      dataType: "json",
+      method: "GET",
+      success: function(data) {
+        if (data.status === 'success') {
+          props.onLogin(data.result);
+          if (!userLogin) {
+            handleSnackbarOpen('info', 'We\'ve automaticly logged you in');
+          }
+        } else if (data.status === 'redirect') {
+          loginRedirect(userLogin);
+        } else if (!data) {
+          console.error("API request failed");
+        } else {
+          console.error("Unknown API Response: ", data);
+        }
       },
+      error: function(data, textStatus) {
+        loginRedirect(userLogin);
+      },
+    });
+  }
+
+  handleLogout = () => {
+    $.when(apiCall({
+      url: this.props.api.location,
+      uri: 'user/logout'
     })).then((data) => {
       if (data.status === 'success') {
-        this.props.onLogin(data.result);
+        this.handleRequestClose();
+        this.props.onLogout();
+        this.handleSnackbarOpen('info', 'To completely logout, you must close your browser');
+      } else if (!data) {
+        console.error("API request failed", data);
+        this.handleSnackbarOpen('error', 'Failed to logout');
       } else {
-        console.log(data);
+        console.error("Unknown API Response: ", data);
+        this.handleSnackbarOpen('error', 'Failed to logout');
       }
     });
   }
 
   componentWillMount() {
-    this.handleLogin(830126214);
+    this.handleLogin();
   }
 
   render() {
@@ -80,12 +138,27 @@ class Login extends Component {
 
     if (!_.isEmpty(this.props.height)) {
       if (!this.props.height.match(/^[0-9]+(em|ex|ch|rem|vw|vh|vmin|vmax|%|cm|mm|in|px|pt|pc)$/g)) {
-        console.error('csu-app-template/Login\nInvalid height value: ' + this.props.height);
+        console.error('ricror-app-template/Login\nInvalid height value: ' + this.props.height);
       }
     }
 
+    let snackbar = this.state.snackbar.message == null ? null : (
+      <Snackbar
+        id='login-message'
+        open={this.state.snackbar.open}
+        message={this.state.snackbar.message}
+        type={this.state.snackbar.type}
+        onRequestClose={this.handleSnackbarClose}
+        />
+    );
+
     if (_.isEmpty(this.props.user)) {
-      return (<Button onClick={this.handleLogin.bind(this,830126214)}>login</Button>);
+      return (
+        <div>
+          <Button onClick={this.handleLogin}>login</Button>
+          {snackbar}
+        </div>
+      );
     } else {
       return (
         <div style={{height: this.props.height}}>
@@ -103,30 +176,25 @@ class Login extends Component {
               <Avatar className={classes.accountAvatar} src={defaultProfileImg} />
             </ListItemIcon>
             <ListItemText
-              primary={this.props.user.first_name + ' ' + this.props.user.last_name}
-              secondary={this.props.user.eId.toString().replace(/(.{3})/g, '$1 ')}
+              primary={this.props.user.displayName}
+              secondary={this.props.user.csuId.toString().replace(/(.{3})/g, '$1 ')}
               />
           </ListItem>
           <Menu
             id='account-menu'
-            anchorEl={this.state.anchorEl}
-            open={this.state.open}
+            anchorEl={this.state.menuAnchor}
+            open={this.state.menuOpen}
             onRequestClose={this.handleRequestClose}
             >
-            <ListItem button onClick={this.handleRequestClose}>
-              <ListItemIcon>
-                <Icon>account_circle</Icon>
-              </ListItemIcon>
-              <ListItemText inset primary='Account Settings' />
-              <UserAccountSettings />
-            </ListItem>
-            <ListItem id='logout' button onClick={this.handleRequestClose}>
+            <UserAccountSettings user={this.props.user}/>
+            <ListItem id='logout' button onClick={this.handleLogout}>
               <ListItemIcon>
                 <Icon>exit_to_app</Icon>
               </ListItemIcon>
               <ListItemText inset primary='Logout' />
             </ListItem>
           </Menu>
+          {snackbar}
         </div>
       )
     }
@@ -135,6 +203,8 @@ class Login extends Component {
 
 Login.propTypes = {
   classes: PropTypes.object.isRequired,
+  api: PropTypes.object.isRequired,
+  autoLogin: PropTypes.bool,
   user: PropTypes.object,
   height: PropTypes.string,
 };

@@ -4,9 +4,10 @@ import registerServiceWorker from './registerServiceWorker';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 
-import App from '../lib/App';
-import Dashboard from '../lib/Dashboard';
-import LoadMore from '../lib/LoadMore';
+import App, {
+  Dashboard,
+  LoadMore
+} from 'ricro-app-template';
 
 import config from './config.json';
 import SnackbarsTest from './SnackbarsTest';
