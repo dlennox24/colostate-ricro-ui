@@ -87,6 +87,9 @@ class Header extends Component {
 
   createMoreList = list => {
     if (!Array.isArray(list)) {
+      if (list == null) {
+        return null;
+      }
       console.error("Header: moreMenu not an array", list);
       return null;
     }
@@ -147,8 +150,6 @@ class Header extends Component {
           </IconButton>
         </Tooltip>
       );
-    } else {
-      return null;
     }
   }
 
