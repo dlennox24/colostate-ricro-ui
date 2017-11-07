@@ -9,8 +9,10 @@ import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/Menu/MenuItem';
 
-import CsuSnackbar from 'ricro-app-template/Snackbar';
-import Dialog from 'ricro-app-template/Dialog';
+import {
+  Snackbar as CsuSnackbar,
+  Dialog
+} from 'ricro-app-template';
 
 const styles = theme => ({
   textField: {
