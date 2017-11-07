@@ -33,7 +33,6 @@ const styles = theme => ({
     },
     '#main-content': {
       flex: 1,
-      width: '100%',
       overflowX: 'auto',
     },
     '#root, #root>div': {
