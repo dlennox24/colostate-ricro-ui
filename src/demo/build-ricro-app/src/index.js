@@ -10,7 +10,8 @@ import App, {
 } from 'ricro-app-template';
 
 import config from './config.json';
-import SnackbarsTest from './SnackbarsTest';
+import SnackbarEx from './SnackbarEx';
+import DialogEx from './DialogEx';
 
 const style = {
   button: {
@@ -71,7 +72,8 @@ ReactDOM.render(
     <div className='row mt-4'>
       <div className='col-md-7'>
         <Dashboard title='Other Components'>
-          <SnackbarsTest />
+          <SnackbarEx/>
+          <DialogEx/>
           <Typography className='mt-3' type='display1'>LoadingMore</Typography>
           <LoadMore />
         </Dashboard>
