@@ -18,7 +18,9 @@ import {
 } from 'material-ui/List';
 
 import UserAccountSettings from './UserAccountSettings';
-import Snackbar from './Snackbar';
+import Snackbar, {
+  slideTransition
+} from './Snackbar';
 import apiCall from './utils/apiCall';
 import defaultProfileImg from './assets/images/default-profile.png';
 
@@ -41,6 +43,7 @@ class Login extends Component {
       open: false,
       message: '',
       type: null,
+      transition: null,
     }
   }
 
@@ -57,12 +60,13 @@ class Login extends Component {
     });
   };
 
-  handleSnackbarOpen = (type = '', message = '') => {
+  handleSnackbarOpen = (type, message) => {
     this.setState({
       snackbar: {
         open: true,
         type,
         message,
+        transition: slideTransition.bind(this),
       }
     });
   }
@@ -105,6 +109,7 @@ class Login extends Component {
         }
       },
       error: function(data, textStatus) {
+        console.log(data, textStatus);
         loginRedirect(userLogin);
       },
     });
@@ -145,11 +150,12 @@ class Login extends Component {
     let snackbar = this.state.snackbar.message == null ? null : (
       <Snackbar
         id='login-message'
-        open={this.state.snackbar.open}
-        message={this.state.snackbar.message}
+        state={this.state.snackbar}
         type={this.state.snackbar.type}
         onRequestClose={this.handleSnackbarClose}
-        />
+        >
+        {this.state.snackbar.message}
+      </Snackbar>
     );
 
     if (_.isEmpty(this.props.user)) {

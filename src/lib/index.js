@@ -1,7 +1,9 @@
 import App from './App';
 import Dashboard from './Dashboard';
 import Dialog from './Dialog';
-import Snackbar from './Snackbar';
+import Snackbar, {
+  slideTransition
+} from './Snackbar';
 import LoadMore from './LoadMore';
 import Login from './redux/Login';
 
@@ -18,5 +20,6 @@ export {
   Login,
   // Functions
   apiCall,
-  linkTo
+  linkTo,
+  slideTransition
 };
