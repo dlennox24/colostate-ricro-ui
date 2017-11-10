@@ -103,6 +103,7 @@ CsuSnackbar.propTypes = {
   classes: PropTypes.object.isRequired,
   state: PropTypes.object.isRequired,
   children: PropTypes.string.isRequired,
+  onRequestClose: PropTypes.func.isRequired,
   type: PropTypes.oneOf(['default', 'error', 'success', 'info', 'warning']),
   snackbarProps: PropTypes.object,
   noIcon: PropTypes.bool,
