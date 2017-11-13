@@ -19,11 +19,14 @@ import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
   dialogTitleRoot: {
-    padding: '0 0 20px 0',
+    padding: 0,
   },
-  // dialogRoot: {
-  //   width: '95%',
-  // },
+  dialogRoot: {
+    width: '100%',
+  },
+  dialogContent: {
+    padding: 24,
+  },
   flex: {
     flex: 1,
   },
@@ -66,7 +69,9 @@ class CsuDialog extends Component {
             </Toolbar>
           </AppBar>
         </DialogTitle>
-        <DialogContent>{this.props.children}</DialogContent>
+        <DialogContent classes={{root: classes.dialogContent}}>
+          {this.props.children}
+        </DialogContent>
         {
           this.props.dialogActions != null
             ? <DialogActions>{this.props.dialogActions}</DialogActions>
