@@ -53,12 +53,11 @@ class SnackbarEx extends Component {
     });
   };
 
-  handleClick = (transition, slideProps = {}) => () => {
-    console.log('transition', slideProps, transition);
+  handleClick = (slideProps = {}) => () => {
     this.setState({
       snackbar: {
         open: true,
-        transition: transition.bind(this, slideProps),
+        transition: slideTransition.bind(this, slideProps),
       }
     });
   };
@@ -153,7 +152,7 @@ class SnackbarEx extends Component {
           />
         <Button
           className={classes.button}
-          onClick={this.handleClick(slideTransition,{direction:this.state.slide})}
+          onClick={this.handleClick({direction:this.state.slide})}
           raised
           >
           Open Snackbar
@@ -162,7 +161,6 @@ class SnackbarEx extends Component {
             state={this.state.snackbar}
             type={this.state.type !== 'default' ? this.state.type : null}
             onRequestClose={this.updateState.bind(this, 'snackbar',{...this.state.snackbar,open:false})}
-            autoHideDuration={Number(this.state.autoHide)}
             snackbarProps={{
               autoHideDuration: Number(this.state.autoHide),
               anchorOrigin: {

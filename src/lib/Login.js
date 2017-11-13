@@ -109,7 +109,6 @@ class Login extends Component {
         }
       },
       error: function(data, textStatus) {
-        console.log(data, textStatus);
         loginRedirect(userLogin);
       },
     });

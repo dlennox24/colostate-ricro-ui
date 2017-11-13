@@ -18,7 +18,6 @@ class SnackbarTest extends Component {
   };
 
   handleClick = (transition, slideProps = {}) => () => {
-    console.log('transition', slideProps, transition);
     this.setState({
       snackbar: {
         open: true,
