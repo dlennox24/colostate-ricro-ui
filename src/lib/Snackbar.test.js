@@ -3,51 +3,58 @@ import React, {
 } from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'material-ui/Button';
-import Snackbar from './Snackbar';
+import Snackbar, {
+  slideTransition
+} from './Snackbar';
 import App from './App';
 import config from '../demo/config.json';
 
 class SnackbarTest extends Component {
   state = {
-    snackbars: {
-      default: false,
-    },
-  }
+    snackbar: {
+      open: false,
+      transition: null,
+    }
+  };
 
-  onRequestClose = type => {
-    console.log('close: ' + type);
+  handleClick = (transition, slideProps = {}) => () => {
     this.setState({
-      snackbars: {
-        ...this.state.snackbars,
-        [type]: false,
+      snackbar: {
+        open: true,
+        transition: transition.bind(this, slideProps),
       }
     });
-  }
-  onRequestOpen = type => {
-    console.log('open: ' + type);
+  };
+
+  updateState = (key, value) => {
     this.setState({
-      snackbars: {
-        ...this.state.snackbars,
-        [type]: true,
-      }
+      [key]: value,
     });
   }
 
   render() {
-    let classes = this.props.classes;
     return (
       <App config={config}>
         <Button
-          onClick={this.onRequestOpen.bind(this, 'default')}
+          onClick={this.handleClick(slideTransition,{direction:'right'})}
           raised
           >
-          default
+          Open Snackbar
         </Button>
-        <Snackbar
-          open={this.state.snackbars.default}
-          message='Default snackbar'
-          onRequestClose={this.onRequestClose.bind(this, 'default')}
-          />
+          <Snackbar
+            state={this.state.snackbar}
+            type={'success'}
+            onRequestClose={this.updateState.bind(this, 'snackbar',{...this.state.snackbar,open:false})}
+            snackbarProps={{
+              autoHideDuration: 5e3,
+              anchorOrigin: {
+                vertical: 'top',
+                horizontal: 'left',
+              }
+            }}
+            >
+            This is a snackbar with the type: success
+          </Snackbar>
       </App>
     );
   }
