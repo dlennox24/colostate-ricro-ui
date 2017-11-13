@@ -2,14 +2,16 @@ import React, {
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import {
   withStyles,
 } from 'material-ui/styles';
-import {
+import List, {
   ListItem,
   ListItemIcon,
   ListItemText,
 } from 'material-ui/List';
+import Divider from 'material-ui/Divider';
 import Icon from 'material-ui/Icon';
 import Avatar from 'material-ui/Avatar';
 
@@ -40,7 +42,10 @@ class UserAccount extends Component {
     });
   }
   render() {
-    const classes = this.props.classes;
+    const {
+      classes
+    } = this.props;
+    const userGroups = _.sortBy(this.props.user.userGroups, ['alias', 'userGroupTypeId']);
     return (
       <div>
         <ListItem button onClick={this.handleOpenClick}>
@@ -55,46 +60,64 @@ class UserAccount extends Component {
           open={this.state.open}
           >
           <div className='container-fluid text-center'>
-          <div className='row'>
-            <Avatar
-              alt='Adelle Charles'
-              src={defaultProfileImg}
-              className={'ml-auto mr-auto '+classes.profileImg}
-              />
-          </div>
-          <hr/>
-          <div className='row justify-content-md-center'>
-            <div className='col-md-3'>
+            <div className='row'>
+              <Avatar
+                alt={this.props.user.displayName}
+                src={defaultProfileImg}
+                className={'ml-auto mr-auto '+classes.profileImg}
+                />
+            </div>
+            <hr/>
+            <div className='row justify-content-md-center'>
+              <div className='col-md-3'>
                 <ListItem>
                   <ListItemText primary={this.props.user.firstName} secondary='First Name'/>
                 </ListItem>
-            </div>
-            <div className='col-md-3'>
+              </div>
+              <div className='col-md-3'>
                 <ListItem>
                   <ListItemText primary={this.props.user.lastName} secondary='Last Name'/>
                 </ListItem>
+              </div>
             </div>
-          </div>
-          <div className='row justify-content-md-center'>
-            <div className='col-md-3'>
+            <div className='row justify-content-md-center'>
+              <div className='col-md-3'>
                 <ListItem>
                   <ListItemText primary={this.props.user.eId} secondary='eID'/>
                 </ListItem>
-            </div>
-            <div className='col-md-3'>
+              </div>
+              <div className='col-md-3'>
                 <ListItem>
                   <ListItemText primary={this.props.user.csuId.toString().replace(/(.{3})/g, '$1 ')} secondary='CSU ID'/>
                 </ListItem>
+              </div>
             </div>
-          </div>
-          <div className='row justify-content-md-center'>
-            <div className='col'>
+            <div className='row justify-content-md-center'>
+              <div className='col'>
                 <ListItem>
                   <ListItemText primary={this.props.user.email} secondary='Email'/>
                 </ListItem>
+              </div>
             </div>
           </div>
-        </div>
+          {_.isEmpty(userGroups) ? null : (
+            <div className='container'>
+              <div className='row justify-content-md-center'>
+                <div className='col-md-8'>
+                  <List
+                    disablePadding
+                    >
+                    <Divider/>
+                    {userGroups.map((userGroup, i) =>
+                      <ListItem key={i}>
+                        <ListItemText primary={userGroup.alias} secondary={userGroup.description} />
+                      </ListItem>
+                    )}
+                  </List>
+                </div>
+              </div>
+            </div>
+          )}
         </Dialog>
       </div>
     );
