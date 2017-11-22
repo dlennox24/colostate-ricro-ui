@@ -12,6 +12,12 @@ import config from './config.json';
 import SnackbarEx from './SnackbarEx';
 import DialogEx from './DialogEx';
 
+import {
+  version,
+  name as appName
+} from '../../package.json';
+console.log(appName + '@' + version);
+
 const style = {
   button: {
     margin: '8px'
