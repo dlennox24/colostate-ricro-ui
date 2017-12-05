@@ -8,8 +8,9 @@ import {
 } from 'material-ui/styles';
 
 import Footer from './Footer';
-import Header from './Header';
+import CsuUnitHeader from './CsuUnitHeader';
 import IeWarning from './IeWarning';
+import AppWrapper from './wrapper/AppWrapper';
 
 const styles = theme => ({
   '@global': {
@@ -31,36 +32,39 @@ const styles = theme => ({
       height: '.1rem',
       margin: 0,
     },
-    '#main-content': {
-      flex: 1,
-      overflowX: 'auto',
-    },
-    '#root, #root>div': {
-      display: 'flex',
-      minHeight: '100vh',
-      flexDirection: 'column',
-    },
-    '.v-gutters': {
-      margins: '10px 0',
-    },
   },
+  root: {
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+  }
 });
 
 class AppTemplate extends Component {
   render() {
+    const {
+      classes,
+      config,
+      header,
+      noGutters,
+      style,
+      children,
+    } = this.props;
     return (
-      <div>
-        <Header config={this.props.config}>
-          {this.props.header}
-        </Header>
+      <div className={classes.root}>
+        <CsuUnitHeader config={config}>
+          {header}
+        </CsuUnitHeader>
+        <AppWrapper config={config}>
         <main
           id='main-content'
-          className={this.props.noGutters ? null : 'container-fluid p-4'}
-          style={this.props.style}
+          className={noGutters ? null : 'container-fluid p-4'}
+          style={style}
           >
           <IeWarning/>
-          {this.props.children}
+          {children}
         </main>
+      </AppWrapper>
         <Footer/>
       </div>
     );

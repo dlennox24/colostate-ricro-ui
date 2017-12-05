@@ -9,9 +9,8 @@ import {
 } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 import Avatar from 'material-ui/Avatar';
-import Menu from 'material-ui/Menu';
-import Button from 'material-ui/Button';
-import {
+import Collapse from 'material-ui/transitions/Collapse';
+import List, {
   ListItem,
   ListItemIcon,
   ListItemText,
@@ -26,19 +25,14 @@ import defaultProfileImg from './assets/images/default-profile.png';
 
 const styles = theme => ({
   accountAvatar: {
-    marginRight: 0,
-    height: '40px',
-    width: '40px',
-  },
-  container: {
-    height: '100%',
+    height: '24px',
+    width: '24px',
   },
 });
 
 class Login extends Component {
   state = {
-    menuOpen: false,
-    menuAnchor: null,
+    dropdownOpen: false,
     snackbar: {
       open: false,
       message: '',
@@ -47,16 +41,9 @@ class Login extends Component {
     }
   }
 
-  handleClick = event => {
+  handleDropdownToggle = event => {
     this.setState({
-      menuOpen: true,
-      menuAnchor: event.currentTarget,
-    });
-  };
-
-  handleRequestClose = () => {
-    this.setState({
-      menuOpen: false,
+      dropdownOpen: !this.state.dropdownOpen,
     });
   };
 
@@ -138,15 +125,10 @@ class Login extends Component {
   }
 
   render() {
-    const classes = this.props.classes;
-
-    if (!_.isEmpty(this.props.height)) {
-      if (!this.props.height.match(/^[0-9]+(em|ex|ch|rem|vw|vh|vmin|vmax|%|cm|mm|in|px|pt|pc)$/g)) {
-        console.error('ricror-app-template/Login\nInvalid height value: ' + this.props.height);
-      }
-    }
-
-    let snackbar = this.state.snackbar.message == null ? null : (
+    const {
+      classes
+    } = this.props;
+    let snackbar = this.state.snackbar.message && (
       <Snackbar
         id='login-message'
         state={this.state.snackbar}
@@ -157,51 +139,51 @@ class Login extends Component {
       </Snackbar>
     );
 
+
     if (_.isEmpty(this.props.user)) {
       return (
         <div>
-          <Button onClick={this.handleLogin}>login</Button>
+          <ListItem button>
+            <ListItemIcon>
+              <Icon>account_circle</Icon>
+            </ListItemIcon>
+            <ListItemText inset primary="Login" />
+          </ListItem>
           {snackbar}
         </div>
       );
     } else {
       return (
-        <div style={{height: this.props.height}}>
+        <div>
           <ListItem
-            id='account-menu-button'
             aria-owns='account-menu'
             aria-haspopup='true'
             aria-label='Account'
-            className={classes.container}
-            onClick={this.handleClick}
+            onClick={this.handleDropdownToggle}
             button
-            dense
             >
             <ListItemIcon>
               <Avatar className={classes.accountAvatar} src={defaultProfileImg} />
             </ListItemIcon>
             <ListItemText
               primary={this.props.user.displayName}
-              secondary={this.props.user.csuId.toString().replace(/(.{3})/g, '$1 ')}
               />
+            {this.state.dropdownOpen ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>}
           </ListItem>
-          <Menu
-            id='account-menu'
-            anchorEl={this.state.menuAnchor}
-            open={this.state.menuOpen}
-            onRequestClose={this.handleRequestClose}
-            >
-            <UserAccountSettings user={this.props.user}/>
-            <ListItem id='logout' button onClick={this.handleLogout}>
-              <ListItemIcon>
-                <Icon>exit_to_app</Icon>
-              </ListItemIcon>
-              <ListItemText inset primary='Logout' />
-            </ListItem>
-          </Menu>
+          <Collapse component="li" in={this.state.dropdownOpen} timeout="auto" unmountOnExit>
+            <List id='account-menu' disablePadding>
+              <UserAccountSettings user={this.props.user}/>
+              <ListItem dense id='logout' button onClick={this.handleLogout}>
+                <ListItemIcon>
+                  <Icon>exit_to_app</Icon>
+                </ListItemIcon>
+                <ListItemText primary='Logout' />
+              </ListItem>
+            </List>
+          </Collapse>
           {snackbar}
         </div>
-      )
+      );
     }
   }
 }

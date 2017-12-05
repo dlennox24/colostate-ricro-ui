@@ -8,7 +8,6 @@ import {
 import $ from 'jquery';
 import AppBar from 'material-ui/AppBar';
 import Typography from 'material-ui/Typography';
-import Toolbar from 'material-ui/Toolbar';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import Icon from 'material-ui/Icon';
@@ -41,18 +40,6 @@ const styles = theme => ({
   },
 });
 
-function stickyHeader(scrollTop, element) {
-  let csuLogoBar = document.getElementById('csuLogoBar');
-  let headerBar = document.getElementById('headerBar');
-  if (csuLogoBar.offsetHeight - scrollTop <= 0) {
-    csuLogoBar.setAttribute('style', 'margin-bottom: ' + headerBar.offsetHeight + 'px;');
-    headerBar.setAttribute('style', 'position: fixed; top: 0px;');
-  } else {
-    csuLogoBar.removeAttribute('style');
-    headerBar.removeAttribute('style');
-  }
-}
-
 class Header extends Component {
   state = {
     more: {
@@ -78,12 +65,6 @@ class Header extends Component {
       }
     });
   };
-
-  componentWillMount() {
-    $(window).scroll(function() {
-      stickyHeader($(this).scrollTop(), 'headerBar');
-    });
-  }
 
   createMoreList = list => {
     if (!Array.isArray(list)) {
@@ -180,13 +161,6 @@ class Header extends Component {
           >
           <CsuSvgUnitLogo unit={config.unit} />
         </AppBar>
-        {this.props.children === 'none' ? null : (
-          <AppBar id='headerBar' position='static' color='default' className={classes.headerBar}>
-            <Toolbar>
-              {this.props.children == null ? defaultHeader : this.props.children}
-            </Toolbar>
-          </AppBar>
-        )}
       </div>
     );
   }

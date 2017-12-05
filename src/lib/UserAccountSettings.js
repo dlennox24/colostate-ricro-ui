@@ -48,7 +48,7 @@ class UserAccount extends Component {
     const userGroups = _.sortBy(this.props.user.userGroups, ['alias', 'userGroupTypeId']);
     return (
       <div>
-        <ListItem button onClick={this.handleOpenClick}>
+        <ListItem dense button onClick={this.handleOpenClick}>
           <ListItemIcon>
             <Icon>account_circle</Icon>
           </ListItemIcon>
