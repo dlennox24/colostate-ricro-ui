@@ -14,7 +14,11 @@ import List, {
 import Collapse from 'material-ui/transitions/Collapse';
 import Icon from 'material-ui/Icon';
 
-const styles = theme => ({});
+const styles = theme => ({
+  listRoot: {
+    marginLeft: theme.spacing.unit * 5
+  },
+});
 
 class SideNavEx extends Component {
   state = {
@@ -56,7 +60,13 @@ class SideNavEx extends Component {
         </ListItem>
         <Collapse component='li' in={this.state.open} timeout='auto' unmountOnExit>
           <List disablePadding className={classNames(iconOnly ? 'sideNavSubMenuClosed' : 'sideNavSubMenu')}>
-            <ListItem dense button>
+            <ListItem
+              dense
+              button
+              classes={iconOnly ? null : {
+                root: classes.listRoot
+              }}
+              >
               <ListItemIcon>
                 <Icon>star</Icon>
               </ListItemIcon>

@@ -29,6 +29,9 @@ const styles = theme => ({
     height: '24px',
     width: '24px',
   },
+  listRoot: {
+    marginLeft: theme.spacing.unit * 5
+  },
 });
 
 class Login extends Component {
@@ -181,6 +184,9 @@ class Login extends Component {
             <List
               id='account-menu'
               className={classNames(iconOnly ? 'sideNavSubMenuClosed' : 'sideNavSubMenu')}
+              classes={iconOnly ? null : {
+                root: classes.listRoot
+              }}
               disablePadding
               >
               <UserAccountSettings iconOnly={iconOnly} user={user}/>

@@ -40,17 +40,15 @@ const styles = theme => ({
       },
     },
     '.sideNavSubMenu': {
-      marginLeft: theme.spacing.unit * 5,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
     '.sideNavSubMenuClosed': {
-      marginLeft: 0,
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen / 4,
+        duration: theme.transitions.duration.leavingScreen / 3,
       }),
     },
   },
