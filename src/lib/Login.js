@@ -2,6 +2,7 @@ import React, {
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import _ from 'lodash';
 import $ from 'jquery';
 import {
@@ -68,7 +69,7 @@ class Login extends Component {
 
   loginRedirect = userLogin => {
     if (this.props.autoLogin || userLogin) {
-      window.location = this.props.api.auth + "?return=" + window.location.pathname;
+      window.location = this.props.api.auth + '?return=' + window.location.pathname;
     }
   }
 
@@ -79,8 +80,8 @@ class Login extends Component {
     let loginRedirect = this.loginRedirect;
     $.ajax({
       url: props.api.auth,
-      dataType: "json",
-      method: "GET",
+      dataType: 'json',
+      method: 'GET',
       success: function(data) {
         if (data.status === 'success') {
           props.onLogin(data.result);
@@ -90,9 +91,9 @@ class Login extends Component {
         } else if (data.status === 'redirect') {
           loginRedirect(userLogin);
         } else if (!data) {
-          console.error("API request failed");
+          console.error('API request failed');
         } else {
-          console.error("Unknown API Response: ", data);
+          console.error('Unknown API Response: ', data);
         }
       },
       error: function(data, textStatus) {
@@ -111,10 +112,10 @@ class Login extends Component {
         this.props.onLogout();
         this.handleSnackbarOpen('info', 'To completely logout, you must close your browser');
       } else if (!data) {
-        console.error("API request failed", data);
+        console.error('API request failed', data);
         this.handleSnackbarOpen('error', 'Failed to logout');
       } else {
-        console.error("Unknown API Response: ", data);
+        console.error('Unknown API Response: ', data);
         this.handleSnackbarOpen('error', 'Failed to logout');
       }
     });
@@ -126,16 +127,24 @@ class Login extends Component {
 
   render() {
     const {
-      classes
+      classes,
+      iconOnly,
+      user,
     } = this.props;
-    let snackbar = this.state.snackbar.message && (
+
+    const {
+      snackbar,
+      dropdownOpen,
+    } = this.state;
+
+    let snackbarComponent = snackbar.message && (
       <Snackbar
         id='login-message'
-        state={this.state.snackbar}
-        type={this.state.snackbar.type}
+        state={snackbar}
+        type={snackbar.type}
         onRequestClose={this.handleSnackbarClose}
         >
-        {this.state.snackbar.message}
+        {snackbar.message}
       </Snackbar>
     );
 
@@ -147,9 +156,9 @@ class Login extends Component {
             <ListItemIcon>
               <Icon>account_circle</Icon>
             </ListItemIcon>
-            <ListItemText inset primary="Login" />
+            <ListItemText inset primary='Login' />
           </ListItem>
-          {snackbar}
+          {snackbarComponent}
         </div>
       );
     } else {
@@ -165,23 +174,25 @@ class Login extends Component {
             <ListItemIcon>
               <Avatar className={classes.accountAvatar} src={defaultProfileImg} />
             </ListItemIcon>
-            <ListItemText
-              primary={this.props.user.displayName}
-              />
-            {this.state.dropdownOpen ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>}
+            {!iconOnly && (<ListItemText primary={user.displayName} />)}
+            {!iconOnly && (dropdownOpen ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>)}
           </ListItem>
-          <Collapse component="li" in={this.state.dropdownOpen} timeout="auto" unmountOnExit>
-            <List id='account-menu' disablePadding>
-              <UserAccountSettings user={this.props.user}/>
+          <Collapse component='li' in={dropdownOpen} timeout='auto' unmountOnExit>
+            <List
+              id='account-menu'
+              className={classNames(iconOnly ? 'sideNavSubMenuClosed' : 'sideNavSubMenu')}
+              disablePadding
+              >
+              <UserAccountSettings iconOnly={iconOnly} user={user}/>
               <ListItem dense id='logout' button onClick={this.handleLogout}>
                 <ListItemIcon>
                   <Icon>exit_to_app</Icon>
                 </ListItemIcon>
-                <ListItemText primary='Logout' />
+                {!iconOnly && (<ListItemText inset primary='Logout' />)}
               </ListItem>
             </List>
           </Collapse>
-          {snackbar}
+          {snackbarComponent}
         </div>
       );
     }
@@ -194,6 +205,7 @@ Login.propTypes = {
   autoLogin: PropTypes.bool,
   user: PropTypes.object,
   height: PropTypes.string,
+  iconOnly: PropTypes.bool,
 };
 
 export default withStyles(styles)(Login);

@@ -26,18 +26,31 @@ import defaults from './assets/defaults.json';
 
 class App extends Component {
   render() {
-    document.title = document.title === '' ? this.props.config.app.name + ' - ' + this.props.config.unit.name : document.title;
+    const {
+      sideNav,
+      disableGutters,
+      theme,
+      children,
+      reducers,
+      reduxMiddleware,
+    } = this.props;
+    const {
+      config = defaults
+    } = this.props;
+
+    document.title = document.title === '' ? config.app.name + ' - ' + config.unit.name : document.title;
+
     // Combine lib reducers with app reducers if they exist
-    const reducers = combineReducers({
+    const combinedReducers = combineReducers({
       login,
-      ...this.props.reducers
+      ...reducers
     });
-    let config = this.props.config == null ? defaults : this.props.config;
+
     return (
-      <Provider store={createStore(reducers, config.defaultState, this.props.reduxMiddleware)}>
-        <MuiThemeProvider theme={createMuiTheme(this.props.theme == null ? defaultTheme : this.props.theme)}>
-          <AppTemplate config={config} header={this.props.header} noGutters={this.props.noGutters}>
-            {this.props.children}
+      <Provider store={createStore(combinedReducers, config.defaultState, reduxMiddleware)}>
+        <MuiThemeProvider theme={createMuiTheme(theme == null ? defaultTheme : theme)}>
+          <AppTemplate config={config} sideNav={sideNav} disableGutters={disableGutters} >
+            {children}
           </AppTemplate>
         </MuiThemeProvider>
       </Provider>
@@ -47,12 +60,11 @@ class App extends Component {
 
 App.propTypes = {
   config: PropTypes.object.isRequired,
+  disableGutters: PropTypes.bool,
   reducers: PropTypes.func,
   reduxMiddleware: PropTypes.func,
+  sideNav: PropTypes.func,
   theme: PropTypes.object,
-  header: PropTypes.node,
-  headerConfig: PropTypes.object,
-  noGutters: PropTypes.bool,
 };
 
 export default App;

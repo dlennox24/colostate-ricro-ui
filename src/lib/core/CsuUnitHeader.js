@@ -2,166 +2,63 @@ import React, {
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
+import classNames from 'classnames';
 import {
   withStyles,
 } from 'material-ui/styles';
-import $ from 'jquery';
 import AppBar from 'material-ui/AppBar';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import Icon from 'material-ui/Icon';
-import Menu from 'material-ui/Menu';
-import Tooltip from 'material-ui/Tooltip';
-import {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from 'material-ui/List';
-
-import Login from '../redux/Login';
-import CsuSvgUnitLogo from './CsuSvgUnitLogo';
-import linkTo from '../utils/linkTo.js';
 
 const styles = theme => ({
-  root: {
-    width: '100%',
-  },
-  flex: {
-    flex: 1,
-  },
-  csuLogoBar: {
-    '& .responsiveLogoContainer': {
-      padding: '5px 10px',
-    },
-  },
-  headerBar: {
-    borderBottom: '3px solid ' + theme.palette.csuBrand.primary.gold,
+  loadedBranding: {
+    height: 0,
+    overflow: 'hidden',
   },
 });
 
 class Header extends Component {
   state = {
-    more: {
-      anchorEl: undefined,
-      open: false,
-    },
+    loadedBranding: false,
   }
 
-  handleClick = event => {
+  updateState = (key, value) => {
     this.setState({
-      more: {
-        open: true,
-        anchorEl: event.currentTarget,
-      },
+      [key]: value,
     });
-  };
+  }
 
-  handleRequestClose = event => {
-    this.setState({
-      more: {
-        ...this.state.more,
-        open: false,
-      }
+  componentDidMount() {
+    let updateState = this.updateState;
+    $.getScript('https://static.colostate.edu/logo/reslogo/logo.min.js').done(function() {
+      updateState('loadedBranding', true);
     });
-  };
-
-  createMoreList = list => {
-    if (!Array.isArray(list)) {
-      if (list == null) {
-        return null;
-      }
-      console.error("Header: moreMenu not an array", list);
-      return null;
-    }
-    if (list.length > 1) {
-      list = list.map((item, i) => {
-        let icon = null;
-        if (item.icon != null) {
-          icon = (
-            <ListItemIcon>
-              <Icon>{item.icon}</Icon>
-            </ListItemIcon>
-          )
-        }
-        return (
-          <ListItem key={i} button onClick={linkTo.bind(this, item.link)}>
-            {icon}
-            <ListItemText inset primary={item.name} />
-          </ListItem>
-        );
-      });
-      return (
-        <div key={2}>
-          <IconButton
-            id='more-menu-button'
-            aria-owns='more-menu'
-            aria-haspopup='true'
-            onClick={this.handleClick}
-            aria-label='More'
-            >
-            <Icon>more_vert</Icon>
-          </IconButton>
-          <Menu
-            id='more-menu'
-            anchorEl={this.state.more.anchorEl}
-            open={this.state.more.open}
-            onRequestClose={this.handleRequestClose}
-            >
-            {list}
-          </Menu>
-        </div>
-      );
-    } else if (list.length > 0) {
-      let item = list[0];
-      if (item.icon == null) {
-        return (
-          <Button key={item.name} onClick={linkTo.bind(this,item.link)}>
-            {item.name}
-          </Button>
-        );
-      }
-      return (
-        <Tooltip key={item.name} id="tooltip-icon" title={item.name} placement="bottom">
-          <IconButton
-            onClick={this.handleClick}
-            aria-label={item.name}
-            >
-            <Icon>{item.icon}</Icon>
-          </IconButton>
-        </Tooltip>
-      );
-    }
   }
 
   render() {
-    const classes = this.props.classes;
-    const config = this.props.config;
-    let defaultHeader = [];
-    defaultHeader.push(
-      <Typography
-        key={defaultHeader.length}
-        type='title'
-        className={classes.flex}
-        >
-        {config.app.name}
-      </Typography>,
-    );
-    if (config.app.header.login) {
-      defaultHeader.push(<Login key={defaultHeader.length} api={config.api} autoLogin={config.app.header.autoLogin} height='64px'/>);
-    }
-    defaultHeader.push(this.createMoreList(config.app.header.moreMenu));
-
+    const {
+      unit,
+      classes,
+    } = this.props;
+    const {
+      loadedBranding,
+    } = this.state;
     return (
-      <div className={classes.root}>
-        <AppBar
-          id='csuLogoBar'
-          position='static'
-          className={classes.csuLogoBar + (this.props.children === "none" ? ' mb-0' : '')}
-          >
-          <CsuSvgUnitLogo unit={config.unit} />
-        </AppBar>
-      </div>
+      <AppBar
+        id='csuLogoBar'
+        position='static'
+        className={classNames('p-1', !loadedBranding && classes.loadedBranding)}
+        >
+        <div className='signature'>
+          <section id='BrandLogo' className='fontLarge'>
+            <div className='responsiveLogoContainer'>
+              <div id='responsiveLogo'></div>
+              <div id='responsiveLogoSubsytem'>
+                <h2><a id='unit-title' href={unit.siteHref}>{unit.name}</a></h2>
+              </div>
+            </div>
+          </section>
+        </div>
+      </AppBar>
     );
   }
 }
@@ -169,7 +66,7 @@ class Header extends Component {
 Header.propTypes = {
   children: PropTypes.node,
   classes: PropTypes.object.isRequired,
-  config: PropTypes.object.isRequired,
+  unit: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Header);

@@ -43,7 +43,8 @@ class UserAccount extends Component {
   }
   render() {
     const {
-      classes
+      classes,
+      iconOnly,
     } = this.props;
     const userGroups = _.sortBy(this.props.user.userGroups, ['alias', 'userGroupTypeId']);
     return (
@@ -52,10 +53,10 @@ class UserAccount extends Component {
           <ListItemIcon>
             <Icon>account_circle</Icon>
           </ListItemIcon>
-          <ListItemText inset primary='Account Settings' />
+          {!iconOnly && (<ListItemText inset primary='Account Settings' />)}
         </ListItem>
         <Dialog
-          title="Account Settings"
+          title='Account Settings'
           onRequestClose={this.handleRequestClose}
           open={this.state.open}
           >
@@ -104,9 +105,7 @@ class UserAccount extends Component {
             <div className='container'>
               <div className='row justify-content-md-center'>
                 <div className='col-md-8'>
-                  <List
-                    disablePadding
-                    >
+                  <List disablePadding>
                     <Divider/>
                     {userGroups.map((userGroup, i) =>
                       <ListItem key={i}>
@@ -128,6 +127,7 @@ UserAccount.propTypes = {
   classes: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   dialogProps: PropTypes.node,
+  iconOnly: PropTypes.bool,
 };
 
 export default withStyles(styles)(UserAccount);

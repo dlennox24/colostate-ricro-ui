@@ -12,6 +12,7 @@ import App, {
 import config from './config.json';
 import SnackbarEx from './SnackbarEx';
 import DialogEx from './DialogEx';
+import SideNavEx from './SideNavEx';
 
 import {
   version,
@@ -26,7 +27,7 @@ const style = {
 };
 
 ReactDOM.render(
-  <App config={config} reduxMiddleware={window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()}>
+  <App config={config} sideNav={SideNavEx} reduxMiddleware={window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()}>
     <div className='row'>
       <div className='col-md-5'>
         <Dashboard title='Typography'>

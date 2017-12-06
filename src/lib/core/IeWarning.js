@@ -34,7 +34,7 @@ class IeWarning extends Component {
   }
   detectIeUserAgent = () => {
     let ua = window.navigator.userAgent;
-    let msie = ua.indexOf("MSIE ");
+    let msie = ua.indexOf('MSIE ');
     if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv:11\./)) {
       return true;
     }
@@ -49,32 +49,32 @@ class IeWarning extends Component {
   render() {
     let classes = this.props.classes;
     const browsers = [{
-      name: "Google Chrome",
-      shortName: "Chrome",
-      icon: "fa-chrome",
-      url: "https://www.google.com/chrome/",
+      name: 'Google Chrome',
+      shortName: 'Chrome',
+      icon: 'fa-chrome',
+      url: 'https://www.google.com/chrome/',
     }, {
-      name: "Mozilla FireFox",
-      shortName: "FireFox",
-      icon: "fa-firefox",
-      url: "https://www.mozilla.org/en-US/firefox/new/",
+      name: 'Mozilla FireFox',
+      shortName: 'FireFox',
+      icon: 'fa-firefox',
+      url: 'https://www.mozilla.org/en-US/firefox/new/',
     }, {
-      name: "Apple Safari",
-      shortName: "Safari",
-      icon: "fa-safari",
-      url: "https://www.apple.com/safari/",
+      name: 'Apple Safari',
+      shortName: 'Safari',
+      icon: 'fa-safari',
+      url: 'https://www.apple.com/safari/',
     }, {
-      name: "Microsoft Edge",
-      shortName: "Edge",
-      icon: "fa-edge",
-      url: "https://www.microsoft.com/en-us/windows/microsoft-edge",
+      name: 'Microsoft Edge',
+      shortName: 'Edge',
+      icon: 'fa-edge',
+      url: 'https://www.microsoft.com/en-us/windows/microsoft-edge',
     }];
     return (
       <div>
         <Dialog
           onRequestClose={this.handleClose}
           open={this.state.open}
-          title="Browser Incompatibility Warning"
+          title='Browser Incompatibility Warning'
           muiDialogProps={{
             ignoreBackdropClick: true,
           }}
@@ -90,8 +90,8 @@ class IeWarning extends Component {
               {browsers.map((browser, i) =>
                   <div key={i} className='col'>
                     <a className={classes.browserLinks} href={browser.url}>
-                      <IconButton className={classes.browserIcons} aria-label={"Download "+browser.shortName}>
-                        <i className={"fa fa-3x "+browser.icon} aria-hidden="true"></i>
+                      <IconButton className={classes.browserIcons} aria-label={'Download '+browser.shortName}>
+                        <i className={'fa fa-3x '+browser.icon} aria-hidden='true'></i>
                       </IconButton>
                       <Typography type='title'>{browser.name}</Typography>
                     </a>

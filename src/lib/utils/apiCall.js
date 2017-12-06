@@ -8,14 +8,14 @@ function complete(data) {
       data
     );
   } catch (e) {
-    console.error("ricro-app-template/utils/apiCall:\n\t" + e);
+    console.error('ricro-app-template/utils/apiCall:\n\t' + e);
   }
   return data;
 }
 
 export default function apiCall(params) {
   let {
-    url = "https://services.ricro.colostate.edu/api", uri = '', settings = {}
+    url = 'https://services.ricro.colostate.edu/api', uri = '', settings = {}
   } = params;
   if (!uri.match(/^(\w+\/*)+\w$/g)) {
     console.error('Invalid API URI syntax: ' + uri);

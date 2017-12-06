@@ -19,7 +19,7 @@ const styles = theme => ({
       background: theme.palette.background.default,
       WebkitFontSmoothing: 'antialiased', // Antialiasing.
       MozOsxFontSmoothing: 'grayscale', // Antialiasing.
-      fontFamily: "\"prox-regular\", \"Helvetica\", \"Arial\", sans-serif",
+      fontFamily: '\'prox-regular\', \'Helvetica\', \'Arial\', sans-serif',
     },
     a: {
       color: theme.palette.secondary[500],
@@ -31,6 +31,27 @@ const styles = theme => ({
       background: theme.palette.csuBrand.primary.gold,
       height: '.1rem',
       margin: 0,
+    },
+    '.listItemLink': {
+      color: theme.palette.common.lightBlack,
+      '&:hover': {
+        color: theme.palette.common.lightBlack,
+        textDecoration: 'none',
+      },
+    },
+    '.sideNavSubMenu': {
+      marginLeft: theme.spacing.unit * 5,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    '.sideNavSubMenuClosed': {
+      marginLeft: 0,
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen / 4,
+      }),
     },
   },
   root: {
@@ -45,26 +66,24 @@ class AppTemplate extends Component {
     const {
       classes,
       config,
-      header,
-      noGutters,
+      disableGutters,
       style,
       children,
+      sideNav
     } = this.props;
     return (
       <div className={classes.root}>
-        <CsuUnitHeader config={config}>
-          {header}
-        </CsuUnitHeader>
-        <AppWrapper config={config}>
-        <main
-          id='main-content'
-          className={noGutters ? null : 'container-fluid p-4'}
-          style={style}
-          >
-          <IeWarning/>
-          {children}
-        </main>
-      </AppWrapper>
+        <CsuUnitHeader unit={config.unit}/>
+        <AppWrapper config={config} sideNav={sideNav}>
+          <main
+            id='main-content'
+            className={disableGutters ? null : 'container-fluid p-4'}
+            style={style}
+            >
+            <IeWarning/>
+            {children}
+          </main>
+        </AppWrapper>
         <Footer/>
       </div>
     );
@@ -72,11 +91,11 @@ class AppTemplate extends Component {
 }
 
 AppTemplate.propTypes = {
-  config: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
+  config: PropTypes.object.isRequired,
+  disableGutters: PropTypes.bool,
   reduxMiddleware: PropTypes.func,
-  header: PropTypes.node,
-  noGutters: PropTypes.bool,
+  sideNav: PropTypes.func,
 };
 
 export default withStyles(styles)(AppTemplate);

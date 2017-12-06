@@ -1,31 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
+import _ from 'lodash';
 import classNames from 'classnames';
 import compose from 'recompose/compose';
 import {
   withStyles
 } from 'material-ui/styles';
 import withWidth from 'material-ui/utils/withWidth';
-import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import List from 'material-ui/List';
 import Typography from 'material-ui/Typography';
-import Divider from 'material-ui/Divider';
 import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
 
-import Login from '../../redux/Login';
-import MoreList from '../MoreList';
+import AppDrawer from './AppDrawer';
 
-const drawerWidth = 275;
+const drawerWidth = 300;
 
 const styles = theme => ({
   root: {
     width: '100%',
     zIndex: 1,
-    // overflow: 'hidden',
     flex: 1,
   },
   appFrame: {
@@ -56,45 +52,6 @@ const styles = theme => ({
   hide: {
     display: 'none',
   },
-  drawerPaper: {
-    position: 'relative',
-    height: '100%',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    [theme.breakpoints.down('sm')]: {
-      width: '100%',
-    },
-  },
-  drawerPaperClose: {
-    width: 60,
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    [theme.breakpoints.down('sm')]: {
-      width: 0,
-    },
-  },
-  drawerInner: {
-    // Make the items inside not wrap when transitioning:
-    width: drawerWidth,
-    maxHeight: '100%',
-    overflow: 'auto',
-    [theme.breakpoints.down('sm')]: {
-      width: '100%',
-    },
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
   content: {
     width: '100%',
     flexGrow: 1,
@@ -114,18 +71,6 @@ const styles = theme => ({
       position: 'relative',
     },
   },
-  fixDrawerInnner: {
-    width: 60,
-    overflowX: 'hidden',
-  },
-  fixList: {
-    '& li[class*=MuiListItem-root-]': {
-      maxHeight: 48,
-    },
-    '& li[class*=MuiListItem-dense-]': {
-      maxHeight: 40,
-    },
-  },
   '@global': {
     '#headerDrawer': {
       [theme.breakpoints.down('sm')]: {
@@ -138,17 +83,17 @@ const styles = theme => ({
 class AppWrapper extends React.Component {
   state = {
     open: false,
-    fixedWraper: false,
+    fixedWrapper: false,
   }
 
   stickyHeader = (scrollTop) => {
     if (document.getElementById('csuLogoBar').offsetHeight - scrollTop <= 0) {
       this.setState({
-        fixedWraper: true,
+        fixedWrapper: true,
       });
     } else {
       this.setState({
-        fixedWraper: false,
+        fixedWrapper: false,
       });
     }
   }
@@ -177,69 +122,53 @@ class AppWrapper extends React.Component {
       classes,
       config,
       width,
+      sideNav,
     } = this.props;
 
     const {
       open,
-      fixedWraper,
+      fixedWrapper,
     } = this.state;
 
     const menuOpen = open && (width === 'sm' || width === 'xs');
+    const hasSideNav = !_.isEmpty(config.app.sideNav) || config.app.hasLogin || sideNav;
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
           <AppBar
-            color="default"
+            color='default'
             position='static'
             className={classNames(
               classes.appBar,
-              fixedWraper && classes.fixWrapper,
+              fixedWrapper && classes.fixWrapper,
               open && classes.appBarShift,
               menuOpen && classes.hide
             )}
             >
-            <Toolbar disableGutters={!open}>
-              <IconButton
-                aria-label="open drawer"
-                onClick={this.handleDrawerOpen}
-                className={classNames(classes.menuButton, open && classes.hide)}
-                >
-                <Icon>menu</Icon>
-              </IconButton>
-              <Typography type="title" color="inherit" noWrap>
+            <Toolbar disableGutters={!open && hasSideNav}>
+              {hasSideNav && (
+                <IconButton
+                  aria-label='open drawer'
+                  onClick={this.handleDrawerOpen}
+                  className={classNames(classes.menuButton, open && classes.hide)}
+                  >
+                  <Icon>menu</Icon>
+                </IconButton>
+              )}
+              <Typography type='title' color='inherit' noWrap>
                 {config.app.name}
               </Typography>
             </Toolbar>
           </AppBar>
-          <Drawer
-            id='headerDrawer'
-            type="permanent"
-            classes={{
-              paper: classNames(
-                classes.drawerPaper,
-                open ? classes.Close : classes.drawerPaperClose
-              ),
-            }}
-            open={open}
-            >
-            <div className={classNames(
-                classes.drawerInner,
-                fixedWraper && classes.fixWrapper,
-                (fixedWraper && !open) && classes.fixDrawerInnner
-              )}>
-              <div className={classes.drawerHeader}>
-                <IconButton onClick={this.handleDrawerClose}>
-                  <Icon>chevron_left</Icon>
-                </IconButton>
-              </div>
-              <Divider />
-              <List className={classNames(classes.list, fixedWraper && classes.fixList)}>
-                <Login iconOnly={fixedWraper && !open} api={config.api} autoLogin={config.app.header.autoLogin}/>
-                <MoreList list={config.app.header.moreMenu}/>
-              </List>
-              <Divider />
-            </div>
-          </Drawer>
+          {hasSideNav && (
+            <AppDrawer
+              open={open}
+              config={config}
+              sideNav={sideNav}
+              handleDrawerClose={this.handleDrawerClose}
+              fixedWrapper={fixedWrapper}
+              />
+          )}
           <main className={classNames(classes.content, menuOpen && classes.hide)}>
             {this.props.children}
           </main>
@@ -252,6 +181,7 @@ class AppWrapper extends React.Component {
 AppWrapper.propTypes = {
   classes: PropTypes.object.isRequired,
   config: PropTypes.object.isRequired,
+  sideNav: PropTypes.func,
   width: PropTypes.string,
 };
 
