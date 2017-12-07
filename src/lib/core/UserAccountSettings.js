@@ -15,8 +15,8 @@ import Divider from 'material-ui/Divider';
 import Icon from 'material-ui/Icon';
 import Avatar from 'material-ui/Avatar';
 
-import Dialog from './Dialog';
-import defaultProfileImg from './assets/images/default-profile.png';
+import Dialog from '../Dialog';
+import defaultProfileImg from '../assets/images/default-profile.png';
 
 const styles = theme => ({
   profileImg: {

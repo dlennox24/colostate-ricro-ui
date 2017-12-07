@@ -8,7 +8,7 @@ const login = (state = {}, action) => {
     case 'LOGOUT':
       return {
         ...state,
-        user: {},
+        user: false,
       };
     default:
       return state;
