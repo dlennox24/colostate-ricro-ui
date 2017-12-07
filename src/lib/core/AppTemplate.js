@@ -10,7 +10,7 @@ import {
 import Footer from './Footer';
 import CsuUnitHeader from './CsuUnitHeader';
 import IeWarning from './IeWarning';
-import AppWrapper from './wrapper/AppWrapper';
+import AppWrapper from './appWrapper/AppWrapper';
 
 const styles = theme => ({
   '@global': {

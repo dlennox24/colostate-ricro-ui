@@ -7,10 +7,12 @@ function complete(data) {
       JSON.parse(data.responseText), '\n\t\t',
       data
     );
+    return data;
   } catch (e) {
     console.error('ricro-app-template/utils/apiCall:\n\t' + e);
+    return false;
   }
-  return data;
+  // return data;
 }
 
 export default function apiCall(params) {
