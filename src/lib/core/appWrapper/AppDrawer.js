@@ -110,7 +110,7 @@ class AppDrawer extends React.Component {
                 <a key={item.name} className='listItemLink' href={item.link}>
                   <ListItem button>
                     <ListItemIcon>
-                      <Icon>{item.icon}</Icon>
+                      <Icon style={item.iconColor && {color: item.iconColor}}>{item.icon}</Icon>
                     </ListItemIcon>
                     {open && <ListItemText inset primary={item.name} />}
                   </ListItem>
