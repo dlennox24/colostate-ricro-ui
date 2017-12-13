@@ -18,7 +18,7 @@ import Tooltip from 'material-ui/Tooltip';
 
 import Login from '../../redux/Login';
 
-const drawerWidth = 300;
+const drawerWidth = 325;
 const drawerWidthClosed = 60;
 const styles = theme => ({
   drawerPaper: {
@@ -46,7 +46,7 @@ const styles = theme => ({
   },
   drawerInner: {
     // Make the items inside not wrap when transitioning:
-    width: drawerWidth,
+    width: drawerWidth - 1,
     maxHeight: '100%',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
@@ -59,21 +59,6 @@ const styles = theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
   },
-  fixWrapper: {
-    position: 'fixed',
-    top: 0,
-    [theme.breakpoints.down('sm')]: {
-      top: 'initial',
-      position: 'relative',
-    },
-  },
-  fixDrawerInnner: {
-    width: drawerWidthClosed,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
   closed: {
     width: drawerWidthClosed,
   }
@@ -85,7 +70,6 @@ class AppDrawer extends React.Component {
       classes,
       config,
       open,
-      fixedWrapper,
       handleDrawerClose,
       sideNav,
     } = this.props;
@@ -107,8 +91,6 @@ class AppDrawer extends React.Component {
         <div className={classNames(
             classes.drawerInner,
             (!open && classes.closed),
-            (fixedWrapper && classes.fixWrapper),
-            (fixedWrapper && !open) && classes.fixDrawerInnner
           )}>
           <div className={classes.drawerHeader}>
             <Tooltip

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {
+  Component
+} from 'react';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
 import _ from 'lodash';
 import classNames from 'classnames';
 import compose from 'recompose/compose';
@@ -16,8 +17,7 @@ import IconButton from 'material-ui/IconButton';
 
 import AppDrawer from './AppDrawer';
 
-const drawerWidth = 300;
-
+const drawerWidth = 325;
 const styles = theme => ({
   root: {
     width: '100%',
@@ -57,18 +57,10 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     height: 'calc(100% - 56px)',
-    marginTop: 56,
+    marginTop: 60,
     [theme.breakpoints.up('sm')]: {
       height: 'calc(100% - 64px)',
       marginTop: 64,
-    },
-  },
-  fixWrapper: {
-    position: 'fixed',
-    top: 0,
-    [theme.breakpoints.down('sm')]: {
-      top: 'initial',
-      position: 'relative',
     },
   },
   '@global': {
@@ -80,22 +72,9 @@ const styles = theme => ({
   },
 });
 
-class AppWrapper extends React.Component {
+class AppWrapper extends Component {
   state = {
     open: false,
-    fixedWrapper: false,
-  }
-
-  stickyHeader = (scrollTop) => {
-    if (document.getElementById('csuLogoBar').offsetHeight - scrollTop <= 0) {
-      this.setState({
-        fixedWrapper: true,
-      });
-    } else {
-      this.setState({
-        fixedWrapper: false,
-      });
-    }
   }
 
   handleDrawerOpen = () => {
@@ -110,13 +89,6 @@ class AppWrapper extends React.Component {
     });
   };
 
-  componentDidMount() {
-    const stickyHeader = this.stickyHeader;
-    $(window).scroll(function() {
-      stickyHeader($(this).scrollTop());
-    });
-  }
-
   render() {
     const {
       classes,
@@ -127,7 +99,6 @@ class AppWrapper extends React.Component {
 
     const {
       open,
-      fixedWrapper,
     } = this.state;
 
     const menuOpen = open && (width === 'sm' || width === 'xs');
@@ -140,7 +111,6 @@ class AppWrapper extends React.Component {
             position='static'
             className={classNames(
               classes.appBar,
-              fixedWrapper && classes.fixWrapper,
               open && classes.appBarShift,
               menuOpen && classes.hide
             )}
@@ -166,7 +136,6 @@ class AppWrapper extends React.Component {
               config={config}
               sideNav={sideNav}
               handleDrawerClose={this.handleDrawerClose}
-              fixedWrapper={fixedWrapper}
               />
           )}
           <main className={classNames(classes.content, menuOpen && classes.hide)}>
