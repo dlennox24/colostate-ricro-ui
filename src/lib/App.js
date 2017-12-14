@@ -16,6 +16,9 @@ import {
   createStore
 }
 from 'redux';
+import {
+  BrowserRouter as Router,
+} from 'react-router-dom';
 
 import defaultTheme from './assets/theme.json';
 import AppTemplate from './core/AppTemplate';
@@ -27,15 +30,14 @@ import defaults from './assets/defaults.json';
 class App extends Component {
   render() {
     const {
-      sideNav,
-      disableGutters,
-      theme,
       children,
+      disableGutters,
       reducers,
       reduxMiddleware,
-    } = this.props;
-    const {
-      config = defaults
+      sideNav,
+      theme,
+      homepage,
+      config = defaults, // set config to defaults if config is null
     } = this.props;
 
     document.title = document.title === '' ? config.app.name + ' - ' + config.unit.name : document.title;
@@ -49,9 +51,11 @@ class App extends Component {
     return (
       <Provider store={createStore(combinedReducers, config.defaultState, reduxMiddleware)}>
         <MuiThemeProvider theme={createMuiTheme(theme == null ? defaultTheme : theme)}>
-          <AppTemplate config={config} sideNav={sideNav} disableGutters={disableGutters} >
-            {children}
-          </AppTemplate>
+          <Router basename={window.location.hostname === 'localhost' ? null : homepage}>
+            <AppTemplate config={config} sideNav={sideNav} disableGutters={disableGutters} >
+              {children}
+            </AppTemplate>
+          </Router>
         </MuiThemeProvider>
       </Provider>
     );
@@ -61,6 +65,7 @@ class App extends Component {
 App.propTypes = {
   config: PropTypes.object.isRequired,
   disableGutters: PropTypes.bool,
+  homepage: PropTypes.string,
   reducers: PropTypes.func,
   reduxMiddleware: PropTypes.func,
   sideNav: PropTypes.func,

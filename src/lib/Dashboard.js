@@ -67,7 +67,7 @@ class Dashboard extends Component {
         <CardContent className={classes.content}>{this.props.children}</CardContent>
         {this.props.cardActions ?
           <CardActions>
-            {this.props.alignCARight ? <div className={classes.flex}/> : null}
+            {this.props.alignCARight && <div className={classes.flex}/>}
             {this.props.cardActions}
           </CardActions>
           : null

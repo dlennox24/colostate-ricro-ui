@@ -40,15 +40,15 @@ const styles = theme => ({
       },
     },
     '.sideNavSubMenu': {
-      transition: theme.transitions.create(['width', 'margin'], {
+      transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
     '.sideNavSubMenuClosed': {
-      transition: theme.transitions.create('margin', {
+      transition: theme.transitions.create('wdith', {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen / 3,
+        duration: theme.transitions.duration.leavingScreen,
       }),
     },
   },
@@ -73,14 +73,14 @@ class AppTemplate extends Component {
       <div className={classes.root}>
         <CsuUnitHeader unit={config.unit}/>
         <AppWrapper config={config} sideNav={sideNav}>
-          <main
+          <div
             id='main-content'
-            className={disableGutters ? null : 'container-fluid p-4'}
+            className={!disableGutters && 'container-fluid p-4'}
             style={style}
             >
             <IeWarning/>
             {children}
-          </main>
+          </div>
         </AppWrapper>
         <Footer/>
       </div>

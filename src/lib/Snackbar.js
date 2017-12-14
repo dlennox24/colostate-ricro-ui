@@ -70,7 +70,7 @@ class CsuSnackbar extends Component {
     }
     const message = (
       <div className='row align-items-center'>
-          {!this.props.noIcon ? <Icon className={classes.icon}>{icon}</Icon> : null}
+          {!this.props.noIcon && <Icon className={classes.icon}>{icon}</Icon>}
           {this.props.children}
       </div>
     );

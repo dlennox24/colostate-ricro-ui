@@ -8,7 +8,6 @@ import LoadMore from './LoadMore';
 import Login from './redux/Login';
 
 import apiCall from './utils/apiCall';
-import linkTo from './utils/linkTo';
 
 export default App;
 export {
@@ -20,6 +19,5 @@ export {
   Login,
   // Functions
   apiCall,
-  linkTo,
   slideTransition
 };
