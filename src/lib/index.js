@@ -8,7 +8,7 @@ import HttpError from './SectionContainer';
 import Committees, {
   CommitteeAvatar,
   CommitteeChip,
-} from './Committees/Committees'
+} from './Committees/';
 import Snackbar, {
   slideTransition
 } from './Snackbar';
