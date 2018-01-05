@@ -2,16 +2,16 @@ import React, {
   Component
 } from 'react';
 import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography'
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/Menu/MenuItem';
 import {
   withStyles,
 } from 'material-ui/styles';
 
-import Snackbar, {
-  slideTransition
-} from '../lib/Snackbar';
+import {
+  Snackbar,
+  slideTransition,
+} from 'ricro-app-template';
 
 const styles = theme => ({
   textField: {
@@ -66,9 +66,31 @@ class SnackbarEx extends Component {
     const types = ['default', 'error', 'success', 'info', 'warning'];
     const slides = ['left', 'right', 'up', 'down'];
     const positions = ['bottom-left', 'bottom-center', 'bottom-right', 'top-left', 'top-center', 'top-right', ];
+    const snackbarCode =
+      '<Button' +
+      '\n  className={classes.button}' +
+      '\n  onClick={this.handleClick({direction: ' + this.state.slide + '})}' +
+      '\n  raised' +
+      '\n  >' +
+      '\n  Open Snackbar' +
+      '\n</Button>' +
+      '\n\n<Snackbar' +
+      '\n  state={this.state.snackbar}' +
+      '\n  type=\'' + this.state.type + '\'' +
+      '\n  onClose={this.updateState.bind(this, \'snackbar\',{...this.state.snackbar,open:false})}' +
+      '\n  snackbarProps={{' +
+      '\n    autoHideDuration: ' + Number(this.state.autoHide) + ',' +
+      '\n    anchorOrigin: {' +
+      '\n      vertical: ' + this.state.position.split('-')[0] + ',' +
+      '\n      horizontal: ' + this.state.position.split('-')[1] + ',' +
+      '\n    }' +
+      '\n  }}' +
+      '\n>\n  ' +
+      (this.state.message === '' || this.state.message == null ? 'This is a snackbar with the type: ' + this.state.type : this.state.message) +
+      '\n</Snackbar>';
     return (
-      <div className="App">
-        <Typography type='display1'>Snackbar</Typography>
+      <div>
+        <pre>{snackbarCode}</pre>
         <TextField
           id='select-snackbar-type'
           label='Type'
@@ -156,20 +178,20 @@ class SnackbarEx extends Component {
           >
           Open Snackbar
         </Button>
-          <Snackbar
-            state={this.state.snackbar}
-            type={this.state.type !== 'default' ? this.state.type : null}
-            onRequestClose={this.updateState.bind(this, 'snackbar',{...this.state.snackbar,open:false})}
-            snackbarProps={{
-              autoHideDuration: Number(this.state.autoHide),
-              anchorOrigin: {
-                vertical: this.state.position.split('-')[0],
-                horizontal: this.state.position.split('-')[1],
-              }
-            }}
-            >
-            {this.state.message === '' || this.state.message == null ? 'This is a snackbar with the type: '+this.state.type : this.state.message}
-          </Snackbar>
+        <Snackbar
+          state={this.state.snackbar}
+          type={this.state.type !== 'default' ? this.state.type : null}
+          onClose={this.updateState.bind(this, 'snackbar',{...this.state.snackbar,open:false})}
+          snackbarProps={{
+            autoHideDuration: Number(this.state.autoHide),
+            anchorOrigin: {
+              vertical: this.state.position.split('-')[0],
+              horizontal: this.state.position.split('-')[1],
+            }
+          }}
+          >
+          {this.state.message === '' || this.state.message == null ? 'This is a snackbar with the type: '+this.state.type : this.state.message}
+        </Snackbar>
       </div>
     );
   }

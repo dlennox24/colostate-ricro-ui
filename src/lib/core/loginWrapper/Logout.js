@@ -6,12 +6,15 @@ import $ from 'jquery';
 import {
   withStyles,
 } from 'material-ui/styles';
-import Icon from 'material-ui/Icon';
 import {
   ListItem,
   ListItemIcon,
   ListItemText,
 } from 'material-ui/List';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import {
+  faSignOut,
+} from '@fortawesome/fontawesome-pro-regular';
 
 import apiCall from '../../utils/apiCall';
 
@@ -22,6 +25,9 @@ const styles = theme => ({
   },
   listRoot: {
     marginLeft: theme.spacing.unit * 5
+  },
+  faIcon: {
+    width: '24px !important',
   },
 });
 
@@ -71,6 +77,7 @@ class LoginWrapper extends Component {
 
   render() {
     const {
+      classes,
       iconOnly,
     } = this.props;
 
@@ -88,7 +95,7 @@ class LoginWrapper extends Component {
           button
           >
           <ListItemIcon>
-            <Icon>exit_to_app</Icon>
+            <FontAwesomeIcon icon={faSignOut} className={classes.faIcon}/>
           </ListItemIcon>
           {!iconOnly && (<ListItemText inset primary='Logout' />)}
         </ListItem>

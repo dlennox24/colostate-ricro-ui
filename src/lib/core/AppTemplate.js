@@ -27,6 +27,17 @@ const styles = theme => ({
         color: theme.palette.primary[500],
       }
     },
+    code: {
+      borderRadius: 0,
+      backgroundColor: theme.palette.grey[200],
+      color: theme.palette.grey[800],
+    },
+    pre: {
+      padding: '5px 10px',
+      backgroundColor: theme.palette.grey[200],
+      borderLeft: '4px solid ' + theme.palette.csuBrand.primary.green,
+      color: theme.palette.grey[800],
+    },
     hr: {
       background: theme.palette.csuBrand.primary.gold,
       height: '.1rem',
@@ -75,7 +86,7 @@ class AppTemplate extends Component {
         <AppWrapper config={config} sideNav={sideNav}>
           <div
             id='main-content'
-            className={!disableGutters && 'container-fluid p-4'}
+            className={!disableGutters ? 'container-fluid p-4' : undefined}
             style={style}
             >
             <IeWarning/>

@@ -6,14 +6,21 @@ import $ from 'jquery';
 import {
   withStyles,
 } from 'material-ui/styles';
-import Icon from 'material-ui/Icon';
 import {
   ListItem,
   ListItemIcon,
   ListItemText,
 } from 'material-ui/List';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import {
+  faSignIn,
+} from '@fortawesome/fontawesome-pro-regular';
 
-const styles = theme => ({});
+const styles = theme => ({
+  faIcon: {
+    width: '24px !important',
+  },
+});
 
 class Login extends Component {
   state = {
@@ -73,7 +80,8 @@ class Login extends Component {
 
   render() {
     const {
-      iconOnly
+      classes,
+      iconOnly,
     } = this.props;
     const {
       disabled,
@@ -86,7 +94,7 @@ class Login extends Component {
         button
         >
         <ListItemIcon>
-          <Icon>account_circle</Icon>
+          <FontAwesomeIcon icon={faSignIn} className={classes.faIcon}/>
         </ListItemIcon>
         {!iconOnly && <ListItemText inset primary='Login' />}
       </ListItem>
@@ -95,7 +103,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  // classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
   autoLogin: PropTypes.bool,
   api: PropTypes.object.isRequired,
   handleSnackbarOpen: PropTypes.func.isRequired,

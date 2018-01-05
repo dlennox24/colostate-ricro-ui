@@ -195,10 +195,10 @@
       }
     },
     "alerts": {
-      "danger": "#CC0000",
-      "warning": "#FF8800",
-      "success": "#007E33",
-      "info": "#0099CC"
+      "danger": "#dc3545",
+      "warning": "#ffc107",
+      "success": "#28a745",
+      "info": "#17a2b8"
     }
   },
   "typography": {
@@ -264,7 +264,7 @@
     },
     "body2": {
       "fontSize": "0.875rem",
-      "fontWeight": 500,
+      "fontWeight": 700,
       "fontFamily": "\"prox-regular\", \"Helvetica\", \"Arial\", sans-serif",
       "lineHeight": "1.71429em",
       "color": "rgba(0, 0, 0, 0.87)"

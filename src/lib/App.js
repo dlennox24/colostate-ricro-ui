@@ -66,7 +66,7 @@ App.propTypes = {
   config: PropTypes.object.isRequired,
   disableGutters: PropTypes.bool,
   homepage: PropTypes.string,
-  reducers: PropTypes.func,
+  reducers: PropTypes.object,
   reduxMiddleware: PropTypes.func,
   sideNav: PropTypes.func,
   theme: PropTypes.object,

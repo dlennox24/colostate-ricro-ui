@@ -50,7 +50,17 @@ export function slideTransition(slideProps, props) {
 
 class CsuSnackbar extends Component {
   render() {
-    const classes = this.props.classes;
+    const {
+      autoHideDuration,
+      classes,
+      children,
+      onClose,
+      noIcon,
+      snackbarProps,
+      state,
+      type,
+    } = this.props;
+
     let icon;
     switch (this.props.type) {
       case 'error':
@@ -68,45 +78,47 @@ class CsuSnackbar extends Component {
       default:
         icon = null;
     }
+
     const message = (
       <div className='row align-items-center'>
-          {!this.props.noIcon && <Icon className={classes.icon}>{icon}</Icon>}
-          {this.props.children}
+          {!noIcon && <Icon className={classes.icon}>{icon}</Icon>}
+          {children}
       </div>
     );
 
-    let autohide = this.props.autoHideDuration;
-    if (this.props.autoHideDuration === 0) {
+    let autohide = autoHideDuration;
+    if (autoHideDuration === 0) {
       autohide = undefined;
-    } else if (this.props.autoHideDuration == null) {
+    } else if (autoHideDuration == null) {
       autohide = 6e3; // Default: 6000ms
     }
 
     return (
       <Snackbar
-        classes={{root: classes[this.props.type ? this.props.type : 'default']}}
-        open={this.props.state.open}
+        classes={{root: classes[type ? type : 'default']}}
+        open={state.open}
         autoHideDuration={autohide}
-        onRequestClose={this.props.onRequestClose}
-        transition={this.props.state.transition}
+        onClose={onClose}
+        transition={state.transition}
         SnackbarContentProps={{
           'aria-describedby': 'message',
         }}
         message={<span id='message'>{message}</span>}
-        { ...this.props.snackbarProps}
+        { ...snackbarProps}
         />
     );
   }
 }
 
 CsuSnackbar.propTypes = {
+  autoHideDuration: PropTypes.number,
   classes: PropTypes.object.isRequired,
-  state: PropTypes.object.isRequired,
   children: PropTypes.string.isRequired,
-  onRequestClose: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(['default', 'error', 'success', 'info', 'warning']),
-  snackbarProps: PropTypes.object,
   noIcon: PropTypes.bool,
+  onClose: PropTypes.func.isRequired,
+  snackbarProps: PropTypes.object,
+  state: PropTypes.object.isRequired,
+  type: PropTypes.oneOf(['default', 'error', 'success', 'info', 'warning']),
 };
 
 export default withStyles(styles)(CsuSnackbar);

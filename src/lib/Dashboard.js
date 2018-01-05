@@ -2,6 +2,7 @@ import React, {
   Component
 } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import {
   withStyles
 } from 'material-ui/styles';
@@ -34,6 +35,9 @@ const styles = theme => ({
   content: {
     overflowX: 'auto',
   },
+  fullWidth: {
+    width: '100%',
+  },
 });
 
 class Dashboard extends Component {
@@ -51,24 +55,31 @@ class Dashboard extends Component {
     });
   };
   render() {
-    const classes = this.props.classes;
+    const {
+      alignCARight,
+      cardActions,
+      children,
+      classes,
+      fullWidth,
+      title,
+    } = this.props;
     const cardHeaderClasses = {
       root: classes.cardHeaderRoot,
       content: classes.cardHeaderContent,
     }
     return (
-      <Card className={classes.card}>
+      <Card className={classnames(fullWidth ? classes.fullWidth : '')}>
         <CardHeader title={
             <Typography type='headline' className={classes.cardHeaderContent}>
-              {this.props.title}
+              {title}
             </Typography>
           } classes={cardHeaderClasses} color='inherit'
           />
-        <CardContent className={classes.content}>{this.props.children}</CardContent>
-        {this.props.cardActions ?
+        <CardContent className={classes.content}>{children}</CardContent>
+        {cardActions ?
           <CardActions>
-            {this.props.alignCARight && <div className={classes.flex}/>}
-            {this.props.cardActions}
+            {alignCARight && <div className={classes.flex}/>}
+            {cardActions}
           </CardActions>
           : null
         }
@@ -78,10 +89,11 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-  classes: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired,
-  cardActions: PropTypes.node,
   alignCARight: PropTypes.bool,
+  cardActions: PropTypes.node,
+  classes: PropTypes.object.isRequired,
+  fullWidth: PropTypes.bool,
+  title: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Dashboard);

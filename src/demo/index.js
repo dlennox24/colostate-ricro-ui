@@ -7,10 +7,10 @@ import {
 
 import App from '../lib/App';
 
+import Components from './components';
 import config from './config.json';
 import SideNavEx from './SideNavEx';
 import TypographyEx from './TypographyEx';
-import HomePageEx from './HomePageEx';
 
 import {
   version,
@@ -21,8 +21,8 @@ console.log(appName + '@' + version);
 
 ReactDOM.render(
   <App config={config} homepage={homepage} sideNav={SideNavEx} reduxMiddleware={window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()}>
-        <Route path="/" exact component={HomePageEx}/>
-        <Route path="/typography" component={TypographyEx}/>
+    <Route path='/' exact component={TypographyEx}/>
+    <Route path='/component/:component' component={Components}/>
   </App>,
   document.getElementById('root')
 );
