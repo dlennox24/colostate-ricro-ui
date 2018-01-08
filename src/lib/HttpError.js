@@ -22,7 +22,6 @@ const style = theme => ({
   },
 });
 
-
 class HttpError extends Component {
   errorMessage = () => {
     const {
@@ -72,6 +71,8 @@ class HttpError extends Component {
         },
       }
     ];
+
+    console.log('HttpError code: ', code);
 
     let error = _.find(errors, function(o) {
       return o.code === code;

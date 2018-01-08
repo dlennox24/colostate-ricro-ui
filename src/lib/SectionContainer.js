@@ -17,6 +17,9 @@ class SectionContainer extends Component {
       type,
       disablePadding,
     } = this.props;
+
+    console.log('SectionContainer', this.props);
+
     return (
       <div id={id ? id : title.toLowerCase().replace(/ /g,'-')} className={classnames(className,'my-2')}>
         <div className='my-2'>

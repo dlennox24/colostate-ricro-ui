@@ -1,6 +1,7 @@
 import React, {
   Component,
 } from 'react';
+import PropTypes from 'prop-types';
 import {
   withStyles,
 } from 'material-ui/styles';
@@ -47,7 +48,7 @@ class IeWarning extends Component {
     });
   }
   render() {
-    let classes = this.props.classes;
+    let {classes} = this.props;
     const browsers = [{
       name: 'Google Chrome',
       shortName: 'Chrome',
@@ -105,6 +106,8 @@ class IeWarning extends Component {
   }
 }
 
-IeWarning.propTypes = {};
+IeWarning.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(IeWarning);

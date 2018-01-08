@@ -4,7 +4,7 @@ import Dialog from './Dialog';
 import LoadMore from './LoadMore';
 import Login from './redux/Login';
 import SectionContainer from './SectionContainer';
-import HttpError from './SectionContainer';
+import HttpError from './HttpError';
 import Committees, {
   CommitteeAvatar,
   CommitteeChip,

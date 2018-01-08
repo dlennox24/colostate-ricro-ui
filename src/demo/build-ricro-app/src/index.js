@@ -16,7 +16,7 @@ import {
   version,
   name as appName,
   homepage,
-} from '../../package.json';
+} from '../package.json';
 console.log(appName + '@' + version);
 
 ReactDOM.render(
