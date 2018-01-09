@@ -4,5 +4,5 @@ import CsuDialog from './Dialog';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<CsuDialog open={false} onRequestClose={()=>{}} />, div);
+  ReactDOM.render(<CsuDialog open={false} onClose={()=>{}} />, div);
 });

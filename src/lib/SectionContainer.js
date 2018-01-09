@@ -3,13 +3,34 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import {
+  withStyles
+} from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
+import Grid from 'material-ui/Grid';
+
+const styles = theme => ({
+  root: {
+    margin: theme.spacing.unit + ' 0',
+    overflow: 'hidden',
+  },
+  divider: {
+    marginTop: theme.spacing.unit / 2,
+  },
+  padding: {
+    padding: theme.spacing.unit * 2,
+  },
+  noPadding: {
+    padding: 0,
+  },
+});
 
 class SectionContainer extends Component {
   render() {
     const {
       children,
+      classes,
       className,
       fullWidth,
       id,
@@ -18,23 +39,24 @@ class SectionContainer extends Component {
       disablePadding,
     } = this.props;
 
-    console.log('SectionContainer', this.props);
-
     return (
-      <div id={id ? id : title.toLowerCase().replace(/ /g,'-')} className={classnames(className,'my-2')}>
-        <div className='my-2'>
-          <Typography type={type ? type : 'display1'}>{title}</Typography>
-          <Divider/>
-          <div className={classnames(fullWidth ? '' : 'col-md-8 mx-auto', disablePadding ? '' : 'p-3')}>
-            {children}
-          </div>
-        </div>
+      <div id={id ? id : title.toLowerCase().replace(/ /g,'-')} className={classnames(className,classes.root)}>
+        <Typography type={type ? type : 'display1'}>{title}</Typography>
+        <Divider className={classes.divider}/>
+        <Grid container justify='center'>
+          <Grid item md={fullWidth ? 12 : 8}>
+            <div className={disablePadding ? classes.noPadding : classes.padding}>
+              {children}
+            </div>
+          </Grid>
+        </Grid>
       </div>
     );
   }
 }
 
 SectionContainer.propTypes = {
+  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   disablePadding: PropTypes.bool,
   fullWidth: PropTypes.bool,
@@ -43,4 +65,4 @@ SectionContainer.propTypes = {
   type: PropTypes.string,
 };
 
-export default (SectionContainer);
+export default withStyles(styles)(SectionContainer);

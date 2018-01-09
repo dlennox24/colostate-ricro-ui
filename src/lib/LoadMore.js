@@ -4,6 +4,7 @@ import React, {
   Component
 } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import {
   withStyles
 } from 'material-ui/styles';
@@ -103,7 +104,7 @@ class LoadMore extends Component {
       <div className={classes.wrapper}>
       {loading && <LinearProgress color='accent' size={60} />}
         <Button
-          className={classes.button + ' center-block ' + buttonClass}
+          className={classnames(classes.button,buttonClass)}
           onClick={this.handleButtonClick}
           disabled={this.state.disabled}
           >

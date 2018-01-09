@@ -138,9 +138,9 @@ class AppWrapper extends Component {
               handleDrawerClose={this.handleDrawerClose}
               />
           )}
-          <main className={classNames(classes.content, menuOpen && classes.hide)}>
+          <div className={classNames(classes.content, menuOpen && classes.hide)}>
             {this.props.children}
-          </main>
+          </div>
         </div>
       </div>
     );

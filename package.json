@@ -1,7 +1,7 @@
 {
   "name": "ricro-app-template",
   "description": "Template for creating CSU RICRO branded React apps",
-  "version": "2.0.0-beta.19",
+  "version": "2.0.0-beta.20",
   "main": "build/index.js",
   "scripts": {
     "start": "node scripts/start.js",
@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/dlennox24/ricro-app-template/issues"
   },
-  "homepage": ".",
+  "homepage": "/__dev/rat/v2",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
@@ -35,7 +35,6 @@
     "babel-loader": "7.1.2",
     "babel-preset-react-app": "^3.1.0",
     "babel-runtime": "6.26.0",
-    "bootstrap": "^4.0.0-beta.3",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
     "classnames": "^2.2.5",
@@ -64,7 +63,7 @@
     "react": "^16.2.0",
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.2.0",
-    "react-popper": "^0.7.4",
+    "react-popper": "^0.7.5",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",

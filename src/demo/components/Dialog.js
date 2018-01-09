@@ -58,7 +58,7 @@ class SnackbarTest extends Component {
         </Button>
         <Dialog
           title='Test Dialog Title'
-          onRequestClose={this.updateState.bind(this, 'dialog',false)}
+          onClose={this.updateState.bind(this, 'dialog',false)}
           open={this.state.dialog}
           dialogActions={dialogActions}
           >

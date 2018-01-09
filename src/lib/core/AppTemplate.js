@@ -2,7 +2,7 @@ import React, {
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import classnames from 'classnames';
 import {
   withStyles,
 } from 'material-ui/styles';
@@ -22,13 +22,18 @@ const styles = theme => ({
       fontFamily: '\'prox-regular\', \'Helvetica\', \'Arial\', sans-serif',
     },
     a: {
+      textDecoration: 'none',
       color: theme.palette.secondary[500],
       '&:hover': {
+        textDecoration: 'underline',
         color: theme.palette.primary[500],
       }
     },
     code: {
-      borderRadius: 0,
+      padding: '0.2em 0.4em',
+      margin: 0,
+      fontSize: '85%',
+      borderRadius: 3,
       backgroundColor: theme.palette.grey[200],
       color: theme.palette.grey[800],
     },
@@ -37,6 +42,7 @@ const styles = theme => ({
       backgroundColor: theme.palette.grey[200],
       borderLeft: '4px solid ' + theme.palette.csuBrand.primary.green,
       color: theme.palette.grey[800],
+      lineHeight: '1.2rem',
     },
     hr: {
       background: theme.palette.csuBrand.primary.gold,
@@ -63,11 +69,17 @@ const styles = theme => ({
       }),
     },
   },
+  gutters: {
+    margin: '1.5rem',
+  },
+  mainContent: {
+    overflow: 'auto',
+  },
   root: {
     height: '100vh',
     display: 'flex',
     flexDirection: 'column',
-  }
+  },
 });
 
 class AppTemplate extends Component {
@@ -84,14 +96,14 @@ class AppTemplate extends Component {
       <div className={classes.root}>
         <CsuUnitHeader unit={config.unit}/>
         <AppWrapper config={config} sideNav={sideNav}>
-          <div
+          <main
             id='main-content'
-            className={!disableGutters ? 'container-fluid p-4' : undefined}
+            className={classnames(classes.mainContent,!disableGutters && classes.gutters)}
             style={style}
             >
             <IeWarning/>
             {children}
-          </div>
+          </main>
         </AppWrapper>
         <Footer/>
       </div>

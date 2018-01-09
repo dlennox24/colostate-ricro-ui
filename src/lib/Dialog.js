@@ -36,14 +36,15 @@ class CsuDialog extends Component {
   render() {
     const {
       classes,
-      fullScreen
+      fullScreen,
+      onClose,
     } = this.props;
     return (
       <Dialog
         classes={{paper: classes.dialogRoot}}
         fullScreen={fullScreen}
         open={this.props.open || false}
-        onRequestClose={this.props.onRequestClose}
+        onClose={onClose}
         maxWidth='md'
         {...this.props.dialogProps}
         >
@@ -60,7 +61,7 @@ class CsuDialog extends Component {
               </Typography>
               <div className={classes.flex}/>
               <IconButton
-                onClick={this.props.onRequestClose}
+                onClick={onClose}
                 color='inherit'
                 aria-label='Close'
                 >
@@ -84,7 +85,7 @@ class CsuDialog extends Component {
 
 CsuDialog.propTypes = {
   classes: PropTypes.object.isRequired,
-  onRequestClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   title: PropTypes.string,
   open: PropTypes.bool,
   fullScreen: PropTypes.bool.isRequired,

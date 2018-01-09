@@ -19,8 +19,11 @@ const styles = theme => ({
     width: 200,
   },
   button: {
-    margin: 8,
+    margin: theme.spacing.unit,
   },
+  demo: {
+    padding: theme.spacing.unit * 4,
+  }
 });
 
 class SnackbarTest extends Component {
@@ -58,7 +61,7 @@ class SnackbarTest extends Component {
           <MenuItem value={404}>404 - Not Found</MenuItem>
           <MenuItem value={500}>500 - Internal Server Error</MenuItem>
         </TextField>
-        <Paper className='p-4'>
+        <Paper className={classes.demo}>
           <HttpError code={Number(code)} config={config} />
         </Paper>
       </div>

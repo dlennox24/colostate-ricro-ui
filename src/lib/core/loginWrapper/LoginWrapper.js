@@ -145,7 +145,7 @@ class LoginWrapper extends Component {
             id='login-message'
             state={snackbar}
             type={snackbar.type}
-            onRequestClose={this.handleSnackbarClose}
+            onClose={this.handleSnackbarClose}
             >
             {snackbar.message}
           </Snackbar>

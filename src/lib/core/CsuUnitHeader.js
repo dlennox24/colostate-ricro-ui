@@ -14,6 +14,9 @@ const styles = theme => ({
     height: 0,
     overflow: 'hidden',
   },
+  root: {
+    padding: theme.spacing.unit / 2
+  },
 });
 
 class Header extends Component {
@@ -46,7 +49,7 @@ class Header extends Component {
       <AppBar
         id='csuLogoBar'
         position='static'
-        className={classNames('p-1', !loadedBranding && classes.loadedBranding)}
+        className={classNames(classes.root, !loadedBranding && classes.loadedBranding)}
         >
         <div className='signature'>
           <section id='BrandLogo' className='fontLarge'>

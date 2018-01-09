@@ -13,7 +13,7 @@ import List, {
 } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Icon from 'material-ui/Icon';
-import Avatar from 'material-ui/Avatar';
+import Grid from 'material-ui/Grid';
 
 import Dialog from '../Dialog';
 import defaultProfileImg from '../assets/images/default-profile.png';
@@ -22,7 +22,12 @@ const styles = theme => ({
   profileImg: {
     width: 150,
     height: 150,
-    marginBottom: 15,
+    display: 'block',
+    margin: '0 auto',
+  },
+  noVertPad: {
+    paddingTop: '0 !important',
+    paddingBottom: '0 !important',
   }
 });
 
@@ -45,8 +50,9 @@ class UserAccount extends Component {
     const {
       classes,
       iconOnly,
+      user,
     } = this.props;
-    const userGroups = _.sortBy(this.props.user.userGroups, ['alias', 'userGroupTypeId']);
+    const userGroups = _.sortBy(user.userGroups, ['alias', 'userGroupTypeId']);
     return (
       <div>
         <ListItem dense button onClick={this.handleOpenClick}>
@@ -57,66 +63,65 @@ class UserAccount extends Component {
         </ListItem>
         <Dialog
           title='Account Settings'
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleRequestClose}
           open={this.state.open}
           >
-          <div className='container-fluid text-center'>
-            <div className='row'>
-              <Avatar
-                alt={this.props.user.displayName}
+          <Grid container>
+            <Grid item xs={12} md={3}>
+              <img
+                alt={user.displayName}
                 src={defaultProfileImg}
-                className={'ml-auto mr-auto '+classes.profileImg}
+                className={classes.profileImg}
                 />
-            </div>
-            <hr/>
-            <div className='row justify-content-md-center'>
-              <div className='col-md-3'>
-                <ListItem>
-                  <ListItemText primary={this.props.user.firstName} secondary='First Name'/>
-                </ListItem>
-              </div>
-              <div className='col-md-3'>
-                <ListItem>
-                  <ListItemText primary={this.props.user.lastName} secondary='Last Name'/>
-                </ListItem>
-              </div>
-            </div>
-            <div className='row justify-content-md-center'>
-              <div className='col-md-3'>
-                <ListItem>
-                  <ListItemText primary={this.props.user.eId} secondary='eID'/>
-                </ListItem>
-              </div>
-              <div className='col-md-3'>
-                <ListItem>
-                  <ListItemText primary={this.props.user.csuId.toString().replace(/(.{3})/g, '$1 ')} secondary='CSU ID'/>
-                </ListItem>
-              </div>
-            </div>
-            <div className='row justify-content-md-center'>
-              <div className='col'>
-                <ListItem>
-                  <ListItemText primary={this.props.user.email} secondary='Email'/>
-                </ListItem>
-              </div>
-            </div>
-          </div>
-          {_.isEmpty(userGroups) ? null : (
-            <div className='container'>
-              <div className='row justify-content-md-center'>
-                <div className='col-md-8'>
-                  <List disablePadding>
-                    <Divider/>
-                    {userGroups.map((userGroup, i) =>
-                      <ListItem key={i}>
-                        <ListItemText primary={userGroup.alias} secondary={userGroup.description} />
-                      </ListItem>
-                    )}
-                  </List>
-                </div>
-              </div>
-            </div>
-          )}
+            </Grid>
+            <Grid item xs={12} md={9}>
+              <Grid container>
+                <Grid className={classes.noVertPad} item md={4} xs={12}>
+                  <ListItem>
+                    <ListItemText primary={user.displayName} secondary='Display Name'/>
+                  </ListItem>
+                </Grid>
+                <Grid className={classes.noVertPad} item md={4} xs={12}>
+                  <ListItem>
+                    <ListItemText primary={user.lastName+', '+user.firstName} secondary='Name'/>
+                  </ListItem>
+                </Grid>
+              </Grid>
+              <Grid container>
+                <Grid className={classes.noVertPad} item md={4} xs={12}>
+                  <ListItem>
+                    <ListItemText primary={user.eId} secondary='eID'/>
+                  </ListItem>
+                </Grid>
+                <Grid className={classes.noVertPad} item md={4} xs={12}>
+                  <ListItem>
+                    <ListItemText primary={user.csuId.toString().replace(/(.{3})/g, '$1 ')} secondary='CSU ID'/>
+                  </ListItem>
+                </Grid>
+              </Grid>
+              <Grid container>
+                <Grid className={classes.noVertPad} item xs={12}>
+                  <ListItem>
+                    <ListItemText primary={user.email} secondary='Email'/>
+                  </ListItem>
+                </Grid>
+              </Grid>
+              {_.isEmpty(userGroups) ? null : (
+                <Grid container>
+                  <Grid item xs={12}>
+                    <List disablePadding>
+                      <Divider/>
+                      {userGroups.map((userGroup, i) =>
+                        <ListItem key={i}>
+                          <ListItemText primary={userGroup.alias} secondary={userGroup.description} />
+                        </ListItem>
+                      )}
+                    </List>
+                  </Grid>
+                </Grid>
+              )}
+            </Grid>
+          </Grid>
         </Dialog>
       </div>
     );

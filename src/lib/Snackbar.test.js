@@ -72,20 +72,20 @@ class SnackbarTest extends Component {
           >
           Open Snackbar
         </Button>
-          <Snackbar
-            state={this.state.snackbar}
-            type={'success'}
-            onRequestClose={this.updateState.bind(this, 'snackbar',{...this.state.snackbar,open:false})}
-            snackbarProps={{
-              autoHideDuration: 5e3,
-              anchorOrigin: {
-                vertical: 'top',
-                horizontal: 'left',
-              }
-            }}
-            >
-            This is a snackbar with the type: success
-          </Snackbar>
+        <Snackbar
+          state={this.state.snackbar}
+          type={'success'}
+          onClose={this.updateState.bind(this, 'snackbar',{...this.state.snackbar,open:false})}
+          snackbarProps={{
+            autoHideDuration: 5e3,
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'left',
+            }
+          }}
+          >
+          This is a snackbar with the type: success
+        </Snackbar>
       </App>
     );
   }

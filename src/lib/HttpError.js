@@ -20,6 +20,9 @@ const style = theme => ({
   subheader: {
     padding: '15px 0',
   },
+  errorContainer: {
+    textAlign: 'center',
+  },
 });
 
 class HttpError extends Component {
@@ -31,8 +34,6 @@ class HttpError extends Component {
       linkedButton,
       subheader,
     } = this.props;
-
-    console.log(config);
 
     const errors = [{
         code: 401,
@@ -55,7 +56,7 @@ class HttpError extends Component {
       {
         code: 404,
         title: 'Not Found',
-        subheader: 'No files to display. If you believe this to be an error please contact us.',
+        subheader: 'Unable to find content. If you believe this to be an error please contact us.',
         linkedButton: {
           title: 'Contact Us',
           location: config.unit.contactHref,
@@ -72,8 +73,6 @@ class HttpError extends Component {
       }
     ];
 
-    console.log('HttpError code: ', code);
-
     let error = _.find(errors, function(o) {
       return o.code === code;
     });
@@ -81,7 +80,7 @@ class HttpError extends Component {
     error.subheader = subheader ? subheader : error.subheader;
 
     return (
-      <div className='text-center'>
+      <div className={classes.errorContainer}>
         <Typography type='display3'>{error.code} - {error.title}</Typography>
         <Divider/>
         <Typography type='subheading' className={classes.subheader}>
@@ -98,8 +97,11 @@ class HttpError extends Component {
     );
   }
   render() {
+    const {
+      classes
+    } = this.props;
     return (
-      <div className={this.props.classes.wrapper}>
+      <div className={classes.wrapper}>
         {this.errorMessage()}
       </div>
     );

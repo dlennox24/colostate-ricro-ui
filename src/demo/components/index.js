@@ -34,7 +34,6 @@ class SideNavEx extends Component {
 }
 
 SideNavEx.propTypes = {
-  classes: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
 };
 

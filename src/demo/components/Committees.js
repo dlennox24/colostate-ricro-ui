@@ -1,7 +1,6 @@
 import React, {
   Component,
 } from 'react';
-import classnames from 'classnames';
 import {
   withStyles,
 } from 'material-ui/styles';
@@ -15,6 +14,7 @@ const styles = theme => ({
   row: {
     display: 'flex',
     flexWrap: 'wrap',
+    justifyContent: 'center',
   },
 });
 
@@ -27,14 +27,14 @@ class SnackbarTest extends Component {
     return (
       <div>
         <SectionContainer title='Committee Chips' fullWidth>
-          <div className={classnames('justify-content-center',classes.row)}>
+          <div className={classes.row}>
             {Committees.keys.map(committee => (
               <CommitteeChip key={committee} committee={committee}/>
             ))}
           </div>
         </SectionContainer>
         <SectionContainer title='Committee Avatars' fullWidth>
-          <div className={classnames('justify-content-center',classes.row)}>
+          <div className={classes.row}>
             {Committees.keys.map((committee,i) => (
               <CommitteeAvatar key={i} size={.75*i+.75} committee={committee}/>
             ))}

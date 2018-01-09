@@ -49,7 +49,7 @@ class SideNavEx extends Component {
         <p>paragraph text with embeded <code>code text</code></p>
         <p>another paragraph</p>
         <pre>{preString}</pre>
-        <hr className='my-3'/>
+        <hr style={{margin: '16px 0'}}/>
         <Typography type='display1'>Buttons</Typography>
         <div style={{background: 'lightgray', padding: '10px',}}>
           <Button className={classes.button}>Default</Button>

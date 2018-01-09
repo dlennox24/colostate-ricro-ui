@@ -37,6 +37,10 @@ const styles = theme => ({
   icon: {
     paddingRight: '5px',
   },
+  messageContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
 });
 
 export function slideTransition(slideProps, props) {
@@ -80,7 +84,7 @@ class CsuSnackbar extends Component {
     }
 
     const message = (
-      <div className='row align-items-center'>
+      <div className={classes.messageContainer}>
           {!noIcon && <Icon className={classes.icon}>{icon}</Icon>}
           {children}
       </div>

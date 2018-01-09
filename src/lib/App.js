@@ -6,16 +6,16 @@ import {
   MuiThemeProvider,
   createMuiTheme
 } from 'material-ui/styles';
+import Reboot from 'material-ui/Reboot';
 import {
   combineReducers
 } from 'redux';
 import {
   Provider
-} from 'react-redux'
+} from 'react-redux';
 import {
   createStore
-}
-from 'redux';
+} from 'redux';
 import {
   BrowserRouter as Router,
 } from 'react-router-dom';
@@ -49,6 +49,8 @@ class App extends Component {
     });
 
     return (
+      <div>
+      <Reboot/>
       <Provider store={createStore(combinedReducers, config.defaultState, reduxMiddleware)}>
         <MuiThemeProvider theme={createMuiTheme(theme == null ? defaultTheme : theme)}>
           <Router basename={window.location.hostname === 'localhost' ? null : homepage}>
@@ -58,6 +60,7 @@ class App extends Component {
           </Router>
         </MuiThemeProvider>
       </Provider>
+    </div>
     );
   }
 }

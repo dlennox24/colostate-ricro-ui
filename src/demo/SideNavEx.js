@@ -4,7 +4,6 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
-  withRouter,
   matchPath,
 } from 'react-router';
 import {
@@ -66,18 +65,22 @@ class SideNavEx extends Component {
     const {
       classes,
       iconOnly,
-      location,
     } = this.props;
+
+    const pathname = window.location.pathname;
 
     return (
       <List className={classes.root}>
         <Link to="/" className='listItemLink'>
-          <ListItem button className={
-              matchPath(location.pathname, {
+          <ListItem
+            className={
+              matchPath(pathname, {
                 path: '/',
                 exact: true,
               }) && classes.active
-            }>
+            }
+            button
+            >
             <ListItemIcon>
               <Icon>text_fields</Icon>
             </ListItemIcon>
@@ -86,7 +89,7 @@ class SideNavEx extends Component {
         </Link>
         <ListItem
           className={
-            matchPath(location.pathname, {
+            matchPath(pathname, {
               path: '/component',
             }) && classes.active
           }
@@ -105,10 +108,10 @@ class SideNavEx extends Component {
               <Link to={'/component/'+component.path} className='listItemLink' key={component.path}>
                 <ListItem
                   className={
-                      matchPath(location.pathname, {
-                        path: '/component/'+component.path,
-                      }) && classes.active
-                    }
+                    matchPath(pathname, {
+                      path: '/component/'+component.path,
+                    }) && classes.active
+                  }
                   classes={iconOnly ? null : {root: classes.listRoot}}
                   dense
                   button
@@ -142,10 +145,7 @@ class SideNavEx extends Component {
 }
 
 SideNavEx.propTypes = {
-  classes: PropTypes.object,
-  match: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
-export default withRouter(withStyles(styles)(SideNavEx));
+export default withStyles(styles)(SideNavEx);
