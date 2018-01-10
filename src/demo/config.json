@@ -4,6 +4,7 @@
     "location": "http://192.168.1.24:8080/api"
   },
   "app": {
+    "basename": "/__dev/rat/v2",
     "name": "App Template",
     "hasLogin": true,
     "hasAutoLogin": false,

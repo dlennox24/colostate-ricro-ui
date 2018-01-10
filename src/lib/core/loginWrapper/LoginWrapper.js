@@ -18,7 +18,7 @@ import List, {
 
 import Snackbar, {
   slideTransition
-} from '../../Snackbar';
+} from '../../components/Snackbar';
 import UserAccountSettings from '../UserAccountSettings';
 import defaultProfileImg from '../../assets/images/default-profile.png';
 import Login from './Login';

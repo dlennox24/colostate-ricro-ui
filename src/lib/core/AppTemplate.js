@@ -32,22 +32,23 @@ const styles = theme => ({
     code: {
       padding: '0.2em 0.4em',
       margin: 0,
-      fontSize: '85%',
       borderRadius: 3,
       backgroundColor: theme.palette.grey[200],
       color: theme.palette.grey[800],
     },
     pre: {
-      padding: '5px 10px',
+      padding: '8px 10px 16px',
       backgroundColor: theme.palette.grey[200],
       borderLeft: '4px solid ' + theme.palette.csuBrand.primary.green,
       color: theme.palette.grey[800],
       lineHeight: '1.2rem',
+      overflow: 'auto',
     },
     hr: {
-      background: theme.palette.csuBrand.primary.gold,
-      height: '.1rem',
-      margin: 0,
+      background: theme.palette.csuBrand.primary.green,
+      height: 2,
+      margin: '0 0 ' + theme.spacing.unit + 'px',
+      border: 0,
     },
     '.listItemLink': {
       color: theme.palette.common.lightBlack,

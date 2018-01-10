@@ -95,6 +95,7 @@ class AppWrapper extends Component {
       config,
       width,
       sideNav,
+      children,
     } = this.props;
 
     const {
@@ -139,7 +140,7 @@ class AppWrapper extends Component {
               />
           )}
           <div className={classNames(classes.content, menuOpen && classes.hide)}>
-            {this.props.children}
+            {children}
           </div>
         </div>
       </div>

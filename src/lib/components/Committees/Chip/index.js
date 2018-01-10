@@ -9,8 +9,8 @@ import Chip from 'material-ui/Chip';
 import Tooltip from 'material-ui/Tooltip';
 import Typography from 'material-ui/Typography';
 
-import Committees from './';
-import CommitteeAvatar from './Avatar';
+import Committees from '../';
+import CommitteeAvatar from '../Avatar';
 
 const styles = theme => ({
   chip: {

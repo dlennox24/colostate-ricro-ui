@@ -7,21 +7,23 @@ import {
   withRouter,
 } from 'react-router';
 
-import LoadMore from '../../lib/LoadMore';
-import SectionContainer from '../../lib/SectionContainer';
+import LoadMore from '../../lib/components/LoadMore';
+import SectionContainer from '../../lib/components/SectionContainer';
+
 import components from './components.json';
 import Committees from './Committees';
 import Dialog from './Dialog';
 import HttpError from './HttpError';
 import Snackbar from './Snackbar';
 
-class SideNavEx extends Component {
+class Commponents extends Component {
   render() {
     const {
       match,
     } = this.props;
-    const component = components[_.findIndex(components, component => match.params.component === component.path)]
-    return (
+    const component = components[_.findIndex(components, component => match.params.component === component.path)];
+
+    return !component ? null : (
       <SectionContainer type='display2' title={component.label}>
         {component.label === 'Committees' && <Committees/>}
         {component.label === 'Dialog' && <Dialog/>}
@@ -33,8 +35,8 @@ class SideNavEx extends Component {
   }
 }
 
-SideNavEx.propTypes = {
+Commponents.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-export default withRouter(SideNavEx);
+export default withRouter(Commponents);

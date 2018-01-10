@@ -5,10 +5,12 @@ import {
   withStyles,
 } from 'material-ui/styles';
 
-import Committees from '../../lib/Committees';
-import SectionContainer from '../../lib/SectionContainer';
-import CommitteeChip from '../../lib/Committees/Chip';
-import CommitteeAvatar from '../../lib/Committees/Avatar';
+import Committees from '../../lib/components/Committees';
+import SectionContainer from '../../lib/components/SectionContainer';
+import {
+  CommitteeChip
+} from '../../lib/components/Committees';
+import CommitteeAvatar from '../../lib/components/Committees/Avatar';
 
 const styles = theme => ({
   row: {
@@ -18,7 +20,7 @@ const styles = theme => ({
   },
 });
 
-class SnackbarTest extends Component {
+class CommitteeEx extends Component {
   render() {
     const {
       classes
@@ -45,4 +47,4 @@ class SnackbarTest extends Component {
   }
 }
 
-export default withStyles(styles)(SnackbarTest);
+export default withStyles(styles)(CommitteeEx);

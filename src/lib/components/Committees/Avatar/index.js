@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Avatar from 'material-ui/Avatar';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
-import Committees from './';
+import Committees from '../';
 
 class CommitteeAvatar extends Component {
   render() {

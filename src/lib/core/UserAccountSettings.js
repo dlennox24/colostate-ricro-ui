@@ -15,7 +15,7 @@ import Divider from 'material-ui/Divider';
 import Icon from 'material-ui/Icon';
 import Grid from 'material-ui/Grid';
 
-import Dialog from '../Dialog';
+import Dialog from '../components/Dialog';
 import defaultProfileImg from '../assets/images/default-profile.png';
 
 const styles = theme => ({

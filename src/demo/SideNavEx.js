@@ -4,6 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
+  withRouter,
   matchPath,
 } from 'react-router';
 import {
@@ -65,16 +66,15 @@ class SideNavEx extends Component {
     const {
       classes,
       iconOnly,
+      location,
     } = this.props;
-
-    const pathname = window.location.pathname;
 
     return (
       <List className={classes.root}>
-        <Link to="/" className='listItemLink'>
+        <Link to='/' className='listItemLink'>
           <ListItem
             className={
-              matchPath(pathname, {
+              matchPath(location.pathname, {
                 path: '/',
                 exact: true,
               }) && classes.active
@@ -89,7 +89,7 @@ class SideNavEx extends Component {
         </Link>
         <ListItem
           className={
-            matchPath(pathname, {
+            matchPath(location.pathname, {
               path: '/component',
             }) && classes.active
           }
@@ -108,7 +108,7 @@ class SideNavEx extends Component {
               <Link to={'/component/'+component.path} className='listItemLink' key={component.path}>
                 <ListItem
                   className={
-                    matchPath(pathname, {
+                    matchPath(location.pathname, {
                       path: '/component/'+component.path,
                     }) && classes.active
                   }
@@ -125,12 +125,14 @@ class SideNavEx extends Component {
             ))}
           </List>
         </Collapse>
-        <ListItem button>
-          <ListItemIcon>
-            <Avatar className={classes.avatar}>S1</Avatar>
-          </ListItemIcon>
-          {!iconOnly && <ListItemText primary='MUI Avatar List Item Example' />}
-        </ListItem>
+        <Link to='/404' className='listItemLink'>
+          <ListItem button>
+            <ListItemIcon>
+              <Avatar className={classes.avatar}>S1</Avatar>
+            </ListItemIcon>
+            {!iconOnly && <ListItemText primary='MUI Avatar List Item Example' />}
+          </ListItem>
+        </Link>
         <a href='https://github.com/dlennox24/ricro-app-template' className='listItemLink'>
           <ListItem button>
             <ListItemIcon>
@@ -148,4 +150,4 @@ SideNavEx.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SideNavEx);
+export default withRouter(withStyles(styles)(SideNavEx));

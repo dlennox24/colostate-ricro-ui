@@ -8,7 +8,7 @@ import {
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 
-import SectionContainer from '../lib/SectionContainer';
+import SectionContainer from '../lib/components/SectionContainer';
 
 const styles = theme => ({
   listRoot: {
@@ -19,12 +19,12 @@ const styles = theme => ({
   },
 });
 
-const preString = "// pre block\n" +
-  "const styles = theme => ({\n" +
-  "  listRoot: {\n" +
-  "    marginLeft: theme.spacing.unit * 5\n" +
-  "  },\n" +
-  "});";
+const preString = '// pre block\n' +
+  'const styles = theme => ({\n' +
+  '  listRoot: {\n' +
+  '    marginLeft: theme.spacing.unit * 5\n' +
+  '  },\n' +
+  '});';
 
 class SideNavEx extends Component {
   render() {
@@ -49,9 +49,8 @@ class SideNavEx extends Component {
         <p>paragraph text with embeded <code>code text</code></p>
         <p>another paragraph</p>
         <pre>{preString}</pre>
-        <hr style={{margin: '16px 0'}}/>
-        <Typography type='display1'>Buttons</Typography>
-        <div style={{background: 'lightgray', padding: '10px',}}>
+        <hr/>
+        <div style={{background: 'whitesmoke', padding: '10px',}}>
           <Button className={classes.button}>Default</Button>
           <Button className={classes.button} color='primary'>Primary</Button>
           <Button className={classes.button} color='accent'>Accent</Button>
@@ -60,7 +59,7 @@ class SideNavEx extends Component {
           <Button className={classes.button} href='#'>Link</Button>
           <Button className={classes.button} dense>Dense</Button>
         </div>
-        <div style={{background: 'lightgray', padding: '10px',}}>
+        <div style={{background: 'whitesmoke', padding: '10px',}}>
           <Button className={classes.button} raised>Default</Button>
           <Button className={classes.button} raised color='primary'>Primary</Button>
           <Button className={classes.button} raised color='accent'>Accent</Button>

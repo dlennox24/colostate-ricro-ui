@@ -24,6 +24,12 @@ const styles = theme => ({
   noPadding: {
     padding: 0,
   },
+  row: {
+    overflow: 'auto',
+  },
+  container: {
+    margin: '0 auto',
+  },
 });
 
 class SectionContainer extends Component {
@@ -43,13 +49,13 @@ class SectionContainer extends Component {
       <div id={id ? id : title.toLowerCase().replace(/ /g,'-')} className={classnames(className,classes.root)}>
         <Typography type={type ? type : 'display1'}>{title}</Typography>
         <Divider className={classes.divider}/>
-        <Grid container justify='center'>
-          <Grid item md={fullWidth ? 12 : 8}>
+        <div className={classes.row}>
+          <Grid item md={fullWidth ? 12 : 8} className={classes.container}>
             <div className={disablePadding ? classes.noPadding : classes.padding}>
               {children}
             </div>
           </Grid>
-        </Grid>
+        </div>
       </div>
     );
   }

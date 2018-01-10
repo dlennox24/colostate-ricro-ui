@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import LoginWrapper from './LoginWrapper';
-import App from '../../App';
+import App from '../../Components/App';
 
 import defaults from '../../assets/defaults.json';
 

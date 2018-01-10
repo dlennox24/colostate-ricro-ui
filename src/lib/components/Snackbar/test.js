@@ -5,9 +5,9 @@ import ReactDOM from 'react-dom';
 import Button from 'material-ui/Button';
 import Snackbar, {
   slideTransition
-} from './Snackbar';
-import App from './App';
-import config from '../demo/config.json';
+} from './';
+import App from '../App';
+import config from '../../../demo/config.json';
 
 jest.mock(
   'popper.js',

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CsuDialog from './Dialog';
+import CsuDashboard from './';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<CsuDialog open={false} onClose={()=>{}} />, div);
+  ReactDOM.render(<CsuDashboard title='Test Title' />, div);
 });

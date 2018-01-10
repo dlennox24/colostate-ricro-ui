@@ -10,7 +10,7 @@ import {
 
 import Snackbar, {
   slideTransition
-} from '../../lib/Snackbar';
+} from '../../lib/components/Snackbar';
 
 const styles = theme => ({
   textField: {
@@ -61,7 +61,9 @@ class SnackbarEx extends Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const {
+      classes
+    } = this.props;
     const types = ['default', 'error', 'success', 'info', 'warning'];
     const slides = ['left', 'right', 'up', 'down'];
     const positions = ['bottom-left', 'bottom-center', 'bottom-right', 'top-left', 'top-center', 'top-right', ];

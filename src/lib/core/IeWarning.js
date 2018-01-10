@@ -16,7 +16,7 @@ import {
   faSafari,
 } from '@fortawesome/fontawesome-free-brands';
 
-import Dialog from '../Dialog';
+import Dialog from '../components/Dialog';
 
 const styles = theme => ({
   browserIcons: {

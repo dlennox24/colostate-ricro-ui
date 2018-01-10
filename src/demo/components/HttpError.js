@@ -7,10 +7,9 @@ import {
 import {
   MenuItem
 } from 'material-ui/Menu';
-import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 
-import HttpError from '../../lib/HttpError';
+import HttpError from '../../lib/components/HttpError';
 import config from '../config.json';
 
 const styles = theme => ({
@@ -26,7 +25,7 @@ const styles = theme => ({
   }
 });
 
-class SnackbarTest extends Component {
+class HttpErrorEx extends Component {
   state = {
     code: 401,
   }
@@ -49,11 +48,11 @@ class SnackbarTest extends Component {
     return (
       <div>
         <TextField
-          label="Error Code"
+          label='Error Code'
           className={classes.textField}
           value={code}
           onChange={this.updateState('code')}
-          margin="normal"
+          margin='normal'
           select
           >
           <MenuItem value={401}>401 - Unauthenticated</MenuItem>
@@ -61,12 +60,10 @@ class SnackbarTest extends Component {
           <MenuItem value={404}>404 - Not Found</MenuItem>
           <MenuItem value={500}>500 - Internal Server Error</MenuItem>
         </TextField>
-        <Paper className={classes.demo}>
           <HttpError code={Number(code)} config={config} />
-        </Paper>
       </div>
     );
   }
 }
 
-export default withStyles(styles)(SnackbarTest);
+export default withStyles(styles)(HttpErrorEx);

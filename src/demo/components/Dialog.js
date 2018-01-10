@@ -6,7 +6,7 @@ import {
 } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 
-import Dialog from '../../lib/Dialog';
+import Dialog from '../../lib/components/Dialog';
 
 const styles = theme => ({
   textField: {
@@ -25,7 +25,7 @@ const buttonStyle = {
   margin: '8px'
 };
 
-class SnackbarTest extends Component {
+class DialogEx extends Component {
   state = {
     dialog: false,
   }
@@ -69,4 +69,4 @@ class SnackbarTest extends Component {
   }
 }
 
-export default withStyles(styles)(SnackbarTest);
+export default withStyles(styles)(DialogEx);
