@@ -2,7 +2,6 @@ import React, {
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
-// import jss from 'jss';
 import {
   MuiThemeProvider,
   createMuiTheme
@@ -24,7 +23,7 @@ import {
 } from 'react-router-dom';
 
 
-import defaultTheme from '../../assets/theme.json';
+import defaultTheme from '../../assets/theme/muiThemeOverrides.json';
 import AppTemplate from '../../core/AppTemplate';
 import HttpError from '../HttpError';
 
@@ -42,7 +41,7 @@ import {
 
 const createGenerateClassName = () => {
   let counter = 0;
-  return (rule, sheet) => `rat--${rule.key}-${counter++}`;
+  return (rule, sheet) => `rat-${rule.key}-${counter++}`;
 }
 
 const generateClassName = createGenerateClassName();

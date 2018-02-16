@@ -56,7 +56,7 @@ class CsuDialog extends Component {
           >
           <AppBar position='static'>
             <Toolbar>
-              <Typography color='inherit' type='title'>
+              <Typography variant='title' color='inherit'>
                 {this.props.title}
               </Typography>
               <div className={classes.flex}/>

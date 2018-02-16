@@ -9,20 +9,36 @@ import {
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
+import Icon from 'material-ui/Icon';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import {
+  faSignIn,
+} from '@fortawesome/fontawesome-pro-regular';
+
 
 const style = theme => ({
   '@global': {
     '@keyframes pulse': {
       '0%': {
-        color: theme.palette.common.minBlack,
+        color: theme.palette.grey[500],
       },
       '50%': {
         color: theme.palette.alerts.danger,
       },
       '100%': {
-        color: theme.palette.common.minBlack,
+        color: theme.palette.grey[500],
       },
     },
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  faIcon: {
+    marginRight: theme.spacing.unit,
+  },
+  mdIcon: {
+    fontSize: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit,
   },
   wrapper: {
     display: 'flex',
@@ -58,39 +74,51 @@ class HttpError extends Component {
       code: 401,
       title: 'Not Authenticated',
       subheader: 'You must login to view this content.',
-      linkedButton: {
+      linkedButton: [{
+        icon: (<FontAwesomeIcon className={classes.faIcon} icon={faSignIn}/>),
         title: 'Login',
         location: config.api.auth + '?return=' + window.location.pathname,
-      },
+      }],
     }, {
       code: 403,
       title: 'Forbidden',
       subheader: 'You do not have the correct permissions to access this content.',
-      linkedButton: {
+      linkedButton: [{
+        icon: (<Icon className={classes.mdIcon}>apps</Icon>),
+        title: 'Apps',
+        location: '/',
+      }, {
+        icon: (<Icon className={classes.mdIcon}>email</Icon>),
         title: 'Contact Us',
         location: config.unit.contactHref,
-      },
+      }],
     }, {
       code: 404,
       title: 'Not Found',
       subheader: (
         <div>
-          <Typography type='title'><code>{window.location.pathname}</code></Typography>
+          <Typography variant='title'><code>{window.location.pathname}</code></Typography>
           <p>Unable to find this page. If you believe this to be an error please contact us.</p>
         </div>
       ),
-      linkedButton: {
+      linkedButton: [{
+        icon: (<Icon className={classes.mdIcon}>apps</Icon>),
+        title: 'Apps',
+        location: '/',
+      }, {
+        icon: (<Icon className={classes.mdIcon}>email</Icon>),
         title: 'Contact Us',
         location: config.unit.contactHref,
-      },
+      }],
     }, {
       code: 500,
       title: 'Internal Server Error',
       subheader: 'An error occured. Please try again. If this continues to happen please contact us.',
-      linkedButton: {
+      linkedButton: [{
+        icon: (<Icon className={classes.mdIcon}>email</Icon>),
         title: 'Contact Us',
         location: config.unit.contactHref,
-      },
+      }],
     }];
 
     let error = _.find(errors, function(o) {
@@ -101,19 +129,20 @@ class HttpError extends Component {
 
     return (
       <div className={classes.errorContainer}>
-        <Typography type='display4' className={classes.pulse}>{error.code}</Typography>
-        <Typography type='display2' className={classes.title}>{error.title}</Typography>
+        <Typography variant='display4' className={classes.pulse}>{error.code}</Typography>
+        <Typography variant='display2' className={classes.title}>{error.title}</Typography>
         <Divider/>
-        <Typography type='subheading' className={classes.subheader}>
+        <Typography variant='subheading' className={classes.subheader}>
           {error.subheader}
         </Typography>
-        {!_.isObject(error.linkedButton) ? null : (
-          <a href={error.linkedButton.location}>
-            <Button raised color='primary' className={classes.button}>
-              {error.linkedButton.title}
+        {!_.isArray(error.linkedButton) ? null : error.linkedButton.map((button,i)=>(
+          <a key={i} href={button.location}>
+            <Button variant='raised' color='primary' className={classes.button}>
+              {button.icon}
+              {button.title}
             </Button>
           </a>
-        )}
+        ))}
       </div>
     );
   }

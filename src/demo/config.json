@@ -9,8 +9,8 @@
     "hasLogin": true,
     "hasAutoLogin": false,
     "sideNav": [{
-      "name": "Home",
-      "icon": "home",
+      "name": "Apps",
+      "icon": "apps",
       "link": "/"
     }, {
       "name": "Contact Us",

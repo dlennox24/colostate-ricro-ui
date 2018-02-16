@@ -24,7 +24,7 @@ TabContainer.propTypes = {
 
 const styles = theme => ({
   cardHeaderRoot: {
-    backgroundColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary.main,
   },
   cardHeaderContent: {
     color: theme.palette.common.white,
@@ -70,7 +70,7 @@ class Dashboard extends Component {
     return (
       <Card className={classnames(fullWidth ? classes.fullWidth : '')}>
         <CardHeader title={
-            <Typography type='headline' className={classes.cardHeaderContent}>
+            <Typography variant='headline' className={classes.cardHeaderContent}>
               {title}
             </Typography>
           } classes={cardHeaderClasses} color='inherit'

@@ -23,10 +23,15 @@ const styles = theme => ({
     },
     a: {
       textDecoration: 'none',
-      color: theme.palette.secondary[500],
+    },
+    'p a': {
+      textDecoration: 'none',
+      borderBottom: '2px dotted ' + theme.palette.primary.main,
+      fontWeight: 'bold',
+      color: theme.palette.primary.main,
       '&:hover': {
-        textDecoration: 'underline',
-        color: theme.palette.primary[500],
+        borderBottom: '2px solid ' + theme.palette.csuBrand.primary.gold,
+        // color: theme.palette.primary.main,
       }
     },
     code: {
@@ -49,13 +54,6 @@ const styles = theme => ({
       height: 2,
       margin: '0 0 ' + theme.spacing.unit + 'px',
       border: 0,
-    },
-    '.listItemLink': {
-      color: theme.palette.common.lightBlack,
-      '&:hover': {
-        color: theme.palette.common.lightBlack,
-        textDecoration: 'none',
-      },
     },
     '.sideNavSubMenu': {
       transition: theme.transitions.create('width', {

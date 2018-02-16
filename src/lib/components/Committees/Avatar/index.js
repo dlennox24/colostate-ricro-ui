@@ -10,16 +10,18 @@ import Committees from '../';
 class CommitteeAvatar extends Component {
   render() {
     let {
+      className,
       committee,
       size = 1,
     } = this.props;
     committee = Committees[committee];
     const baseSize = 32;
     const bgSize = size < 0 ? baseSize - Math.abs(size * baseSize) : Math.abs(size * baseSize);
-    const iconSize = bgSize - (bgSize * .33);
+    const iconSize = bgSize - (bgSize * .43);
 
     return (
       <Avatar
+        className={className}
         style={{
           color: committee.iconColor,
           backgroundColor: committee.iconBgColor,
@@ -40,6 +42,7 @@ class CommitteeAvatar extends Component {
 }
 
 CommitteeAvatar.propTypes = {
+  className: PropTypes.string,
   committee: PropTypes.string.isRequired,
   size: PropTypes.number,
 };

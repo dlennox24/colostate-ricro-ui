@@ -71,7 +71,7 @@ class SnackbarEx extends Component {
       '<Button' +
       '\n  className={classes.button}' +
       '\n  onClick={this.handleClick({direction: ' + this.state.slide + '})}' +
-      '\n  raised' +
+      '\n  variant=\'raised\'' +
       '\n  >' +
       '\n  Open Snackbar' +
       '\n</Button>' +
@@ -175,7 +175,7 @@ class SnackbarEx extends Component {
         <Button
           className={classes.button}
           onClick={this.handleClick({direction:this.state.slide})}
-          raised
+          variant='raised'
           >
           Open Snackbar
         </Button>

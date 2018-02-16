@@ -42,7 +42,7 @@ class DialogEx extends Component {
       <Button onClick={this.updateState.bind(this, 'dialog',false)} color='primary' key={0}>
         Disagree
       </Button>,
-      <Button onClick={this.updateState.bind(this, 'dialog',false)} color='primary' raised key={1}>
+      <Button onClick={this.updateState.bind(this, 'dialog',false)} color='primary' variant='raised' key={1}>
         Agree
       </Button>,
     ];
@@ -52,7 +52,7 @@ class DialogEx extends Component {
           style={buttonStyle}
           className={classes.defaultButton}
           onClick={this.updateState.bind(this, 'dialog',true)}
-          raised
+          variant='raised'
           >
           Open Dialog
         </Button>

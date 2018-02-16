@@ -30,7 +30,7 @@ const styles = theme => ({
     display: 'none',
   },
   successButton: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
     '&:hover': {
       backgroundColor: green[700],
     },
@@ -102,7 +102,7 @@ class LoadMore extends Component {
 
     return (
       <div className={classes.wrapper}>
-      {loading && <LinearProgress color='accent' size={60} />}
+      {loading && <LinearProgress color='secondary' size={60} />}
         <Button
           className={classnames(classes.button,buttonClass)}
           onClick={this.handleButtonClick}

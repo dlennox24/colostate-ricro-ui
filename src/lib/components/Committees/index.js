@@ -14,7 +14,7 @@ import {
   faPaw,
   faShieldCheck,
   faUsers
-} from '@fortawesome/fontawesome-pro-light';
+} from '@fortawesome/fontawesome-pro-regular';
 
 import CommitteeAvatar from './Avatar';
 import CommitteeChip from './Chip';
@@ -76,7 +76,7 @@ export default {
     alias: 'RCR',
     textColor: grey[900],
     bgColor: yellow[500],
-    iconColor: grey[50],
+    iconColor: grey[900],
     iconBgColor: yellow[800],
     icon: faBalanceScale,
   },

@@ -5,8 +5,8 @@ import Grid from 'material-ui/Grid';
 const styles = theme => ({
   '@global': {},
   footer: {
-    backgroundColor: theme.palette.primary[500],
-    color: theme.palette.common.fullWhite,
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
     fontSize: '0.85em',
     padding: theme.spacing.unit,
     '& img': {
@@ -18,7 +18,7 @@ const styles = theme => ({
   },
   footerLink: {
     padding: '0px 10px',
-    borderRight: theme.palette.common.fullWhite + ' solid 1px',
+    borderRight: theme.palette.common.white + ' solid 1px',
     '&:first-child': {
       paddingLeft: 0,
     },
@@ -27,9 +27,10 @@ const styles = theme => ({
       paddingRight: 0,
     },
     '& a': {
-      color: theme.palette.common.fullWhite,
+      color: theme.palette.common.white,
       '&:hover': {
-        color: theme.palette.common.fullWhite,
+        color: theme.palette.csuBrand.primary.white,
+        borderBottom: '2px solid ' + theme.palette.csuBrand.primary.gold,
       },
     },
   },

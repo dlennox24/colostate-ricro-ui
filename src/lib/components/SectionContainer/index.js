@@ -47,7 +47,7 @@ class SectionContainer extends Component {
 
     return (
       <div id={id ? id : title.toLowerCase().replace(/ /g,'-')} className={classnames(className,classes.root)}>
-        <Typography type={type ? type : 'display1'}>{title}</Typography>
+        <Typography variant={type ? type : 'display1'}>{title}</Typography>
         <Divider className={classes.divider}/>
         <div className={classes.row}>
           <Grid item md={fullWidth ? 12 : 8} className={classes.container}>

@@ -68,7 +68,7 @@ class SnackbarTest extends Component {
       <App config={config}>
         <Button
           onClick={this.handleClick(slideTransition,{direction:'right'})}
-          raised
+          variant='raised'
           >
           Open Snackbar
         </Button>

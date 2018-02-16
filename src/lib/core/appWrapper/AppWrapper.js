@@ -6,7 +6,8 @@ import _ from 'lodash';
 import classNames from 'classnames';
 import compose from 'recompose/compose';
 import {
-  withStyles
+  withStyles,
+  withTheme,
 } from 'material-ui/styles';
 import withWidth from 'material-ui/utils/withWidth';
 import AppBar from 'material-ui/AppBar';
@@ -59,8 +60,8 @@ const styles = theme => ({
     height: 'calc(100% - 56px)',
     marginTop: 60,
     [theme.breakpoints.up('sm')]: {
-      height: 'calc(100% - 64px)',
-      marginTop: 64,
+      height: 'calc(100% - 67px)', // size + bottom border = 67
+      marginTop: 64 + 3, // size + bottom border
     },
   },
   '@global': {
@@ -126,7 +127,7 @@ class AppWrapper extends Component {
                   <Icon>menu</Icon>
                 </IconButton>
               )}
-              <Typography type='title' color='inherit' noWrap>
+              <Typography variant='title' color='inherit' noWrap>
                 {config.app.name}
               </Typography>
             </Toolbar>
@@ -155,4 +156,4 @@ AppWrapper.propTypes = {
   width: PropTypes.string,
 };
 
-export default compose(withStyles(styles), withWidth())(AppWrapper);
+export default compose(withStyles(styles), withWidth(), withTheme())(AppWrapper);

@@ -51,16 +51,18 @@ class Header extends Component {
         position='static'
         className={classNames(classes.root, !loadedBranding && classes.loadedBranding)}
         >
-        <div className='signature'>
-          <section id='BrandLogo' className='fontLarge'>
-            <div className='responsiveLogoContainer'>
-              <div id='responsiveLogo'></div>
-              <div id='responsiveLogoSubsytem'>
-                <h2><a id='unit-title' href={unit.siteHref}>{unit.name}</a></h2>
+        {!loadedBranding ? <div/> : (
+          <div className='signature'>
+            <section id='BrandLogo' className='fontLarge'>
+              <div className='responsiveLogoContainer'>
+                <div id='responsiveLogo'></div>
+                <div id='responsiveLogoSubsytem'>
+                  <h2><a id='unit-title' href={unit.siteHref}>{unit.name}</a></h2>
+                </div>
               </div>
-            </div>
-          </section>
-        </div>
+            </section>
+          </div>
+        )}
       </AppBar>
     );
   }

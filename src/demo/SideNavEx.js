@@ -44,7 +44,7 @@ const styles = theme => ({
   },
   avatar: {
     backgroundColor: 'initial',
-    color: theme.palette.common.lightBlack,
+    color: theme.palette.grey[600],
     fontWeight: 'bold',
     width: 24,
     height: 24,
@@ -71,7 +71,7 @@ class SideNavEx extends Component {
 
     return (
       <List className={classes.root}>
-        <Link to='/' className='listItemLink'>
+        <Link to='/' >
           <ListItem
             className={
               matchPath(location.pathname, {
@@ -105,7 +105,7 @@ class SideNavEx extends Component {
         <Collapse component='li' in={this.state.open} timeout='auto' unmountOnExit>
           <List disablePadding className={classNames(iconOnly ? 'sideNavSubMenuClosed' : 'sideNavSubMenu')}>
             {components.map(component => (
-              <Link to={'/component/'+component.path} className='listItemLink' key={component.path}>
+              <Link to={'/component/'+component.path}  key={component.path}>
                 <ListItem
                   className={
                     matchPath(location.pathname, {
@@ -116,16 +116,16 @@ class SideNavEx extends Component {
                   dense
                   button
                   >
-                  <ListItemIcon>
-                    <FontAwesomeIcon icon={faLongArrowRight} className={classes.faIcon}/>
-                  </ListItemIcon>
+                    <ListItemIcon>
+                      <FontAwesomeIcon icon={faLongArrowRight} className={classes.faIcon}/>
+                    </ListItemIcon>
                   {!iconOnly && <ListItemText inset primary={component.label} />}
                 </ListItem>
               </Link>
             ))}
           </List>
         </Collapse>
-        <Link to='/404' className='listItemLink'>
+        <Link to='/404' >
           <ListItem button>
             <ListItemIcon>
               <Avatar className={classes.avatar}>S1</Avatar>
@@ -133,7 +133,7 @@ class SideNavEx extends Component {
             {!iconOnly && <ListItemText primary='MUI Avatar List Item Example' />}
           </ListItem>
         </Link>
-        <a href='https://github.com/dlennox24/ricro-app-template' className='listItemLink'>
+        <a href='https://github.com/dlennox24/ricro-app-template' aria-label='View on GitHub'>
           <ListItem button>
             <ListItemIcon>
               <FontAwesomeIcon icon={faGithub} className={classes.faIcon}/>

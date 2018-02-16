@@ -93,7 +93,7 @@ class IeWarning extends Component {
             ignoreBackdropClick: true,
           }}
           >
-          <Typography>
+          <Typography variant='body1'>
             We've detected that you are using an outdated browser. This
             application doesn't support this browser. The application may or may
             not work correctly. It is highly recommended that you use one of the
@@ -106,7 +106,7 @@ class IeWarning extends Component {
                     <IconButton className={classes.browserIcons} aria-label={'Download '+browser.shortName}>
                       <FontAwesomeIcon icon={browser.icon}/>
                     </IconButton>
-                    <Typography type='title'>{browser.name}</Typography>
+                    <Typography variant='title'>{browser.name}</Typography>
                   </a>
                 </Grid>
               )}

@@ -34,42 +34,40 @@ class SideNavEx extends Component {
 
     return (
       <SectionContainer type='display2' title='Typography'>
-        <Typography type='display4'>display4</Typography>
-        <Typography type='display3'>display3</Typography>
-        <Typography type='display2'>display2</Typography>
-        <Typography type='display1'>display1</Typography>
-        <Typography type='headline'>headline</Typography>
-        <Typography type='title'>title</Typography>
-        <Typography type='subheading'>subheading</Typography>
-        <Typography type='body2'>body2</Typography>
-        <Typography type='body1'>body1</Typography>
-        <Typography type='caption'>caption</Typography>
-        <Typography type='button'>button</Typography>
-        <a href=''>link text</a> body text outside of any formatting tags (eg <code>&lt;p&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;i&gt;</code>, etc)
+        <Typography variant='display4'>display4</Typography>
+        <Typography variant='display3'>display3</Typography>
+        <Typography variant='display2'>display2</Typography>
+        <Typography variant='display1'>display1</Typography>
+        <Typography variant='headline'>headline</Typography>
+        <Typography variant='title'>title</Typography>
+        <Typography variant='subheading'>subheading</Typography>
+        <Typography variant='body2'>body2</Typography>
+        <Typography variant='body1'>body1</Typography>
+        <Typography variant='caption'>caption</Typography>
+        <Typography variant='button'>button</Typography>
+        body text outside of any formatting tags (eg <code>&lt;p&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;i&gt;</code>, etc)
         <p>paragraph text with embeded <code>code text</code></p>
-        <p>another paragraph</p>
+        <p>another paragraph with <a href=''>link text</a> in a sentence</p>
         <pre>{preString}</pre>
         <hr/>
-        <div style={{background: 'whitesmoke', padding: '10px',}}>
+        <div style={{padding: '10px',}}>
           <Button className={classes.button}>Default</Button>
           <Button className={classes.button} color='primary'>Primary</Button>
-          <Button className={classes.button} color='accent'>Accent</Button>
-          <Button className={classes.button} color='contrast'>Contrast</Button>
+          <Button className={classes.button} color='secondary'>Secondary</Button>
           <Button className={classes.button} disabled>Disabled</Button>
           <Button className={classes.button} href='#'>Link</Button>
-          <Button className={classes.button} dense>Dense</Button>
+          <Button className={classes.button} size='small'>Dense</Button>
         </div>
-        <div style={{background: 'whitesmoke', padding: '10px',}}>
-          <Button className={classes.button} raised>Default</Button>
-          <Button className={classes.button} raised color='primary'>Primary</Button>
-          <Button className={classes.button} raised color='accent'>Accent</Button>
-          <Button className={classes.button} raised color='contrast'>Contrast</Button>
-          <Button className={classes.button} raised color='accent' disabled>Disabled</Button>
+        <div style={{padding: '10px',}}>
+          <Button className={classes.button} variant='raised'>Default</Button>
+          <Button className={classes.button} variant='raised' color='primary'>Primary</Button>
+          <Button className={classes.button} variant='raised' color='secondary'>Secondary</Button>
+          <Button className={classes.button} variant='raised' color='secondary' disabled>Disabled</Button>
           <input accept='jpg,jpeg,JPG,JPEG' style={{display: 'none'}} id='file' multiple type='file' />
           <label htmlFor='file'>
-            <Button className={classes.button} raised component='span'>Upload</Button>
+            <Button className={classes.button} variant='raised' component='span'>Upload</Button>
           </label>
-          <Button className={classes.button} raised dense>Dense</Button>
+          <Button className={classes.button} variant='raised' size='small'>Dense</Button>
         </div>
       </SectionContainer>
     );

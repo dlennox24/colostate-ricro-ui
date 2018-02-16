@@ -16,6 +16,9 @@ const styles = theme => ({
   chip: {
     margin: theme.spacing.unit / 3,
   },
+  avatarRoot: {
+    marginRight: -1 * (theme.spacing.unit / 2),
+  },
 });
 
 class CommitteeChip extends Component {
@@ -28,9 +31,9 @@ class CommitteeChip extends Component {
     return (
       <Tooltip title={committee.name}>
         <Chip
-          avatar={<CommitteeAvatar committee={committee.alias.toLowerCase()}/>}
+          avatar={<CommitteeAvatar className={classes.avatarRoot} committee={committee.alias.toLowerCase()}/>}
           label={(
-            <Typography type='body1' style={{color: committee.textColor}}>
+            <Typography variant='body1' style={{color: committee.textColor}}>
               {committee.alias}
             </Typography>
           )}

@@ -69,9 +69,9 @@ class UserAccount extends Component {
           <Grid container>
             <Grid item xs={12} md={3}>
               <img
-                alt={user.displayName}
                 src={defaultProfileImg}
                 className={classes.profileImg}
+                alt={user.displayName + " profile image"}
                 />
             </Grid>
             <Grid item xs={12} md={9}>

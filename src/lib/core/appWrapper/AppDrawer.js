@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  Component
+} from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import classNames from 'classnames';
@@ -34,8 +36,8 @@ const styles = theme => ({
     },
   },
   drawerPaperClose: {
-    width: drawerWidthClosed,
-    overflowX: 'hidden',
+    width: drawerWidthClosed + 1,
+    // overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -64,7 +66,7 @@ const styles = theme => ({
   }
 });
 
-class AppDrawer extends React.Component {
+class AppDrawer extends Component {
   render() {
     const {
       classes,
@@ -79,7 +81,7 @@ class AppDrawer extends React.Component {
     return (
       <Drawer
         id='headerDrawer'
-        type='permanent'
+        variant='permanent'
         open={open}
         classes={{
           paper: classNames(
@@ -107,7 +109,7 @@ class AppDrawer extends React.Component {
             <List>
               {config.app.hasLogin && <Login iconOnly={!open} api={config.api} autoLogin={config.app.hasAutoLogin}/>}
               {!_.isEmpty(config.app.sideNav) && config.app.sideNav.map(item =>
-                <a key={item.name} className='listItemLink' href={item.link}>
+                <a key={item.name}  href={item.link}>
                   <ListItem button>
                     <ListItemIcon>
                       <Icon style={item.iconColor && {color: item.iconColor}}>{item.icon}</Icon>

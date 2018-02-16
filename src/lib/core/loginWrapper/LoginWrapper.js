@@ -114,7 +114,11 @@ class LoginWrapper extends Component {
               button
               >
               <ListItemIcon>
-                <Avatar className={classes.accountAvatar} src={defaultProfileImg} />
+                <Avatar
+                  className={classes.accountAvatar}
+                  src={defaultProfileImg}
+                  imgProps={{alt: user.displayName + " profile image"}}
+                  />
               </ListItemIcon>
               {!iconOnly && (<ListItemText primary={user.displayName} />)}
               {!iconOnly && (dropdownOpen ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>)}
