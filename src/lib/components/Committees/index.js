@@ -29,7 +29,7 @@ export default {
   excon: {
     name: 'Export Control',
     alias: 'ExCon',
-    textColor: grey[50],
+    textColor: '#000',
     bgColor: blue[500],
     iconColor: grey[50],
     iconBgColor: blue[800],
@@ -38,7 +38,7 @@ export default {
   iacuc: {
     name: 'Institutional Animal Care and Use Committee',
     alias: 'IACUC',
-    textColor: grey[50],
+    textColor: '#000',
     bgColor: red[500],
     iconColor: grey[50],
     iconBgColor: red[800],

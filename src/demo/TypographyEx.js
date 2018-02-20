@@ -47,7 +47,7 @@ class SideNavEx extends Component {
         <Typography variant='button'>button</Typography>
         body text outside of any formatting tags (eg <code>&lt;p&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;i&gt;</code>, etc)
         <p>paragraph text with embeded <code>code text</code></p>
-        <p>another paragraph with <a href=''>link text</a> in a sentence</p>
+        <p>another paragraph with <a href='#test'>link text</a> in a sentence</p>
         <pre>{preString}</pre>
         <hr/>
         <div style={{padding: '10px',}}>

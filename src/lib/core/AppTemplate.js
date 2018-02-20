@@ -24,14 +24,14 @@ const styles = theme => ({
     a: {
       textDecoration: 'none',
     },
-    'p a': {
-      textDecoration: 'none',
-      borderBottom: '2px dotted ' + theme.palette.primary.main,
-      fontWeight: 'bold',
-      color: theme.palette.primary.main,
+    'span>a, p>a, .linkStyleOverride': {
+      textDecoration: 'underline solid ' + theme.palette.csuBrand.tertiary.darkSlate,
+      color: theme.palette.csuBrand.tertiary.darkSlate,
+    },
+    'a img': {
+      border: 'none',
       '&:hover': {
-        borderBottom: '2px solid ' + theme.palette.csuBrand.primary.gold,
-        // color: theme.palette.primary.main,
+        border: 'none',
       }
     },
     code: {
@@ -73,6 +73,7 @@ const styles = theme => ({
   },
   mainContent: {
     overflow: 'auto',
+    height: '100%',
   },
   root: {
     height: '100vh',

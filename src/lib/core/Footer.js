@@ -27,6 +27,7 @@ const styles = theme => ({
       paddingRight: 0,
     },
     '& a': {
+      textDecoration: 'none',
       color: theme.palette.common.white,
       '&:hover': {
         color: theme.palette.csuBrand.primary.white,
