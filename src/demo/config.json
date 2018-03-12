@@ -1,7 +1,7 @@
 {
   "api": {
-    "auth": "http://192.168.1.24:8080/auth/sso/",
-    "location": "http://192.168.1.24:8080/api"
+    "auth": "/auth/sso/",
+    "location": "/api/v2"
   },
   "app": {
     "basename": "/__dev/rat/v2",
@@ -16,7 +16,8 @@
       "name": "Contact Us",
       "icon": "email",
       "link": "https://vpr.colostate.edu/ricro/contact-us"
-    }]
+    }],
+    "userDefaultProfileImg": "/_static/img/default-profile.png"
   },
   "unit": {
     "name": "RICRO",
@@ -25,25 +26,7 @@
   },
   "defaultState": {
     "login": {
-      "user": {
-        "csuId": 830126214,
-        "eId": "dlennox",
-        "firstName": "Daniel",
-        "lastName": "Lennox",
-        "displayName": "Daniel Lennox",
-        "email": "daniel.lennox@colostate.edu",
-        "userGroups": [{
-          "userGroupTypeId": 0,
-          "name": "dev",
-          "alias": "Developer",
-          "description": "Develops applicaitons and manages code base"
-        }, {
-          "userGroupTypeId": 1,
-          "name": "admin",
-          "alias": "Administrator",
-          "description": "Manages users and other application settings"
-        }]
-      }
+      "user": {}
     }
   }
 }

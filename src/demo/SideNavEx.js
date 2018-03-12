@@ -130,7 +130,7 @@ class SideNavEx extends Component {
             <ListItemIcon>
               <Avatar className={classes.avatar}>S1</Avatar>
             </ListItemIcon>
-            {!iconOnly && <ListItemText primary='MUI Avatar List Item Example' />}
+            {!iconOnly && <ListItemText primary='MUI Avatar List Item Example with Long Name' />}
           </ListItem>
         </Link>
         <a href='https://github.com/dlennox24/ricro-app-template' aria-label='View on GitHub'>

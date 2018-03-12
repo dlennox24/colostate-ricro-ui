@@ -20,7 +20,6 @@ import Snackbar, {
   slideTransition
 } from '../../components/Snackbar';
 import UserAccountSettings from '../UserAccountSettings';
-import defaultProfileImg from '../../assets/images/default-profile.png';
 import Login from './Login';
 import Logout from './Logout';
 
@@ -86,6 +85,7 @@ class LoginWrapper extends Component {
       onLogin, // Redux
       onLogout, // Redux
       user, // Redux
+      userDefaultProfileImg,
     } = this.props;
 
     const {
@@ -116,7 +116,7 @@ class LoginWrapper extends Component {
               <ListItemIcon>
                 <Avatar
                   className={classes.accountAvatar}
-                  src={defaultProfileImg}
+                  src={user.profileImg == null ? userDefaultProfileImg : user.profileImg}
                   imgProps={{alt: user.displayName + " profile image"}}
                   />
               </ListItemIcon>
@@ -132,7 +132,11 @@ class LoginWrapper extends Component {
                 }}
                 disablePadding
                 >
-                <UserAccountSettings iconOnly={iconOnly} user={user}/>
+                <UserAccountSettings
+                  iconOnly={iconOnly}
+                  user={user}
+                  userDefaultProfileImg={userDefaultProfileImg}
+                  />
                 <Logout
                   api={api}
                   handleSnackbarOpen={this.handleSnackbarOpen}
@@ -166,6 +170,7 @@ LoginWrapper.propTypes = {
   onLogin: PropTypes.func.isRequired, // Redux
   onLogout: PropTypes.func.isRequired, // Redux
   user: PropTypes.object, // Redux
+  userDefaultProfileImg: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(LoginWrapper);

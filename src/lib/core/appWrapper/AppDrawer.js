@@ -21,7 +21,7 @@
   import Login from '../../redux/Login';
 
   const drawerWidth = 325;
-  const drawerWidthClosed = 60;
+  const drawerWidthClosed = 72;
   const styles = theme => ({
     drawerPaper: {
       position: 'relative',
@@ -107,7 +107,14 @@
           <Divider />
           {hasTopNav && (
             <List>
-              {config.app.hasLogin && <Login iconOnly={!open} api={config.api} autoLogin={config.app.hasAutoLogin}/>}
+              {config.app.hasLogin && (
+                <Login
+                  iconOnly={!open}
+                  api={config.api}
+                  autoLogin={config.app.hasAutoLogin}
+                  userDefaultProfileImg={config.app.userDefaultProfileImg}
+                  />
+              )}
               {!_.isEmpty(config.app.sideNav) && config.app.sideNav.map(item =>
                 <a key={item.name}  href={item.link}>
                   <ListItem button>

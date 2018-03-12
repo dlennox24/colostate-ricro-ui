@@ -16,7 +16,6 @@ import Icon from 'material-ui/Icon';
 import Grid from 'material-ui/Grid';
 
 import Dialog from '../components/Dialog';
-import defaultProfileImg from '../assets/images/default-profile.png';
 
 const styles = theme => ({
   profileImg: {
@@ -51,6 +50,7 @@ class UserAccount extends Component {
       classes,
       iconOnly,
       user,
+      userDefaultProfileImg,
     } = this.props;
     const userGroups = _.sortBy(user.userGroups, ['alias', 'userGroupTypeId']);
     return (
@@ -69,7 +69,7 @@ class UserAccount extends Component {
           <Grid container>
             <Grid item xs={12} md={3}>
               <img
-                src={defaultProfileImg}
+                src={user.profileImg == null ? userDefaultProfileImg : user.profileImg}
                 className={classes.profileImg}
                 alt={user.displayName + " profile image"}
                 />
@@ -133,6 +133,7 @@ UserAccount.propTypes = {
   user: PropTypes.object.isRequired,
   dialogProps: PropTypes.node,
   iconOnly: PropTypes.bool,
+  userDefaultProfileImg: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(UserAccount);

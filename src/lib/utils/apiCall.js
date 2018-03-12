@@ -2,24 +2,25 @@ import $ from 'jquery';
 
 function complete(data) {
   try {
-    console.log(
-      '\tCOMPLETE: \n\t\t',
-      JSON.parse(data.responseText), '\n\t\t',
-      data
-    );
+    if (window.location.hostname) {
+      console.log(
+        '\tCOMPLETE: \n\t\t',
+        JSON.parse(data.responseText), '\n\t\t',
+        data
+      );
+    }
     return data;
   } catch (e) {
     console.error('ricro-app-template/utils/apiCall:\n\t' + e);
     return false;
   }
-  // return data;
 }
 
 export default function apiCall(params) {
   let {
     url = 'https://services.ricro.colostate.edu/api', uri = '', settings = {}
   } = params;
-  if (!uri.match(/^(\w+\/*)+\w$/g)) {
+  if (!uri.match(/^(?:\w(?:-\w)*\/*)+\w$/g)) {
     console.error('Invalid API URI syntax: ' + uri);
     return false;
   }

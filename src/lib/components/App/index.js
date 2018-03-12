@@ -6,7 +6,7 @@ import {
   MuiThemeProvider,
   createMuiTheme
 } from 'material-ui/styles';
-import Reboot from 'material-ui/Reboot';
+import CssBaseline from 'material-ui/CssBaseline';
 import {
   combineReducers
 } from 'redux';
@@ -78,7 +78,7 @@ class App extends Component {
     return (
       <JssProvider jss={jss} generateClassName={generateClassName}>
         <div>
-          <Reboot/>
+          <CssBaseline/>
           <Provider store={createStore(combinedReducers, config.defaultState, reduxMiddleware)}>
             <MuiThemeProvider theme={createMuiTheme(theme == null ? defaultTheme : theme)}>
               <Router basename={window.location.hostname === 'localhost' ? null : config.app.basename}>

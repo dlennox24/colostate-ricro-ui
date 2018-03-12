@@ -31,7 +31,7 @@ const styles = theme => ({
   },
 });
 
-class LoginWrapper extends Component {
+class Logout extends Component {
   state = {
     disabled: false,
   }
@@ -104,7 +104,7 @@ class LoginWrapper extends Component {
   }
 }
 
-LoginWrapper.propTypes = {
+Logout.propTypes = {
   api: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   handleSnackbarOpen: PropTypes.func.isRequired,
@@ -112,4 +112,4 @@ LoginWrapper.propTypes = {
   onLogout: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(LoginWrapper);
+export default withStyles(styles)(Logout);
