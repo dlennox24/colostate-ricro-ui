@@ -33,11 +33,11 @@ const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
 const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appLibIndexJs])) {
+if (!checkRequiredFiles([paths.appLibIndexJs])) { // CRL: Updated with library index file
   process.exit(1);
 }
 
-// First, read the current file sizes in lib directory.
+// First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuild)
   .then(previousFileSizes => {
@@ -124,4 +124,4 @@ function build(previousFileSizes) {
       });
     });
   });
-}  
+}

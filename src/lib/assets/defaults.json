@@ -1,26 +1,24 @@
 {
   "api": {
-    "auth": "https://services.ricro.colostate.edu/auth/sso/",
-    "location": "https://services.ricro.colostate.edu/api"
+    "auth": "http://192.168.1.24:8080/auth/sso/",
+    "location": "http://192.168.1.24:8080/api"
   },
   "app": {
-    "name": "App Template Defaults",
-    "header": {
-      "login": false,
-      "autoLogin": false,
-      "moreMenu": [{
-        "name": "Home Defaults",
-        "icon": "home",
-        "link": "/"
-      }, {
-        "name": "Contact Us Defaults",
-        "icon": "email",
-        "link": "https://vpr.colostate.edu/ricro/contact-us"
-      }]
-    }
+    "name": "App Template - Defaults",
+    "hasLogin": true,
+    "hasAutoLogin": false,
+    "sideNav": [{
+      "name": "Home - Defaults",
+      "icon": "home",
+      "link": "/"
+    }, {
+      "name": "Contact Us",
+      "icon": "email",
+      "link": "https://vpr.colostate.edu/ricro/contact-us"
+    }]
   },
   "unit": {
-    "name": "RICRO Defaults",
+    "name": "RICRO",
     "siteHref": "https://vpr.colostate.edu/ricro/",
     "contactHref": "https://vpr.colostate.edu/ricro/contact-us"
   },

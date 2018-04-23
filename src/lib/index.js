@@ -1,25 +1,35 @@
-import App from './App';
-import Dashboard from './Dashboard';
-import Dialog from './Dialog';
-import Snackbar, {
-  slideTransition
-} from './Snackbar';
-import LoadMore from './LoadMore';
+import App from './components/App';
+import Dashboard from './components/Dashboard';
+import Dialog from './components/Dialog';
+import LoadMore from './components/LoadMore';
+import SectionContainer from './components/SectionContainer';
+import HttpError from './components/HttpError';
+import Committees from './components/Committees';
+import CommitteeAvatar from './components/Committees/Avatar';
+import CommitteeChip from './components/Committees/Chip';
+
 import Login from './redux/Login';
 
+import Snackbar, {
+  slideTransition
+} from './components/Snackbar';
+
 import apiCall from './utils/apiCall';
-import linkTo from './utils/linkTo';
 
 export default App;
 export {
   // Components
+  Committees,
+  CommitteeAvatar,
+  CommitteeChip,
   Dashboard,
   Dialog,
-  Snackbar,
+  HttpError,
   LoadMore,
   Login,
+  SectionContainer,
+  Snackbar,
   // Functions
   apiCall,
-  linkTo,
-  slideTransition
+  slideTransition,
 };

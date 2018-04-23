@@ -1,13 +1,22 @@
 import React, {
   Component,
 } from 'react';
+import PropTypes from 'prop-types';
 import {
   withStyles,
 } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
+import Grid from 'material-ui/Grid';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import {
+  faChrome,
+  faEdge,
+  faFirefox,
+  faSafari,
+} from '@fortawesome/fontawesome-free-brands';
 
-import Dialog from '../Dialog';
+import Dialog from '../components/Dialog';
 
 const styles = theme => ({
   browserIcons: {
@@ -15,11 +24,15 @@ const styles = theme => ({
     width: 80,
     margin: theme.spacing.unit,
     marginBottom: 13,
+    fontSize: 60,
   },
   browserLinks: {
     '&:hover': {
       textDecoration: 'none',
     },
+  },
+  browserContainer: {
+    textAlign: 'center'
   },
 });
 
@@ -27,84 +40,85 @@ class IeWarning extends Component {
   state = {
     open: true,
   }
+
   handleClose = () => {
     this.setState({
       open: !this.state.open
     });
   }
+
   detectIeUserAgent = () => {
     let ua = window.navigator.userAgent;
-    let msie = ua.indexOf("MSIE ");
+    let msie = ua.indexOf('MSIE ');
     if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv:11\./)) {
       return true;
     }
-    // return true;
     return false;
   }
-  componentDidMount() {
-    this.setState({
-      open: this.detectIeUserAgent()
-    });
-  }
+
   render() {
-    let classes = this.props.classes;
+    let {
+      classes
+    } = this.props;
+
     const browsers = [{
-      name: "Google Chrome",
-      shortName: "Chrome",
-      icon: "fa-chrome",
-      url: "https://www.google.com/chrome/",
+      name: 'Google Chrome',
+      shortName: 'Chrome',
+      icon: faChrome,
+      url: 'https://www.google.com/chrome/',
     }, {
-      name: "Mozilla FireFox",
-      shortName: "FireFox",
-      icon: "fa-firefox",
-      url: "https://www.mozilla.org/en-US/firefox/new/",
+      name: 'Microsoft Edge',
+      shortName: 'Edge',
+      icon: faEdge,
+      url: 'https://www.microsoft.com/en-us/windows/microsoft-edge',
     }, {
-      name: "Apple Safari",
-      shortName: "Safari",
-      icon: "fa-safari",
-      url: "https://www.apple.com/safari/",
+      name: 'Mozilla FireFox',
+      shortName: 'FireFox',
+      icon: faFirefox,
+      url: 'https://www.mozilla.org/en-US/firefox/new/',
     }, {
-      name: "Microsoft Edge",
-      shortName: "Edge",
-      icon: "fa-edge",
-      url: "https://www.microsoft.com/en-us/windows/microsoft-edge",
+      name: 'Apple Safari',
+      shortName: 'Safari',
+      icon: faSafari,
+      url: 'https://www.apple.com/safari/',
     }];
-    return (
+
+    return !this.detectIeUserAgent() ? null : (
       <div>
         <Dialog
-          onRequestClose={this.handleClose}
+          onClose={this.handleClose}
           open={this.state.open}
-          title="Browser Incompatibility Warning"
+          title='Browser Incompatibility Warning'
           muiDialogProps={{
             ignoreBackdropClick: true,
           }}
           >
-          <Typography>
+          <Typography variant='body1'>
             We've detected that you are using an outdated browser. This
             application doesn't support this browser. The application may or may
             not work correctly. It is highly recommended that you use one of the
             following browsers:
           </Typography>
-          <div className='container text-center'>
-            <div className='row'>
+          <Grid container justify='center' alignItems='center' alignContent='center'>
               {browsers.map((browser, i) =>
-                  <div key={i} className='col'>
-                    <a className={classes.browserLinks} href={browser.url}>
-                      <IconButton className={classes.browserIcons} aria-label={"Download "+browser.shortName}>
-                        <i className={"fa fa-3x "+browser.icon} aria-hidden="true"></i>
-                      </IconButton>
-                      <Typography type='title'>{browser.name}</Typography>
-                    </a>
-                  </div>
+                <Grid key={i} item sm className={classes.browserContainer}>
+                  <a className={classes.browserLinks} href={browser.url}>
+                    <IconButton className={classes.browserIcons} aria-label={'Download '+browser.shortName}>
+                      <FontAwesomeIcon icon={browser.icon}/>
+                    </IconButton>
+                    <Typography variant='title'>{browser.name}</Typography>
+                  </a>
+                </Grid>
               )}
-            </div>
-          </div>
+          </Grid>
         </Dialog>
       </div>
     );
   }
 }
 
-IeWarning.propTypes = {};
+IeWarning.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(IeWarning);

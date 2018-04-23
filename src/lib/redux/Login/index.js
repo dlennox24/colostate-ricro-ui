@@ -5,7 +5,7 @@ import {
   login,
   logout,
 } from './actions';
-import LoginComponent from '../../Login';
+import LoginComponent from '../../core/loginWrapper/LoginWrapper';
 
 
 const mapStateToProps = state => {
