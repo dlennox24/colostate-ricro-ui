@@ -6,3 +6,8 @@ engines:
 ratings:
   paths:
   - "src/**.js"
+
+  plugins:
+    eslint:
+      enabled: true
+      channel: "eslint-plugin-react"
