@@ -18,7 +18,7 @@ module.exports = {
     ecmaVersion: 7,
     sourceType: 'module',
   },
-  plugins: ['babel', 'import', 'jsx-a11y', 'mocha', 'flowtype', 'prettier'],
+  plugins: ['babel', 'import', 'jsx-a11y', 'jest', 'flowtype', 'prettier'],
   rules: {
     'linebreak-style': 'off', // Don't play nicely with Windows.
     'arrow-body-style': 'off', // Not our taste?
@@ -38,7 +38,6 @@ module.exports = {
         ignoreUrls: true,
       },
     ], // airbnb is allowing some edge cases
-    'no-console': 'warn', // airbnb is using warn
     'no-alert': 'error', // airbnb is using warn
     'no-param-reassign': 'off', // Not our taste?
     'no-prototype-builtins': 'off', // airbnb use error
@@ -62,6 +61,12 @@ module.exports = {
         'newlines-between': 'never',
       },
     ],
+
+    'jsx-a11y/anchor-is-valid': ['error', {
+      'components': ['Link'],
+      'specialLink': ['to', 'hrefLeft', 'hrefRight'],
+      'aspects': ['noHref', 'invalidHref', 'preferButton']
+    }],
 
     'react/jsx-indent': 'off', // Incompatible with prettier
     'react/jsx-closing-bracket-location': 'off', // Incompatible with prettier
@@ -87,12 +92,6 @@ module.exports = {
     'react/sort-prop-types': 'error', // airbnb do nothing here.
     'react/default-props-match-prop-types': 'off', // Buggy
     'react/jsx-curly-brace-presence': 'off', // Buggy
-
-    'mocha/handle-done-callback': 'error',
-    'mocha/no-exclusive-tests': 'error',
-    'mocha/no-global-tests': 'error',
-    'mocha/no-pending-tests': 'error',
-    'mocha/no-skipped-tests': 'error',
 
     'flowtype/define-flow-type': 'error',
     'flowtype/require-valid-file-annotation': 'off',
