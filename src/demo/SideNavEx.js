@@ -1,43 +1,24 @@
-import React, {
-  Component
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {
-  withRouter,
-  matchPath,
-} from 'react-router';
-import {
-  Link
-} from 'react-router-dom';
-import {
-  withStyles
-} from 'material-ui/styles';
-import List, {
-  ListItem,
-  ListItemIcon,
-  ListItemText
-} from 'material-ui/List';
+import { withRouter, matchPath } from 'react-router';
+import { Link } from 'react-router-dom';
+import withStyles from 'material-ui/styles/withStyles';
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Collapse from 'material-ui/transitions/Collapse';
 import Icon from 'material-ui/Icon';
 import Avatar from 'material-ui/Avatar';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import {
-  faGithub,
-} from '@fortawesome/fontawesome-free-brands';
-import {
-  faCode,
-  faLongArrowRight,
-} from '@fortawesome/fontawesome-pro-regular';
-
+import { faGithub } from '@fortawesome/fontawesome-free-brands';
+import { faCode, faLongArrowAltRight } from '@fortawesome/fontawesome-free-solid';
 import components from './components/components.json';
 
 const styles = theme => ({
   listRoot: {
-    marginLeft: theme.spacing.unit * 5
+    marginLeft: theme.spacing.unit * 5,
   },
   active: {
-    borderRight: '5px solid ' + theme.palette.csuBrand.secondary.aggieOrange,
+    borderRight: `5px solid ${theme.palette.csuBrand.secondary.aggieOrange}`,
   },
   faIcon: {
     width: '24px !important',
@@ -51,7 +32,7 @@ const styles = theme => ({
   },
 });
 
-class SideNavEx extends Component {
+class SideNavEx extends React.Component {
   state = {
     open: false,
   };
@@ -63,15 +44,11 @@ class SideNavEx extends Component {
   };
 
   render() {
-    const {
-      classes,
-      iconOnly,
-      location,
-    } = this.props;
+    const { classes, iconOnly, location } = this.props;
 
     return (
       <List className={classes.root}>
-        <Link to='/' >
+        <Link to="/">
           <ListItem
             className={
               matchPath(location.pathname, {
@@ -80,11 +57,11 @@ class SideNavEx extends Component {
               }) && classes.active
             }
             button
-            >
+          >
             <ListItemIcon>
               <Icon>text_fields</Icon>
             </ListItemIcon>
-            {!iconOnly && <ListItemText inset primary='Typography' />}
+            {!iconOnly && <ListItemText inset primary="Typography" />}
           </ListItem>
         </Link>
         <ListItem
@@ -95,50 +72,53 @@ class SideNavEx extends Component {
           }
           onClick={this.handleClick}
           button
-          >
+        >
           <ListItemIcon>
-            <FontAwesomeIcon icon={faCode} className={classes.faIcon}/>
+            <FontAwesomeIcon icon={faCode} className={classes.faIcon} />
           </ListItemIcon>
-          {!iconOnly && <ListItemText inset primary='Components' />}
+          {!iconOnly && <ListItemText inset primary="Components" />}
           {!iconOnly && (this.state.open ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>)}
         </ListItem>
-        <Collapse component='li' in={this.state.open} timeout='auto' unmountOnExit>
-          <List disablePadding className={classNames(iconOnly ? 'sideNavSubMenuClosed' : 'sideNavSubMenu')}>
+        <Collapse component="li" in={this.state.open} timeout="auto" unmountOnExit>
+          <List
+            disablePadding
+            className={classNames(iconOnly ? 'sideNavSubMenuClosed' : 'sideNavSubMenu')}
+          >
             {components.map(component => (
-              <Link to={'/component/'+component.path}  key={component.path}>
+              <Link to={`/component/${component.path}`} key={component.path}>
                 <ListItem
                   className={
                     matchPath(location.pathname, {
-                      path: '/component/'+component.path,
+                      path: `/component/${component.path}`,
                     }) && classes.active
                   }
-                  classes={iconOnly ? null : {root: classes.listRoot}}
+                  classes={iconOnly ? null : { root: classes.listRoot }}
                   dense
                   button
-                  >
-                    <ListItemIcon>
-                      <FontAwesomeIcon icon={faLongArrowRight} className={classes.faIcon}/>
-                    </ListItemIcon>
+                >
+                  <ListItemIcon>
+                    <FontAwesomeIcon icon={faLongArrowAltRight} className={classes.faIcon} />
+                  </ListItemIcon>
                   {!iconOnly && <ListItemText inset primary={component.label} />}
                 </ListItem>
               </Link>
             ))}
           </List>
         </Collapse>
-        <Link to='/404' >
+        <Link to="/404">
           <ListItem button>
             <ListItemIcon>
               <Avatar className={classes.avatar}>S1</Avatar>
             </ListItemIcon>
-            {!iconOnly && <ListItemText primary='MUI Avatar List Item Example with Long Name' />}
+            {!iconOnly && <ListItemText primary="MUI Avatar List Item Example with Long Name" />}
           </ListItem>
         </Link>
-        <a href='https://github.com/dlennox24/ricro-app-template' aria-label='View on GitHub'>
+        <a href="https://github.com/dlennox24/ricro-app-template" aria-label="View on GitHub">
           <ListItem button>
             <ListItemIcon>
-              <FontAwesomeIcon icon={faGithub} className={classes.faIcon}/>
+              <FontAwesomeIcon icon={faGithub} className={classes.faIcon} />
             </ListItemIcon>
-            {!iconOnly && <ListItemText inset primary='View on GitHub' />}
+            {!iconOnly && <ListItemText inset primary="View on GitHub" />}
           </ListItem>
         </a>
       </List>
@@ -148,6 +128,8 @@ class SideNavEx extends Component {
 
 SideNavEx.propTypes = {
   classes: PropTypes.object.isRequired,
+  iconOnly: PropTypes.bool,
+  location: PropTypes.object,
 };
 
 export default withRouter(withStyles(styles)(SideNavEx));
