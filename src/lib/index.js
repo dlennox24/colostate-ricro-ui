@@ -7,13 +7,8 @@ import HttpError from './components/HttpError';
 import Committees from './components/Committees';
 import CommitteeAvatar from './components/Committees/Avatar';
 import CommitteeChip from './components/Committees/Chip';
-
 import Login from './redux/Login';
-
-import Snackbar, {
-  slideTransition
-} from './components/Snackbar';
-
+import Snackbar, { slideTransition } from './components/Snackbar';
 import apiCall from './utils/apiCall';
 
 export default App;
