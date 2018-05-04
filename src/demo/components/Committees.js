@@ -28,7 +28,7 @@ const CommitteeEx = props => {
       <SectionContainer title="Committee Avatars" fullWidth>
         <div className={classes.row}>
           {Committees.keys.map((committee, i) => (
-            <CommitteeAvatar key={committee.alias} size={0.75 * i + 0.75} committee={committee} />
+            <CommitteeAvatar key={committee} size={0.75 * i + 0.75} committee={committee} />
           ))}
         </div>
       </SectionContainer>

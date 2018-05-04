@@ -183,7 +183,7 @@ class SnackbarEx extends React.Component {
         <Snackbar
           state={this.state.snackbar}
           type={this.state.type !== 'default' ? this.state.type : null}
-          onClose={this.updateState('snackbar', { ...this.state.snackbar, open: false })}
+          onClose={this.updateState.bind(this, 'snackbar', { ...this.state.snackbar, open: false })}
           snackbarProps={{
             autoHideDuration: Number(this.state.autoHide),
             anchorOrigin: {

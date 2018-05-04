@@ -35,10 +35,15 @@ class DialogEx extends React.Component {
   render() {
     const { classes } = this.props;
     const dialogActions = [
-      <Button onClick={this.updateState('dialog', false)} color="primary" key={0}>
+      <Button onClick={this.updateState.bind(this, 'dialog', false)} color="primary" key={0}>
         Disagree
       </Button>,
-      <Button onClick={this.updateState('dialog', false)} color="primary" variant="raised" key={1}>
+      <Button
+        onClick={this.updateState.bind(this, 'dialog', false)}
+        color="primary"
+        variant="raised"
+        key={1}
+      >
         Agree
       </Button>,
     ];
@@ -47,14 +52,14 @@ class DialogEx extends React.Component {
         <Button
           style={buttonStyle}
           className={classes.defaultButton}
-          onClick={this.updateState('dialog', true)}
+          onClick={this.updateState.bind(this, 'dialog', true)}
           variant="raised"
         >
           Open Dialog
         </Button>
         <Dialog
           title="Test Dialog Title"
-          onClose={this.updateState('dialog', false)}
+          onClose={this.updateState.bind(this, 'dialog', false)}
           open={this.state.dialog}
           dialogActions={dialogActions}
         >
