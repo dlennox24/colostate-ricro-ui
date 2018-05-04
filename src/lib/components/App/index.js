@@ -1,59 +1,38 @@
-import React, {
-  Component,
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  MuiThemeProvider,
-  createMuiTheme
-} from 'material-ui/styles';
+import { MuiThemeProvider, createMuiTheme, jssPreset } from 'material-ui/styles';
 import CssBaseline from 'material-ui/CssBaseline';
-import {
-  combineReducers
-} from 'redux';
-import {
-  Provider
-} from 'react-redux';
-import {
-  createStore
-} from 'redux';
-import {
-  Switch,
-  Route,
-  BrowserRouter as Router,
-} from 'react-router-dom';
-
-
+import { combineReducers, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import JssProvider from 'react-jss/lib/JssProvider';
+import { create } from 'jss';
+// Internal imports
 import defaultTheme from '../../assets/theme/muiThemeOverrides.json';
 import AppTemplate from '../../core/AppTemplate';
 import HttpError from '../HttpError';
-
 // Redux reducers for lib
 import login from '../../redux/Login/reducers';
 import defaults from '../../assets/defaults.json';
 
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  create
-} from 'jss';
-import {
-  jssPreset
-} from 'material-ui/styles';
-
 const createGenerateClassName = () => {
   let counter = 0;
-  return (rule, sheet) => `rat-${rule.key}-${counter++}`;
-}
+  return rule => {
+    counter += 1;
+    return `rat-${rule.key}-${counter}`;
+  };
+};
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
 
-class App extends Component {
+class App extends React.Component {
   pageNotFound = () => {
     const {
       config = defaults, // set config to defaults if config is null
     } = this.props;
-    return <HttpError code={404} config={config}/>
-  }
+    return <HttpError code={404} config={config} />;
+  };
 
   render() {
     const {
@@ -67,26 +46,29 @@ class App extends Component {
       config = defaults, // set config to defaults if config is null
     } = this.props;
 
-    document.title = document.title === '' ? config.app.name + ' - ' + config.unit.name : document.title;
+    document.title =
+      document.title === '' ? `${config.app.name} - ${config.unit.name}` : document.title;
 
     // Combine lib reducers with app reducers if they exist
     const combinedReducers = combineReducers({
       login,
-      ...reducers
+      ...reducers,
     });
 
     return (
       <JssProvider jss={jss} generateClassName={generateClassName}>
         <div>
-          <CssBaseline/>
+          <CssBaseline />
           <Provider store={createStore(combinedReducers, config.defaultState, reduxMiddleware)}>
             <MuiThemeProvider theme={createMuiTheme(theme == null ? defaultTheme : theme)}>
-              <Router basename={window.location.hostname === 'localhost' ? null : config.app.basename}>
-                <AppTemplate config={config} sideNav={sideNav} disableGutters={disableGutters} >
+              <Router
+                basename={window.location.hostname === 'localhost' ? null : config.app.basename}
+              >
+                <AppTemplate config={config} sideNav={sideNav} disableGutters={disableGutters}>
                   {children}
                   <Switch>
-                    {routes.map(route=>route)}
-                    <Route component={this.pageNotFound}/>
+                    {routes.map(route => route)}
+                    <Route component={this.pageNotFound} />
                   </Switch>
                 </AppTemplate>
               </Router>
@@ -99,6 +81,7 @@ class App extends Component {
 }
 
 App.propTypes = {
+  children: PropTypes.any,
   config: PropTypes.object.isRequired,
   disableGutters: PropTypes.bool,
   reducers: PropTypes.object,

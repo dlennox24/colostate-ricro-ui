@@ -1,16 +1,10 @@
 // @flow
 
-import React, {
-  Component
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import {
-  withStyles
-} from 'material-ui/styles';
-import {
-  LinearProgress
-} from 'material-ui/Progress';
+import withStyles from 'material-ui/styles/withStyles';
+import { LinearProgress } from 'material-ui/Progress';
 import green from 'material-ui/colors/green';
 import Button from 'material-ui/Button';
 import Icon from 'material-ui/Icon';
@@ -35,17 +29,14 @@ const styles = theme => ({
       backgroundColor: green[700],
     },
   },
-  // progress: {
-  //   color: theme.palette.secondary.A200,
-  // },
 });
 
-class LoadMore extends Component {
+class LoadMore extends React.Component {
   state = {
     loading: false,
     success: false,
     disabled: false,
-  }
+  };
 
   componentWillUnmount() {
     clearTimeout(this.timer);
@@ -53,7 +44,8 @@ class LoadMore extends Component {
 
   handleButtonClick = () => {
     if (!this.state.loading) {
-      this.setState({
+      this.setState(
+        {
           success: false,
           loading: true,
           disabled: true,
@@ -69,7 +61,7 @@ class LoadMore extends Component {
         },
       );
     }
-  }
+  };
 
   handleResetLoadingState = () => {
     this.timer = setTimeout(() => {
@@ -79,15 +71,12 @@ class LoadMore extends Component {
         disabled: false,
       });
     }, 2e3);
-  }
+  };
 
   timer = undefined;
 
   render() {
-    const {
-      loading,
-      success
-    } = this.state;
+    const { loading, success } = this.state;
     const classes = this.props.classes;
     let buttonClass = '';
 
@@ -102,12 +91,12 @@ class LoadMore extends Component {
 
     return (
       <div className={classes.wrapper}>
-      {loading && <LinearProgress color='secondary' size={60} />}
+        {loading && <LinearProgress color="secondary" size={60} />}
         <Button
-          className={classnames(classes.button,buttonClass)}
+          className={classnames(classes.button, buttonClass)}
           onClick={this.handleButtonClick}
           disabled={this.state.disabled}
-          >
+        >
           {success ? <Icon>check</Icon> : <Icon>expand_more</Icon>}
         </Button>
       </div>

@@ -1,16 +1,10 @@
-import React, {
-  Component
-} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import withStyles from 'material-ui/styles/withStyles';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/Menu/MenuItem';
-import {
-  withStyles,
-} from 'material-ui/styles';
-
-import Snackbar, {
-  slideTransition
-} from '../../lib/components/Snackbar';
+import Snackbar, { slideTransition } from '../../lib/components/Snackbar';
 
 const styles = theme => ({
   textField: {
@@ -26,7 +20,7 @@ const styles = theme => ({
   },
 });
 
-class SnackbarEx extends Component {
+class SnackbarEx extends React.Component {
   state = {
     type: 'default',
     position: 'bottom-center',
@@ -36,14 +30,14 @@ class SnackbarEx extends Component {
     snackbar: {
       open: false,
       transition: null,
-    }
+    },
   };
 
   updateState = (key, value) => {
     this.setState({
       [key]: value,
     });
-  }
+  };
 
   handleChange = name => event => {
     this.setState({
@@ -56,45 +50,52 @@ class SnackbarEx extends Component {
       snackbar: {
         open: true,
         transition: slideTransition.bind(this, slideProps),
-      }
+      },
     });
   };
 
   render() {
-    const {
-      classes
-    } = this.props;
+    const { classes } = this.props;
     const types = ['default', 'error', 'success', 'info', 'warning'];
     const slides = ['left', 'right', 'up', 'down'];
-    const positions = ['bottom-left', 'bottom-center', 'bottom-right', 'top-left', 'top-center', 'top-right', ];
+    const positions = [
+      'bottom-left',
+      'bottom-center',
+      'bottom-right',
+      'top-left',
+      'top-center',
+      'top-right',
+    ];
     const snackbarCode =
-      '<Button' +
-      '\n  className={classes.button}' +
-      '\n  onClick={this.handleClick({direction: ' + this.state.slide + '})}' +
-      '\n  variant=\'raised\'' +
+      `${'<Button' +
+        '\n  className={classes.button}' +
+        '\n  onClick={this.handleClick({direction: '}${this.state.slide}})}` +
+      "\n  variant='raised'" +
       '\n  >' +
       '\n  Open Snackbar' +
       '\n</Button>' +
       '\n\n<Snackbar' +
       '\n  state={this.state.snackbar}' +
-      '\n  type=\'' + this.state.type + '\'' +
-      '\n  onClose={this.updateState.bind(this, \'snackbar\',{...this.state.snackbar,open:false})}' +
+      `\n  type='${this.state.type}'` +
+      "\n  onClose={this.updateState.bind(this, 'snackbar',{...this.state.snackbar,open:false})}" +
       '\n  snackbarProps={{' +
-      '\n    autoHideDuration: ' + Number(this.state.autoHide) + ',' +
+      `\n    autoHideDuration: ${Number(this.state.autoHide)},` +
       '\n    anchorOrigin: {' +
-      '\n      vertical: ' + this.state.position.split('-')[0] + ',' +
-      '\n      horizontal: ' + this.state.position.split('-')[1] + ',' +
+      `\n      vertical: ${this.state.position.split('-')[0]},` +
+      `\n      horizontal: ${this.state.position.split('-')[1]},` +
       '\n    }' +
       '\n  }}' +
-      '\n>\n  ' +
-      (this.state.message === '' || this.state.message == null ? 'This is a snackbar with the type: ' + this.state.type : this.state.message) +
-      '\n</Snackbar>';
+      `\n>\n  ${
+        this.state.message === '' || this.state.message == null
+          ? `This is a snackbar with the type: ${this.state.type}`
+          : this.state.message
+      }\n</Snackbar>`;
     return (
       <div>
         <pre>{snackbarCode}</pre>
         <TextField
-          id='select-snackbar-type'
-          label='Type'
+          id="select-snackbar-type"
+          label="Type"
           className={classes.textField}
           value={this.state.type}
           onChange={this.handleChange('type')}
@@ -103,9 +104,9 @@ class SnackbarEx extends Component {
               className: classes.menu,
             },
           }}
-          margin='normal'
+          margin="normal"
           select
-          >
+        >
           {types.map(option => (
             <MenuItem key={option} value={option}>
               {option}
@@ -113,8 +114,8 @@ class SnackbarEx extends Component {
           ))}
         </TextField>
         <TextField
-          id='select-snackbar-pos'
-          label='Position'
+          id="select-snackbar-pos"
+          label="Position"
           className={classes.textField}
           value={this.state.position}
           onChange={this.handleChange('position')}
@@ -123,9 +124,9 @@ class SnackbarEx extends Component {
               className: classes.menu,
             },
           }}
-          margin='normal'
+          margin="normal"
           select
-          >
+        >
           {positions.map(option => (
             <MenuItem key={option} value={option}>
               {option}
@@ -133,8 +134,8 @@ class SnackbarEx extends Component {
           ))}
         </TextField>
         <TextField
-          id='select-snackbar-slide'
-          label='Slide'
+          id="select-snackbar-slide"
+          label="Slide"
           className={classes.textField}
           value={this.state.slide}
           onChange={this.handleChange('slide')}
@@ -143,9 +144,9 @@ class SnackbarEx extends Component {
               className: classes.menu,
             },
           }}
-          margin='normal'
+          margin="normal"
           select
-          >
+        >
           {slides.map(option => (
             <MenuItem key={option} value={option}>
               {option}
@@ -153,49 +154,55 @@ class SnackbarEx extends Component {
           ))}
         </TextField>
         <TextField
-          id='autoHideDuration'
+          id="autoHideDuration"
           className={classes.textField}
-          label='Autohide Duration'
+          label="Autohide Duration"
           value={this.state.autoHide}
           onChange={this.handleChange('autoHide')}
-          helperText='Milliseconds'
-          type='number'
-          margin='normal'
+          helperText="Milliseconds"
+          type="number"
+          margin="normal"
           InputLabelProps={{
             shrink: true,
           }}
-          />
+        />
         <TextField
-          id='message'
-          label='Message'
+          id="message"
+          label="Message"
           className={classes.textField}
           onChange={this.handleChange('message')}
-          margin='normal'
-          />
+          margin="normal"
+        />
         <Button
           className={classes.button}
-          onClick={this.handleClick({direction:this.state.slide})}
-          variant='raised'
-          >
+          onClick={this.handleClick({ direction: this.state.slide })}
+          variant="raised"
+        >
           Open Snackbar
         </Button>
         <Snackbar
           state={this.state.snackbar}
           type={this.state.type !== 'default' ? this.state.type : null}
-          onClose={this.updateState.bind(this, 'snackbar',{...this.state.snackbar,open:false})}
+          onClose={this.updateState.bind(this, 'snackbar', { ...this.state.snackbar, open: false })}
           snackbarProps={{
             autoHideDuration: Number(this.state.autoHide),
             anchorOrigin: {
               vertical: this.state.position.split('-')[0],
               horizontal: this.state.position.split('-')[1],
-            }
+            },
           }}
-          >
-          {this.state.message === '' || this.state.message == null ? 'This is a snackbar with the type: '+this.state.type : this.state.message}
+        >
+          {this.state.message === '' || this.state.message == null
+            ? `This is a snackbar with the type: ${this.state.type}`
+            : this.state.message}
         </Snackbar>
       </div>
     );
   }
 }
+
+SnackbarEx.propTypes = {
+  classes: PropTypes.any,
+};
 
 export default withStyles(styles)(SnackbarEx);

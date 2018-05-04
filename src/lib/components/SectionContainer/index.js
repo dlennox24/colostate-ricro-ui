@@ -1,18 +1,14 @@
-import React, {
-  Component
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import {
-  withStyles
-} from 'material-ui/styles';
+import withStyles from 'material-ui/styles/withStyles';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import Grid from 'material-ui/Grid';
 
 const styles = theme => ({
   root: {
-    margin: theme.spacing.unit + ' 0',
+    margin: `${theme.spacing.unit} 0`,
     overflow: 'hidden',
   },
   divider: {
@@ -32,36 +28,27 @@ const styles = theme => ({
   },
 });
 
-class SectionContainer extends Component {
-  render() {
-    const {
-      children,
-      classes,
-      className,
-      fullWidth,
-      id,
-      title,
-      type,
-      disablePadding,
-    } = this.props;
+const SectionContainer = props => {
+  const { children, classes, className, fullWidth, id, title, type, disablePadding } = props;
 
-    return (
-      <div id={id ? id : title.toLowerCase().replace(/ /g,'-')} className={classnames(className,classes.root)}>
-        <Typography variant={type ? type : 'display1'}>{title}</Typography>
-        <Divider className={classes.divider}/>
-        <div className={classes.row}>
-          <Grid item md={fullWidth ? 12 : 8} className={classes.container}>
-            <div className={disablePadding ? classes.noPadding : classes.padding}>
-              {children}
-            </div>
-          </Grid>
-        </div>
+  return (
+    <div
+      id={id || title.toLowerCase().replace(/ /g, '-')}
+      className={classnames(className, classes.root)}
+    >
+      <Typography variant={type || 'display1'}>{title}</Typography>
+      <Divider className={classes.divider} />
+      <div className={classes.row}>
+        <Grid item md={fullWidth ? 12 : 8} className={classes.container}>
+          <div className={disablePadding ? classes.noPadding : classes.padding}>{children}</div>
+        </Grid>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 SectionContainer.propTypes = {
+  children: PropTypes.any,
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   disablePadding: PropTypes.bool,

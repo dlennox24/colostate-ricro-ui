@@ -1,12 +1,8 @@
-import React, {
-  Component,
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
 import classNames from 'classnames';
-import {
-  withStyles,
-} from 'material-ui/styles';
+import withStyles from 'material-ui/styles/withStyles';
 import AppBar from 'material-ui/AppBar';
 
 const styles = theme => ({
@@ -15,49 +11,50 @@ const styles = theme => ({
     overflow: 'hidden',
   },
   root: {
-    padding: theme.spacing.unit / 2
+    padding: theme.spacing.unit / 2,
   },
 });
 
-class Header extends Component {
+class Header extends React.Component {
   state = {
     loadedBranding: false,
+  };
+
+  componentDidMount() {
+    const updateState = this.updateState;
+    $.getScript('https://static.colostate.edu/logo/reslogo/logo.min.js').done(() => {
+      updateState('loadedBranding', true);
+    });
   }
 
   updateState = (key, value) => {
     this.setState({
       [key]: value,
     });
-  }
-
-  componentDidMount() {
-    let updateState = this.updateState;
-    $.getScript('https://static.colostate.edu/logo/reslogo/logo.min.js').done(function() {
-      updateState('loadedBranding', true);
-    });
-  }
+  };
 
   render() {
-    const {
-      unit,
-      classes,
-    } = this.props;
-    const {
-      loadedBranding,
-    } = this.state;
+    const { unit, classes } = this.props;
+    const { loadedBranding } = this.state;
     return (
       <AppBar
-        id='csuLogoBar'
-        position='static'
+        id="csuLogoBar"
+        position="static"
         className={classNames(classes.root, !loadedBranding && classes.loadedBranding)}
-        >
-        {!loadedBranding ? <div/> : (
-          <div className='signature'>
-            <section id='BrandLogo' className='fontLarge'>
-              <div className='responsiveLogoContainer'>
-                <div id='responsiveLogo'></div>
-                <div id='responsiveLogoSubsytem'>
-                  <h2><a id='unit-title' href={unit.siteHref}>{unit.name}</a></h2>
+      >
+        {!loadedBranding ? (
+          <div />
+        ) : (
+          <div className="signature">
+            <section id="BrandLogo" className="fontLarge">
+              <div className="responsiveLogoContainer">
+                <div id="responsiveLogo" />
+                <div id="responsiveLogoSubsytem">
+                  <h2>
+                    <a id="unit-title" href={unit.siteHref}>
+                      {unit.name}
+                    </a>
+                  </h2>
                 </div>
               </div>
             </section>

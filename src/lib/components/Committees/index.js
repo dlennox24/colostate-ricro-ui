@@ -1,28 +1,16 @@
-import {
-  lightGreen,
-  cyan,
-  deepPurple,
-  grey,
-  blue,
-  yellow,
-  red,
-} from 'material-ui/colors';
+import { lightGreen, cyan, deepPurple, grey, blue, yellow, red } from 'material-ui/colors';
 import {
   faBalanceScale,
   faFlask,
   faGlobe,
   faPaw,
-  faShieldCheck,
-  faUsers
-} from '@fortawesome/fontawesome-pro-regular';
-
+  faCheckCircle,
+  faUsers,
+} from '@fortawesome/fontawesome-free-solid';
 import CommitteeAvatar from './Avatar';
 import CommitteeChip from './Chip';
 
-export {
-  CommitteeAvatar,
-  CommitteeChip,
-};
+export { CommitteeAvatar, CommitteeChip };
 
 export default {
   keys: ['excon', 'iacuc', 'ibc', 'irb', 'qa', 'rcr'],
@@ -69,7 +57,7 @@ export default {
     bgColor: cyan[300],
     iconColor: grey[50],
     iconBgColor: cyan[800],
-    icon: faShieldCheck,
+    icon: faCheckCircle,
   },
   rcr: {
     name: 'Responsible Conduct of Research',
