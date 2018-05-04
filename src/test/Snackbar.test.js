@@ -2,9 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'material-ui/Button';
-import Snackbar, { slideTransition } from './';
-import App from '../App';
-import config from '../../../demo/config.json';
+import Snackbar, { slideTransition } from '../lib/components/Snackbar';
+import App from '../lib/components/App';
+import config from '../demo/config.json';
 
 jest.mock(
   'popper.js',
@@ -72,7 +72,7 @@ class SnackbarTest extends React.Component {
         <Snackbar
           state={this.state.snackbar}
           type={'success'}
-          onClose={this.updateState('snackbar', { ...this.state.snackbar, open: false })}
+          onClose={this.updateState.bind(this, 'snackbar', { ...this.state.snackbar, open: false })}
           snackbarProps={{
             autoHideDuration: 5e3,
             anchorOrigin: {

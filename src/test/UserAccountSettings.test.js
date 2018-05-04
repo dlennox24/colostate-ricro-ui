@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import UAS from './UserAccountSettings';
+import UAS from '../lib/core/UserAccountSettings';
 
 const testUser = {
   eId: 'dlennox',
@@ -17,5 +17,5 @@ const testUser = {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<UAS user={testUser} />, div);
+  ReactDOM.render(<UAS user={testUser} userDefaultProfileImg="/img.png" />, div);
 });

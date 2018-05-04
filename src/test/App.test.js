@@ -1,9 +1,8 @@
 /* global jest */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LoginWrapper from './LoginWrapper';
-import App from '../../components/App';
-import defaults from '../../assets/defaults.json';
+import config from '../demo/config.json';
+import App from '../lib';
 
 jest.mock(
   'popper.js',
@@ -38,10 +37,11 @@ jest.mock(
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(
-    <App config={defaults}>
-      <LoginWrapper api={defaults.api} onLogin={() => {}} onLogout={() => {}} />
-    </App>,
-    div,
-  );
+  ReactDOM.render(<App config={config} />, div);
+});
+
+config.defaultState.login = {};
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<App config={config} />, div);
 });

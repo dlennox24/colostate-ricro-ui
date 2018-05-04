@@ -36,7 +36,7 @@ class UserAccount extends React.Component {
     });
   };
   render() {
-    const { classes, iconOnly, user, userDefaultProfileImg } = this.props;
+    const { classes, iconOnly, user } = this.props;
     const userGroups = _.sortBy(user.userGroups, ['alias', 'userGroupTypeId']);
     return (
       <div>
@@ -50,7 +50,7 @@ class UserAccount extends React.Component {
           <Grid container>
             <Grid item xs={12} md={3}>
               <img
-                src={user.profileImg == null ? userDefaultProfileImg : user.profileImg}
+                src={user.profileImg}
                 className={classes.profileImg}
                 alt={`${user.displayName} profile`}
               />
@@ -123,7 +123,6 @@ UserAccount.propTypes = {
   dialogProps: PropTypes.node,
   iconOnly: PropTypes.bool,
   user: PropTypes.object.isRequired,
-  userDefaultProfileImg: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(UserAccount);

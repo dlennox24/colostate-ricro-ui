@@ -73,7 +73,6 @@ class LoginWrapper extends React.Component {
       onLogin, // Redux
       onLogout, // Redux
       user, // Redux
-      userDefaultProfileImg,
     } = this.props;
 
     const { dropdownOpen, snackbar } = this.state;
@@ -101,7 +100,7 @@ class LoginWrapper extends React.Component {
               <ListItemIcon>
                 <Avatar
                   className={classes.accountAvatar}
-                  src={user.profileImg == null ? userDefaultProfileImg : user.profileImg}
+                  src={user.profileImg}
                   imgProps={{ alt: `${user.displayName} profile image` }}
                 />
               </ListItemIcon>
@@ -115,11 +114,7 @@ class LoginWrapper extends React.Component {
                 classes={iconOnly ? null : { root: classes.listRoot }}
                 disablePadding
               >
-                <UserAccountSettings
-                  iconOnly={iconOnly}
-                  user={user}
-                  userDefaultProfileImg={userDefaultProfileImg}
-                />
+                <UserAccountSettings iconOnly={iconOnly} user={user} />
                 <Logout
                   api={api}
                   handleSnackbarOpen={this.onHandleSnackbarOpen}
@@ -154,7 +149,6 @@ LoginWrapper.propTypes = {
   onLogin: PropTypes.func.isRequired, // Redux
   onLogout: PropTypes.func.isRequired, // Redux
   user: PropTypes.object, // Redux
-  userDefaultProfileImg: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(LoginWrapper);
