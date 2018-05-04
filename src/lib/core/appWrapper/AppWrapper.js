@@ -1,21 +1,15 @@
-import React, {
-  Component
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import classNames from 'classnames';
 import compose from 'recompose/compose';
-import {
-  withStyles,
-  withTheme,
-} from 'material-ui/styles';
+import { withStyles, withTheme } from 'material-ui/styles';
 import withWidth from 'material-ui/utils/withWidth';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
-
 import AppDrawer from './AppDrawer';
 
 const drawerWidth = 325;
@@ -33,7 +27,7 @@ const styles = theme => ({
   appBar: {
     position: 'absolute',
     zIndex: theme.zIndex.navDrawer + 1,
-    borderBottom: '3px solid ' + theme.palette.csuBrand.primary.gold,
+    borderBottom: `3px solid ${theme.palette.csuBrand.primary.gold}`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -73,35 +67,27 @@ const styles = theme => ({
   },
 });
 
-class AppWrapper extends Component {
+class AppWrapper extends React.Component {
   state = {
     open: false,
-  }
+  };
 
-  handleDrawerOpen = () => {
+  onDrawerClose = () => {
     this.setState({
-      open: true
+      open: false,
     });
   };
 
-  handleDrawerClose = () => {
+  handleDrawerOpen = () => {
     this.setState({
-      open: false
+      open: true,
     });
   };
 
   render() {
-    const {
-      classes,
-      config,
-      width,
-      sideNav,
-      children,
-    } = this.props;
+    const { classes, config, width, sideNav, children } = this.props;
 
-    const {
-      open,
-    } = this.state;
+    const { open } = this.state;
 
     const menuOpen = open && (width === 'sm' || width === 'xs');
     const hasSideNav = !_.isEmpty(config.app.sideNav) || config.app.hasLogin || sideNav;
@@ -109,25 +95,25 @@ class AppWrapper extends Component {
       <div className={classes.root}>
         <div className={classes.appFrame}>
           <AppBar
-            color='default'
-            position='static'
+            color="default"
+            position="static"
             className={classNames(
               classes.appBar,
               open && classes.appBarShift,
-              menuOpen && classes.hide
+              menuOpen && classes.hide,
             )}
-            >
+          >
             <Toolbar disableGutters={!open && hasSideNav}>
               {hasSideNav && (
                 <IconButton
-                  aria-label='open drawer'
+                  aria-label="open drawer"
                   onClick={this.handleDrawerOpen}
                   className={classNames(classes.menuButton, open && classes.hide)}
-                  >
+                >
                   <Icon>menu</Icon>
                 </IconButton>
               )}
-              <Typography variant='title' color='inherit' noWrap>
+              <Typography variant="title" color="inherit" noWrap>
                 {config.app.name}
               </Typography>
             </Toolbar>
@@ -137,12 +123,10 @@ class AppWrapper extends Component {
               open={open}
               config={config}
               sideNav={sideNav}
-              handleDrawerClose={this.handleDrawerClose}
-              />
+              handleDrawerClose={this.onDrawerClose}
+            />
           )}
-          <div className={classNames(classes.content, menuOpen && classes.hide)}>
-            {children}
-          </div>
+          <div className={classNames(classes.content, menuOpen && classes.hide)}>{children}</div>
         </div>
       </div>
     );
@@ -150,6 +134,7 @@ class AppWrapper extends Component {
 }
 
 AppWrapper.propTypes = {
+  children: PropTypes.any,
   classes: PropTypes.object.isRequired,
   config: PropTypes.object.isRequired,
   sideNav: PropTypes.func,

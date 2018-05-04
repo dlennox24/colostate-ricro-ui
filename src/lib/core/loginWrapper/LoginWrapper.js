@@ -1,24 +1,13 @@
-import React, {
-  Component,
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import _ from 'lodash';
-import {
-  withStyles,
-} from 'material-ui/styles';
+import withStyles from 'material-ui/styles/withStyles';
 import Avatar from 'material-ui/Avatar';
 import Icon from 'material-ui/Icon';
 import Collapse from 'material-ui/transitions/Collapse';
-import List, {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from 'material-ui/List';
-
-import Snackbar, {
-  slideTransition
-} from '../../components/Snackbar';
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import Snackbar, { slideTransition } from '../../components/Snackbar';
 import UserAccountSettings from '../UserAccountSettings';
 import Login from './Login';
 import Logout from './Logout';
@@ -29,11 +18,11 @@ const styles = theme => ({
     width: '24px',
   },
   listRoot: {
-    marginLeft: theme.spacing.unit * 5
+    marginLeft: theme.spacing.unit * 5,
   },
 });
 
-class LoginWrapper extends Component {
+class LoginWrapper extends React.Component {
   state = {
     dropdownOpen: false,
     snackbar: {
@@ -41,40 +30,39 @@ class LoginWrapper extends Component {
       message: '',
       type: null,
       transition: null,
-    }
-  }
-
-  updateState = (key, value) => {
-    this.setState({
-      [key]: value,
-    });
-  }
-
-  handleDropdownToggle = event => {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen,
-    });
+    },
   };
 
-  handleSnackbarOpen = (type, message) => {
+  onHandleSnackbarOpen = (type, message) => {
     this.setState({
       snackbar: {
         open: true,
         type,
         message,
         transition: slideTransition.bind(this),
-      }
+      },
     });
-  }
+  };
 
+  onHandleDropdownToggle = () => {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen,
+    });
+  };
+
+  updateState = (key, value) => {
+    this.setState({
+      [key]: value,
+    });
+  };
   handleSnackbarClose = () => {
     this.setState({
       snackbar: {
         ...this.state.snackbar,
         open: false,
-      }
+      },
     });
-  }
+  };
 
   render() {
     const {
@@ -88,10 +76,7 @@ class LoginWrapper extends Component {
       userDefaultProfileImg,
     } = this.props;
 
-    const {
-      dropdownOpen,
-      snackbar,
-    } = this.state;
+    const { dropdownOpen, snackbar } = this.state;
 
     return (
       <div>
@@ -99,62 +84,60 @@ class LoginWrapper extends Component {
           <Login
             api={api}
             autoLogin={autoLogin}
-            handleSnackbarOpen={this.handleSnackbarOpen}
+            handleSnackbarOpen={this.onHandleSnackbarOpen}
             iconOnly={iconOnly}
             onLogin={onLogin}
             user={user}
-            />
+          />
         ) : (
           <div>
             <ListItem
-              aria-owns='account-menu'
-              aria-haspopup='true'
-              aria-label='Account'
+              aria-owns="account-menu"
+              aria-haspopup="true"
+              aria-label="Account"
               onClick={this.handleDropdownToggle}
               button
-              >
+            >
               <ListItemIcon>
                 <Avatar
                   className={classes.accountAvatar}
                   src={user.profileImg == null ? userDefaultProfileImg : user.profileImg}
-                  imgProps={{alt: user.displayName + " profile image"}}
-                  />
+                  imgProps={{ alt: `${user.displayName} profile image` }}
+                />
               </ListItemIcon>
-              {!iconOnly && (<ListItemText primary={user.displayName} />)}
+              {!iconOnly && <ListItemText primary={user.displayName} />}
               {!iconOnly && (dropdownOpen ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>)}
             </ListItem>
-            <Collapse component='li' in={dropdownOpen} timeout='auto' unmountOnExit>
+            <Collapse component="li" in={dropdownOpen} timeout="auto" unmountOnExit>
               <List
-                id='account-menu'
+                id="account-menu"
                 className={classNames(iconOnly ? 'sideNavSubMenuClosed' : 'sideNavSubMenu')}
-                classes={iconOnly ? null : {
-                  root: classes.listRoot
-                }}
+                classes={iconOnly ? null : { root: classes.listRoot }}
                 disablePadding
-                >
+              >
                 <UserAccountSettings
                   iconOnly={iconOnly}
                   user={user}
                   userDefaultProfileImg={userDefaultProfileImg}
-                  />
+                />
                 <Logout
                   api={api}
-                  handleSnackbarOpen={this.handleSnackbarOpen}
+                  handleSnackbarOpen={this.onHandleSnackbarOpen}
                   iconOnly={iconOnly}
                   onLogout={onLogout}
                   user={user}
-                  />
+                />
               </List>
             </Collapse>
           </div>
         )}
         {snackbar.message && (
           <Snackbar
-            id='login-message'
+            id="login-message"
             state={snackbar}
             type={snackbar.type}
             onClose={this.handleSnackbarClose}
-            >
+          >
             {snackbar.message}
           </Snackbar>
         )}
@@ -166,6 +149,7 @@ class LoginWrapper extends Component {
 LoginWrapper.propTypes = {
   api: PropTypes.object.isRequired,
   autoLogin: PropTypes.bool,
+  classes: PropTypes.object.isRequired,
   iconOnly: PropTypes.bool,
   onLogin: PropTypes.func.isRequired, // Redux
   onLogout: PropTypes.func.isRequired, // Redux

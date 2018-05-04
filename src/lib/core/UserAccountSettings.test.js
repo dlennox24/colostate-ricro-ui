@@ -17,5 +17,5 @@ const testUser = {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<UAS user={testUser}/>, div);
+  ReactDOM.render(<UAS user={testUser} />, div);
 });
