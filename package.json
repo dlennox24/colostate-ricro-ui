@@ -1,13 +1,15 @@
 {
   "name": "ricro-app-template",
   "description": "Template for creating CSU RICRO branded React apps",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "main": "build/index.js",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "demo": "node scripts/demo.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "pub": "npm publish",
+    "pub-next": "npm publish --tag=next"
   },
   "repository": {
     "type": "git",
@@ -19,25 +21,25 @@
   "homepage": "/__dev/rat/v2",
   "license": "MIT",
   "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.6",
-    "@fortawesome/fontawesome-free-brands": "^5.0.11",
-    "@fortawesome/fontawesome-free-regular": "^5.0.11",
-    "@fortawesome/fontawesome-free-solid": "^5.0.11",
+    "@fortawesome/fontawesome": "^1.1.7",
+    "@fortawesome/fontawesome-free-brands": "^5.0.12",
+    "@fortawesome/fontawesome-free-regular": "^5.0.12",
+    "@fortawesome/fontawesome-free-solid": "^5.0.12",
     "@fortawesome/react-fontawesome": "0.0.17",
     "classnames": "^2.2.5",
-    "material-ui": "^1.0.0-beta.44",
+    "material-ui": "^1.0.0-beta.46",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.0.0-beta.46",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.2",
     "babel-preset-react-app": "^3.1.1",
-    "babel-runtime": "6.26.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
     "copy-webpack-plugin": "^4.5.1",
@@ -45,7 +47,6 @@
     "dotenv": "4.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
-    "eslint-config-react-app": "^2.1.0",
     "eslint-loader": "1.9.0",
     "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-flowtype": "2.39.1",
