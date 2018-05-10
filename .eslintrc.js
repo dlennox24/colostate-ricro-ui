@@ -10,7 +10,7 @@ module.exports = {
     es6: true,
     browser: true,
     node: true,
-    mocha: true,
+    jest: true,
   },
   extends: ['plugin:import/recommended', 'airbnb'],
   parser: 'babel-eslint',
@@ -92,7 +92,7 @@ module.exports = {
     'react/sort-prop-types': 'error', // airbnb do nothing here.
     'react/default-props-match-prop-types': 'off', // Buggy
     'react/jsx-curly-brace-presence': 'off', // Buggy
-    'react/jsx-no-bind': 'off', // TODO: Refactor out ().bind(...)
+    'react/jsx-no-bind': 'warn', // TODO: Refactor out ().bind(...)
 
     'flowtype/define-flow-type': 'error',
     'flowtype/require-valid-file-annotation': 'off',

@@ -82,7 +82,36 @@ class App extends React.Component {
 
 App.propTypes = {
   children: PropTypes.any,
-  config: PropTypes.object.isRequired,
+  config: PropTypes.shape({
+    api: PropTypes.shape({
+      auth: PropTypes.string.isRequired,
+      location: PropTypes.string.isRequired,
+    }),
+    app: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      basename: PropTypes.string.isRequired,
+      hasLogin: PropTypes.bool,
+      hasAutoLogin: PropTypes.bool,
+      sideNav: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          icon: PropTypes.string.isRequired,
+          link: PropTypes.string.isRequired,
+        }),
+      ),
+      userDefaultProfileImg: PropTypes.string.isRequired,
+    }),
+    unit: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      siteHref: PropTypes.string.isRequired,
+      contactHref: PropTypes.string.isRequired,
+    }),
+    defaultState: PropTypes.shape({
+      login: PropTypes.shape({
+        user: PropTypes.object,
+      }),
+    }),
+  }),
   disableGutters: PropTypes.bool,
   reducers: PropTypes.object,
   reduxMiddleware: PropTypes.func,

@@ -1,21 +1,23 @@
 {
   "api": {
-    "auth": "http://192.168.1.24:8080/auth/sso/",
-    "location": "http://192.168.1.24:8080/api"
+    "auth": "/auth/sso/",
+    "location": "/api/v2"
   },
   "app": {
     "name": "App Template - Defaults",
+    "basename": "/protocol-status",
     "hasLogin": true,
-    "hasAutoLogin": false,
+    "hasAutoLogin": true,
     "sideNav": [{
-      "name": "Home - Defaults",
-      "icon": "home",
+      "name": "Apps",
+      "icon": "apps",
       "link": "/"
     }, {
       "name": "Contact Us",
       "icon": "email",
       "link": "https://vpr.colostate.edu/ricro/contact-us"
-    }]
+    }],
+    "userDefaultProfileImg": "/_static/img/default-profile.png"
   },
   "unit": {
     "name": "RICRO",
