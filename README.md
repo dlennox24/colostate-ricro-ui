@@ -1,7 +1,31 @@
-# Template for apps in [RICRO](https://vpr.colostate.edu/ricro/) at [CSU](https://www.colostate.edu/)
+# colostate-ricro-ui
 
-[![npm version](https://badge.fury.io/js/ricro-app-template.svg)](https://badge.fury.io/js/ricro-app-template) [![Build Status](https://travis-ci.org/dlennox24/ricro-app-template.svg?branch=master)](https://travis-ci.org/dlennox24/ricro-app-template) [![dependencies Status](https://david-dm.org/dlennox24/ricro-app-template/status.svg)](https://david-dm.org/dlennox24/ricro-app-template) [![devDependencies Status](https://david-dm.org/dlennox24/ricro-app-template/dev-status.svg)](https://david-dm.org/dlennox24/ricro-app-template?type=dev)
+> desc
 
-This project was bootstrapped with [create-react-library](https://github.com/udiliaInc/create-react-library).
+[![NPM](https://img.shields.io/npm/v/colostate-ricro-ui.svg)](https://www.npmjs.com/package/colostate-ricro-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-For usage and documentation view the [Wiki](https://github.com/dlennox24/ricro-app-template/wiki).
+## Install
+
+```bash
+npm install --save colostate-ricro-ui
+```
+
+## Usage
+
+```jsx
+import React, { Component } from 'react'
+
+import MyComponent from 'colostate-ricro-ui'
+
+class Example extends Component {
+  render () {
+    return (
+      <MyComponent />
+    )
+  }
+}
+```
+
+## License
+
+MIT © [dlennox24](https://github.com/dlennox24)
