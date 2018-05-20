@@ -2,5 +2,6 @@ anguage: node_js
 node_js:
  - "node"
 script:
- - npm ci
- - npm test
+  - npm i -g npm
+  - npm ci
+  - npm test
