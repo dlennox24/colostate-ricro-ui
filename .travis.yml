@@ -1,6 +1,6 @@
 anguage: node_js
 node_js:
- - "node"
+  - "node"
 script:
   - npm i -g npm
   - npm ci
