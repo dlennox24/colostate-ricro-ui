@@ -1,30 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MuiThemeProvider, createMuiTheme, jssPreset } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-import JssProvider from 'react-jss/lib/JssProvider';
-import { create } from 'jss';
-// Internal imports
 import defaultTheme from '../../assets/theme/muiThemeOverrides.json';
 import AppTemplate from '../../core/AppTemplate';
 import HttpError from '../HttpError';
 // Redux reducers for lib
 import login from '../../redux/Login/reducers';
 import defaults from '../../assets/defaults.json';
-
-const createGenerateClassName = () => {
-  let counter = 0;
-  return rule => {
-    counter += 1;
-    return `rat-${rule.key}-${counter}`;
-  };
-};
-
-const generateClassName = createGenerateClassName();
-const jss = create(jssPreset());
 
 class App extends React.Component {
   pageNotFound = () => {
@@ -56,26 +42,24 @@ class App extends React.Component {
     });
 
     return (
-      <JssProvider jss={jss} generateClassName={generateClassName}>
-        <div>
-          <CssBaseline />
-          <Provider store={createStore(combinedReducers, config.defaultState, reduxMiddleware)}>
-            <MuiThemeProvider theme={createMuiTheme(theme == null ? defaultTheme : theme)}>
-              <Router
-                basename={window.location.hostname === 'localhost' ? null : config.app.basename}
-              >
-                <AppTemplate config={config} sideNav={sideNav} disableGutters={disableGutters}>
-                  {children}
-                  <Switch>
-                    {routes.map(route => route)}
-                    <Route component={this.pageNotFound} />
-                  </Switch>
-                </AppTemplate>
-              </Router>
-            </MuiThemeProvider>
-          </Provider>
-        </div>
-      </JssProvider>
+      <React.Fragment>
+        <CssBaseline />
+        <Provider store={createStore(combinedReducers, config.defaultState, reduxMiddleware)}>
+          <MuiThemeProvider theme={createMuiTheme(theme == null ? defaultTheme : theme)}>
+            <Router
+              basename={window.location.hostname === 'localhost' ? null : config.app.basename}
+            >
+              <AppTemplate config={config} sideNav={sideNav} disableGutters={disableGutters}>
+                {children}
+                <Switch>
+                  {routes.map(route => route)}
+                  <Route component={this.pageNotFound} />
+                </Switch>
+              </AppTemplate>
+            </Router>
+          </MuiThemeProvider>
+        </Provider>
+      </React.Fragment>
     );
   }
 }

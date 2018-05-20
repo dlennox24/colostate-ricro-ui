@@ -99,7 +99,7 @@ const CsuSnackbar = props => {
       autoHideDuration={autohide}
       onClose={onClose}
       transition={state.transition}
-      SnackbarContentProps={{
+      ContentProps={{
         'aria-describedby': 'message',
       }}
       message={<span id="message">{message}</span>}
