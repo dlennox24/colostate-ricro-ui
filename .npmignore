@@ -16,10 +16,12 @@ yarn-debug.log*
 yarn-error.log*
 
 # Development folders and files
-public
-src
-scripts
-config
+/example
+/src
 .travis.yml
+.bettercodehub.yml
+.codeclimate.yml
+.eslintrc.js
+prettier.config.js
 CHANGELOG.md
 README.md

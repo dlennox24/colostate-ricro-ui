@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CsuUnitHeader from '../lib/core/CsuUnitHeader';
-import config from '../demo/config.json';
+import CsuUnitHeader from '../core/CsuUnitHeader';
+import config from './_config.json';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

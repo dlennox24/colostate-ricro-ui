@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from 'material-ui/Button';
-import Snackbar, { slideTransition } from '../lib/components/Snackbar';
-import App from '../lib/components/App';
-import config from '../demo/config.json';
+import Button from '@material-ui/core/Button';
+import Snackbar, { slideTransition } from '../components/Snackbar';
+import App from '../components/App';
+import config from './_config.json';
 
 class SnackbarTest extends React.Component {
   state = {

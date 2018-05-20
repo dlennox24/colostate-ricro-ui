@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CsuDashboard from '../lib/components/Dashboard';
+import CsuDashboard from '../components/Dashboard';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

@@ -1,7 +1,29 @@
-# Template for apps in [RICRO](https://vpr.colostate.edu/ricro/) at [CSU](https://www.colostate.edu/)
+# colostate-ricro-ui
 
-[![npm version](https://badge.fury.io/js/ricro-app-template.svg)](https://badge.fury.io/js/ricro-app-template) [![Build Status](https://travis-ci.org/dlennox24/ricro-app-template.svg?branch=master)](https://travis-ci.org/dlennox24/ricro-app-template) [![dependencies Status](https://david-dm.org/dlennox24/ricro-app-template/status.svg)](https://david-dm.org/dlennox24/ricro-app-template) [![devDependencies Status](https://david-dm.org/dlennox24/ricro-app-template/dev-status.svg)](https://david-dm.org/dlennox24/ricro-app-template?type=dev)
+[![npm version](https://badge.fury.io/js/colostate-ricro-ui.svg)](https://badge.fury.io/js/colostate-ricro-ui) [![Build Status](https://travis-ci.org/dlennox24/colostate-ricro-ui.svg?branch=master)](https://travis-ci.org/dlennox24/colostate-ricro-ui) [![dependencies Status](https://david-dm.org/dlennox24/colostate-ricro-ui/status.svg)](https://david-dm.org/dlennox24/colostate-ricro-ui) [![devDependencies Status](https://david-dm.org/dlennox24/colostate-ricro-ui/dev-status.svg)](https://david-dm.org/dlennox24/colostate-ricro-ui?type=dev)
 
-This project was bootstrapped with [create-react-library](https://github.com/udiliaInc/create-react-library).
+## Install
 
-For usage and documentation view the [Wiki](https://github.com/dlennox24/ricro-app-template/wiki).
+```bash
+npm install --save colostate-ricro-ui
+```
+
+## Usage
+
+```jsx
+import React, { Component } from 'react'
+
+import MyComponent from 'colostate-ricro-ui'
+
+class Example extends Component {
+  render () {
+    return (
+      <MyComponent />
+    )
+  }
+}
+```
+
+## License
+
+MIT © [dlennox24](https://github.com/dlennox24)

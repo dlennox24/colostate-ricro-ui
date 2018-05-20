@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CsuDialog from '../lib/components/Dialog';
+import CsuDialog from '../components/Dialog';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

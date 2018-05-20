@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import config from '../demo/config.json';
-import App from '../lib';
+import config from './_config.json';
+import App from '../';
 
 // Basic config render
 it('renders without crashing', () => {

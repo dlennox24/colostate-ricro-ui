@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import UAS from '../lib/core/UserAccountSettings';
+import UAS from '../core/UserAccountSettings';
 
 const testUser = {
   eId: 'dlennox',

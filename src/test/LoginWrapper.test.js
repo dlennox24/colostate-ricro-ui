@@ -1,9 +1,9 @@
 /* global jest */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LoginWrapper from '../lib/core/loginWrapper/LoginWrapper';
-import App from '../lib/components/App';
-import defaults from '../lib/assets/defaults.json';
+import LoginWrapper from '../core/loginWrapper/LoginWrapper';
+import App from '../components/App';
+import defaults from '../assets/defaults.json';
 
 jest.mock(
   'popper.js',
