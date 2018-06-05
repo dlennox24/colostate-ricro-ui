@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Footer from './Footer';
 import CsuUnitHeader from './CsuUnitHeader';
@@ -10,7 +9,6 @@ import AppWrapper from './appWrapper/AppWrapper';
 const styles = theme => ({
   '@global': {
     body: {
-      margin: 0,
       background: theme.palette.background.default,
       WebkitFontSmoothing: 'antialiased', // Antialiasing.
       MozOsxFontSmoothing: 'grayscale', // Antialiasing.
@@ -50,21 +48,21 @@ const styles = theme => ({
       margin: `0 0 ${theme.spacing.unit}px`,
       border: 0,
     },
-    '.sideNavSubMenu': {
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    '.sideNavSubMenuClosed': {
-      transition: theme.transitions.create('wdith', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-  },
-  gutters: {
-    margin: '1.5rem',
+    //   '.sideNavSubMenu': {
+    //     transition: theme.transitions.create('width', {
+    //       easing: theme.transitions.easing.sharp,
+    //       duration: theme.transitions.duration.enteringScreen,
+    //     }),
+    //   },
+    //   '.sideNavSubMenuClosed': {
+    //     transition: theme.transitions.create('wdith', {
+    //       easing: theme.transitions.easing.sharp,
+    //       duration: theme.transitions.duration.leavingScreen,
+    //     }),
+    //   },
+    // },
+    // gutters: {
+    //   margin: '1.5rem',
   },
   mainContent: {
     overflow: 'auto',
@@ -83,14 +81,8 @@ const AppTemplate = props => {
     <div className={classes.root}>
       <CsuUnitHeader unit={config.unit} />
       <AppWrapper config={config} sideNav={sideNav}>
-        <main
-          id="main-content"
-          className={classnames(classes.mainContent, !disableGutters && classes.gutters)}
-          style={style}
-        >
-          <IeWarning />
-          {children}
-        </main>
+        <IeWarning />
+        {children}
       </AppWrapper>
       <Footer />
     </div>

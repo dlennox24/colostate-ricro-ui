@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   '@global': {},
@@ -20,6 +21,7 @@ const styles = theme => ({
   footerLink: {
     padding: '0px 10px',
     borderRight: `${theme.palette.common.white} solid 1px`,
+    display: 'initial',
     '&:first-child': {
       paddingLeft: 0,
     },
@@ -46,6 +48,9 @@ const styles = theme => ({
   csuLogo: {
     width: '100%',
   },
+  copyright: {
+    color: theme.palette.common.white,
+  },
 });
 const Footer = props => {
   const classes = props.classes;
@@ -55,21 +60,23 @@ const Footer = props => {
         <Grid item md={6} className={classes.copyLinks}>
           <div className={classes.footerText}>
             <div className={classes.footerLinks}>
-              <span className={classes.footerLink}>
+              <Typography className={classes.footerLink} component="span" variant="body1">
                 <a href="https://www.colostate.edu/contact/">Contact CSU</a>
-              </span>
-              <span className={classes.footerLink}>
-                <a href="https://www.colostate.edu/equal-opportunity">Equal Opportunity</a>{' '}
-              </span>
-              <span className={classes.footerLink}>
-                <a href="https://www.colostate.edu/privacy">Privacy Statement</a>{' '}
-              </span>
-              <span className={classes.footerLink}>
+              </Typography>
+              <Typography className={classes.footerLink} component="span">
+                <a href="https://www.colostate.edu/equal-opportunity">Equal Opportunity</a>
+              </Typography>
+              <Typography className={classes.footerLink} component="span">
+                <a href="https://www.colostate.edu/privacy">Privacy Statement</a>
+              </Typography>
+              <Typography className={classes.footerLink} component="span">
                 <a href="https://www.colostate.edu/disclaimer">Disclaimer</a>
-              </span>
+              </Typography>
             </div>
-            &copy; {new Date().getFullYear()} Colorado State University, Fort Collins, Colorado
-            80523 USA
+            <Typography className={classes.copyright} component="span" color="default">
+              &copy; {new Date().getFullYear()} Colorado State University, Fort Collins, Colorado
+              80523 USA
+            </Typography>
           </div>
         </Grid>
         <Grid item md={6} className={classes.csuLogo}>

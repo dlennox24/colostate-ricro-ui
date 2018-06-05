@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import _ from 'lodash';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Avatar from '@material-ui/core/Avatar';
@@ -58,6 +57,7 @@ class LoginWrapper extends React.Component {
       [key]: value,
     });
   };
+
   handleSnackbarClose = () => {
     this.setState({
       snackbar: {
@@ -72,27 +72,24 @@ class LoginWrapper extends React.Component {
       api,
       autoLogin,
       classes,
-      iconOnly,
       onLogin, // Redux
       onLogout, // Redux
       user, // Redux
     } = this.props;
 
     const { dropdownOpen, snackbar } = this.state;
-
     return (
-      <div>
-        {_.isEmpty(this.props.user) ? (
+      <React.Fragment>
+        {_.isEmpty(user) ? (
           <Login
             api={api}
             autoLogin={autoLogin}
             handleSnackbarOpen={this.onHandleSnackbarOpen}
-            iconOnly={iconOnly}
             onLogin={onLogin}
             user={user}
           />
         ) : (
-          <div>
+          <React.Fragment>
             <ListItem
               aria-owns="account-menu"
               aria-haspopup="true"
@@ -107,27 +104,21 @@ class LoginWrapper extends React.Component {
                   imgProps={{ alt: `${user.displayName} profile image` }}
                 />
               </ListItemIcon>
-              {!iconOnly && <ListItemText primary={user.displayName} />}
-              {!iconOnly && (dropdownOpen ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>)}
+              <ListItemText primary={user.displayName} />
+              {dropdownOpen ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>}
             </ListItem>
             <Collapse component="li" in={dropdownOpen} timeout="auto" unmountOnExit>
-              <List
-                id="account-menu"
-                className={classNames(iconOnly ? 'sideNavSubMenuClosed' : 'sideNavSubMenu')}
-                classes={iconOnly ? null : { root: classes.listRoot }}
-                disablePadding
-              >
-                <UserAccountSettings iconOnly={iconOnly} user={user} />
+              <List id="account-menu" classes={{ root: classes.listRoot }} disablePadding>
+                <UserAccountSettings user={user} />
                 <Logout
                   api={api}
                   handleSnackbarOpen={this.onHandleSnackbarOpen}
-                  iconOnly={iconOnly}
                   onLogout={onLogout}
                   user={user}
                 />
               </List>
             </Collapse>
-          </div>
+          </React.Fragment>
         )}
         {snackbar.message && (
           <Snackbar
@@ -139,7 +130,7 @@ class LoginWrapper extends React.Component {
             {snackbar.message}
           </Snackbar>
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }
@@ -148,7 +139,6 @@ LoginWrapper.propTypes = {
   api: PropTypes.object.isRequired,
   autoLogin: PropTypes.bool,
   classes: PropTypes.object.isRequired,
-  iconOnly: PropTypes.bool,
   onLogin: PropTypes.func.isRequired, // Redux
   onLogout: PropTypes.func.isRequired, // Redux
   user: PropTypes.object, // Redux

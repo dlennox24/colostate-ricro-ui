@@ -1,6 +1,6 @@
 {
   "name": "colostate-ricro-ui-example",
-  "homepage": "https://dlennox24.github.io/colostate-ricro-ui",
+  "homepage": "/__dev/cru/v1",
   "version": "0.0.0",
   "license": "MIT",
   "dependencies": {
@@ -10,13 +10,19 @@
     "@fortawesome/react-fontawesome": "0.0.20",
     "@material-ui/core": "^1.0.0",
     "classnames": "^2.2.5",
-    "colostate-ricro-ui": "*",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-jest": "^21.15.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "react-scripts": "^1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,12 +31,5 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
-  },
-  "devDependencies": {
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-babel": "^5.1.0",
-    "eslint-plugin-jest": "^21.15.1",
-    "eslint-plugin-prettier": "^2.6.0",
-    "react-scripts": "^1.1.4"
   }
 }
