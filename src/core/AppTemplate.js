@@ -76,7 +76,7 @@ const styles = theme => ({
 });
 
 const AppTemplate = props => {
-  const { classes, config, disableGutters, style, children, sideNav } = props;
+  const { classes, config, children, sideNav } = props;
   return (
     <div className={classes.root}>
       <CsuUnitHeader unit={config.unit} />
@@ -93,10 +93,8 @@ AppTemplate.propTypes = {
   children: PropTypes.any,
   classes: PropTypes.object.isRequired,
   config: PropTypes.object.isRequired,
-  disableGutters: PropTypes.bool,
   reduxMiddleware: PropTypes.func,
   sideNav: PropTypes.func,
-  style: PropTypes.object,
 };
 
 export default withStyles(styles)(AppTemplate);

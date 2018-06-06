@@ -19,9 +19,6 @@ const styles = theme => ({
     height: '24px',
     width: '24px',
   },
-  listRoot: {
-    marginLeft: theme.spacing.unit * 5,
-  },
 });
 
 class LoginWrapper extends React.Component {
@@ -46,7 +43,7 @@ class LoginWrapper extends React.Component {
     });
   };
 
-  onHandleDropdownToggle = () => {
+  handleDropdownToggle = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
     });
@@ -75,6 +72,7 @@ class LoginWrapper extends React.Component {
       onLogin, // Redux
       onLogout, // Redux
       user, // Redux
+      userDefaultProfileImg,
     } = this.props;
 
     const { dropdownOpen, snackbar } = this.state;
@@ -100,7 +98,7 @@ class LoginWrapper extends React.Component {
               <ListItemIcon>
                 <Avatar
                   className={classes.accountAvatar}
-                  src={user.profileImg}
+                  src={user.profileImg || userDefaultProfileImg}
                   imgProps={{ alt: `${user.displayName} profile image` }}
                 />
               </ListItemIcon>
@@ -142,6 +140,7 @@ LoginWrapper.propTypes = {
   onLogin: PropTypes.func.isRequired, // Redux
   onLogout: PropTypes.func.isRequired, // Redux
   user: PropTypes.object, // Redux
+  userDefaultProfileImg: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(LoginWrapper);

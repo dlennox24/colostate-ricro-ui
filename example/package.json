@@ -1,6 +1,6 @@
 {
   "name": "colostate-ricro-ui-example",
-  "homepage": "/__dev/cru/v1",
+  "homepage": "/__dev/cru/v1/",
   "version": "0.0.0",
   "license": "MIT",
   "dependencies": {
