@@ -10,6 +10,8 @@ const styles = theme => ({
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
     fontSize: '0.85em',
+    marginLeft: theme.spacing.unit * -2,
+    marginRight: theme.spacing.unit * -2,
     padding: theme.spacing.unit,
     '& img': {
       maxHeight: 65,
@@ -17,11 +19,14 @@ const styles = theme => ({
   },
   footerLinks: {
     lineHeight: `${theme.spacing.unit * 4}px`,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    },
   },
   footerLink: {
-    padding: '0px 10px',
     borderRight: `${theme.palette.common.white} solid 1px`,
     display: 'initial',
+    padding: '0px 10px',
     '&:first-child': {
       paddingLeft: 0,
     },
@@ -50,6 +55,9 @@ const styles = theme => ({
   },
   copyright: {
     color: theme.palette.common.white,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    },
   },
 });
 const Footer = props => {
@@ -73,7 +81,7 @@ const Footer = props => {
                 <a href="https://www.colostate.edu/disclaimer">Disclaimer</a>
               </Typography>
             </div>
-            <Typography className={classes.copyright} component="span" color="default">
+            <Typography className={classes.copyright} component="p" paragraph>
               &copy; {new Date().getFullYear()} Colorado State University, Fort Collins, Colorado
               80523 USA
             </Typography>

@@ -48,21 +48,6 @@ const styles = theme => ({
       margin: `0 0 ${theme.spacing.unit}px`,
       border: 0,
     },
-    //   '.sideNavSubMenu': {
-    //     transition: theme.transitions.create('width', {
-    //       easing: theme.transitions.easing.sharp,
-    //       duration: theme.transitions.duration.enteringScreen,
-    //     }),
-    //   },
-    //   '.sideNavSubMenuClosed': {
-    //     transition: theme.transitions.create('wdith', {
-    //       easing: theme.transitions.easing.sharp,
-    //       duration: theme.transitions.duration.leavingScreen,
-    //     }),
-    //   },
-    // },
-    // gutters: {
-    //   margin: '1.5rem',
   },
   mainContent: {
     overflow: 'auto',
@@ -73,19 +58,27 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  flex: {
+    flex: 1,
+  },
 });
 
 const AppTemplate = props => {
-  const { classes, config, children, sideNav } = props;
+  const { classes, config, children, SideNav } = props;
   return (
-    <div className={classes.root}>
-      <CsuUnitHeader unit={config.unit} />
-      <AppWrapper config={config} sideNav={sideNav}>
-        <IeWarning />
-        {children}
-      </AppWrapper>
-      <Footer />
-    </div>
+    <React.Fragment>
+      <div className={classes.root}>
+        <CsuUnitHeader unit={config.unit} />
+        <AppWrapper config={config} SideNav={SideNav}>
+          <div>
+            <IeWarning />
+            {children}
+          </div>
+          <div className={classes.flex} />
+          <Footer />
+        </AppWrapper>
+      </div>
+    </React.Fragment>
   );
 };
 
@@ -94,7 +87,7 @@ AppTemplate.propTypes = {
   classes: PropTypes.object.isRequired,
   config: PropTypes.object.isRequired,
   reduxMiddleware: PropTypes.func,
-  sideNav: PropTypes.func,
+  SideNav: PropTypes.func,
 };
 
 export default withStyles(styles)(AppTemplate);

@@ -35,7 +35,7 @@ class App extends React.Component {
       disableGutters,
       reducers,
       reduxMiddleware,
-      sideNav,
+      SideNav,
       theme,
       routes = [],
       config = defaults, // set config to defaults if config is null
@@ -59,7 +59,7 @@ class App extends React.Component {
               <Router
                 basename={window.location.hostname === 'localhost' ? null : config.app.basename}
               >
-                <AppTemplate config={config} sideNav={sideNav} disableGutters={disableGutters}>
+                <AppTemplate config={config} SideNav={SideNav} disableGutters={disableGutters}>
                   {children}
                   <Switch>
                     {routes.map(route => route)}
@@ -87,13 +87,6 @@ App.propTypes = {
       basename: PropTypes.string.isRequired,
       hasLogin: PropTypes.bool,
       hasAutoLogin: PropTypes.bool,
-      sideNav: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          icon: PropTypes.string.isRequired,
-          link: PropTypes.string.isRequired,
-        }),
-      ),
       userDefaultProfileImg: PropTypes.string.isRequired,
     }),
     unit: PropTypes.shape({
@@ -111,7 +104,7 @@ App.propTypes = {
   reducers: PropTypes.object,
   reduxMiddleware: PropTypes.func,
   routes: PropTypes.array,
-  sideNav: PropTypes.func,
+  SideNav: PropTypes.func,
   theme: PropTypes.object,
 };
 

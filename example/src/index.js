@@ -21,7 +21,8 @@ const reduxMiddleware =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 ReactDOM.render(
-  <App config={config} sideNav={SideNavEx} routes={routes} reduxMiddleware={reduxMiddleware} />,
+  <App config={config} SideNav={SideNavEx} routes={routes} reduxMiddleware={reduxMiddleware} />,
   document.getElementById('root'),
 );
+
 registerServiceWorker();

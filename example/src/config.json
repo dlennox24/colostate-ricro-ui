@@ -4,7 +4,7 @@
     "location": "/api/v2"
   },
   "app": {
-    "basename": "/__dev/rat/v2",
+    "basename": "/__dev/cru/v1",
     "name": "App Template",
     "hasLogin": true,
     "hasAutoLogin": false,
@@ -17,7 +17,7 @@
       "icon": "email",
       "link": "https://vpr.colostate.edu/ricro/contact-us"
     }],
-    "userDefaultProfileImg": "/_static/img/default-profile.png"
+    "userDefaultProfileImg": "https://services.ricro.colostate.edu/_static/img/default-profile.png"
   },
   "unit": {
     "name": "RICRO",
@@ -25,27 +25,6 @@
     "contactHref": "https://vpr.colostate.edu/ricro/contact-us"
   },
   "defaultState": {
-    "login": {
-      "user": {
-    "csuId": 830126214,
-    "eId": "dlennox",
-    "firstName": "Daniel",
-    "lastName": "Lennox",
-    "displayName": "Daniel Lennox",
-    "email": "daniel.lennox@colostate.edu",
-    "userGroups": [
-      {
-        "name": "protocolStatus",
-        "alias": "Protocol Status User",
-        "description": "Users can view, create, and update the requests in the Protocol Status app"
-      },
-      {
-        "name": "bsl3-trained",
-        "alias": "BSL3 Training",
-        "description": "The user has current BSL3 training"
-      }
-    ]
-  }
-    }
+    "login": {}
   }
 }

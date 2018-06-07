@@ -13,10 +13,10 @@ import Icon from '@material-ui/core/Icon';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-//
 import LoginWrapper from '../../redux/Login';
 
-const drawerWidth = 300;
+const drawerWidth = 350;
+const mobileBreak = 600;
 
 const styles = theme => ({
   root: {
@@ -41,30 +41,39 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    [`@media (max-width:${mobileBreak}px)`]: {
+      width: 0,
+    },
   },
   menuButton: {
     marginLeft: 12,
     marginRight: 36,
+    [theme.breakpoints.down('sm')]: {
+      marginRight: 12,
+    },
   },
   hide: {
     display: 'none',
   },
   drawerPaper: {
     position: 'relative',
-    whiteSpace: 'nowrap',
     width: drawerWidth,
-    transition: theme.transitions.create('width', {
+    transition: `${theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
-    }),
+    })} whiteSpace ${theme.transitions.duration.enteringScreen}`,
+    [`@media (max-width:${mobileBreak}px)`]: {
+      width: '100vw',
+    },
   },
   drawerPaperClose: {
     overflowX: 'hidden',
+    whiteSpace: 'nowrap',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing.unit * 7,
+    width: 0,
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing.unit * 9,
     },
@@ -76,25 +85,36 @@ const styles = theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
   },
+  flex: {
+    flex: 1,
+  },
   content: {
     backgroundColor: theme.palette.background.default,
+    display: 'flex',
+    flexDirection: 'column',
     flexGrow: 1,
-    marginTop: 64,
+    marginTop: 64 + 3, // 3px bottom border on header
     overflow: 'auto',
-    padding: theme.spacing.unit * 3,
-  },
-  '@global': {
-    '@media (min-width: 1px) and (orientation: landscape)': {
-      '#main-content': {
-        marginTop: 48,
-      },
-    },
-    '@media (min-width: 600px)': {
-      '#main-content': {
-        marginTop: 64,
-      },
+    padding: theme.spacing.unit * 2,
+    paddingBottom: 0,
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 56 + 3, // 3px bottom border on header
     },
   },
+  // mainContent: {
+  //   overflow: 'auto',
+  //   padding: theme.spacing.unit * 2,
+  // },
+  // mainContentContainer: {
+  //   backgroundColor: theme.palette.background.default,
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   flexGrow: 1,
+  //   marginTop: 64 + 3, // 3px bottom border on header
+  //   [theme.breakpoints.down('sm')]: {
+  //     marginTop: 56 + 3, // 3px bottom border on header
+  //   },
+  // },
 });
 
 class AppWrapper extends React.Component {
@@ -169,7 +189,6 @@ class AppWrapper extends React.Component {
             {SideNav && <SideNav />}
           </Drawer>
         )}
-        <div className={classes.toolbar} />
         <main id="main-content" className={classes.content}>
           {children}
         </main>

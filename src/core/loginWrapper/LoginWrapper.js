@@ -14,10 +14,10 @@ import UserAccountSettings from '../UserAccountSettings';
 import Login from './Login';
 import Logout from './Logout';
 
-const styles = theme => ({
+const styles = () => ({
   accountAvatar: {
-    height: '24px',
-    width: '24px',
+    height: 24,
+    width: 24,
   },
 });
 
@@ -107,7 +107,7 @@ class LoginWrapper extends React.Component {
             </ListItem>
             <Collapse component="li" in={dropdownOpen} timeout="auto" unmountOnExit>
               <List id="account-menu" classes={{ root: classes.listRoot }} disablePadding>
-                <UserAccountSettings user={user} />
+                <UserAccountSettings user={user} userDefaultProfileImg={userDefaultProfileImg} />
                 <Logout
                   api={api}
                   handleSnackbarOpen={this.onHandleSnackbarOpen}
