@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withRouter, matchPath } from 'react-router';
 import { Link } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -13,13 +12,44 @@ import Icon from '@material-ui/core/Icon';
 import Avatar from '@material-ui/core/Avatar';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
-import { faCode, faLongArrowAltRight } from '@fortawesome/fontawesome-free-solid';
-import components from './components/components.json';
+import {
+  faBell,
+  faCode,
+  faExclamationTriangle,
+  faExternalLinkSquareAlt,
+  faSpinner,
+  faUsers,
+} from '@fortawesome/fontawesome-free-solid';
+
+const components = [
+  {
+    icon: faUsers,
+    label: 'Committees',
+    path: 'committees',
+  },
+  {
+    icon: faExternalLinkSquareAlt,
+    label: 'Dialog',
+    path: 'dialog',
+  },
+  {
+    icon: faExclamationTriangle,
+    label: 'HTTP Error',
+    path: 'http-error',
+  },
+  {
+    icon: faSpinner,
+    label: 'Load More',
+    path: 'load-more',
+  },
+  {
+    icon: faBell,
+    label: 'Snackbar',
+    path: 'snackbar',
+  },
+];
 
 const styles = theme => ({
-  listRoot: {
-    marginLeft: theme.spacing.unit * 5,
-  },
   active: {
     borderRight: `5px solid ${theme.palette.csuBrand.secondary.aggieOrange}`,
   },
@@ -47,7 +77,7 @@ class SideNavEx extends React.Component {
   };
 
   render() {
-    const { classes, iconOnly, location } = this.props;
+    const { classes, location } = this.props;
 
     return (
       <List className={classes.root}>
@@ -64,7 +94,7 @@ class SideNavEx extends React.Component {
             <ListItemIcon>
               <Icon>text_fields</Icon>
             </ListItemIcon>
-            {!iconOnly && <ListItemText inset primary="Typography" />}
+            <ListItemText inset primary="Typography" />
           </ListItem>
         </Link>
         <ListItem
@@ -79,14 +109,11 @@ class SideNavEx extends React.Component {
           <ListItemIcon>
             <FontAwesomeIcon icon={faCode} className={classes.faIcon} />
           </ListItemIcon>
-          {!iconOnly && <ListItemText inset primary="Components" />}
-          {!iconOnly && (this.state.open ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>)}
+          <ListItemText primary="Components" />
+          {this.state.open ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>}
         </ListItem>
         <Collapse component="li" in={this.state.open} timeout="auto" unmountOnExit>
-          <List
-            disablePadding
-            className={classNames(iconOnly ? 'sideNavSubMenuClosed' : 'sideNavSubMenu')}
-          >
+          <List disablePadding>
             {components.map(component => (
               <Link to={`/component/${component.path}`} key={component.path}>
                 <ListItem
@@ -95,14 +122,13 @@ class SideNavEx extends React.Component {
                       path: `/component/${component.path}`,
                     }) && classes.active
                   }
-                  classes={iconOnly ? null : { root: classes.listRoot }}
                   dense
                   button
                 >
                   <ListItemIcon>
-                    <FontAwesomeIcon icon={faLongArrowAltRight} className={classes.faIcon} />
+                    <FontAwesomeIcon icon={component.icon} className={classes.faIcon} />
                   </ListItemIcon>
-                  {!iconOnly && <ListItemText inset primary={component.label} />}
+                  <ListItemText primary={component.label} />
                 </ListItem>
               </Link>
             ))}
@@ -113,15 +139,15 @@ class SideNavEx extends React.Component {
             <ListItemIcon>
               <Avatar className={classes.avatar}>S1</Avatar>
             </ListItemIcon>
-            {!iconOnly && <ListItemText primary="MUI Avatar List Item Example with Long Name" />}
+            <ListItemText primary="MUI Avatar List Item Example with Long Name" />
           </ListItem>
         </Link>
-        <a href="https://github.com/dlennox24/ricro-app-template" aria-label="View on GitHub">
+        <a href="https://github.com/dlennox24/colostate-ricro-ui" aria-label="View on GitHub">
           <ListItem button>
             <ListItemIcon>
               <FontAwesomeIcon icon={faGithub} className={classes.faIcon} />
             </ListItemIcon>
-            {!iconOnly && <ListItemText inset primary="View on GitHub" />}
+            <ListItemText inset primary="View on GitHub" />
           </ListItem>
         </a>
       </List>
@@ -131,7 +157,6 @@ class SideNavEx extends React.Component {
 
 SideNavEx.propTypes = {
   classes: PropTypes.object.isRequired,
-  iconOnly: PropTypes.bool,
   location: PropTypes.object,
 };
 

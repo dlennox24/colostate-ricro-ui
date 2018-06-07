@@ -69,16 +69,15 @@ class Logout extends React.Component {
     const { classes, iconOnly } = this.props;
 
     const { disabled } = this.state;
-
     return (
-      <div>
+      <React.Fragment>
         <ListItem id="logout" onClick={this.handleLogout} disabled={disabled} dense button>
           <ListItemIcon>
             <FontAwesomeIcon icon={faSignOutAlt} className={classes.faIcon} />
           </ListItemIcon>
           {!iconOnly && <ListItemText inset primary="Logout" />}
         </ListItem>
-      </div>
+      </React.Fragment>
     );
   }
 }

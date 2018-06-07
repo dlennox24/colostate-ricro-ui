@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route } from 'react-router-dom';
-import App from 'colostate-ricro-ui';
+import App from 'colostate-ricro-ui'; // eslint-disable-line
 import registerServiceWorker from './registerServiceWorker';
 import Components from './components';
 import config from './config.json';
 import SideNavEx from './SideNavEx';
 import TypographyEx from './TypographyEx';
-// import { version, name as appName } from '../../package.json';
-console.log(process.env);
-// console.log(`${appName}@${version}`); // eslint-disable-line no-console
+import { version, name as appName } from '../package.json';
+
+console.log(`${appName}@${version}`); // eslint-disable-line no-console
 
 const routes = [
   <Route key={0} path="/" exact component={TypographyEx} />,
@@ -21,7 +21,8 @@ const reduxMiddleware =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 ReactDOM.render(
-  <App config={config} sideNav={SideNavEx} routes={routes} reduxMiddleware={reduxMiddleware} />,
+  <App config={config} SideNav={SideNavEx} routes={routes} reduxMiddleware={reduxMiddleware} />,
   document.getElementById('root'),
 );
+
 registerServiceWorker();

@@ -1,7 +1,7 @@
 {
   "name": "colostate-ricro-ui",
   "author": "CSU RICRO Team",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React based library that extends Material-UI's framework",
   "repository": {
     "type": "git",
@@ -19,9 +19,14 @@
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
+    "build:example": "cd example && npm install && npm link ../ && npm run build",
+    "lint": "npm run lint:lib && npm run lint:example",
+    "lint:lib": "eslint --ext .js src/",
+    "lint:example": "eslint --ext .js example/src/",
     "start": "rollup -c -w",
+    "start:example": "cd example && npm start",
     "prepare": "npm run build",
-    "predeploy": "cd example && npm install && npm run build",
+    "predeploy": "npm run build:example",
     "deploy": "gh-pages -d example/build"
   },
   "dependencies": {
@@ -33,6 +38,7 @@
     "@material-ui/core": "^1.0.0",
     "classnames": "^2.2.5",
     "jquery": "^3.3.1",
+    "react-jss": "^8.4.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.0"
@@ -66,7 +72,7 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-standard": "^3.0.1",
-    "gh-pages": "^1.1.0",
+    "gh-pages": "^1.2.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "^1.1.1",

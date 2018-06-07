@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { withRouter } from 'react-router';
-import {LoadMore,SectionContainer} from 'colostate-ricro-ui';
+import { LoadMore, SectionContainer } from 'colostate-ricro-ui';
 import components from './components.json';
 import Committees from './Committees';
 import Dialog from './Dialog';

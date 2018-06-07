@@ -75,7 +75,6 @@ class Login extends React.Component {
   render() {
     const { classes, iconOnly } = this.props;
     const { disabled } = this.state;
-
     return (
       <ListItem onClick={this.handleLogin} disabled={disabled} button>
         <ListItemIcon>

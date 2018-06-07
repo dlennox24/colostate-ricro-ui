@@ -10,20 +10,91 @@ npm install --save colostate-ricro-ui
 
 ## Usage
 
+### App
+
 ```jsx
-import React, { Component } from 'react'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Route } from 'react-router-dom';
+import App from 'colostate-ricro-ui';
+import registerServiceWorker from './registerServiceWorker';
+import Components from './components';
+import config from './config.json';
+import SideNavEx from './SideNavEx';
+import TypographyEx from './TypographyEx';
+import { version, name as appName } from '../package.json';
 
-import MyComponent from 'colostate-ricro-ui'
+console.log(`${appName}@${version}`); // eslint-disable-line no-console
 
-class Example extends Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
-}
+const routes = [
+  <Route key={0} path="/" exact component={TypographyEx} />,
+  <Route key={1} path="/component/:component" exact component={Components} />,
+];
+
+const reduxMiddleware =
+  // eslint-disable-next-line no-underscore-dangle
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+
+ReactDOM.render(
+  <App config={config} SideNav={SideNavEx} routes={routes} reduxMiddleware={reduxMiddleware} />,
+  document.getElementById('root'),
+);
+
+registerServiceWorker();
 ```
 
-## License
+## Development
 
-MIT © [dlennox24](https://github.com/dlennox24)
+### Installation
+
+```bash
+npm i && npm link && cd example && npm i && npm link colostate-ricro-ui && cd ..
+```
+
+### Dev Servers
+
+Starting the **library** build script for development.
+
+```bash
+npm start
+```
+
+Starting the **example** build script for development.
+
+```bash
+npm run start:example
+```
+
+### Linting (ESLint)
+
+Lint both the library and the example.
+
+```bash
+npm run lint
+```
+
+Lint the library.
+
+```bash
+npm run lint:lib
+```
+
+Lint the example
+
+```bash
+npm run lint:example
+```
+
+### Production Build
+
+Builds the library
+
+```bash
+npm run build
+```
+
+Builds the example
+
+```bash
+npm run build:example
+```

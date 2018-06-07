@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import _ from 'lodash';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Avatar from '@material-ui/core/Avatar';
@@ -15,13 +14,10 @@ import UserAccountSettings from '../UserAccountSettings';
 import Login from './Login';
 import Logout from './Logout';
 
-const styles = theme => ({
+const styles = () => ({
   accountAvatar: {
-    height: '24px',
-    width: '24px',
-  },
-  listRoot: {
-    marginLeft: theme.spacing.unit * 5,
+    height: 24,
+    width: 24,
   },
 });
 
@@ -47,7 +43,7 @@ class LoginWrapper extends React.Component {
     });
   };
 
-  onHandleDropdownToggle = () => {
+  handleDropdownToggle = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
     });
@@ -58,6 +54,7 @@ class LoginWrapper extends React.Component {
       [key]: value,
     });
   };
+
   handleSnackbarClose = () => {
     this.setState({
       snackbar: {
@@ -72,27 +69,25 @@ class LoginWrapper extends React.Component {
       api,
       autoLogin,
       classes,
-      iconOnly,
       onLogin, // Redux
       onLogout, // Redux
       user, // Redux
+      userDefaultProfileImg,
     } = this.props;
 
     const { dropdownOpen, snackbar } = this.state;
-
     return (
-      <div>
-        {_.isEmpty(this.props.user) ? (
+      <React.Fragment>
+        {_.isEmpty(user) ? (
           <Login
             api={api}
             autoLogin={autoLogin}
             handleSnackbarOpen={this.onHandleSnackbarOpen}
-            iconOnly={iconOnly}
             onLogin={onLogin}
             user={user}
           />
         ) : (
-          <div>
+          <React.Fragment>
             <ListItem
               aria-owns="account-menu"
               aria-haspopup="true"
@@ -103,31 +98,25 @@ class LoginWrapper extends React.Component {
               <ListItemIcon>
                 <Avatar
                   className={classes.accountAvatar}
-                  src={user.profileImg}
+                  src={user.profileImg || userDefaultProfileImg}
                   imgProps={{ alt: `${user.displayName} profile image` }}
                 />
               </ListItemIcon>
-              {!iconOnly && <ListItemText primary={user.displayName} />}
-              {!iconOnly && (dropdownOpen ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>)}
+              <ListItemText primary={user.displayName} />
+              {dropdownOpen ? <Icon>expand_less</Icon> : <Icon>expand_more</Icon>}
             </ListItem>
             <Collapse component="li" in={dropdownOpen} timeout="auto" unmountOnExit>
-              <List
-                id="account-menu"
-                className={classNames(iconOnly ? 'sideNavSubMenuClosed' : 'sideNavSubMenu')}
-                classes={iconOnly ? null : { root: classes.listRoot }}
-                disablePadding
-              >
-                <UserAccountSettings iconOnly={iconOnly} user={user} />
+              <List id="account-menu" classes={{ root: classes.listRoot }} disablePadding>
+                <UserAccountSettings user={user} userDefaultProfileImg={userDefaultProfileImg} />
                 <Logout
                   api={api}
                   handleSnackbarOpen={this.onHandleSnackbarOpen}
-                  iconOnly={iconOnly}
                   onLogout={onLogout}
                   user={user}
                 />
               </List>
             </Collapse>
-          </div>
+          </React.Fragment>
         )}
         {snackbar.message && (
           <Snackbar
@@ -139,7 +128,7 @@ class LoginWrapper extends React.Component {
             {snackbar.message}
           </Snackbar>
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }
@@ -148,10 +137,10 @@ LoginWrapper.propTypes = {
   api: PropTypes.object.isRequired,
   autoLogin: PropTypes.bool,
   classes: PropTypes.object.isRequired,
-  iconOnly: PropTypes.bool,
   onLogin: PropTypes.func.isRequired, // Redux
   onLogout: PropTypes.func.isRequired, // Redux
   user: PropTypes.object, // Redux
+  userDefaultProfileImg: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(LoginWrapper);

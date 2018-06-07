@@ -7,10 +7,10 @@ import {
   faCheckCircle,
   faUsers,
 } from '@fortawesome/fontawesome-free-solid';
-import CommitteeAvatar from './Avatar';
-import CommitteeChip from './Chip';
-
-export { CommitteeAvatar, CommitteeChip };
+// import CommitteeAvatar from './Avatar';
+// import CommitteeChip from './Chip';
+//
+// export { CommitteeAvatar, CommitteeChip };
 
 export default {
   keys: ['excon', 'iacuc', 'ibc', 'irb', 'qa', 'rcr'],
