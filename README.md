@@ -1,6 +1,8 @@
 # colostate-ricro-ui
 
-[![npm version](https://badge.fury.io/js/colostate-ricro-ui.svg)](https://badge.fury.io/js/colostate-ricro-ui) [![Build Status](https://travis-ci.org/dlennox24/colostate-ricro-ui.svg?branch=master)](https://travis-ci.org/dlennox24/colostate-ricro-ui) [![dependencies Status](https://david-dm.org/dlennox24/colostate-ricro-ui/status.svg)](https://david-dm.org/dlennox24/colostate-ricro-ui) [![devDependencies Status](https://david-dm.org/dlennox24/colostate-ricro-ui/dev-status.svg)](https://david-dm.org/dlennox24/colostate-ricro-ui?type=dev)
+UI extention of [Material UI](https://material-ui.com/) for RICRO based applications
+
+[![NPM](https://img.shields.io/npm/v/colostate-ricro-ui.svg)](https://www.npmjs.com/package/colostate-ricro-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
@@ -13,12 +15,15 @@ npm install --save colostate-ricro-ui
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'colostate-ricro-ui'
+import AppFrame from 'colostate-ricro-ui'
+import config from '<pathToConfig>'
 
 class Example extends Component {
   render () {
     return (
-      <MyComponent />
+      <AppFrame config={createConfig(config)}>
+        App Content
+      </AppFrame>
     )
   }
 }
@@ -26,4 +31,4 @@ class Example extends Component {
 
 ## License
 
-MIT © [dlennox24](https://github.com/dlennox24)
+MIT © [csu-ricro](https://github.com/csu-ricro)

@@ -1,13 +1,8 @@
 {
-  "short_name": "App Template",
-  "name": "CSU RICRO App Template",
-  "icons": [{
-    "src": "favicon.ico",
-    "sizes": "192x192",
-    "type": "image/png"
-  }],
+  "short_name": "colostate-ricro-ui",
+  "name": "colostate-ricro-ui",
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#1E4D2B",
-  "background_color": "#fafafa"
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }

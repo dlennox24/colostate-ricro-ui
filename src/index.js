@@ -1,31 +1,17 @@
-import App from './components/App';
-import Dashboard from './components/Dashboard';
-import Dialog from './components/Dialog';
-import LoadMore from './components/LoadMore';
-import SectionContainer from './components/SectionContainer';
-import HttpError from './components/HttpError';
-import Committees from './components/Committees';
-import CommitteeAvatar from './components/Committees/Avatar';
-import CommitteeChip from './components/Committees/Chip';
-import Login from './redux/Login';
-import Snackbar, { slideTransition } from './components/Snackbar';
-import apiCall from './utils/apiCall';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faBars,
+  faChevronLeft,
+  faEnvelope,
+  faInbox,
+  faSignInAlt,
+  faTh,
+  faTimes,
+} from '@fortawesome/free-solid-svg-icons';
+import AppFrame from './component/AppFrame';
+import createConfig from './utils/config/createConfig';
 
-// export default App;
-export {
-  // Components
-  App as default,
-  Committees,
-  CommitteeAvatar,
-  CommitteeChip,
-  Dashboard,
-  Dialog,
-  HttpError,
-  LoadMore,
-  Login,
-  SectionContainer,
-  Snackbar,
-  // Functions
-  apiCall,
-  slideTransition,
-};
+library.add(faSignInAlt, faEnvelope, faInbox, faBars, faChevronLeft, faTimes, faTh);
+
+export default AppFrame;
+export { createConfig };
