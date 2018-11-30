@@ -9,9 +9,10 @@ import {
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import AppFrame from './component/AppFrame';
+import CloseableDialog from './component/CloseableDialog';
 import createConfig from './utils/config/createConfig';
 
 library.add(faSignInAlt, faEnvelope, faInbox, faBars, faChevronLeft, faTimes, faTh);
 
 export default AppFrame;
-export { createConfig };
+export { CloseableDialog, createConfig };

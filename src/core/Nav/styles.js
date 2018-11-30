@@ -1,29 +1,12 @@
 const styles = theme => ({
-  root: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  appBar: {
-    position: 'sticky',
-    top: 0,
-    borderBottom: `3px solid ${theme.palette.csu.primary.gold}`,
-    [theme.breakpoints.up('md')]: {
-      zIndex: theme.zIndex.drawer + 1,
-    },
-  },
-  content: {
-    padding: theme.spacing.unit * 3,
-    [theme.breakpoints.up('md')]: {},
-  },
   drawer: {
-    [theme.breakpoints.up('md')]: {
-      minWidth: 270,
+    [theme.breakpoints.up('lg')]: {
       display: 'flex',
+      width: 300,
     },
   },
   drawerDocked: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       display: 'flex',
       flex: 1,
     },
@@ -32,13 +15,6 @@ const styles = theme => ({
     flex: 1,
     display: 'flex',
   },
-  menuButton: {
-    marginRight: 20,
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-  toolbar: theme.mixins.toolbar,
 });
 
 export default styles;

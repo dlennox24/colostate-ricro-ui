@@ -57,8 +57,6 @@ export default {
       fontFamily: '"prox-regular", "Helvetica", "Arial", sans-serif',
     },
     body2: {
-      fontSize: '0.9375rem',
-      fontWeight: 700,
       fontFamily: '"prox-regular", "Helvetica", "Arial", sans-serif',
     },
     body1: {

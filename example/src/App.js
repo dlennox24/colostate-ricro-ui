@@ -1,9 +1,10 @@
-import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import AppFrame, { createConfig } from 'colostate-ricro-ui';
+import React from 'react';
+import config from './assets/config';
 
 const App = () => (
-  <AppFrame config={createConfig()}>
+  <AppFrame config={createConfig(config)}>
     <Typography variant="h1">heading h1</Typography>
     <Typography variant="h2">heading h2</Typography>
     <Typography variant="h3">heading h3</Typography>
