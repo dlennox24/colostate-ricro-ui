@@ -1,15 +1,16 @@
-import { Icon } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
+import Icon from '@material-ui/core/Icon';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core/styles';
+import MdiIcon from '@mdi/react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './styles';
 
-const NavList = ({ classes, nav }) => {
+const NavList = ({ classes, nav, theme }) => {
   return (
     <div className={classes.root}>
       {nav.map((list, i) => {
@@ -18,11 +19,15 @@ const NavList = ({ classes, nav }) => {
             <List>
               {list.map(navItem => {
                 if (React.isValidElement(navItem)) {
-                  return navItem;
+                  return <React.Fragment key={navItem}>{navItem}</React.Fragment>;
                 }
                 return (
                   <ListItem button key={navItem.name}>
-                    <ListItemIcon>{navItem.icon}</ListItemIcon>
+                    <ListItemIcon>
+                      <Icon>
+                        <MdiIcon path={navItem.icon} color={theme.palette.icon.main} />
+                      </Icon>
+                    </ListItemIcon>
                     <ListItemText primary={navItem.name} />
                   </ListItem>
                 );
@@ -37,8 +42,9 @@ const NavList = ({ classes, nav }) => {
 };
 
 NavList.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // MUI withStyles()
   nav: PropTypes.array.isRequired,
+  theme: PropTypes.object.isRequired, // MUI withTheme
 };
 
-export default withStyles(styles)(NavList);
+export default withStyles(styles, { withTheme: true })(NavList);

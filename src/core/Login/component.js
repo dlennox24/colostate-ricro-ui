@@ -7,9 +7,9 @@ import { mdiAccountCircle, mdiLoginVariant, mdiLogoutVariant } from '@mdi/js';
 import MdiIcon from '@mdi/react';
 import PropTypes from 'prop-types';
 import React from 'react';
-// remove
-import testDataUser from '../../test-data/user';
+import testDataUser from '../../test-data/user'; // remove
 import UserAccountSettings from '../UserAccount';
+import { withTheme } from '@material-ui/core/styles';
 
 class Login extends React.Component {
   state = {
@@ -31,7 +31,8 @@ class Login extends React.Component {
   handleLogin = () => {};
 
   render() {
-    let { isLoggedIn = false, user = 'Account' } = this.props;
+    const { isLoggedIn = false, theme } = this.props;
+    let { user = 'Account' } = this.props;
     const { isUasOpen } = this.state;
     user = testDataUser;
     return (
@@ -39,7 +40,11 @@ class Login extends React.Component {
         <ListItem button onClick={isLoggedIn ? this.handleOpenUas : this.handleLogin}>
           <ListItemIcon>
             <Icon>
-              <MdiIcon path={isLoggedIn ? mdiAccountCircle : mdiLoginVariant} size={1} />
+              <MdiIcon
+                path={isLoggedIn ? mdiAccountCircle : mdiLoginVariant}
+                size={1}
+                color={theme.palette.icon.main}
+              />
             </Icon>
           </ListItemIcon>
           <ListItemText inset primary={isLoggedIn ? user.displayName : 'Login'} />
@@ -48,7 +53,7 @@ class Login extends React.Component {
           <ListItem button>
             <ListItemIcon>
               <Icon>
-                <MdiIcon path={mdiLogoutVariant} size={1} />
+                <MdiIcon path={mdiLogoutVariant} size={1} color={theme.palette.icon.main} />
               </Icon>
             </ListItemIcon>
             <ListItemText inset primary="Logout" />
@@ -62,7 +67,8 @@ class Login extends React.Component {
 
 Login.propTypes = {
   isLoggedIn: PropTypes.bool, // redux state
+  theme: PropTypes.object.isRequired, // MUI withTheme
   user: PropTypes.string, // redux state
 };
 
-export default Login;
+export default withTheme()(Login);

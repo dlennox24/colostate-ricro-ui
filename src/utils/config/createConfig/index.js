@@ -1,22 +1,8 @@
-import { faLifeRing, faTh } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Icon from '@material-ui/core/Icon';
-import MdiIcon from '@mdi/react';
-import { mdiEmail, mdiApps } from '@mdi/js';
-import React from 'react';
+import { mdiApps, mdiEmail } from '@mdi/js';
 import _ from 'lodash';
+import React from 'react';
 import Login from '../../../core/Login';
 
-const appsIcon = (
-  <Icon>
-    <MdiIcon path={mdiApps} size={1} />
-  </Icon>
-);
-const contactIcon = (
-  <Icon>
-    <MdiIcon path={mdiEmail} size={1} />
-  </Icon>
-);
 const contactHref = 'https://vpr.colostate.edu/ricro/contact-us';
 const defaults = {
   api: {
@@ -30,11 +16,11 @@ const defaults = {
     hasAutoLogin: false,
     nav: [
       [
-        { name: 'Apps', icon: appsIcon, link: '/' },
+        { name: 'Apps', icon: mdiApps, link: '/' },
         <Login />,
         {
           name: 'Contact Us',
-          icon: contactIcon,
+          icon: mdiEmail,
           link: contactHref,
         },
       ],
@@ -64,7 +50,7 @@ const createConfig = config => {
   const nav = [
     {
       name: 'Contact Us',
-      icon: contactIcon,
+      icon: mdiEmail,
       link: mergedConfig.unit.contactHref,
     },
   ];
@@ -72,12 +58,12 @@ const createConfig = config => {
     nav.unshift(<Login isLoggedIn />);
   }
   if (mergedConfig.app.basename !== '/') {
-    nav.unshift({ name: 'Apps', icon: appsIcon, link: '/' });
+    nav.unshift({ name: 'Apps', icon: mdiApps, link: '/' });
   }
   // _.get() checks if the route is valid in the {config{}} object. Returns undefined
   //  if route is null or undefined
   mergedConfig.app.nav = _.get({ config }, 'config.app.nav') ? [nav, ...config.app.nav] : [nav];
-
+  // debugger;
   return mergedConfig;
 };
 

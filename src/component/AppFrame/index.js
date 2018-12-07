@@ -44,7 +44,7 @@ const AppFrame = ({ classes, children, config, reducers, reduxMiddleware }) => {
 
 AppFrame.propTypes = {
   children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // MUI withStyles()
   config: PropTypes.object.isRequired,
   reducers: PropTypes.object,
   reduxMiddleware: PropTypes.func,

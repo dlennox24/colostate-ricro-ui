@@ -1,35 +1,41 @@
+const csu = {
+  primary: {
+    green: '#1E4D2B',
+    gold: '#C8C372',
+    white: '#FFFFFF',
+  },
+  secondary: {
+    black: '#59595B',
+    aggieOrange: '#D9782D',
+  },
+  tertiary: {
+    alfalfa: '#C9D845',
+    canyon: '#CC5430',
+    darkSlate: '#105456',
+    reservoir: '#12A4B6',
+    sunshine: '#ECC530',
+  },
+};
+
 export default {
   palette: {
     type: 'light',
+    // type: 'dark',
     primary: {
       main: '#1e4d2b',
     },
     secondary: {
       main: '#d8772d',
     },
-    csu: {
-      primary: {
-        green: '#1E4D2B',
-        gold: '#C8C372',
-        white: '#FFFFFF',
-      },
-      secondary: {
-        black: '#59595B',
-        aggieOrange: '#D9782D',
-      },
-      tertiary: {
-        alfalfa: '#C9D845',
-        canyon: '#CC5430',
-        darkSlate: '#105456',
-        reservoir: '#12A4B6',
-        sunshine: '#ECC530',
-      },
-    },
+    csu,
     alerts: {
       danger: '#dc3545',
       warning: '#ffc107',
       success: '#28a745',
       info: '#17a2b8',
+    },
+    icon: {
+      main: csu.secondary.black,
     },
   },
   typography: {

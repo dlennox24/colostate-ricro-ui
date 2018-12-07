@@ -55,7 +55,7 @@ const Footer = ({ classes }) => (
 );
 
 Footer.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // MUI withStyles()
 };
 
 export default withStyles(styles)(Footer);

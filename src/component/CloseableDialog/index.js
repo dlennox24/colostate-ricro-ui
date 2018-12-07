@@ -1,14 +1,15 @@
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AppBar from '@material-ui/core/AppBar';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
+import { mdiClose } from '@mdi/js';
+import MdiIcon from '@mdi/react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './styles';
@@ -18,9 +19,10 @@ const CloseableDialog = ({
   classes,
   fullScreen,
   header,
+  headerColor = 'primary',
   ModalProps,
   onClose,
-  headerColor = 'primary',
+  theme,
   ...dialogProps
 }) => {
   const id = `${header.replace(/ /g, '-').toLowerCase()}-header-dialog`;
@@ -46,11 +48,13 @@ const CloseableDialog = ({
               {header}
             </Typography>
             <div className={classes.flex} />
-            <IconButton onClick={onClose} color="inherit" aria-label="Close">
-              <Icon>
-                <FontAwesomeIcon icon={faTimes} />
-              </Icon>
-            </IconButton>
+            <Tooltip title="Close Account">
+              <IconButton onClick={onClose} color="inherit" aria-label="Close Account">
+                <Icon>
+                  <MdiIcon path={mdiClose} color={theme.palette[headerColor].contrastText} />
+                </Icon>
+              </IconButton>
+            </Tooltip>
           </Toolbar>
         </AppBar>
       </DialogTitle>
@@ -61,13 +65,14 @@ const CloseableDialog = ({
 
 CloseableDialog.propTypes = {
   children: PropTypes.any,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // MUI withStyles()
   dialogProps: PropTypes.object,
-  fullScreen: PropTypes.bool.isRequired, // withMobileDialog()
+  fullScreen: PropTypes.bool.isRequired, // MUI withMobileDialog()
   header: PropTypes.string,
   headerColor: PropTypes.string,
   ModalProps: PropTypes.object,
   onClose: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired, // MUI withTheme()
 };
 
-export default withStyles(styles)(withMobileDialog()(CloseableDialog));
+export default withMobileDialog()(withTheme()(withStyles(styles)(CloseableDialog)));

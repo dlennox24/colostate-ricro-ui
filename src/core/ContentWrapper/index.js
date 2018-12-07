@@ -1,11 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
+import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { mdiMenu } from '@mdi/js';
+import MdiIcon from '@mdi/react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Nav from '../Nav';
 import styles from './styles';
 
@@ -31,7 +33,9 @@ class ContentWrapper extends React.Component {
               onClick={this.setMobileOpen(true)}
               className={classes.menuButton}
             >
-              <FontAwesomeIcon icon="bars" />
+              <Icon>
+                <MdiIcon path={mdiMenu} size={1} />
+              </Icon>
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
               {app.name}
@@ -55,7 +59,7 @@ class ContentWrapper extends React.Component {
 ContentWrapper.propTypes = {
   app: PropTypes.object.isRequired,
   children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // MUI withStyles()
   container: PropTypes.object,
 };
 

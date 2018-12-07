@@ -1,17 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
+import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Toolbar from '@material-ui/core/Toolbar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Tooltip from '@material-ui/core/Tooltip';
+import { mdiClose } from '@mdi/js';
+import MdiIcon from '@mdi/react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import NavList from './NavList';
 import styles from './styles';
 
-const Nav = ({ classes, container, isMobileOpen, nav, setMobileOpen }) => (
+const Nav = ({ classes, container, isMobileOpen, nav, setMobileOpen, theme }) => (
   <nav className={classes.drawer}>
     <Hidden lgUp implementation="js">
       <SwipeableDrawer
@@ -26,9 +29,13 @@ const Nav = ({ classes, container, isMobileOpen, nav, setMobileOpen }) => (
       >
         <Toolbar>
           <div className={classes.flex} />
-          <IconButton onClick={setMobileOpen(false)}>
-            <FontAwesomeIcon icon="times" />
-          </IconButton>
+          <Tooltip title="Close Navigation">
+            <IconButton onClick={setMobileOpen(false)} aria-label="Close Navigation">
+              <Icon>
+                <MdiIcon path={mdiClose} color={theme.palette.icon.main} />
+              </Icon>
+            </IconButton>
+          </Tooltip>
         </Toolbar>
         <Divider />
         <NavList nav={nav} />
@@ -43,11 +50,12 @@ const Nav = ({ classes, container, isMobileOpen, nav, setMobileOpen }) => (
 );
 
 Nav.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // MUI withStyles()
   container: PropTypes.object,
   isMobileOpen: PropTypes.bool.isRequired,
   nav: PropTypes.array.isRequired,
   setMobileOpen: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired, // MUI withTheme
 };
 
-export default withStyles(styles)(Nav);
+export default withStyles(styles, { withTheme: true })(Nav);

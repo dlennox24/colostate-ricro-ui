@@ -95,7 +95,7 @@ const UserAccount = ({ classes, onClose, open, user }) => {
 };
 
 UserAccount.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // MUI withStyles()
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
