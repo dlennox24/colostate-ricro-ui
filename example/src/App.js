@@ -1,7 +1,8 @@
 import Typography from '@material-ui/core/Typography';
-import AppFrame, { createConfig } from 'colostate-ricro-ui';
+import AppFrame, { createConfig, UserProfile } from 'colostate-ricro-ui';
 import React from 'react';
 import config from './assets/config';
+import user from './test-data/user';
 
 const App = () => (
   <AppFrame config={createConfig(config)}>
@@ -16,7 +17,8 @@ const App = () => (
     <Typography variant="body2">body2</Typography>
     <Typography variant="caption">caption</Typography>
     <Typography variant="button">button</Typography>
-    <a href="#">anchor</a>
+    <a href="#root">anchor</a>
+    <UserProfile user={user} />
   </AppFrame>
 );
 

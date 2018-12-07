@@ -8,13 +8,13 @@ import Tooltip from '@material-ui/core/Tooltip';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const DisplayName = ({ displayName }) => (
+const EditProfileDisplayName = ({ displayName }) => (
   <List>
     <ListItem button>
       <ListItemText primary={displayName} secondary="Display Name" />
       <ListItemSecondaryAction>
         <Tooltip title="Edit Display Name">
-          <IconButton aria-label="Delete">
+          <IconButton aria-label="Edit Display Name">
             <Icon>edit</Icon>
           </IconButton>
         </Tooltip>
@@ -23,8 +23,8 @@ const DisplayName = ({ displayName }) => (
   </List>
 );
 
-DisplayName.propTypes = {
+EditProfileDisplayName.propTypes = {
   displayName: PropTypes.string.isRequired,
 };
 
-export default DisplayName;
+export default EditProfileDisplayName;

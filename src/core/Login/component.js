@@ -3,28 +3,28 @@ import Icon from '@material-ui/core/Icon';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import { withTheme } from '@material-ui/core/styles';
 import { mdiAccountCircle, mdiLoginVariant, mdiLogoutVariant } from '@mdi/js';
 import MdiIcon from '@mdi/react';
 import PropTypes from 'prop-types';
 import React from 'react';
-import testDataUser from '../../test-data/user'; // remove
-import UserAccountSettings from '../UserAccount';
-import { withTheme } from '@material-ui/core/styles';
+import UserProfile from '../../component/UserProfile';
+import testDataUser from '../../test-data/user'; // TODO: remove after linkage with redux
 
 class Login extends React.Component {
   state = {
-    isUasOpen: false,
+    isUserProfileOpen: false,
   };
 
   handleOpenUas = () => {
     this.setState({
-      isUasOpen: true,
+      isUserProfileOpen: true,
     });
   };
 
   handleCloseUas = () => {
     this.setState({
-      isUasOpen: false,
+      isUserProfileOpen: false,
     });
   };
 
@@ -33,7 +33,7 @@ class Login extends React.Component {
   render() {
     const { isLoggedIn = false, theme } = this.props;
     let { user = 'Account' } = this.props;
-    const { isUasOpen } = this.state;
+    const { isUserProfileOpen } = this.state;
     user = testDataUser;
     return (
       <React.Fragment>
@@ -59,7 +59,12 @@ class Login extends React.Component {
             <ListItemText inset primary="Logout" />
           </ListItem>
         </Collapse>
-        <UserAccountSettings user={user} open={isUasOpen} onClose={this.handleCloseUas} />
+        <UserProfile
+          variant="dialog"
+          user={user}
+          open={isUserProfileOpen}
+          onClose={this.handleCloseUas}
+        />
       </React.Fragment>
     );
   }
