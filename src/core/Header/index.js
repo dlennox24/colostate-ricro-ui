@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import $ from 'jquery';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import $ from 'jquery';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 class Header extends React.Component {
   state = {
@@ -23,7 +23,9 @@ class Header extends React.Component {
       <AppBar id="csuLogoBar" position="static" color="primary">
         <Toolbar>
           {!isLoaded ? (
-            <Typography variant="h2">{unit.name}</Typography>
+            <Typography variant="h5" color="inherit">
+              {unit.name}
+            </Typography>
           ) : (
             <div className="signature">
               <section id="BrandLogo" className="fontLarge">

@@ -16,6 +16,7 @@ const App = () => (
     <Typography variant="body2">body2</Typography>
     <Typography variant="caption">caption</Typography>
     <Typography variant="button">button</Typography>
+    <a href="#">anchor</a>
   </AppFrame>
 );
 

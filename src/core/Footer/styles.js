@@ -12,11 +12,17 @@ const styles = theme => ({
   },
   csuLogo: {
     width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    '& > a': {
+      maxHeight: 50,
+    },
   },
   footer: {
     padding: theme.spacing.unit * 1.5,
     '& img': {
-      maxHeight: 65,
+      maxHeight: 50,
+      width: 'fit-content',
     },
   },
   footerLink: {
