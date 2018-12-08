@@ -15,7 +15,7 @@ const styles = theme => ({
   content: {
     padding: theme.spacing.unit * 3,
     overflowX: 'auto',
-    width: '100%',
+    flex: 1,
   },
   flex: {
     flex: 1,

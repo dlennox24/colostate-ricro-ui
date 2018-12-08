@@ -35,7 +35,7 @@ export default {
       info: '#17a2b8',
     },
     icon: {
-      main: csu.secondary.black,
+      main: 'rgba(0, 0, 0, 0.54)',
     },
   },
   typography: {

@@ -31,6 +31,12 @@ class Login extends React.Component {
     });
   };
 
+  handleToggleDropDown = () => {
+    this.setState(state => ({
+      isDropDownOpen: !state.isDropDownOpen,
+    }));
+  };
+
   handleLogin = () => {
     // TODO: add call to api to fetch user data on login
     this.props.handleLogin(testDataUser);
@@ -38,11 +44,11 @@ class Login extends React.Component {
 
   render() {
     const { classes, handleLogout, theme, user } = this.props;
-    const { isUserProfileOpen } = this.state;
+    const { isDropDownOpen, isUserProfileOpen } = this.state;
     const isLoggedIn = Boolean(user);
     return (
       <React.Fragment>
-        <ListItem button onClick={isLoggedIn ? this.handleOpenUserProfile : this.handleLogin}>
+        <ListItem button onClick={isLoggedIn ? this.handleToggleDropDown : this.handleLogin}>
           <ListItemIcon>
             {isLoggedIn ? (
               <Avatar
@@ -57,9 +63,25 @@ class Login extends React.Component {
             )}
           </ListItemIcon>
           <ListItemText inset primary={isLoggedIn ? user.displayName : 'Login'} />
+          {isLoggedIn && (
+            <Icon>
+              {isDropDownOpen && isLoggedIn ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}
+            </Icon>
+          )}
         </ListItem>
-        <Collapse in={isLoggedIn} timeout="auto" unmountOnExit>
-          <ListItem button onClick={handleLogout}>
+        <Collapse
+          className={classes.dropDown}
+          in={isDropDownOpen && isLoggedIn}
+          timeout="auto"
+          unmountOnExit
+        >
+          <ListItem button dense onClick={this.handleOpenUserProfile}>
+            <ListItemIcon>
+              <Icon>account_circle</Icon>
+            </ListItemIcon>
+            <ListItemText inset primary="Account" />
+          </ListItem>
+          <ListItem button dense onClick={handleLogout}>
             <ListItemIcon>
               <Icon>
                 <MdiIcon path={mdiLogoutVariant} size={1} color={theme.palette.icon.main} />
