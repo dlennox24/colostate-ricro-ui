@@ -9,8 +9,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const EditProfileDisplayName = ({ displayName }) => (
-  <List>
-    <ListItem button>
+  <List disablePadding>
+    <ListItem>
       <ListItemText primary={displayName} secondary="Display Name" />
       <ListItemSecondaryAction>
         <Tooltip title="Edit Display Name">

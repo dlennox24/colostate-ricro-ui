@@ -1,18 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { combineReducers, createStore } from 'redux';
-import { Provider } from 'react-redux';
-import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import ContentWrapper from '../../core/ContentWrapper';
-import Header from '../../core/Header';
-import Footer from '../../core/Footer';
-import theme from '../../assets/theme';
-import '../../assets/fonts/proxima.css';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { combineReducers, createStore } from 'redux';
 import '../../assets/fonts/factoria.css';
+import '../../assets/fonts/proxima.css';
+import theme from '../../assets/theme';
+import ContentWrapper from '../../core/ContentWrapper';
+import Footer from '../../core/Footer';
+import Header from '../../core/Header';
 import styles from './styles';
+import userReducer from '../../core/Login/reducer';
 
-const AppFrame = ({ classes, children, config, reducers, reduxMiddleware }) => {
+const AppFrame = ({
+  classes,
+  children,
+  config,
+  reducers,
+  // eslint-disable-next-line no-underscore-dangle
+  reduxMiddleware = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+}) => {
   if (!config.usedCreateConfigUtil) {
     // eslint-disable-next-line
     console.warn(
@@ -24,12 +32,17 @@ const AppFrame = ({ classes, children, config, reducers, reduxMiddleware }) => {
     document.title === '' ? `${config.app.name} - ${config.unit.name}` : document.title;
 
   const combinedReducers = combineReducers({
-    // login,
+    // all top level state objects must have a reducer
+    // config should never change, thus return state unchanged
+    config: (state = {}) => state,
+    user: userReducer,
     ...reducers,
   });
 
   return (
-    <Provider store={createStore(combinedReducers, config.defaultState, reduxMiddleware)}>
+    <Provider
+      store={createStore(combinedReducers, { ...config.defaultState, config }, reduxMiddleware)}
+    >
       <MuiThemeProvider theme={createMuiTheme(theme)}>
         <div id="cru-root" className={classes.root}>
           <CssBaseline />

@@ -5,8 +5,9 @@ export const login = user => {
   };
 };
 
-export const logout = () => {
+export const logout = user => {
   return {
     type: 'LOGOUT',
+    user,
   };
 };

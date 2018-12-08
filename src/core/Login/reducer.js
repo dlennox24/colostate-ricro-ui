@@ -1,18 +1,12 @@
-const login = (state = {}, action) => {
+const user = (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN':
-      return {
-        ...state,
-        user: action.user,
-      };
+      return action.user;
     case 'LOGOUT':
-      return {
-        ...state,
-        user: {},
-      };
+      return false;
     default:
       return state;
   }
 };
 
-export default login;
+export default user;

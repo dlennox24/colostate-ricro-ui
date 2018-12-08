@@ -1,4 +1,5 @@
 import { mdiEraser, mdiFactory, mdiFolderNetwork } from '@mdi/js';
+import user from '../test-data/user';
 
 export default {
   app: {
@@ -26,5 +27,8 @@ export default {
         },
       ],
     ],
+  },
+  defaultState: {
+    user,
   },
 };

@@ -1,6 +1,6 @@
 {
   "name": "colostate-ricro-ui",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "UI extention of Material UI for RICRO based applications",
   "author": "dlennox24",
   "license": "MIT",
@@ -28,9 +28,10 @@
     "jquery": "^3.3.1",
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
-    "redux": "^4.0.1",
+    "react-dom": "^15.0.0 || ^16.0.0",
     "react-redux": "^5.1.1",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
@@ -68,6 +69,5 @@
   "files": [
     "dist"
   ],
-  "dependencies": {
-  }
+  "dependencies": {}
 }
