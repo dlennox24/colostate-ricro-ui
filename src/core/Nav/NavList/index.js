@@ -9,20 +9,42 @@ import MdiIcon from '@mdi/react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './styles';
+import SubNavList from '../SubNavList';
 
-const NavList = ({ classes, nav, theme }) => {
+const NavList = ({
+  classes,
+  depth = 0,
+  denseList,
+  denseListItem,
+  keyPrefix = 'navList-',
+  nav,
+  theme,
+}) => {
   return (
     <div className={classes.root}>
       {nav.map((list, i) => {
         return (
-          <React.Fragment key={`navList-${list[0].name}`}>
-            <List>
+          <React.Fragment key={`${keyPrefix}${list[0].name}`}>
+            <List dense={denseList}>
               {list.map(navItem => {
+                const key = `listItem-${navItem.name}`;
                 if (React.isValidElement(navItem)) {
-                  return <React.Fragment key={navItem}>{navItem}</React.Fragment>;
+                  return <React.Fragment key={key}>{navItem}</React.Fragment>;
                 }
+
+                if (Array.isArray(navItem.subNav)) {
+                  return (
+                    <SubNavList
+                      key={key}
+                      depth={depth + 1}
+                      navItem={navItem}
+                      nested={denseListItem}
+                    />
+                  );
+                }
+
                 return (
-                  <ListItem button key={navItem.name}>
+                  <ListItem key={key} button dense={denseListItem}>
                     <ListItemIcon>
                       <Icon>
                         <MdiIcon path={navItem.icon} color={theme.palette.icon.main} />
@@ -43,6 +65,10 @@ const NavList = ({ classes, nav, theme }) => {
 
 NavList.propTypes = {
   classes: PropTypes.object.isRequired, // MUI withStyles()
+  denseList: PropTypes.bool,
+  denseListItem: PropTypes.bool,
+  depth: PropTypes.number,
+  keyPrefix: PropTypes.string,
   nav: PropTypes.array.isRequired,
   theme: PropTypes.object.isRequired, // MUI withTheme
 };

@@ -17,6 +17,38 @@ export default {
           name: 'Location',
           icon: mdiFactory,
           link: '/',
+          subNav: [
+            [
+              {
+                name: 'AddressesSub1',
+                icon: mdiFolderNetwork,
+                link: 'https: //vpr.colostate.edu/ricro/contact-us',
+                subNav: [
+                  [
+                    {
+                      name: 'AddressesSub2',
+                      icon: mdiEraser,
+                      link: 'https: //vpr.colostate.edu/ricro/contact-us',
+                    },
+                  ],
+                  [
+                    {
+                      name: 'AddressesSub2Section2',
+                      icon: mdiEraser,
+                      link: 'https: //vpr.colostate.edu/ricro/contact-us',
+                    },
+                  ],
+                ],
+              },
+            ],
+            [
+              {
+                name: 'AddressesSub1Section2',
+                icon: mdiEraser,
+                link: 'https: //vpr.colostate.edu/ricro/contact-us',
+              },
+            ],
+          ],
         },
         {
           name:

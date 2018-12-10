@@ -17,7 +17,6 @@ const defaults = {
     nav: [
       [
         { name: 'Apps', icon: mdiApps, link: '/' },
-        <Login />,
         {
           name: 'Contact Us',
           icon: mdiEmail,
@@ -60,10 +59,10 @@ const createConfig = config => {
   if (mergedConfig.app.basename !== '/') {
     nav.unshift({ name: 'Apps', icon: mdiApps, link: '/' });
   }
+
   // _.get() checks if the route is valid in the {config{}} object. Returns undefined
   //  if route is null or undefined
   mergedConfig.app.nav = _.get({ config }, 'config.app.nav') ? [nav, ...config.app.nav] : [nav];
-  // debugger;
   return mergedConfig;
 };
 

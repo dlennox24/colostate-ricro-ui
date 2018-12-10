@@ -69,12 +69,7 @@ class Login extends React.Component {
             </Icon>
           )}
         </ListItem>
-        <Collapse
-          className={classes.dropDown}
-          in={isDropDownOpen && isLoggedIn}
-          timeout="auto"
-          unmountOnExit
-        >
+        <Collapse className={classes.dropDown} in={isDropDownOpen && isLoggedIn}>
           <ListItem button dense onClick={this.handleOpenUserProfile}>
             <ListItemIcon>
               <Icon>account_circle</Icon>
