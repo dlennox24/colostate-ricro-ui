@@ -13,6 +13,7 @@ import Footer from '../../core/Footer';
 import Header from '../../core/Header';
 import userReducer from '../../core/Login/reducer';
 import styles from './styles';
+import HttpError from '../HttpError';
 
 const AppFrame = ({
   classes,
@@ -52,7 +53,7 @@ const AppFrame = ({
             <ContentWrapper app={config.app}>
               <Switch>
                 {children}
-                <Route component={() => <h1>404 - Not Found</h1>} />
+                <Route component={() => <HttpError code={404} />} />
               </Switch>
             </ContentWrapper>
             <Footer />
