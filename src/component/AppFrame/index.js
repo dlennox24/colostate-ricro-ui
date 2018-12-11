@@ -3,6 +3,7 @@ import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { combineReducers, createStore } from 'redux';
 import '../../assets/fonts/factoria.css';
 import '../../assets/fonts/proxima.css';
@@ -10,8 +11,8 @@ import theme from '../../assets/theme';
 import ContentWrapper from '../../core/ContentWrapper';
 import Footer from '../../core/Footer';
 import Header from '../../core/Header';
-import styles from './styles';
 import userReducer from '../../core/Login/reducer';
+import styles from './styles';
 
 const AppFrame = ({
   classes,
@@ -44,12 +45,19 @@ const AppFrame = ({
       store={createStore(combinedReducers, { ...config.defaultState, config }, reduxMiddleware)}
     >
       <MuiThemeProvider theme={createMuiTheme(theme)}>
-        <div id="cru-root" className={classes.root}>
-          <CssBaseline />
-          <Header unit={config.unit} />
-          <ContentWrapper app={config.app}>{children}</ContentWrapper>
-          <Footer />
-        </div>
+        <Router>
+          <div id="cru-root" className={classes.root}>
+            <CssBaseline />
+            <Header unit={config.unit} />
+            <ContentWrapper app={config.app}>
+              <Switch>
+                {children}
+                <Route component={() => <h1>404 - Not Found</h1>} />
+              </Switch>
+            </ContentWrapper>
+            <Footer />
+          </div>
+        </Router>
       </MuiThemeProvider>
     </Provider>
   );

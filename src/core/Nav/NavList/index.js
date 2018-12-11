@@ -8,8 +8,10 @@ import { withStyles } from '@material-ui/core/styles';
 import MdiIcon from '@mdi/react';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styles from './styles';
+import { Link } from 'react-router-dom';
+import { navItemShape } from '../../../assets/propTypes';
 import SubNavList from '../SubNavList';
+import styles from './styles';
 
 const NavList = ({
   classes,
@@ -43,8 +45,22 @@ const NavList = ({
                   );
                 }
 
+                let link;
+                let component;
+                if (navItem.link != null) {
+                  if (
+                    navItem.link.match(/^\/([A-Za-z\d/%=?&#]+)*\/*$/g) &&
+                    (navItem.linkComponent == null || navItem.linkComponent === Link)
+                  ) {
+                    link = { to: navItem.link };
+                    component = Link;
+                  } else {
+                    link = { href: navItem.link };
+                    component = 'a';
+                  }
+                }
                 return (
-                  <ListItem key={key} button dense={denseListItem}>
+                  <ListItem key={key} button dense={denseListItem} component={component} {...link}>
                     <ListItemIcon>
                       <Icon>
                         <MdiIcon path={navItem.icon} color={theme.palette.icon.main} />
@@ -69,7 +85,9 @@ NavList.propTypes = {
   denseListItem: PropTypes.bool,
   depth: PropTypes.number,
   keyPrefix: PropTypes.string,
-  nav: PropTypes.array.isRequired,
+  nav: PropTypes.arrayOf(
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.element, navItemShape.isRequired])),
+  ).isRequired,
   theme: PropTypes.object.isRequired, // MUI withTheme
 };
 

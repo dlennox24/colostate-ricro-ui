@@ -5,11 +5,12 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core/styles';
 import MdiIcon from '@mdi/react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
-import styles from './styles';
+import { navItemShape } from '../../../assets/propTypes';
 import NavList from '../NavList';
+import styles from './styles';
 
 class SubNavList extends React.Component {
   state = {
@@ -53,7 +54,7 @@ class SubNavList extends React.Component {
 SubNavList.propTypes = {
   classes: PropTypes.object.isRequired, // MUI withStyles()
   depth: PropTypes.number,
-  navItem: PropTypes.object.isRequired,
+  navItem: navItemShape.isRequired,
   nested: PropTypes.bool,
   theme: PropTypes.object.isRequired, // MUI withTheme
 };

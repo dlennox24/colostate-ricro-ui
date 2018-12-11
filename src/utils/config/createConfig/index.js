@@ -40,8 +40,8 @@ const createConfig = config => {
   // Merges the defaults{} and incoming config{} objects
   // Check if the object value in config{} is set and uses that value otherwise
   //  defaults to the value in defaults{}
-  const mergedConfig = _.mergeWith(defaults, config, (dValue, cValue) => {
-    return cValue || dValue;
+  const mergedConfig = _.mergeWith(defaults, config, (defaultValue, configValue) => {
+    return configValue || defaultValue;
   });
 
   // Generates the 2D array for the navigation list. Stacks the defaults{} above
@@ -57,7 +57,7 @@ const createConfig = config => {
     nav.unshift(<Login isLoggedIn />);
   }
   if (mergedConfig.app.basename !== '/') {
-    nav.unshift({ name: 'Apps', icon: mdiApps, link: '/' });
+    nav.unshift({ name: 'Apps', icon: mdiApps, link: '/', linkComponent: 'a' });
   }
 
   // _.get() checks if the route is valid in the {config{}} object. Returns undefined
