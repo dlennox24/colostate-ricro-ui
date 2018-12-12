@@ -9,7 +9,7 @@ const CommitteeAvatar = props => {
   const committee = Committees[props.committee];
   const baseSize = 32;
   const bgSize = size < 0 ? baseSize - Math.abs(size * baseSize) : Math.abs(size * baseSize);
-  const iconSize = bgSize - bgSize * 0.43;
+  const iconSize = bgSize - bgSize * 0.35;
 
   return (
     <Avatar
