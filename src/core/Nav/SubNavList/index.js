@@ -39,6 +39,7 @@ class SubNavList extends React.Component {
         </ListItem>
         <Collapse className={classNames(depth < 2 && classes.dropDown)} in={isOpen}>
           <NavList
+            linkPrefix={navItem.link}
             nav={navItem.subNav}
             keyPrefix={`subNavList-${navItem.name}-`}
             depth={depth}

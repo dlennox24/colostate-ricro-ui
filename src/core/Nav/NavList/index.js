@@ -19,6 +19,7 @@ const NavList = ({
   denseList,
   denseListItem,
   keyPrefix = 'navList-',
+  linkPrefix = '',
   nav,
   theme,
 }) => {
@@ -50,13 +51,15 @@ const NavList = ({
                     key={key}
                     button
                     dense={denseListItem}
-                    {...createMuiComponentLink(navItem)}
+                    {...createMuiComponentLink(navItem, linkPrefix)}
                   >
-                    <ListItemIcon>
-                      <Icon>
-                        <MdiIcon path={navItem.icon} color={theme.palette.icon.main} />
-                      </Icon>
-                    </ListItemIcon>
+                    {navItem.icon && (
+                      <ListItemIcon>
+                        <Icon>
+                          <MdiIcon path={navItem.icon} color={theme.palette.icon.main} />
+                        </Icon>
+                      </ListItemIcon>
+                    )}
                     <ListItemText primary={navItem.name} />
                   </ListItem>
                 );
@@ -76,6 +79,7 @@ NavList.propTypes = {
   denseListItem: PropTypes.bool,
   depth: PropTypes.number,
   keyPrefix: PropTypes.string,
+  linkPrefix: PropTypes.string,
   nav: PropTypes.arrayOf(
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.element, navItemShape.isRequired])),
   ).isRequired,

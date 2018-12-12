@@ -1,4 +1,12 @@
-import { mdiEraser, mdiFactory, mdiFolderNetwork } from '@mdi/js';
+import {
+  mdiAccount,
+  mdiAccountMultiple,
+  mdiAlertCircle,
+  mdiChevronDoubleDown,
+  mdiEraser,
+  mdiFolderNetwork,
+  mdiNetworkOffOutline,
+} from '@mdi/js';
 
 export default {
   app: {
@@ -7,33 +15,67 @@ export default {
     nav: [
       [
         {
-          name: 'Addresses',
-          icon: mdiEraser,
-          link: '/user',
+          name: 'Committees',
+          icon: mdiAccountMultiple,
+          link: '/committees',
+        },
+        {
+          name: 'HttpError',
+          icon: mdiAlertCircle,
+          link: '/http-error',
+          subNav: [
+            [
+              {
+                name: '401 - Not Authenticated',
+                link: '/401',
+              },
+              {
+                name: '403 - Forbidden',
+                link: '/403',
+              },
+              {
+                name: '404 - Not Found',
+                link: '/404',
+              },
+              {
+                name: '500 - Internal Server Error',
+                link: '/500',
+              },
+            ],
+          ],
+        },
+        {
+          name: 'User Profile',
+          icon: mdiAccount,
+          link: '/user-profile',
         },
       ],
       [
         {
-          name: 'Location',
-          icon: mdiFactory,
+          name: 'Example Dropdown (Level 0)',
+          icon: mdiChevronDoubleDown,
           subNav: [
             [
               {
-                name: 'AddressesSub1',
+                name: 'Level 1',
                 icon: mdiFolderNetwork,
                 subNav: [
                   [
                     {
-                      name: 'AddressesSub2',
-                      icon: mdiEraser,
-                      link: 'https://vpr.colostate.edu/ricro/contact-us',
+                      name: 'Level 2 - Section 1 - 1',
+                      link: '/',
+                    },
+                    {
+                      name: 'Level 2 - Section 1 - 2',
+                      icon: mdiNetworkOffOutline,
+                      link: '/',
                     },
                   ],
                   [
                     {
-                      name: 'AddressesSub2Section2',
+                      name: 'Level 2 - Section 2',
                       icon: mdiEraser,
-                      link: 'https://vpr.colostate.edu/ricro/contact-us',
+                      link: '/',
                     },
                   ],
                 ],
@@ -41,28 +83,17 @@ export default {
             ],
             [
               {
-                name: 'AddressesSub1Section2',
+                name: 'Level 1 - Section 2',
                 icon: mdiEraser,
-                link: 'https://vpr.colostate.edu/ricro/contact-us',
+                link: '/',
               },
             ],
           ],
         },
         {
-          name: 'Home Page (404)',
+          name: 'Example 404 Route',
           icon: mdiFolderNetwork,
-          link: '/home',
-        },
-        {
-          name: 'Root',
-          icon: mdiFolderNetwork,
-          link: '/',
-        },
-        {
-          name:
-            "Super long name testing width of the drawer and the wrapping of the text because you shouldn't do this but testing must be done with massive run on sentences",
-          icon: mdiFolderNetwork,
-          link: 'https://vpr.colostate.edu/ricro/ibc',
+          link: '/does-not-exist',
         },
       ],
     ],
