@@ -28,7 +28,7 @@ const Nav = ({ classes, container, isMobileOpen, nav, setMobileOpen, theme }) =>
         }}
       >
         <Toolbar>
-          <div className={classes.flex} />
+          <div className={classes.swipeableDrawerToolbar} />
           <Tooltip title="Close Navigation">
             <IconButton onClick={setMobileOpen(false)} aria-label="Close Navigation">
               <Icon>
@@ -42,8 +42,8 @@ const Nav = ({ classes, container, isMobileOpen, nav, setMobileOpen, theme }) =>
       </SwipeableDrawer>
     </Hidden>
     <Hidden className={classes.drawerDocked} mdDown implementation="css">
-      <Paper className={classes.flex} square>
-        <NavList nav={nav} />
+      <Paper className={classes.swipeableDrawerToolbar} square>
+        <NavList className={classes.stickyNav} nav={nav} />
       </Paper>
     </Hidden>
   </nav>

@@ -54,28 +54,30 @@ export default {
         {
           name: 'Example Dropdown (Level 0)',
           icon: mdiChevronDoubleDown,
+          link: '/example',
           subNav: [
             [
               {
                 name: 'Level 1',
                 icon: mdiFolderNetwork,
+                link: '/level-1',
                 subNav: [
                   [
                     {
                       name: 'Level 2 - Section 1 - 1',
-                      link: '/',
+                      link: '/l2-s1-1',
                     },
                     {
                       name: 'Level 2 - Section 1 - 2',
                       icon: mdiNetworkOffOutline,
-                      link: '/',
+                      link: '/l2-s1-2',
                     },
                   ],
                   [
                     {
                       name: 'Level 2 - Section 2',
                       icon: mdiEraser,
-                      link: '/',
+                      link: '/l2-s2',
                     },
                   ],
                 ],
@@ -85,7 +87,7 @@ export default {
               {
                 name: 'Level 1 - Section 2',
                 icon: mdiEraser,
-                link: '/',
+                link: '/l1-s2',
               },
             ],
           ],

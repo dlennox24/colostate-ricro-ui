@@ -24,7 +24,6 @@ const styles = theme => ({
     alignItems: 'center',
     height: '100%',
     flexDirection: 'column',
-    justifyContent: 'space-between',
   },
   subheader: {
     padding: '15px 0',

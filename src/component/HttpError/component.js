@@ -15,10 +15,10 @@ const HttpError = props => {
   return (
     <div className={classes.root}>
       <div className={classes.errorContainer}>
-        <Typography variant="h1" className={classes.pulse}>
+        <Typography variant="h1" className={classes.pulse} component="span">
           {error.code}
         </Typography>
-        <Typography variant="h3" className={classes.title}>
+        <Typography variant="h4" className={classes.title} component="span">
           {error.title}
         </Typography>
         <Divider />

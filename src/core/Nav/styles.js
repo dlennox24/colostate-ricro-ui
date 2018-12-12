@@ -8,12 +8,16 @@ const styles = theme => ({
   drawerDocked: {
     [theme.breakpoints.up('lg')]: {
       display: 'flex',
-      flex: 1,
     },
   },
-  flex: {
-    flex: 1,
+  stickyNav: {
+    display: 'table',
+    position: 'sticky',
+    top: 67, // height of sticky header + its bottom border
+  },
+  swipeableDrawerToolbar: {
     display: 'flex',
+    flex: 1,
   },
 });
 

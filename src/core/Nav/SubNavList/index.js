@@ -8,6 +8,7 @@ import MdiIcon from '@mdi/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { matchPath, withRouter } from 'react-router-dom';
 import { navItemShape } from '../../../assets/propTypes';
 import NavList from '../NavList';
 import styles from './styles';
@@ -24,11 +25,21 @@ class SubNavList extends React.Component {
   };
 
   render() {
-    const { classes, depth, navItem, nested, theme } = this.props;
+    const { classes, depth, linkPrefix = '', location, navItem, nested, theme } = this.props;
     const { isOpen } = this.state;
+    const active = matchPath(location.pathname, {
+      path: linkPrefix + navItem.link,
+      // exact: true,
+    });
     return (
       <React.Fragment key={`subNav${navItem.name}`}>
-        <ListItem key={navItem.name} onClick={this.handleToggleDropDown} dense={nested} button>
+        <ListItem
+          key={navItem.name}
+          className={classNames(active && classes.active)}
+          onClick={this.handleToggleDropDown}
+          dense={nested}
+          button
+        >
           <ListItemIcon>
             <Icon>
               <MdiIcon path={navItem.icon} color={theme.palette.icon.main} />
@@ -39,7 +50,7 @@ class SubNavList extends React.Component {
         </ListItem>
         <Collapse className={classNames(depth < 2 && classes.dropDown)} in={isOpen}>
           <NavList
-            linkPrefix={navItem.link}
+            linkPrefix={linkPrefix + navItem.link}
             nav={navItem.subNav}
             keyPrefix={`subNavList-${navItem.name}-`}
             depth={depth}
@@ -55,9 +66,11 @@ class SubNavList extends React.Component {
 SubNavList.propTypes = {
   classes: PropTypes.object.isRequired, // MUI withStyles()
   depth: PropTypes.number,
+  linkPrefix: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired, // react-router withRouter()
   navItem: navItemShape.isRequired,
   nested: PropTypes.bool,
   theme: PropTypes.object.isRequired, // MUI withTheme
 };
 
-export default withStyles(styles, { withTheme: true })(SubNavList);
+export default withRouter(withStyles(styles, { withTheme: true })(SubNavList));

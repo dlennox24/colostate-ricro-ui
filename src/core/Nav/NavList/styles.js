@@ -6,6 +6,13 @@ const styles = theme => ({
       maxWidth: 400,
     },
   },
+  active: {
+    borderRight: `4px solid ${theme.palette.secondary.main}`,
+  },
+  subNavList: {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
 });
 
 export default styles;
