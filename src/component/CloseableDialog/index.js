@@ -36,20 +36,15 @@ const CloseableDialog = ({
       aria-labelledby={id}
       {...dialogProps}
     >
-      <DialogTitle
-        classes={{
-          root: classes.dialogTitleRoot,
-        }}
-        disableTypography
-      >
+      <DialogTitle classes={{ root: classes.dialogTitleRoot }} disableTypography>
         <AppBar position="static" component="div" color={headerColor}>
           <Toolbar>
             <Typography id={id} variant="h5" color="inherit">
               {header}
             </Typography>
             <div className={classes.flex} />
-            <Tooltip title="Close Account">
-              <IconButton onClick={onClose} color="inherit" aria-label="Close Account">
+            <Tooltip title={`Close ${header}`}>
+              <IconButton onClick={onClose} color="inherit" aria-label={`Close ${header}`}>
                 <Icon>
                   <MdiIcon path={mdiClose} color={theme.palette[headerColor].contrastText} />
                 </Icon>

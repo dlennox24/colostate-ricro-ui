@@ -22,10 +22,10 @@ export default {
     type: 'light',
     // type: 'dark',
     primary: {
-      main: '#1e4d2b',
+      main: csu.primary.green,
     },
     secondary: {
-      main: '#d8772d',
+      main: csu.secondary.aggieOrange,
     },
     csu,
     alerts: {

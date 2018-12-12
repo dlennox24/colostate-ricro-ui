@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Nav from '../Nav';
 import styles from './styles';
+import BrowserCompatibilityWarning from '../BrowserCompatibilityWarning';
 
 class ContentWrapper extends React.Component {
   state = {
@@ -24,34 +25,37 @@ class ContentWrapper extends React.Component {
     const { app, classes, children, container } = this.props;
 
     return (
-      <div className={classes.root}>
-        <AppBar position="static" className={classes.appBar} color="default">
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.setMobileOpen(true)}
-              className={classes.menuButton}
-            >
-              <Icon>
-                <MdiIcon path={mdiMenu} size={1} />
-              </Icon>
-            </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
-              {app.name}
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <div className={classes.flex}>
-          <Nav
-            nav={app.nav}
-            container={container}
-            isMobileOpen={this.state.isMobileOpen}
-            setMobileOpen={this.setMobileOpen}
-          />
-          <main className={classes.content}>{children}</main>
+      <React.Fragment>
+        <div className={classes.root}>
+          <AppBar position="static" className={classes.appBar} color="default">
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={this.setMobileOpen(true)}
+                className={classes.menuButton}
+              >
+                <Icon>
+                  <MdiIcon path={mdiMenu} size={1} />
+                </Icon>
+              </IconButton>
+              <Typography variant="h6" color="inherit" noWrap>
+                {app.name}
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <div className={classes.flex}>
+            <Nav
+              nav={app.nav}
+              container={container}
+              isMobileOpen={this.state.isMobileOpen}
+              setMobileOpen={this.setMobileOpen}
+            />
+            <main className={classes.content}>{children}</main>
+          </div>
         </div>
-      </div>
+        <BrowserCompatibilityWarning />
+      </React.Fragment>
     );
   }
 }
