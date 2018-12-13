@@ -11,7 +11,7 @@ import theme from '../../assets/theme';
 import ContentWrapper from '../../core/ContentWrapper';
 import Footer from '../../core/Footer';
 import Header from '../../core/Header';
-import userReducer from '../../core/Login/reducer';
+import userReducer from '../../core/LoginLogout/reducer';
 import HttpError from '../HttpError';
 import styles from './styles';
 

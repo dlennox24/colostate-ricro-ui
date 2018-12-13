@@ -2,7 +2,7 @@ import _ from 'lodash';
 import IconApps from 'mdi-material-ui/Apps';
 import IconEmail from 'mdi-material-ui/Email';
 import React from 'react';
-import Login from '../../../core/Login';
+import LoginLogout from '../../../core/LoginLogout';
 
 const contactHref = 'https://vpr.colostate.edu/ricro/contact-us';
 const defaults = {
@@ -45,7 +45,7 @@ const createConfig = config => {
   //  the list items from config{}
   const nav = [{ name: 'Contact Us', icon: <IconEmail />, link: mergedConfig.unit.contactHref }];
   if (mergedConfig.app.hasLogin) {
-    nav.unshift(<Login isLoggedIn />);
+    nav.unshift(<LoginLogout isLoggedIn />);
   }
   if (mergedConfig.app.basename !== '/') {
     nav.unshift({ name: 'Apps', icon: <IconApps />, link: '/', linkComponent: 'a' });

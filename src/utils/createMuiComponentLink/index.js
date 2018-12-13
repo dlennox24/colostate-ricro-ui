@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const createMuiComponentLink = (navItem, linkPrefix) => {
+const createMuiComponentLink = (navItem, linkPrefix = '') => {
   let componentProps = {};
   if (navItem.link != null) {
     if (

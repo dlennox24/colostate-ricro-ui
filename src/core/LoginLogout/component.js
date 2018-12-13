@@ -16,7 +16,7 @@ import UserProfile from '../../component/UserProfile';
 import testDataUser from '../../test-data/user'; // TODO: remove after linkage with redux
 import styles from './styles';
 
-class Login extends React.Component {
+class LoginLogoutComponent extends React.Component {
   state = {
     isUserProfileOpen: false,
   };
@@ -92,11 +92,11 @@ class Login extends React.Component {
   }
 }
 
-Login.propTypes = {
+LoginLogoutComponent.propTypes = {
   classes: PropTypes.object.isRequired, // MUI withStyles()
   handleLogin: PropTypes.func.isRequired, // redux - index.js:mapDispatchToProps
   handleLogout: PropTypes.func.isRequired, // redux - index.js:mapDispatchToProps
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]), // redux state
 };
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(LoginLogoutComponent);

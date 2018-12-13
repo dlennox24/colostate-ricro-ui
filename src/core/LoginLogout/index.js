@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { login, logout } from './actions';
-import LoginComponent from './component';
+import LoginLogoutComponent from './component';
 
 const mapStateToProps = state => {
   return {
@@ -19,9 +19,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const Login = connect(
+const LoginLogout = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LoginComponent);
+)(LoginLogoutComponent);
 
-export default Login;
+export default LoginLogout;

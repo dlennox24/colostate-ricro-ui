@@ -9,7 +9,7 @@ import createMuiComponentLink from '../../utils/createMuiComponentLink';
 import getErrorObject from './getErrorObject';
 import styles from './styles';
 
-const HttpError = props => {
+const HttpErrorComponent = props => {
   const { classes, code, config, linkedButton, subheader } = props;
   const error = getErrorObject({ classes, code, config, linkedButton, subheader });
   return (
@@ -48,7 +48,7 @@ const HttpError = props => {
   );
 };
 
-HttpError.propTypes = {
+HttpErrorComponent.propTypes = {
   classes: PropTypes.object.isRequired, // MUI withStyles()
   code: PropTypes.oneOf([401, 403, 404, 500]),
   config: PropTypes.object.isRequired, // redux state
@@ -56,4 +56,4 @@ HttpError.propTypes = {
   subheader: PropTypes.node,
 };
 
-export default withStyles(styles)(HttpError);
+export default withStyles(styles)(HttpErrorComponent);
