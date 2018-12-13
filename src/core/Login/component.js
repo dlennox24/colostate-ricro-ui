@@ -1,12 +1,14 @@
 import Avatar from '@material-ui/core/Avatar';
 import Collapse from '@material-ui/core/Collapse';
-import Icon from '@material-ui/core/Icon';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { withStyles, withTheme } from '@material-ui/core/styles';
-import { mdiLoginVariant, mdiLogoutVariant } from '@mdi/js';
-import MdiIcon from '@mdi/react';
+import { withStyles } from '@material-ui/core/styles';
+import IconAccountCircle from 'mdi-material-ui/AccountCircle';
+import IconChevronDown from 'mdi-material-ui/ChevronDown';
+import IconChevronUp from 'mdi-material-ui/ChevronUp';
+import IconLoginVariant from 'mdi-material-ui/LoginVariant';
+import IconLogoutVariant from 'mdi-material-ui/LogoutVariant';
 import PropTypes from 'prop-types';
 import React from 'react';
 import userDefaultProfileImg from '../../assets/img/default-profile.svg';
@@ -43,7 +45,7 @@ class Login extends React.Component {
   };
 
   render() {
-    const { classes, handleLogout, theme, user } = this.props;
+    const { classes, handleLogout, user } = this.props;
     const { isDropDownOpen, isUserProfileOpen } = this.state;
     const isLoggedIn = Boolean(user);
     return (
@@ -57,30 +59,22 @@ class Login extends React.Component {
                 src={user.profileImg || userDefaultProfileImg}
               />
             ) : (
-              <Icon>
-                <MdiIcon path={mdiLoginVariant} size={1} color={theme.palette.icon.main} />
-              </Icon>
+              <IconLoginVariant />
             )}
           </ListItemIcon>
           <ListItemText inset primary={isLoggedIn ? user.displayName : 'Login'} />
-          {isLoggedIn && (
-            <Icon>
-              {isDropDownOpen && isLoggedIn ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}
-            </Icon>
-          )}
+          {isLoggedIn && (isDropDownOpen ? <IconChevronUp /> : <IconChevronDown />)}
         </ListItem>
         <Collapse className={classes.dropDown} in={isDropDownOpen && isLoggedIn}>
           <ListItem button dense onClick={this.handleOpenUserProfile}>
             <ListItemIcon>
-              <Icon>account_circle</Icon>
+              <IconAccountCircle />
             </ListItemIcon>
             <ListItemText inset primary="Account" />
           </ListItem>
           <ListItem button dense onClick={handleLogout}>
             <ListItemIcon>
-              <Icon>
-                <MdiIcon path={mdiLogoutVariant} size={1} color={theme.palette.icon.main} />
-              </Icon>
+              <IconLogoutVariant />
             </ListItemIcon>
             <ListItemText inset primary="Logout" />
           </ListItem>
@@ -99,11 +93,10 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  classes: PropTypes.object.isRequired, // MUI withStyles
+  classes: PropTypes.object.isRequired, // MUI withStyles()
   handleLogin: PropTypes.func.isRequired, // redux - index.js:mapDispatchToProps
   handleLogout: PropTypes.func.isRequired, // redux - index.js:mapDispatchToProps
-  theme: PropTypes.object.isRequired, // MUI withTheme
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]), // redux state
 };
 
-export default withTheme()(withStyles(styles)(Login));
+export default withStyles(styles)(Login);

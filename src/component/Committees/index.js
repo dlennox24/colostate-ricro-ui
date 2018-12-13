@@ -1,14 +1,13 @@
 import { blue, cyan, deepPurple, grey, lightGreen, red, yellow } from '@material-ui/core/colors';
-import {
-  mdiAccountMultiple,
-  mdiEarth,
-  mdiFlask,
-  mdiPaw,
-  mdiScaleBalance,
-  mdiShieldCheck,
-} from '@mdi/js';
+import IconAccountMultiple from 'mdi-material-ui/AccountMultiple';
+import IconEarth from 'mdi-material-ui/Earth';
+import IconFlask from 'mdi-material-ui/Flask';
+import IconPaw from 'mdi-material-ui/Paw';
+import IconScaleBalance from 'mdi-material-ui/ScaleBalance';
+import IconShieldCheck from 'mdi-material-ui/ShieldCheck';
+import React from 'react';
 
-export default {
+const committees = {
   keys: ['iacuc', 'ibc', 'irb', 'qa', 'rcr', 'xc'],
   iacuc: {
     name: 'Institutional Animal Care and Use Committee',
@@ -17,7 +16,7 @@ export default {
     bgColor: red[500],
     iconColor: grey[50],
     iconBgColor: red[800],
-    icon: mdiPaw,
+    icon: <IconPaw />,
   },
   ibc: {
     name: 'Institutional Biosafety Committee',
@@ -26,7 +25,7 @@ export default {
     bgColor: lightGreen[500],
     iconColor: grey[50],
     iconBgColor: lightGreen[800],
-    icon: mdiFlask,
+    icon: <IconFlask />,
   },
   irb: {
     name: 'Institutional Review Board',
@@ -35,7 +34,7 @@ export default {
     bgColor: deepPurple[500],
     iconColor: grey[50],
     iconBgColor: deepPurple[800],
-    icon: mdiAccountMultiple,
+    icon: <IconAccountMultiple />,
   },
   qa: {
     name: 'Quality Assurance',
@@ -44,7 +43,7 @@ export default {
     bgColor: cyan[300],
     iconColor: grey[50],
     iconBgColor: cyan[800],
-    icon: mdiShieldCheck,
+    icon: <IconShieldCheck />,
   },
   rcr: {
     name: 'Responsible Conduct of Research',
@@ -53,7 +52,7 @@ export default {
     bgColor: yellow[500],
     iconColor: grey[900],
     iconBgColor: yellow[800],
-    icon: mdiScaleBalance,
+    icon: <IconScaleBalance />,
   },
   xc: {
     name: 'Export Control',
@@ -62,6 +61,16 @@ export default {
     bgColor: blue[500],
     iconColor: grey[50],
     iconBgColor: blue[800],
-    icon: mdiEarth,
+    icon: <IconEarth />,
   },
 };
+
+const iacuc = committees.iacuc;
+const ibc = committees.ibc;
+const irb = committees.irb;
+const qa = committees.qa;
+const rcr = committees.rcr;
+const xc = committees.xc;
+
+export default committees;
+export { iacuc, ibc, irb, qa, rcr, xc };

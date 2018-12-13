@@ -1,14 +1,13 @@
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import DialogContent from '@material-ui/core/DialogContent';
+import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import MdiIcon from '@mdi/react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import CloseableDialog from '../../component/CloseableDialog';
-import styles from './styles';
-import DialogContent from '@material-ui/core/DialogContent';
 import browsers from './browsers';
+import styles from './styles';
 
 class IeWarning extends React.Component {
   state = {
@@ -31,7 +30,7 @@ class IeWarning extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     const { open } = this.state;
 
     return (
@@ -60,7 +59,7 @@ class IeWarning extends React.Component {
                     md="3"
                     className={classes.browserPaper}
                   >
-                    <MdiIcon path={browser.icon} size="100px" color={theme.palette.icon.main} />
+                    {browser.icon}
                     <Button variant="outlined">{`Download ${browser.name}`}</Button>
                   </Grid>
                 ))}
@@ -75,7 +74,6 @@ class IeWarning extends React.Component {
 
 IeWarning.propTypes = {
   classes: PropTypes.object.isRequired, // MUI withStyles()
-  theme: PropTypes.object.isRequired, // MUI withTheme
 };
 
-export default withStyles(styles, { withTheme: true })(IeWarning);
+export default withStyles(styles)(IeWarning);

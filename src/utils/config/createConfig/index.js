@@ -1,5 +1,6 @@
-import { mdiApps, mdiEmail } from '@mdi/js';
 import _ from 'lodash';
+import IconApps from 'mdi-material-ui/Apps';
+import IconEmail from 'mdi-material-ui/Email';
 import React from 'react';
 import Login from '../../../core/Login';
 
@@ -16,12 +17,8 @@ const defaults = {
     hasAutoLogin: false,
     nav: [
       [
-        { name: 'Apps', icon: mdiApps, link: '/' },
-        {
-          name: 'Contact Us',
-          icon: mdiEmail,
-          link: contactHref,
-        },
+        { name: 'Apps', icon: <IconApps />, link: '/' },
+        { name: 'Contact Us', icon: <IconEmail />, link: contactHref },
       ],
     ],
   },
@@ -46,18 +43,12 @@ const createConfig = config => {
 
   // Generates the 2D array for the navigation list. Stacks the defaults{} above
   //  the list items from config{}
-  const nav = [
-    {
-      name: 'Contact Us',
-      icon: mdiEmail,
-      link: mergedConfig.unit.contactHref,
-    },
-  ];
+  const nav = [{ name: 'Contact Us', icon: <IconEmail />, link: mergedConfig.unit.contactHref }];
   if (mergedConfig.app.hasLogin) {
     nav.unshift(<Login isLoggedIn />);
   }
   if (mergedConfig.app.basename !== '/') {
-    nav.unshift({ name: 'Apps', icon: mdiApps, link: '/', linkComponent: 'a' });
+    nav.unshift({ name: 'Apps', icon: <IconApps />, link: '/', linkComponent: 'a' });
   }
 
   // _.get() checks if the route is valid in the {config{}} object. Returns undefined

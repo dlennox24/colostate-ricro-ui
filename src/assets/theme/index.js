@@ -20,7 +20,6 @@ const csu = {
 export default {
   palette: {
     type: 'light',
-    // type: 'dark',
     primary: {
       main: csu.primary.green,
     },

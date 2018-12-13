@@ -1,9 +1,10 @@
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
-import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
-import { mdiHelpNetwork, mdiLoginVariant } from '@mdi/js';
-import MdiIcon from '@mdi/react';
+import IconApps from 'mdi-material-ui/Apps';
+import IconEmail from 'mdi-material-ui/Email';
+import IconHelpNetwork from 'mdi-material-ui/HelpNetwork';
+import IconLoginVariant from 'mdi-material-ui/LoginVariant';
 import React from 'react';
 
 const getErrorObject = ({ classes, code, config, linkedButton, subheader }) => {
@@ -14,7 +15,7 @@ const getErrorObject = ({ classes, code, config, linkedButton, subheader }) => {
       subheader: 'You must login to view this content.',
       linkedButton: [
         {
-          icon: <MdiIcon path={mdiLoginVariant} />,
+          icon: <IconLoginVariant className={classes.iconLeft} />,
           title: 'Login',
           link: `${config.api.auth}?return=${window.location.pathname}`,
         },
@@ -25,9 +26,9 @@ const getErrorObject = ({ classes, code, config, linkedButton, subheader }) => {
       title: 'Forbidden',
       subheader: 'You do not have the correct permissions to access this content.',
       linkedButton: [
-        { icon: <Icon className={classes.mdIcon}>apps</Icon>, title: 'Apps', link: '/' },
+        { icon: <IconApps className={classes.iconLeft} />, title: 'Apps', link: '/' },
         {
-          icon: <Icon className={classes.mdIcon}>email</Icon>,
+          icon: <IconEmail className={classes.iconLeft} />,
           title: 'Contact Us',
           link: config.unit.contactHref,
           buttonProps: { variant: 'outlined' },
@@ -45,7 +46,7 @@ const getErrorObject = ({ classes, code, config, linkedButton, subheader }) => {
           <Chip
             avatar={
               <Avatar>
-                <MdiIcon path={mdiHelpNetwork} />
+                <IconHelpNetwork />
               </Avatar>
             }
             label={<Typography variant="h6">{window.location.pathname}</Typography>}
@@ -54,9 +55,9 @@ const getErrorObject = ({ classes, code, config, linkedButton, subheader }) => {
         </React.Fragment>
       ),
       linkedButton: [
-        { icon: <Icon className={classes.mdIcon}>apps</Icon>, title: 'Apps', link: '/' },
+        { icon: <IconApps className={classes.iconLeft} />, title: 'Apps', link: '/' },
         {
-          icon: <Icon className={classes.mdIcon}>email</Icon>,
+          icon: <IconEmail className={classes.iconLeft} />,
           title: 'Contact Us',
           link: config.unit.contactHref,
           buttonProps: { variant: 'outlined' },
@@ -70,7 +71,7 @@ const getErrorObject = ({ classes, code, config, linkedButton, subheader }) => {
         'An error occured. Please try again. If this continues to happen please contact us.',
       linkedButton: [
         {
-          icon: <Icon className={classes.mdIcon}>email</Icon>,
+          icon: <IconEmail className={classes.iconLeft} />,
           title: 'Contact Us',
           link: config.unit.contactHref,
           buttonProps: { variant: 'outlined' },

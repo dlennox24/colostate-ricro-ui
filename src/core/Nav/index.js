@@ -1,20 +1,18 @@
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
-import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
-import { mdiClose } from '@mdi/js';
-import MdiIcon from '@mdi/react';
+import IconClose from 'mdi-material-ui/Close';
 import PropTypes from 'prop-types';
 import React from 'react';
 import NavList from './NavList';
 import styles from './styles';
 
-const Nav = ({ classes, container, isMobileOpen, nav, setMobileOpen, theme }) => (
+const Nav = ({ classes, container, isMobileOpen, nav, setMobileOpen }) => (
   <nav className={classes.drawer}>
     <Hidden lgUp implementation="js">
       <SwipeableDrawer
@@ -31,9 +29,7 @@ const Nav = ({ classes, container, isMobileOpen, nav, setMobileOpen, theme }) =>
           <div className={classes.swipeableDrawerToolbar} />
           <Tooltip title="Close Navigation">
             <IconButton onClick={setMobileOpen(false)} aria-label="Close Navigation">
-              <Icon>
-                <MdiIcon path={mdiClose} color={theme.palette.icon.main} />
-              </Icon>
+              <IconClose />
             </IconButton>
           </Tooltip>
         </Toolbar>
@@ -55,7 +51,6 @@ Nav.propTypes = {
   isMobileOpen: PropTypes.bool.isRequired,
   nav: PropTypes.array.isRequired,
   setMobileOpen: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired, // MUI withTheme
 };
 
-export default withStyles(styles, { withTheme: true })(Nav);
+export default withStyles(styles)(Nav);

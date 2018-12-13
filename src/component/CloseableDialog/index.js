@@ -1,15 +1,13 @@
 import AppBar from '@material-ui/core/AppBar';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles, withTheme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
-import { mdiClose } from '@mdi/js';
-import MdiIcon from '@mdi/react';
+import IconClose from 'mdi-material-ui/Close';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './styles';
@@ -45,9 +43,7 @@ const CloseableDialog = ({
             <div className={classes.flex} />
             <Tooltip title={`Close ${header}`}>
               <IconButton onClick={onClose} color="inherit" aria-label={`Close ${header}`}>
-                <Icon>
-                  <MdiIcon path={mdiClose} color={theme.palette[headerColor].contrastText} />
-                </Icon>
+                <IconClose />
               </IconButton>
             </Tooltip>
           </Toolbar>

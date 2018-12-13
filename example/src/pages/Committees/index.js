@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { Committees, CommitteeChip, CommitteeAvatar } from 'colostate-ricro-ui';
-import styles from './styles';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
+import { CommitteeAvatar, CommitteeChip, Committees } from 'colostate-ricro-ui';
+import PropTypes from 'prop-types';
+import React from 'react';
+import styles from './styles';
 
 const CommitteeEx = ({ classes }) => (
   <React.Fragment>

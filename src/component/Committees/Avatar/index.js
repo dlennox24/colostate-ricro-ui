@@ -1,30 +1,29 @@
 import Avatar from '@material-ui/core/Avatar';
-import MdiIcon from '@mdi/react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Committees from '..';
 
-const CommitteeAvatar = props => {
-  const { className, size = 1 } = props;
-  const committee = Committees[props.committee];
+const CommitteeAvatar = ({ className, committee, size = 1 }) => {
+  const committeeObj = Committees[committee];
   const baseSize = 32;
   const bgSize = size < 0 ? baseSize - Math.abs(size * baseSize) : Math.abs(size * baseSize);
   const iconSize = bgSize - bgSize * 0.35;
-
+  const style = {
+    height: `${iconSize}px`,
+    width: `${iconSize}px`,
+    color: committeeObj.iconColor,
+  };
   return (
     <Avatar
-      className={className}
+      className={classNames(className)}
       style={{
-        backgroundColor: committee.iconBgColor,
+        backgroundColor: committeeObj.iconBgColor,
         height: `${bgSize}px`,
         width: `${bgSize}px`,
       }}
     >
-      <MdiIcon
-        path={committee.icon}
-        color={committee.iconColor}
-        style={{ height: `${iconSize}px`, width: `${iconSize}px` }}
-      />
+      {React.cloneElement(committeeObj.icon, { style })}
     </Avatar>
   );
 };

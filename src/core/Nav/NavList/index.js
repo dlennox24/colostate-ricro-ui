@@ -1,17 +1,15 @@
 import Divider from '@material-ui/core/Divider';
-import Icon from '@material-ui/core/Icon';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core/styles';
-import MdiIcon from '@mdi/react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { matchPath, withRouter } from 'react-router-dom';
 import { navItemShape } from '../../../assets/propTypes';
 import createMuiComponentLink from '../../../utils/createMuiComponentLink';
+import NavListItemIcon from '../NavListItemIcon';
 import SubNavList from '../SubNavList';
 import styles from './styles';
 
@@ -25,10 +23,8 @@ const NavList = ({
   keyPrefix = 'navList-',
   linkPrefix = '',
   nav,
-  theme,
   location,
 }) => {
-  // debugger; // set active class on active nav items
   return (
     <div id={id} className={classNames(classes.root, className)}>
       {nav.map((list, i) => {
@@ -65,13 +61,7 @@ const NavList = ({
                     dense={denseListItem}
                     {...createMuiComponentLink(navItem, linkPrefix)}
                   >
-                    {navItem.icon && (
-                      <ListItemIcon>
-                        <Icon>
-                          <MdiIcon path={navItem.icon} color={theme.palette.icon.main} />
-                        </Icon>
-                      </ListItemIcon>
-                    )}
+                    {navItem.icon && <NavListItemIcon>{navItem.icon}</NavListItemIcon>}
                     <ListItemText primary={navItem.name} />
                   </ListItem>
                 );
@@ -98,7 +88,6 @@ NavList.propTypes = {
   nav: PropTypes.arrayOf(
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.element, navItemShape.isRequired])),
   ).isRequired,
-  theme: PropTypes.object.isRequired, // MUI withTheme
 };
 
-export default withRouter(withStyles(styles, { withTheme: true })(NavList));
+export default withRouter(withStyles(styles)(NavList));

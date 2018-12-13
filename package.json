@@ -19,13 +19,14 @@
     "start": "rollup -c -w",
     "prepare": "npm run build",
     "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "lint": "eslint \"src/**/*.js\" \"example/src/**/*.js\"",
+    "lint:fix": "eslint \"src/**/*.js\" \"example/src/**/*.js\" --fix"
   },
   "peerDependencies": {
     "@material-ui/core": "^3.5.1",
-    "@mdi/js": "^3.0.39",
-    "@mdi/react": "^1.1.0",
     "jquery": "^3.3.1",
+    "mdi-material-ui": "^5.7.0",
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",

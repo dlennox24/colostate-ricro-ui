@@ -12,8 +12,8 @@ import ContentWrapper from '../../core/ContentWrapper';
 import Footer from '../../core/Footer';
 import Header from '../../core/Header';
 import userReducer from '../../core/Login/reducer';
-import styles from './styles';
 import HttpError from '../HttpError';
+import styles from './styles';
 
 const AppFrame = ({
   classes,

@@ -15,8 +15,7 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
-  mdIcon: {
-    fontSize: theme.spacing.unit * 2,
+  iconLeft: {
     marginRight: theme.spacing.unit,
   },
   root: {

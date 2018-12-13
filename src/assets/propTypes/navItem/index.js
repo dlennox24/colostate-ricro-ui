@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const navItemShape = {
-  icon: PropTypes.string,
+  icon: PropTypes.node,
   link: PropTypes.string,
   linkComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   name: PropTypes.string.isRequired,

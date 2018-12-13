@@ -1,16 +1,14 @@
 import AppBar from '@material-ui/core/AppBar';
-import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { mdiMenu } from '@mdi/js';
-import MdiIcon from '@mdi/react';
+import IconMenu from 'mdi-material-ui/Menu';
 import PropTypes from 'prop-types';
 import React from 'react';
+import BrowserCompatibilityWarning from '../BrowserCompatibilityWarning';
 import Nav from '../Nav';
 import styles from './styles';
-import BrowserCompatibilityWarning from '../BrowserCompatibilityWarning';
 
 class ContentWrapper extends React.Component {
   state = {
@@ -31,13 +29,11 @@ class ContentWrapper extends React.Component {
             <Toolbar>
               <IconButton
                 color="inherit"
-                aria-label="Open drawer"
+                aria-label="Open navigation"
                 onClick={this.setMobileOpen(true)}
                 className={classes.menuButton}
               >
-                <Icon>
-                  <MdiIcon path={mdiMenu} size={1} />
-                </Icon>
+                <IconMenu />
               </IconButton>
               <Typography variant="h6" color="inherit" noWrap>
                 {app.name}

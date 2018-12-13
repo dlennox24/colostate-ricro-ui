@@ -16,23 +16,22 @@ const styles = theme => ({
   },
 });
 
-const CommitteeChip = props => {
-  const { classes } = props;
-  const committee = Committees[props.committee];
+const CommitteeChip = ({ classes, committee }) => {
+  const committeeObj = Committees[committee];
   return (
-    <Tooltip title={committee.name}>
+    <Tooltip title={committeeObj.name}>
       <Chip
         className={classes.chip}
-        style={{ backgroundColor: committee.bgColor }}
+        style={{ backgroundColor: committeeObj.bgColor }}
         avatar={
           <CommitteeAvatar
             className={classes.avatarRoot}
-            committee={committee.alias.toLowerCase()}
+            committee={committeeObj.alias.toLowerCase()}
           />
         }
         label={
-          <Typography style={{ color: committee.textColor }} variant="body1">
-            {committee.alias}
+          <Typography style={{ color: committeeObj.textColor }} variant="body1">
+            {committeeObj.alias}
           </Typography>
         }
       />
