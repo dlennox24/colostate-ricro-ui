@@ -1,4 +1,5 @@
 import AppBar from '@material-ui/core/AppBar';
+import Collapse from '@material-ui/core/Collapse';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import $ from 'jquery';
@@ -8,17 +9,19 @@ import React from 'react';
 class Header extends React.Component {
   state = {
     isLoaded: false,
+    isOpen: false,
   };
 
   componentDidMount() {
-    $.getScript('https://static.colostate.edu/logo/reslogo/logo.min.js', () => {
+    $.getScript('https://static.colostate.edu/logo/reslogo/logo.min.js').done(() => {
       this.setState({ isLoaded: true });
+      setTimeout(() => this.setState({ isOpen: true }), 300);
     });
   }
 
   render() {
     const { unit } = this.props;
-    const { isLoaded } = this.state;
+    const { isLoaded, isOpen } = this.state;
     return (
       <AppBar id="csuLogoBar" position="static" color="primary">
         <Toolbar>
@@ -27,20 +30,22 @@ class Header extends React.Component {
               {unit.name}
             </Typography>
           ) : (
-            <div className="signature">
-              <section id="BrandLogo" className="fontLarge">
-                <div className="responsiveLogoContainer">
-                  <div id="responsiveLogo" />
-                  <div id="responsiveLogoSubsytem">
-                    <h2>
-                      <a id="unit-title" href={unit.siteHref}>
-                        {unit.name}
-                      </a>
-                    </h2>
+            <Collapse in={isOpen}>
+              <div className="signature">
+                <section id="BrandLogo" className="fontLarge">
+                  <div className="responsiveLogoContainer">
+                    <div id="responsiveLogo" />
+                    <div id="responsiveLogoSubsytem">
+                      <h2>
+                        <a id="unit-title" href={unit.siteHref}>
+                          {unit.name}
+                        </a>
+                      </h2>
+                    </div>
                   </div>
-                </div>
-              </section>
-            </div>
+                </section>
+              </div>
+            </Collapse>
           )}
         </Toolbar>
       </AppBar>

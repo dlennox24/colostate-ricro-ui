@@ -8,9 +8,14 @@ import IconNetworkOffOutline from 'mdi-material-ui/NetworkOffOutline';
 import React from 'react';
 
 export default {
+  api: {
+    host: 'http://localhost',
+    path: '/api/v3',
+  },
   app: {
     name: 'Test Config0',
-    hasLogin: true,
+    // hasLogin: false,
+    hasAutoLogin: true,
     nav: [
       [
         {
@@ -99,5 +104,5 @@ export default {
       ],
     ],
   },
-  defaultState: {},
+  // defaultState: { user },
 };

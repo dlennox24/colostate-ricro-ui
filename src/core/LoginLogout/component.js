@@ -1,9 +1,11 @@
 import Avatar from '@material-ui/core/Avatar';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { withStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 import IconAccountCircle from 'mdi-material-ui/AccountCircle';
 import IconChevronDown from 'mdi-material-ui/ChevronDown';
 import IconChevronUp from 'mdi-material-ui/ChevronUp';
@@ -13,11 +15,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import userDefaultProfileImg from '../../assets/img/default-profile.svg';
 import UserProfile from '../../component/UserProfile';
-import testDataUser from '../../test-data/user'; // TODO: remove after linkage with redux
 import styles from './styles';
+
+const hasLoginSuccess = window.location.hash === '#login-success';
 
 class LoginLogoutComponent extends React.Component {
   state = {
+    isLoginLoading: false,
+    isLogoutLoading: false,
     isUserProfileOpen: false,
   };
 
@@ -40,28 +45,88 @@ class LoginLogoutComponent extends React.Component {
   };
 
   handleLogin = () => {
-    // TODO: add call to api to fetch user data on login
-    this.props.handleLogin(testDataUser);
+    /*
+     * When a user logs in and they don't have a current Shibboleth session
+     * they are redirected to the Shibboleth login page. When they are returned
+     * by the login page (api.host+api.auth) the application cannot know if it
+     * should perform a login check again (unless hasAutoLogin is true in
+     * config).
+     *
+     * To get around this the login page '#login-success' appended to the end
+     * of the url as a hash value. The app checks window.location.hash to see
+     * if it should perform a login check and then rests the hash value to
+     * remove it from the url.
+     *
+     * Doesn't use api.axios instance because the baseURL of api.axios points
+     * to the current version of the API. Authentication is at least one level
+     * higher.
+     */
+    this.setState({ isLoginLoading: true });
+    const { api } = this.props;
+    axios
+      .get(api.host + api.auth)
+      .then(response => {
+        if (response.data === 'redirect') {
+          window.location = `${api.host + api.auth}?return=${window.location.href}`;
+        }
+
+        this.props.handleLogin(response.data.result);
+        if (hasLoginSuccess) {
+          // resets window.location.hash to remove unneeded #login-success
+          window.history.replaceState(null, null, ' ');
+        }
+        this.setState({ isLoginLoading: false });
+      })
+      .catch(() => {
+        this.setState({ isLoginLoading: false });
+      });
+  };
+
+  handleLogout = () => {
+    this.setState({ isLogoutLoading: true });
+    const { api } = this.props;
+    api.axios
+      .get('/user/logout/')
+      .then(() => {
+        this.props.handleLogout();
+        this.setState({ isLogoutLoading: false });
+      })
+      .catch(() => {
+        this.setState({ isLogoutLoading: false });
+      });
+  };
+
+  componentDidMount = () => {
+    if (hasLoginSuccess || this.props.hasAutoLogin) {
+      this.handleLogin();
+    }
   };
 
   render() {
-    const { classes, handleLogout, user } = this.props;
-    const { isDropDownOpen, isUserProfileOpen } = this.state;
-    const isLoggedIn = Boolean(user);
+    const { classes, user } = this.props;
+    const { isDropDownOpen, isUserProfileOpen, isLoginLoading, isLogoutLoading } = this.state;
+    const isLoggedIn = user !== 'loggedout' && user != null;
+
+    const loginIcons = isLoggedIn ? (
+      <Avatar
+        className={classes.profileAvatar}
+        alt={`${user.displayName}'s profile image`}
+        src={user.profileImg || userDefaultProfileImg}
+      />
+    ) : (
+      <IconLoginVariant />
+    );
+
+    const loadingProgressCircle = <CircularProgress color="secondary" size={24} />;
+
     return (
       <React.Fragment>
-        <ListItem button onClick={isLoggedIn ? this.handleToggleDropDown : this.handleLogin}>
-          <ListItemIcon>
-            {isLoggedIn ? (
-              <Avatar
-                className={classes.profileAvatar}
-                alt={`${user.displayName}'s profile image`}
-                src={user.profileImg || userDefaultProfileImg}
-              />
-            ) : (
-              <IconLoginVariant />
-            )}
-          </ListItemIcon>
+        <ListItem
+          button
+          onClick={isLoggedIn ? this.handleToggleDropDown : this.handleLogin}
+          disabled={isLoginLoading}
+        >
+          <ListItemIcon>{isLoginLoading ? loadingProgressCircle : loginIcons}</ListItemIcon>
           <ListItemText inset primary={isLoggedIn ? user.displayName : 'Login'} />
           {isLoggedIn && (isDropDownOpen ? <IconChevronUp /> : <IconChevronDown />)}
         </ListItem>
@@ -72,9 +137,9 @@ class LoginLogoutComponent extends React.Component {
             </ListItemIcon>
             <ListItemText inset primary="Account" />
           </ListItem>
-          <ListItem button dense onClick={handleLogout}>
+          <ListItem button dense onClick={this.handleLogout} disabled={isLogoutLoading}>
             <ListItemIcon>
-              <IconLogoutVariant />
+              {isLogoutLoading ? loadingProgressCircle : <IconLogoutVariant />}
             </ListItemIcon>
             <ListItemText inset primary="Logout" />
           </ListItem>
@@ -93,10 +158,12 @@ class LoginLogoutComponent extends React.Component {
 }
 
 LoginLogoutComponent.propTypes = {
+  api: PropTypes.object.isRequired, // redux state
   classes: PropTypes.object.isRequired, // MUI withStyles()
   handleLogin: PropTypes.func.isRequired, // redux - index.js:mapDispatchToProps
   handleLogout: PropTypes.func.isRequired, // redux - index.js:mapDispatchToProps
-  user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]), // redux state
+  hasAutoLogin: PropTypes.bool.isRequired, // redux state
+  user: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // redux state
 };
 
 export default withStyles(styles)(LoginLogoutComponent);

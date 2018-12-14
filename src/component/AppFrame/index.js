@@ -23,7 +23,7 @@ const AppFrame = ({
   // eslint-disable-next-line no-underscore-dangle
   reduxMiddleware = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 }) => {
-  if (!config.usedCreateConfigUtil) {
+  if (!config.usedCreateConfigUtil && process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line
     console.warn(
       'AppFrame: Config file validator not used. Reccomend use of createConfig() for config prop',
