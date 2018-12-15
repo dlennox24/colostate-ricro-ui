@@ -11,7 +11,7 @@ const host =
     ? 'http://localhost'
     : 'https://services.ricro.colostate.edu';
 const path = '/api/v3';
-const basename = '/__dev/cru';
+const basename = '/__dev/cru/v3';
 
 const defaults = {
   api: {

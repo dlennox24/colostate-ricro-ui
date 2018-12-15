@@ -30,8 +30,7 @@ const AppFrame = ({
     );
   }
 
-  document.title =
-    document.title === '' ? `${config.app.name} - ${config.unit.name}` : document.title;
+  document.title = `${config.app.name} - ${config.unit.name}`;
 
   const combinedReducers = combineReducers({
     // all top level state objects must have a reducer
@@ -46,7 +45,7 @@ const AppFrame = ({
       store={createStore(combinedReducers, { ...config.defaultState, config }, reduxMiddleware)}
     >
       <MuiThemeProvider theme={createMuiTheme(theme)}>
-        <Router>
+        <Router basename={config.app.basename}>
           <div id="cru-root" className={classes.root}>
             <CssBaseline />
             <Header unit={config.unit} />

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './styles';
 
-const CommitteeEx = ({ classes }) => (
+const CommitteesPage = ({ classes }) => (
   <React.Fragment>
     <Typography variant="h3">Committee Avatars</Typography>
     <Divider />
@@ -25,8 +25,8 @@ const CommitteeEx = ({ classes }) => (
   </React.Fragment>
 );
 
-CommitteeEx.propTypes = {
+CommitteesPage.propTypes = {
   classes: PropTypes.any,
 };
 
-export default withStyles(styles)(CommitteeEx);
+export default withStyles(styles)(CommitteesPage);

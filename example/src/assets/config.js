@@ -4,7 +4,9 @@ import IconAlertCircle from 'mdi-material-ui/AlertCircle';
 import IconBell from 'mdi-material-ui/Bell';
 import IconChevronDoubleDown from 'mdi-material-ui/ChevronDoubleDown';
 import IconEraser from 'mdi-material-ui/Eraser';
+import IconFileTree from 'mdi-material-ui/FileTree';
 import IconFolderNetwork from 'mdi-material-ui/FolderNetwork';
+import IconGithubCircle from 'mdi-material-ui/GithubCircle';
 import IconNetworkOffOutline from 'mdi-material-ui/NetworkOffOutline';
 import React from 'react';
 
@@ -14,7 +16,7 @@ export default {
     path: '/api/v3',
   },
   app: {
-    name: 'Test Config0',
+    name: 'colostate-ricro-ui',
     // hasLogin: false,
     hasAutoLogin: true,
     nav: [
@@ -106,6 +108,18 @@ export default {
           name: 'Example 404 Route',
           icon: <IconFolderNetwork />,
           link: '/does-not-exist',
+        },
+        {
+          name: 'Example Root Route',
+          icon: <IconFileTree />,
+          link: '/',
+        },
+      ],
+      [
+        {
+          name: 'GitHub Repo',
+          icon: <IconGithubCircle />,
+          link: 'https://github.com/csu-ricro/colostate-ricro-ui',
         },
       ],
     ],
