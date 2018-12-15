@@ -1,9 +1,11 @@
+import { Snackbar } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Portal from '@material-ui/core/Portal';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import IconAccountCircle from 'mdi-material-ui/AccountCircle';
@@ -14,6 +16,7 @@ import IconLogoutVariant from 'mdi-material-ui/LogoutVariant';
 import PropTypes from 'prop-types';
 import React from 'react';
 import userDefaultProfileImg from '../../assets/img/default-profile.svg';
+import IconSnackbarContent from '../../component/IconSnackbarContent';
 import UserProfile from '../../component/UserProfile';
 import styles from './styles';
 
@@ -24,6 +27,11 @@ class LoginLogoutComponent extends React.Component {
     isLoginLoading: false,
     isLogoutLoading: false,
     isUserProfileOpen: false,
+    snackbar: {
+      open: false,
+      variant: null,
+      message: '',
+    },
   };
 
   handleOpenUserProfile = () => {
@@ -41,6 +49,15 @@ class LoginLogoutComponent extends React.Component {
   handleToggleDropDown = () => {
     this.setState(state => ({
       isDropDownOpen: !state.isDropDownOpen,
+    }));
+  };
+
+  handleSnackbarClose = () => {
+    this.setState(state => ({
+      snackbar: {
+        ...state.snackbar,
+        open: false,
+      },
     }));
   };
 
@@ -75,10 +92,24 @@ class LoginLogoutComponent extends React.Component {
           // resets window.location.hash to remove unneeded #login-success
           window.history.replaceState(null, null, ' ');
         }
-        this.setState({ isLoginLoading: false });
+        this.setState({
+          isLoginLoading: false,
+          snackbar: {
+            open: true,
+            variant: 'success',
+            message: 'Successfully logged in!',
+          },
+        });
       })
       .catch(() => {
-        this.setState({ isLoginLoading: false });
+        this.setState({
+          isLoginLoading: false,
+          snackbar: {
+            open: true,
+            variant: 'error',
+            message: 'Failed to login. Please contact us if this error persists.',
+          },
+        });
       });
   };
 
@@ -89,10 +120,24 @@ class LoginLogoutComponent extends React.Component {
       .get('/user/logout/')
       .then(() => {
         this.props.handleLogout();
-        this.setState({ isLogoutLoading: false });
+        this.setState({
+          isLogoutLoading: false,
+          snackbar: {
+            open: true,
+            variant: 'success',
+            message: 'Successfully logged out!',
+          },
+        });
       })
       .catch(() => {
-        this.setState({ isLogoutLoading: false });
+        this.setState({
+          isLogoutLoading: false,
+          snackbar: {
+            open: true,
+            variant: 'error',
+            message: 'Failed to logout. Please contact us if this error persists.',
+          },
+        });
       });
   };
 
@@ -104,7 +149,13 @@ class LoginLogoutComponent extends React.Component {
 
   render() {
     const { classes, user } = this.props;
-    const { isDropDownOpen, isUserProfileOpen, isLoginLoading, isLogoutLoading } = this.state;
+    const {
+      isDropDownOpen,
+      isLoginLoading,
+      isLogoutLoading,
+      isUserProfileOpen,
+      snackbar,
+    } = this.state;
     const isLoggedIn = user !== 'loggedout' && user != null;
 
     const loginIcons = isLoggedIn ? (
@@ -152,6 +203,23 @@ class LoginLogoutComponent extends React.Component {
             onClose={this.handleCloseUserProfile}
           />
         )}
+        <Portal>
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={snackbar.open}
+            autoHideDuration={6000}
+            onClose={this.handleSnackbarClose}
+          >
+            <IconSnackbarContent
+              variant={snackbar.variant}
+              onClose={this.handleSnackbarClose}
+              message={snackbar.message}
+            />
+          </Snackbar>
+        </Portal>
       </React.Fragment>
     );
   }
