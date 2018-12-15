@@ -1,4 +1,13 @@
 const styles = theme => ({
+  '@global': {
+    pre: {
+      color: '#424242',
+      padding: '8px 10px 16px',
+      overflow: 'auto',
+      borderLeft: `4px solid ${theme.palette.primary.main}`,
+      backgroundColor: '#eeeeee',
+    },
+  },
   root: {
     flex: 1,
     display: 'flex',
