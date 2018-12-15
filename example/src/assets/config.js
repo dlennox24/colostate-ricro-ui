@@ -1,6 +1,7 @@
 import IconAccount from 'mdi-material-ui/Account';
 import IconAccountMultiple from 'mdi-material-ui/AccountMultiple';
 import IconAlertCircle from 'mdi-material-ui/AlertCircle';
+import IconBell from 'mdi-material-ui/Bell';
 import IconChevronDoubleDown from 'mdi-material-ui/ChevronDoubleDown';
 import IconEraser from 'mdi-material-ui/Eraser';
 import IconFolderNetwork from 'mdi-material-ui/FolderNetwork';
@@ -47,6 +48,11 @@ export default {
               },
             ],
           ],
+        },
+        {
+          name: 'Snackbars',
+          icon: <IconBell />,
+          link: '/icon-snackbar-content',
         },
         {
           name: 'User Profile',
