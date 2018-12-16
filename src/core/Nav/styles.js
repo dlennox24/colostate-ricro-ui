@@ -8,6 +8,7 @@ const styles = theme => ({
   drawerDocked: {
     [theme.breakpoints.up('lg')]: {
       display: 'flex',
+      width: '100%',
     },
   },
   stickyNav: {

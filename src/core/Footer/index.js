@@ -20,20 +20,20 @@ const Footer = ({ classes }) => (
         <Grid item md={6} className={classes.copyLinks}>
           <div className={classes.footerText}>
             <nav className={classes.footerLinksContainer}>
-              <Typography className={classes.footerLink} component="span" variant="body">
+              <Typography className={classes.footerLink} component="span" variant="body2">
                 <a href="https://www.colostate.edu/contact/">Contact CSU</a>
               </Typography>
-              <Typography className={classes.footerLink} component="span" variant="body">
+              <Typography className={classes.footerLink} component="span" variant="body2">
                 <a href="https://www.colostate.edu/equal-opportunity">Equal Opportunity</a>
               </Typography>
-              <Typography className={classes.footerLink} component="span" variant="body">
+              <Typography className={classes.footerLink} component="span" variant="body2">
                 <a href="https://www.colostate.edu/privacy">Privacy Statement</a>
               </Typography>
-              <Typography className={classes.footerLink} component="span" variant="body">
+              <Typography className={classes.footerLink} component="span" variant="body2">
                 <a href="https://www.colostate.edu/disclaimer">Disclaimer</a>
               </Typography>
             </nav>
-            <Typography className={classes.copyright} component="p" variant="body">
+            <Typography className={classes.copyright} component="p" variant="body2">
               &copy; {new Date().getFullYear()} Colorado State University, Fort Collins, Colorado
               80523 USA
             </Typography>
