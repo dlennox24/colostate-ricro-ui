@@ -1,4 +1,10 @@
-import { blue, cyan, deepPurple, grey, lightGreen, red, yellow } from '@material-ui/core/colors';
+import blue from '@material-ui/core/colors/blue';
+import cyan from '@material-ui/core/colors/cyan';
+import deepPurple from '@material-ui/core/colors/deepPurple';
+import grey from '@material-ui/core/colors/grey';
+import lightGreen from '@material-ui/core/colors/lightGreen';
+import red from '@material-ui/core/colors/red';
+import yellow from '@material-ui/core/colors/yellow';
 import IconAccountMultiple from 'mdi-material-ui/AccountMultiple';
 import IconEarth from 'mdi-material-ui/Earth';
 import IconFlask from 'mdi-material-ui/Flask';

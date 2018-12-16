@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Portal from '@material-ui/core/Portal';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import axios from 'axios';
 import IconAccountCircle from 'mdi-material-ui/AccountCircle';
 import IconChevronDown from 'mdi-material-ui/ChevronDown';

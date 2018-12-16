@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   // So parent files don't get applied
   root: true,
@@ -19,13 +17,6 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['babel', 'import', 'jsx-a11y', 'jest'],
-  settings: {
-    'import/resolver': {
-      webpack: {
-        config: path.join(__dirname, './docs/webpackBaseConfig.js'),
-      },
-    },
-  },
   rules: {
     'arrow-body-style': 'off', // Incompatible with prettier
     'arrow-parens': 'off', // Incompatible with prettier

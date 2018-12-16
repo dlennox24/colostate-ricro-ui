@@ -1,6 +1,6 @@
 import IconButton from '@material-ui/core/IconButton';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import classNames from 'classnames';
 import IconAlert from 'mdi-material-ui/Alert';
 import IconAlertCircle from 'mdi-material-ui/AlertCircle';

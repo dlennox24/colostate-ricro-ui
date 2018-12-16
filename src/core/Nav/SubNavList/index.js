@@ -1,7 +1,7 @@
 import Collapse from '@material-ui/core/Collapse';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import classNames from 'classnames';
 import IconChevronDown from 'mdi-material-ui/ChevronDown';
 import IconChevronUp from 'mdi-material-ui/ChevronUp';
