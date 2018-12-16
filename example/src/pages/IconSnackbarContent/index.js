@@ -50,7 +50,7 @@ const customIcons = {
 
 class IconSnackbarContentPage extends React.Component {
   state = {
-    variant: 'success',
+    variant: 'info',
     message: 'Created new snackbar!',
     isOpen: false,
     anchorVert: 'bottom',
@@ -110,7 +110,14 @@ class IconSnackbarContentPage extends React.Component {
       '    <IconSnackbarContent\n' +
       `      variant="${variant}"\n` +
       '      onClose={this.handleToggleSnackbarOpen} // component method\n' +
+      `${
+        customIcon !== 'none'
+          ? '      icon={Icon} // imported mdi-material-ui icon component \n'
+          : ''
+      }` +
       `      message="${message}"\n` +
+      `${isActionDisabled ? '      disableAction\n' : ''}` +
+      `${isIconDisabled ? '      disableIcon\n' : ''}` +
       '    />\n' +
       '  </Snackbar>\n' +
       '</Portal>';
