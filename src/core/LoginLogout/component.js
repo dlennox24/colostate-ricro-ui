@@ -1,4 +1,4 @@
-import { Snackbar } from '@material-ui/core';
+import Snackbar from '@material-ui/core/Snackbar';
 import Avatar from '@material-ui/core/Avatar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
@@ -178,7 +178,7 @@ class LoginLogoutComponent extends React.Component {
           disabled={isLoginLoading}
         >
           <ListItemIcon>{isLoginLoading ? loadingProgressCircle : loginIcons}</ListItemIcon>
-          <ListItemText inset primary={isLoggedIn ? user.displayName : 'Login'} />
+          <ListItemText inset primary={isLoggedIn ? user.displayName : 'Logdsafdin'} />
           {isLoggedIn && (isDropDownOpen ? <IconChevronUp /> : <IconChevronDown />)}
         </ListItem>
         <Collapse className={classes.dropDown} in={isDropDownOpen && isLoggedIn}>
