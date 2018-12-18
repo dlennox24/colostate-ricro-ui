@@ -178,7 +178,7 @@ class LoginLogoutComponent extends React.Component {
           disabled={isLoginLoading}
         >
           <ListItemIcon>{isLoginLoading ? loadingProgressCircle : loginIcons}</ListItemIcon>
-          <ListItemText inset primary={isLoggedIn ? user.displayName : 'Logdsafdin'} />
+          <ListItemText inset primary={isLoggedIn ? user.displayName : 'Login'} />
           {isLoggedIn && (isDropDownOpen ? <IconChevronUp /> : <IconChevronDown />)}
         </ListItem>
         <Collapse className={classes.dropDown} in={isDropDownOpen && isLoggedIn}>
