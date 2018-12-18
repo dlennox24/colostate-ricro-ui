@@ -13,12 +13,12 @@
     "npm": ">=5"
   },
   "bin": {
-    "cru-install-dev": "scripts/install-dev.js",
-    "cru-start-dev": "scripts/start-dev.js"
+    "cru-setup": "scripts/setup.js"
   },
   "scripts": {
-    "prep-dev": "npm link && cru-install-dev noClean",
-    "start": "cru-start-dev",
+    "setup": "npm i && node scripts/setup.js noClean",
+    "clean": "node scripts/setup.js noPeers noInstall",
+    "start": "node scripts/start.js",
     "start:library": "rollup -c -w",
     "start:example": "cd example && npm start",
     "start:test": "npm run test:watch",
