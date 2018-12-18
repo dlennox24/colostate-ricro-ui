@@ -36,6 +36,13 @@ const styles = theme => ({
       display: 'none',
     },
   },
+  skipNavLink: {
+    height: 0,
+    margin: 0,
+    width: 0,
+    padding: 0,
+    border: 0,
+  },
 });
 
 export default styles;

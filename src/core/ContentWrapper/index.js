@@ -41,13 +41,18 @@ class ContentWrapper extends React.Component {
             </Toolbar>
           </AppBar>
           <div className={classes.flex}>
+            <a className={classes.skipNavLink} href="#main-content">
+              Skip navigation
+            </a>
             <Nav
               nav={app.nav}
               container={container}
               isMobileOpen={this.state.isMobileOpen}
               setMobileOpen={this.setMobileOpen}
             />
-            <main className={classes.content}>{children}</main>
+            <main id="main-content" className={classes.content}>
+              {children}
+            </main>
           </div>
         </div>
         <BrowserCompatibilityWarning />
