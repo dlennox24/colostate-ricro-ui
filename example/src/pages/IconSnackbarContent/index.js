@@ -17,6 +17,7 @@ import IconCommentText from 'mdi-material-ui/CommentText';
 import IconContain from 'mdi-material-ui/Contain';
 import IconFloppy from 'mdi-material-ui/Floppy';
 import IconFolderMultiple from 'mdi-material-ui/FolderMultiple';
+import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './styles';
 
@@ -98,7 +99,6 @@ class IconSnackbarContentPage extends React.Component {
       variant,
     } = this.state;
     const { classes } = this.props;
-
     const source =
       '<Portal>\n' +
       '  <Snackbar\n' +
@@ -300,19 +300,19 @@ class IconSnackbarContentPage extends React.Component {
         <Divider className={classes.divider} />
         {variantRows.map(row => (
           <Grid container key={row[0].key || row[0].variant}>
-            {row.map((variant, i) => (
+            {row.map(snackbar => (
               <Grid
-                key={variant.key || variant.variant}
+                key={snackbar.key || snackbar.variant}
                 className={classes.gridItem}
                 item
                 xs={12}
                 sm={6}
               >
                 <IconSnackbarContent
-                  variant={variant.variant}
-                  message={`Snackbar variant: ${variant.variant}`}
-                  disableAction={variant.key === 'noAction'}
-                  disableIcon={variant.key === 'noIcon'}
+                  variant={snackbar.variant}
+                  message={`Snackbar variant: ${snackbar.variant}`}
+                  disableAction={snackbar.key === 'noAction'}
+                  disableIcon={snackbar.key === 'noIcon'}
                 />
               </Grid>
             ))}
@@ -333,6 +333,8 @@ class IconSnackbarContentPage extends React.Component {
   }
 }
 
-IconSnackbarContentPage.propTypes = {};
+IconSnackbarContentPage.propTypes = {
+  classes: PropTypes.object.isRequired, // MUI withStyles()
+};
 
 export default withStyles(styles)(IconSnackbarContentPage);

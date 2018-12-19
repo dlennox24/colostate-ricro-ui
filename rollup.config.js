@@ -1,6 +1,7 @@
 import svgr from '@svgr/rollup';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
+import json from 'rollup-plugin-json';
 import resolve from 'rollup-plugin-node-resolve';
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
@@ -9,23 +10,26 @@ import pkg from './package.json';
 
 export default {
   input: 'src/index.js',
-  // external: Object.keys(pkg.dependencies),
+  external: Object.keys(pkg.dependencies),
   output: [
     {
       file: pkg.main,
       format: 'cjs',
-      sourcemap: true,
+      exports: 'named',
     },
     {
       file: pkg.module,
       format: 'es',
-      sourcemap: true,
+      exports: 'named',
     },
   ],
   plugins: [
+    json({
+      include: 'node_modules/**',
+    }),
     external(),
     postcss({
-      modules: true,
+      modules: false,
     }),
     url(),
     svgr(),
