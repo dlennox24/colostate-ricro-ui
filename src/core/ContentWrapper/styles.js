@@ -7,6 +7,10 @@ const styles = theme => ({
       borderLeft: `4px solid ${theme.palette.primary.main}`,
       backgroundColor: '#eeeeee',
     },
+    '@keyframes CountdownProgress-fullWidthGrow': {
+      from: { width: '0%' },
+      to: { width: '100%' },
+    },
   },
   root: {
     flex: 1,
@@ -42,6 +46,7 @@ const styles = theme => ({
     width: 0,
     padding: 0,
     border: 0,
+    overflow: 'hidden',
   },
 });
 

@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-/* eslint-disable no-console */
+
 const sh = require('shelljs');
 const pk = require('../package.json');
 const utils = require('./_utils.js');
@@ -32,6 +32,7 @@ const debug = args.includes('debug');
 const script = new utils.Script({ name: 'scripts' });
 
 sh.exec('clear');
+// eslint-disable-next-line no-console
 console.log(utils.headerColor(`\n${pk.name}@${pk.version} - ${script.name}`));
 script.log(utils.bodyColor('Running scripts...'));
 script.log(utils.bodyColor(`args passed:\t[${args.sort().toString()}]`));

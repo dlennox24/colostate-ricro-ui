@@ -18,13 +18,18 @@ export default {
   app: {
     name: 'colostate-ricro-ui',
     // hasLogin: false,
-    hasAutoLogin: true,
+    // hasAutoLogin: true,
     nav: [
       [
         {
           name: 'Committees',
           icon: <IconAccountMultiple />,
           link: '/committees',
+        },
+        {
+          name: 'Countdown Progress',
+          icon: <IconAccountMultiple />,
+          link: '/countdown-progress',
         },
         {
           name: 'HttpError',
