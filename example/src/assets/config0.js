@@ -16,7 +16,7 @@ export default {
     path: '/api/v3',
   },
   app: {
-    name: 'colostate-ricro-ui template',
+    name: 'colostate-ricro-ui',
     // hasLogin: false,
     // hasAutoLogin: true,
     nav: [
