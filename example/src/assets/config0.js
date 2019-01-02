@@ -27,11 +27,6 @@ export default {
           link: '/committees',
         },
         {
-          name: 'Countdown Progress',
-          icon: <IconAccountMultiple />,
-          link: '/countdown-progress',
-        },
-        {
           name: 'HttpError',
           icon: <IconAlertCircle />,
           link: '/http-error',
