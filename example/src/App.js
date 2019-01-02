@@ -1,7 +1,7 @@
 import AppFrame, { createConfig } from 'colostate-ricro-ui';
 import React from 'react';
 import { Route } from 'react-router-dom';
-import config from './assets/config';
+import config0 from './assets/config0';
 import Committees from './pages/Committees';
 import CountdownProgress from './pages/CountdownProgress';
 import CruTypography from './pages/CruTypography';
@@ -10,7 +10,7 @@ import IconSnackbarContent from './pages/IconSnackbarContent';
 import UserProfile from './pages/User';
 
 const App = () => (
-  <AppFrame config={createConfig(config)}>
+  <AppFrame config={createConfig(config0)}>
     <Route exact path="/" component={CruTypography} />
     <Route exact path="/committees" component={Committees} />
     <Route exact path="/countdown-progress" component={CountdownProgress} />

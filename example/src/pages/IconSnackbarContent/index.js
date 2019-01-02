@@ -132,7 +132,6 @@ class IconSnackbarContentPage extends React.Component {
         icon={customIcons[customIcon]}
       />
     );
-    // debugger;
     return (
       <React.Fragment>
         <form className={classes.container} noValidate autoComplete="off">
@@ -283,7 +282,7 @@ class IconSnackbarContentPage extends React.Component {
               </Button>
             </Grid>
             <Grid className={classes.gridItem} item xs={12} sm={2}>
-              <Button onClick={this.handleToggleSourceOpen} fullWidth>
+              <Button onClick={this.handleToggleSourceOpen} variant="outlined" fullWidth>
                 {isSourceOpen ? 'Close Source' : 'View Source'}
               </Button>
             </Grid>

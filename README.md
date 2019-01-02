@@ -31,10 +31,10 @@ class Example extends Reat.Component {
 ## Development
 
 ```
-npm run setup
+yarn setup
 ```
 ```
-npm start
+yar start
 ```
 
 ## License
