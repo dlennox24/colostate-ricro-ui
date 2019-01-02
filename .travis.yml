@@ -1,7 +1,7 @@
-anguage: node_js
+language: node_js
 node_js:
   - "node"
 script:
-  - npm i -g npm
-  - npm ci
-  - npm test
+  - yarn setup
+  - yarn lint
+  - yarn test
