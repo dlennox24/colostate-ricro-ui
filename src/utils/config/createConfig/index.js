@@ -6,8 +6,8 @@ const createConfig = (config = {}) => {
   /*
    * Grabs default nav list but then clears it before merge to avoid merging the
    * frist default nav list and the first config nav list. Avoid use of the spread
-   * operator for these. They do not create new instances of the objects and use
-   * a reference instead for some unkown reason.
+   * operator for these. They do not create new instances of the objects with a deep
+   * copy, thus only top level objects are coppied.
    */
   const nav = _.cloneDeep(defaults.app.nav[0]);
   const moddedDefaults = _.cloneDeep(defaults);
@@ -20,26 +20,31 @@ const createConfig = (config = {}) => {
    */
   _.defaultsDeep(config, moddedDefaults);
 
-  /*
-   * Generates the 2D array for the navigation list. Stacks the defaults{} above
-   * the list items from config{}.
-   */
-  if (config.unit.contactHref !== defaultContactHref) {
-    nav[2].link = config.unit.contactHref;
+  if (config.app.nav) {
+    /*
+     * Generates the 2D array for the navigation list. Stacks the defaults{} above
+     * the list items from config{}.
+     */
+    if (config.unit.contactHref !== defaultContactHref) {
+      nav[2].link = config.unit.contactHref;
+    }
+    if (!config.app.hasLogin) {
+      nav.splice(1, 1); // remove <LoginLogout />
+    }
+    if (config.app.basename === '/') {
+      // Apps removal of nav item as it is at the server root and "Apps" routes to server root
+      nav.splice(0, 1);
+    }
+    config.app.nav =
+      config.app.nav.length > 0
+        ? [nav, ...config.app.nav.filter(array => array.length > 0)]
+        : [nav];
   }
-  if (!config.app.hasLogin) {
-    nav.splice(1, 1); // remove <LoginLogout />
-  }
-  if (config.app.basename === '/') {
-    // Apps removal of nav item as it is at the server root and "Apps" routes to server root
-    nav.splice(0, 1);
-  }
-  config.app.nav = config.app.nav.length > 0 ? [nav, ...config.app.nav] : [nav];
 
   /*
-   * fix axios baseUrl since baseUrl doesn't get updated from the config injection
+   * fix axios baseUrl since baseUrl doesn't get updated from the default config clone
    */
-  if (config.api.baseUrl !== moddedDefaults.api.baseUrl) {
+  if (config.api.path !== moddedDefaults.api.path || config.api.host !== moddedDefaults.api.host) {
     config.api.baseUrl = config.api.host + config.api.path;
     config.api.axios = axios.create({ baseURL: config.api.baseUrl });
   }

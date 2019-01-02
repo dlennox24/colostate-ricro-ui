@@ -25,8 +25,10 @@ const styles = theme => ({
       zIndex: theme.zIndex.drawer + 1,
     },
   },
-  content: {
+  gutters: {
     padding: theme.spacing.unit * 3,
+  },
+  content: {
     overflowX: 'auto',
     flex: 1,
   },

@@ -22,6 +22,7 @@ const AppFrame = ({
   classes,
   children,
   config = createConfig(),
+  disableGutters,
   reducers,
   // eslint-disable-next-line no-underscore-dangle
   reduxMiddleware = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
@@ -54,7 +55,7 @@ const AppFrame = ({
           <div id="cru-root" className={classes.root}>
             <CssBaseline />
             <Header unit={config.unit} />
-            <ContentWrapper app={config.app}>
+            <ContentWrapper app={config.app} disableGutters={disableGutters}>
               <Switch>
                 {children}
                 <Route component={() => <HttpError code={404} />} />
@@ -72,6 +73,7 @@ AppFrame.propTypes = {
   children: PropTypes.node,
   classes: PropTypes.object.isRequired, // MUI withStyles()
   config: PropTypes.object,
+  disableGutters: PropTypes.bool,
   reducers: PropTypes.object,
   reduxMiddleware: PropTypes.func,
 };
