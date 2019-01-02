@@ -1,9 +1,16 @@
+const shadeColor = ({ augmentColor, color, shade = 'light', magnitude = 3 }) => {
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < magnitude; i++) {
+    color = augmentColor({ main: color })[shade];
+  }
+  return color;
+};
+
 const styles = theme => ({
   root: {
-    height: '5px',
     position: 'relative',
     overflow: 'hidden',
-    margin: '8px 0',
+    margin: '16px 0',
   },
   bar: {
     top: 0,
@@ -15,10 +22,67 @@ const styles = theme => ({
     animationTimingFunction: 'linear',
   },
   primaryBg: {
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: shadeColor({
+      augmentColor: theme.palette.augmentColor,
+      color: theme.palette.primary.main,
+    }),
   },
   primaryBar: {
     backgroundColor: theme.palette.primary.main,
+  },
+  secondaryBg: {
+    backgroundColor: shadeColor({
+      augmentColor: theme.palette.augmentColor,
+      color: theme.palette.secondary.main,
+    }),
+  },
+  secondaryBar: {
+    backgroundColor: theme.palette.secondary.main,
+  },
+  alertDangerBg: {
+    backgroundColor: shadeColor({
+      augmentColor: theme.palette.augmentColor,
+      color: theme.palette.alerts.danger,
+    }),
+  },
+  alertDangerBar: {
+    backgroundColor: theme.palette.alerts.danger,
+  },
+  alertWarningBg: {
+    backgroundColor: shadeColor({
+      augmentColor: theme.palette.augmentColor,
+      color: theme.palette.alerts.warning,
+    }),
+  },
+  alertWarningBar: {
+    backgroundColor: theme.palette.alerts.warning,
+  },
+  alertSuccessBg: {
+    backgroundColor: shadeColor({
+      augmentColor: theme.palette.augmentColor,
+      color: theme.palette.alerts.success,
+    }),
+  },
+  alertSuccessBar: {
+    backgroundColor: theme.palette.alerts.success,
+  },
+  alertInfoBg: {
+    backgroundColor: shadeColor({
+      augmentColor: theme.palette.augmentColor,
+      color: theme.palette.alerts.info,
+    }),
+  },
+  alertInfoBar: {
+    backgroundColor: theme.palette.alerts.info,
+  },
+  defaultBg: {
+    backgroundColor: shadeColor({
+      augmentColor: theme.palette.augmentColor,
+      color: theme.palette.grey[500],
+    }),
+  },
+  defaultBar: {
+    backgroundColor: theme.palette.grey[500],
   },
 });
 

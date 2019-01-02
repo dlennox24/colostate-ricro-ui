@@ -22,24 +22,27 @@ class CountdownProgress extends React.Component {
   };
 
   setup = () => {
-    this.timer = setInterval(this.start, this.props.delay || 0);
+    this.timer = setTimeout(this.start, this.props.delay || 0);
   };
 
-  togglePause = () => {
+  handleTogglePause = () => {
     this.setState(state => ({
       isPaused: !state.isPaused,
     }));
   };
 
   render() {
-    const { classes, time = 3e3, variant = 'primary' } = this.props;
+    const { classes, height = 5, time = 3e3, variant = 'default' } = this.props;
     const { isPaused } = this.state;
     return (
       <React.Fragment>
         <div
           className={classNames(classes.root, classes[`${variant}Bg`])}
-          onMouseEnter={this.togglePause}
-          onMouseLeave={this.togglePause}
+          onMouseEnter={this.handleTogglePause}
+          onMouseLeave={this.handleTogglePause}
+          style={{
+            height: `${height}px`,
+          }}
         >
           <div
             className={classNames(classes.bar, classes[`${variant}Bar`])}
@@ -57,8 +60,17 @@ class CountdownProgress extends React.Component {
 CountdownProgress.propTypes = {
   classes: PropTypes.object.isRequired,
   delay: PropTypes.number,
+  height: PropTypes.number,
   time: PropTypes.number,
-  variant: PropTypes.oneOf(['primary']),
+  variant: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'alertSuccess',
+    'alertInfo',
+    'alertDanger',
+    'alertWarning',
+    'default',
+  ]),
 };
 
 export default withStyles(styles)(CountdownProgress);
