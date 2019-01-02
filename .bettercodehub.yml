@@ -1,2 +1,3 @@
-component_depth: 8;
-languages: -javascript;
+component_depth: 8
+languages:
+  -javascript
