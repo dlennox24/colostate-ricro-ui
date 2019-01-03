@@ -4,12 +4,45 @@ const styles = theme => ({
       color: '#424242',
       padding: '8px 10px 16px',
       overflow: 'auto',
-      borderLeft: `4px solid ${theme.palette.primary.main}`,
+      borderLeft: `4px solid ${theme.palette.primary.light}`,
       backgroundColor: '#eeeeee',
     },
-    '@keyframes CountdownProgress-fullWidthGrow': {
-      from: { width: '0%' },
-      to: { width: '100%' },
+    code: {
+      padding: '0.2em 0.4em',
+      margin: 0,
+      borderRadius: 3,
+      backgroundColor: theme.palette.grey[200],
+      color: theme.palette.grey[800],
+    },
+    blockquote: {
+      fontSize: ' 1.4em',
+      fontStyle: 'italic',
+      color: ' #555555',
+      padding: '1.2em 30px 1.2em 75px',
+      borderLeft: `8px solid ${theme.palette.primary.light}`,
+      position: 'relative',
+      background: '#EDEDED',
+      '&::before': {
+        fontFamily: 'Arial',
+        content: '"\\201C"',
+        color: theme.palette.csu.primary.gold,
+        fontSize: '4em',
+        position: 'absolute',
+        left: ' 10px',
+        top: '10px',
+      },
+
+      '&::after': {
+        content: '""',
+      },
+
+      '& footer': {
+        display: 'block',
+        color: '#333333',
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        marginTop: '1em',
+      },
     },
   },
   root: {

@@ -1,5 +1,4 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
@@ -50,7 +49,7 @@ const AppFrame = ({
     <Provider
       store={createStore(combinedReducers, { ...config.defaultState, config }, reduxMiddleware)}
     >
-      <MuiThemeProvider theme={createMuiTheme(theme)}>
+      <MuiThemeProvider theme={theme}>
         <Router basename={process.env.NODE_ENV === 'production' ? config.app.basename : null}>
           <div id="cru-root" className={classes.root}>
             <CssBaseline />

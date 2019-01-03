@@ -5,6 +5,7 @@ import CommitteeAvatar from './component/Committees/Avatar';
 import CommitteeChip from './component/Committees/Chip';
 import HttpError from './component/HttpError';
 import IconSnackbarContent from './component/IconSnackbarContent';
+import MarkdownParser from './component/MarkdownParser';
 import UserProfile from './component/UserProfile';
 import createConfig from './utils/config/createConfig';
 
@@ -16,6 +17,8 @@ export {
   CommitteeChip,
   HttpError,
   IconSnackbarContent,
+  MarkdownParser,
   UserProfile,
+  // Utils
   createConfig,
 };

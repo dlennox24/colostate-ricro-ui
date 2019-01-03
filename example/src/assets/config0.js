@@ -6,6 +6,7 @@ import IconChevronDoubleDown from 'mdi-material-ui/ChevronDoubleDown';
 import IconEraser from 'mdi-material-ui/Eraser';
 import IconFileTree from 'mdi-material-ui/FileTree';
 import IconFolderNetwork from 'mdi-material-ui/FolderNetwork';
+import IconFormatColorText from 'mdi-material-ui/FormatColorText';
 import IconGithubCircle from 'mdi-material-ui/GithubCircle';
 import IconNetworkOffOutline from 'mdi-material-ui/NetworkOffOutline';
 import React from 'react';
@@ -55,6 +56,11 @@ export default {
           name: 'Snackbars',
           icon: <IconBell />,
           link: '/icon-snackbar-content',
+        },
+        {
+          name: 'Typography',
+          icon: <IconFormatColorText />,
+          link: '/typography',
         },
         {
           name: 'User Profile',

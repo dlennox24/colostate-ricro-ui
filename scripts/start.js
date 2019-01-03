@@ -12,6 +12,11 @@ const scriptArray = [
     script: 'yarn:start:lib',
   },
   {
+    name: 'test',
+    color: chalk.black.bgMagenta.bold,
+    script: 'yarn:start:test',
+  },
+  {
     name: 'example',
     color: chalk.black.bgCyan.bold,
     script: 'yarn:start:ex',
@@ -27,7 +32,9 @@ const script = new utils.Script({
   description: 'Starting dev servers...\n',
   shellScripts: executeScript,
 });
+
 shell.exec('clear');
+
 // eslint-disable-next-line no-console
 console.log(utils.headerColor(`${pk.name}@${pk.version} - ${script.name}`));
 script.exec();

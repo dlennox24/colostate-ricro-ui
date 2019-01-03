@@ -1,7 +1,7 @@
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
 
-const IndexPage = () => (
+const TypographyPage = () => (
   <React.Fragment>
     <Typography variant="h1">heading h1</Typography>
     <Typography variant="h2">heading h2</Typography>
@@ -18,4 +18,4 @@ const IndexPage = () => (
   </React.Fragment>
 );
 
-export default IndexPage;
+export default TypographyPage;
