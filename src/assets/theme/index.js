@@ -1,4 +1,6 @@
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import _ from 'lodash';
+import augmentColorObjects from '../../utils/augmentColorObjects';
 
 const csu = {
   primary: {
@@ -18,20 +20,22 @@ const csu = {
     sunshine: { main: '#ECC530' },
   },
 };
+const alerts = {
+  danger: { main: '#dc3545' },
+  warning: { main: '#ffc107' },
+  success: { main: '#28a745' },
+  info: { main: '#17a2b8' },
+};
+export { alerts, csu };
 
 const theme = createMuiTheme({
   palette: {
     type: 'light',
     primary: csu.primary.green,
     secondary: csu.secondary.aggieOrange,
-    csu,
-    alerts: {
-      danger: { main: '#dc3545' },
-      warning: { main: '#ffc107' },
-      success: { main: '#28a745' },
-      info: { main: '#17a2b8' },
-    },
-    icon: { main: 'rgba(0, 0, 0, 0.54)' },
+    // Clone these to allow for testing of the raw data with their exports
+    alerts: _.cloneDeep(alerts),
+    csu: _.cloneDeep(csu),
   },
   typography: {
     useNextVariants: true,
@@ -61,26 +65,9 @@ const theme = createMuiTheme({
   zIndex: { navDrawer: 1300 },
 });
 
-function findMainColor(obj) {
-  const keys = Object.keys(obj);
-  debugger;
-  if (keys.includes('main')) {
-    return theme.palette.augmentColor(obj);
-  }
-  keys.map(subObj => findMainColor(subObj));
-}
-
-debugger;
-const test = findMainColor(theme.palette);
-
-Object.keys(theme.palette).map(paletteKey => {
-  if (paletteKey === 'csu' || paletteKey === 'alerts') {
-    Object.keys(theme.palette[paletteKey]).map(color => {
-      debugger;
-      return theme.palette.augmentColor(color);
-    });
-  }
-  return theme.palette[paletteKey];
+augmentColorObjects({
+  obj: theme.palette,
+  augmentColorFunc: theme.palette.augmentColor,
+  modKeys: ['alerts', 'csu'],
 });
-
 export default theme;

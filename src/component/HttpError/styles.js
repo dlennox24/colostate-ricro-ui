@@ -5,7 +5,7 @@ const styles = theme => ({
         color: theme.palette.grey[500],
       },
       '50%': {
-        color: theme.palette.alerts.danger,
+        color: theme.palette.alerts.danger.main,
       },
       '100%': {
         color: theme.palette.grey[500],

@@ -25,7 +25,7 @@ const styles = theme => ({
       '&::before': {
         fontFamily: 'Arial',
         content: '"\\201C"',
-        color: theme.palette.csu.primary.gold,
+        color: theme.palette.csu.primary.gold.main,
         fontSize: '4em',
         position: 'absolute',
         left: ' 10px',
@@ -53,7 +53,7 @@ const styles = theme => ({
   appBar: {
     position: 'sticky',
     top: 0,
-    borderBottom: `3px solid ${theme.palette.csu.primary.gold}`,
+    borderBottom: `3px solid ${theme.palette.csu.primary.gold.main}`,
     [theme.breakpoints.up('lg')]: {
       zIndex: theme.zIndex.drawer + 1,
     },

@@ -40,7 +40,7 @@ const styles = theme => ({
       textDecoration: 'none',
       color: theme.palette.common.white,
       '&:hover': {
-        borderBottom: `2px solid ${theme.palette.csu.primary.gold}`,
+        borderBottom: `2px solid ${theme.palette.csu.primary.gold.main}`,
       },
     },
   },
