@@ -8,6 +8,14 @@ import IconLoginVariant from 'mdi-material-ui/LoginVariant';
 import React from 'react';
 
 const getErrorObject = ({ classes, code, config, linkedButton, subheader }) => {
+  const contactUsButton = {
+    icon: <IconEmail className={classes.iconLeft} />,
+    title: 'Contact Us',
+    link: config.unit.contactHref,
+    buttonProps: { variant: 'outlined' },
+  };
+  const appsButton = { icon: <IconApps className={classes.iconLeft} />, title: 'Apps', link: '/' };
+
   const errors = {
     401: {
       code: 401,
@@ -25,15 +33,7 @@ const getErrorObject = ({ classes, code, config, linkedButton, subheader }) => {
       code: 403,
       title: 'Forbidden',
       subheader: 'You do not have the correct permissions to access this content.',
-      linkedButton: [
-        { icon: <IconApps className={classes.iconLeft} />, title: 'Apps', link: '/' },
-        {
-          icon: <IconEmail className={classes.iconLeft} />,
-          title: 'Contact Us',
-          link: config.unit.contactHref,
-          buttonProps: { variant: 'outlined' },
-        },
-      ],
+      linkedButton: [appsButton, contactUsButton],
     },
     404: {
       code: 404,
@@ -54,29 +54,14 @@ const getErrorObject = ({ classes, code, config, linkedButton, subheader }) => {
           />
         </React.Fragment>
       ),
-      linkedButton: [
-        { icon: <IconApps className={classes.iconLeft} />, title: 'Apps', link: '/' },
-        {
-          icon: <IconEmail className={classes.iconLeft} />,
-          title: 'Contact Us',
-          link: config.unit.contactHref,
-          buttonProps: { variant: 'outlined' },
-        },
-      ],
+      linkedButton: [appsButton, contactUsButton],
     },
     500: {
       code: 500,
       title: 'Internal Server Error',
       subheader:
         'An error occured. Please try again. If this continues to happen please contact us.',
-      linkedButton: [
-        {
-          icon: <IconEmail className={classes.iconLeft} />,
-          title: 'Contact Us',
-          link: config.unit.contactHref,
-          buttonProps: { variant: 'outlined' },
-        },
-      ],
+      linkedButton: [contactUsButton],
     },
   };
 
