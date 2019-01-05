@@ -1,27 +1,30 @@
 const styles = theme => ({
   '@global': {
-    pre: {
-      color: '#424242',
-      padding: '8px 10px 16px',
-      overflow: 'auto',
-      borderLeft: `4px solid ${theme.palette.primary.light}`,
-      backgroundColor: '#eeeeee',
+    'p a, span a': {
+      color: theme.palette.primary.main,
+      '&:hover': {
+        color: theme.palette.secondary.main,
+      },
     },
     code: {
       padding: '0.2em 0.4em',
       margin: 0,
       borderRadius: 3,
-      backgroundColor: theme.palette.grey[200],
-      color: theme.palette.grey[800],
+      fontFamily: 'monospace',
+      backgroundColor: theme.palette.csu.primary.green.main,
+      color: theme.palette.csu.primary.green.contrastText,
     },
     blockquote: {
       fontSize: ' 1.4em',
       fontStyle: 'italic',
-      color: ' #555555',
+      color: theme.palette.csu.secondary.black.main,
       padding: '1.2em 30px 1.2em 75px',
       borderLeft: `8px solid ${theme.palette.primary.light}`,
       position: 'relative',
-      background: '#EDEDED',
+      background: theme.palette.grey[200],
+      '&>:last-child': {
+        marginBottom: 0,
+      },
       '&::before': {
         fontFamily: 'Arial',
         content: '"\\201C"',

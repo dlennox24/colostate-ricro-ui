@@ -11,7 +11,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 import classNames from 'classnames';
-import { IconSnackbarContent } from 'colostate-ricro-ui';
+import { Code, IconSnackbarContent } from 'colostate-ricro-ui';
 import IconCloseOctagon from 'mdi-material-ui/CloseOctagon';
 import IconCommentText from 'mdi-material-ui/CommentText';
 import IconContain from 'mdi-material-ui/Contain';
@@ -99,28 +99,31 @@ class IconSnackbarContentPage extends React.Component {
       variant,
     } = this.state;
     const { classes } = this.props;
-    const source =
-      '<Portal>\n' +
-      '  <Snackbar\n' +
-      `    anchorOrigin={{ vertical: "${anchorVert}", horizontal: "${anchorHorz}" }}\n` +
-      '    open={isOpen} // from component state\n' +
-      `    autoHideDuration={${autoHideDuration <= 0 ? null : autoHideDuration * 1000}}\n` +
-      '    onClose={this.handleToggleSnackbarOpen}\n' +
-      '  >\n' +
-      '    <IconSnackbarContent\n' +
-      `      variant="${variant}"\n` +
-      '      onClose={this.handleToggleSnackbarOpen} // component method\n' +
+
+    const snackbarOptions =
+      autoHideDuration <= 0 ? '' : `\n\t\tautoHideDuration = {${autoHideDuration * 1000}}`;
+    const iscOptions =
       `${
         customIcon !== 'none'
-          ? '      icon={Icon} // imported mdi-material-ui icon component \n'
+          ? '\n\t\t\ticon={Icon} // imported mdi-material-ui icon component'
           : ''
       }` +
-      `      message="${message}"\n` +
-      `${isActionDisabled ? '      disableAction\n' : ''}` +
-      `${isIconDisabled ? '      disableIcon\n' : ''}` +
-      '    />\n' +
-      '  </Snackbar>\n' +
-      '</Portal>';
+      `${isActionDisabled ? '\n\t\t\tdisableAction' : ''}` +
+      `${isIconDisabled ? '\n\t\t\tdisableIcon' : ''}`;
+    const source = `
+<Portal>
+  <Snackbar
+    anchorOrigin={{ vertical: "${anchorVert}", horizontal: "${anchorHorz}" }}
+    open={isOpen} // from component state
+    onClose={this.handleToggleSnackbarOpen}${snackbarOptions}
+  >
+    <IconSnackbarContent
+      variant="${variant}"
+      onClose={this.handleToggleSnackbarOpen} // component method
+      message="${message}"${iscOptions}
+    />
+  </Snackbar>
+</Portal>`;
 
     const previewSnackbarContent = (
       <IconSnackbarContent
@@ -293,7 +296,7 @@ class IconSnackbarContentPage extends React.Component {
         </form>
         <div className={classes.gridItem}>
           <Collapse in={isSourceOpen}>
-            <pre>{source}</pre>
+            <Code code={source} lang="jsx" />
           </Collapse>
         </div>
         <Divider className={classes.divider} />

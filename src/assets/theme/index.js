@@ -26,7 +26,12 @@ const alerts = {
   success: { main: '#28a745' },
   info: { main: '#17a2b8' },
 };
-export { alerts, csu };
+const components = {
+  code: {
+    background: { main: '#1e1e1e' },
+  },
+};
+export { alerts, csu, components };
 
 const theme = createMuiTheme({
   palette: {
@@ -35,6 +40,7 @@ const theme = createMuiTheme({
     secondary: csu.secondary.aggieOrange,
     // Clone these to allow for testing of the raw data with their exports
     alerts: _.cloneDeep(alerts),
+    components: _.cloneDeep(components),
     csu: _.cloneDeep(csu),
   },
   typography: {
@@ -68,6 +74,6 @@ const theme = createMuiTheme({
 augmentColorObjects({
   obj: theme.palette,
   augmentColorFunc: theme.palette.augmentColor,
-  modKeys: ['alerts', 'csu'],
+  modKeys: ['alerts', 'csu', 'components'],
 });
 export default theme;
