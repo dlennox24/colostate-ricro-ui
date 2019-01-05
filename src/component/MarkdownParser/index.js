@@ -45,12 +45,8 @@ const styles = theme => ({
   headingLink: {
     marginTop: -56 - bottomBorderWidth,
     position: 'absolute',
-    '@media (min-width: 1px) and (orientation: landscape)': {
-      marginTop: -48 - bottomBorderWidth,
-    },
-    [theme.breakpoints.up('sm')]: {
-      marginTop: -64 - bottomBorderWidth,
-    },
+    '@media (min-width: 1px) and (orientation: landscape)': { marginTop: -48 - bottomBorderWidth },
+    [theme.breakpoints.up('sm')]: { marginTop: -64 - bottomBorderWidth },
   },
   tableRoot: {
     width: '100%',
