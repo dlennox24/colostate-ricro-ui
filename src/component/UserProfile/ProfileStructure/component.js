@@ -80,7 +80,9 @@ const ProfileStructure = ({ classes, currentUserId = -1, user }) => {
         {_.isEmpty(userGroups) ? null : (
           <Grid container>
             <Grid item xs={12}>
-              <Typography variant="h6">Groups</Typography>
+              <Typography className={classes.groupsHeader} variant="h6">
+                Groups
+              </Typography>
               <Divider />
               <List disablePadding>
                 {userGroups.map(userGroup => (

@@ -10,7 +10,7 @@ import getErrorObject from './getErrorObject';
 import styles from './styles';
 
 const HttpErrorComponent = props => {
-  const { classes, code, config, linkedButton, subheader } = props;
+  const { classes, code = 404, config, linkedButton, subheader } = props;
   const error = getErrorObject({ classes, code, config, linkedButton, subheader });
   return (
     <div className={classes.root}>

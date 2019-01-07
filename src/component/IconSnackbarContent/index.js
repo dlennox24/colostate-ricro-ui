@@ -61,7 +61,7 @@ function IconSnackbarContent({
 }
 
 IconSnackbarContent.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // MUI withStyles()
   className: PropTypes.string,
   disableAction: PropTypes.bool,
   disableIcon: PropTypes.bool,

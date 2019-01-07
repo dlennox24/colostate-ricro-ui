@@ -1,6 +1,6 @@
 {
   "name": "colostate-ricro-ui-example",
-  "homepage": "https://dlennox24.github.io/colostate-ricro-ui",
+  "homepage": "https://services.ricro.colostate.edu/__dev/cru/v3",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,

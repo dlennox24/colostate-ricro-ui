@@ -23,7 +23,7 @@ const StyledTableCell = withStyles(theme => ({
 const bottomBorderWidth = 3;
 const styles = theme => ({
   root: {
-    '&>:first-child': {
+    '&>:nth-child(2)': {
       margin: 0,
     },
   },

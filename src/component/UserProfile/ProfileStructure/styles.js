@@ -15,6 +15,9 @@ const styles = theme => ({
   column: {
     padding: theme.spacing.unit * 3,
   },
+  groupsHeader: {
+    marginTop: theme.spacing.unit * 2,
+  },
 });
 
 export default styles;

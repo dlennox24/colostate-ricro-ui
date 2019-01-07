@@ -18,7 +18,7 @@ const CloseableDialog = ({
   children,
   classes,
   fullScreen,
-  header,
+  header = '',
   headerColor = 'primary',
   ModalProps,
   onClose,

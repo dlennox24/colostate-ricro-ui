@@ -40,7 +40,7 @@ const CommitteeChip = ({ classes, committee }) => {
 };
 
 CommitteeChip.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // MUI withSTyles()
   committee: PropTypes.string.isRequired,
 };
 
