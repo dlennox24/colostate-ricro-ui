@@ -29,7 +29,9 @@ const styles = theme => ({
     display: 'inline-block',
     minWidth: '2em',
     userSelect: 'none',
-    opacity: 0.3,
+    borderRight: '2px solid white',
+    marginRight: theme.spacing.unit,
+    fontWeight: 'bold',
   },
 });
 export default styles;
