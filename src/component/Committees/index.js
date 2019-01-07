@@ -14,7 +14,6 @@ import IconShieldCheck from 'mdi-material-ui/ShieldCheck';
 import React from 'react';
 
 const committees = {
-  keys: ['iacuc', 'ibc', 'irb', 'qa', 'rcr', 'xc'],
   iacuc: {
     name: 'Institutional Animal Care and Use Committee',
     alias: 'IACUC',

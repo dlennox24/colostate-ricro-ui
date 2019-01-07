@@ -27,6 +27,7 @@ const CommitteeChip = ({ classes, committee }) => {
           <CommitteeAvatar
             className={classes.avatarRoot}
             committee={committeeObj.alias.toLowerCase()}
+            disableTooltip
           />
         }
         label={
