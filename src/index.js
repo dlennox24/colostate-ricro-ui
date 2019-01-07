@@ -1,7 +1,7 @@
 import AppFrame from './component/AppFrame';
 import CloseableDialog from './component/CloseableDialog';
 import Code from './component/Code';
-import Committees from './component/Committees';
+import committees from './component/Committees';
 import CommitteeAvatar from './component/Committees/Avatar';
 import CommitteeChip from './component/Committees/Chip';
 import HttpError from './component/HttpError';
@@ -14,7 +14,7 @@ export default AppFrame;
 export {
   CloseableDialog,
   Code,
-  Committees,
+  committees,
   CommitteeAvatar,
   CommitteeChip,
   HttpError,
