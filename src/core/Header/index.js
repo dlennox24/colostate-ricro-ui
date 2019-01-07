@@ -1,5 +1,5 @@
 import AppBar from '@material-ui/core/AppBar';
-import Collapse from '@material-ui/core/Collapse';
+import Fade from '@material-ui/core/Fade';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import $ from 'jquery';
@@ -30,7 +30,7 @@ class Header extends React.Component {
               {unit.name}
             </Typography>
           ) : (
-            <Collapse in={isOpen}>
+            <Fade in={isOpen}>
               <div className="signature">
                 <section id="BrandLogo" className="fontLarge">
                   <div className="responsiveLogoContainer">
@@ -45,7 +45,7 @@ class Header extends React.Component {
                   </div>
                 </section>
               </div>
-            </Collapse>
+            </Fade>
           )}
         </Toolbar>
       </AppBar>
