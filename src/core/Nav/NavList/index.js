@@ -24,6 +24,7 @@ const NavList = ({
   linkPrefix = '',
   nav,
   location,
+  setMobileOpen,
 }) => {
   return (
     <div id={id} className={classNames(classes.root, className)}>
@@ -45,6 +46,7 @@ const NavList = ({
                       navItem={navItem}
                       nested={denseListItem}
                       linkPrefix={linkPrefix}
+                      setMobileOpen={setMobileOpen}
                     />
                   );
                 }
@@ -59,6 +61,7 @@ const NavList = ({
                     className={classNames(active && classes.active)}
                     button
                     dense={denseListItem}
+                    onClick={setMobileOpen && setMobileOpen(false)}
                     {...createMuiComponentLink(navItem, linkPrefix)}
                   >
                     {navItem.icon && <NavListItemIcon>{navItem.icon}</NavListItemIcon>}
@@ -88,6 +91,7 @@ NavList.propTypes = {
   nav: PropTypes.arrayOf(
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.element, navItemShape.isRequired])),
   ).isRequired,
+  setMobileOpen: PropTypes.func,
 };
 
 export default withRouter(withStyles(styles)(NavList));

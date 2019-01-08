@@ -34,7 +34,7 @@ const Nav = ({ classes, container, isMobileOpen, nav, setMobileOpen }) => (
           </Tooltip>
         </Toolbar>
         <Divider />
-        <NavList nav={nav} />
+        <NavList nav={nav} setMobileOpen={setMobileOpen} />
       </SwipeableDrawer>
     </Hidden>
     <Hidden className={classes.drawerDocked} mdDown implementation="css">

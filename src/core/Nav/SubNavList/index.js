@@ -25,7 +25,15 @@ class SubNavList extends React.Component {
   };
 
   render() {
-    const { classes, depth, linkPrefix = '', location, navItem, nested } = this.props;
+    const {
+      classes,
+      depth,
+      linkPrefix = '',
+      location,
+      navItem,
+      nested,
+      setMobileOpen,
+    } = this.props;
     const { isOpen } = this.state;
     const active = matchPath(location.pathname, {
       path: linkPrefix + navItem.link,
@@ -49,6 +57,7 @@ class SubNavList extends React.Component {
             nav={navItem.subNav}
             keyPrefix={`subNavList-${navItem.name}-`}
             depth={depth}
+            setMobileOpen={setMobileOpen}
             denseList
             denseListItem
           />
@@ -65,6 +74,7 @@ SubNavList.propTypes = {
   location: PropTypes.object.isRequired, // react-router withRouter()
   navItem: navItemShape.isRequired,
   nested: PropTypes.bool,
+  setMobileOpen: PropTypes.func,
 };
 
 export default withRouter(withStyles(styles)(SubNavList));
