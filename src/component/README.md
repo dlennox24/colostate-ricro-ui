@@ -19,15 +19,17 @@ Documentation for available components.
 ## AppFrame
 
 #### Props
+
 *\* Required*
+
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | children | `node` | | Children should be a single `react-router` `<Route>` component or multiple `<Route>`s wrapped with a `<React.Fragment>`. Injected into `react-router`'s `<Switch>`.
 | classes* | `object` | | Imported via Material UI's `withStyles()`
-| config | `object` | [{default}](#appframe.config.default) | Config file for overriding default configs. Recommended to you use `createConfig()` from utils.
+| config | `object` | [{default}](#appframeconfigdefault) | Config file for overriding default configs. Recommended to you use `createConfig()` from utils.
 | disableGutters | `bool` | | Removes padding around the content container
-| reducers | `object` | [{default}](#appframe.reducers.default) | Redux reducers. Automatically combines with library reducers using Redux's `combineReducers()`. Reducers with the names `user` and `config` are protected as they are already in use and will be overwritten.
-| reduxMiddleware | `func` | [default()](#appframe.reduxMiddleware.default) | [Middleware for Redux](https://redux.js.org/advanced/middleware)
+| reducers | `object` | [{default}](#appframereducersdefault) | Redux reducers. Automatically combines with library reducers using Redux's `combineReducers()`. Reducers with the names `user` and `config` are protected as they are already in use and will be overwritten.
+| reduxMiddleware | `func` | [default()](#appframereduxMiddlewaredefault) | [Middleware for Redux](https://redux.js.org/advanced/middleware)
 
 #### AppFrame.config.default
 ```json
