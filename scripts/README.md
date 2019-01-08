@@ -44,7 +44,7 @@ If no prefix is specified and it is a valid suffix then only commands associated
 
 ## start
 
-The start script spins up development servers and other watch scripts in parallel. **If one script fails, they are all killed.** This is avoid orphaned processes and to prevent the orphans from preventing the use the next iteration's ports.
+The start script spins up development servers and other watch scripts in parallel. **If one script fails, they are all killed.** This is to avoid orphaned processes and to prevent the orphans from blocking ports.
 
 ```yarn start```
 
