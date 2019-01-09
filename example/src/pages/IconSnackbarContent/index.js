@@ -92,8 +92,8 @@ class IconSnackbarContentPage extends React.Component {
         <Form
           {...this.state}
           customIcons={customIcons}
-          handleChange={this.handleChange}
-          handleSwitchChange={this.handleSwitchChange}
+          onChange={this.handleChange}
+          onSwitchChange={this.handleSwitchChange}
         />
         <Grid container alignItems="center">
           <Grid className={classes.gridItem} item xs={12} sm={2}>

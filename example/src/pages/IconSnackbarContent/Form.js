@@ -18,7 +18,7 @@ const createFormGroup = (options, props) => (
         control={
           <Switch
             checked={props[switchOption.shortName]}
-            onChange={props.handleSwitchChange(switchOption.shortName)}
+            onChange={props.onSwitchChange(switchOption.shortName)}
             value={switchOption.shortName}
             color="primary"
           />
@@ -28,6 +28,10 @@ const createFormGroup = (options, props) => (
     ))}
   </FormGroup>
 );
+
+createFormGroup.propTypes = {
+  onSwitchChange: PropTypes.func,
+};
 
 const createFieldRows = props => {
   const { autoHideDuration, customIcons } = props;
@@ -69,7 +73,7 @@ const createFieldRows = props => {
 };
 
 const Form = props => {
-  const { classes, handleChange } = props;
+  const { classes, onChange } = props;
   return (
     <form className={classes.container} noValidate autoComplete="off">
       {createFieldRows(props).map((row, i) => (
@@ -86,7 +90,7 @@ const Form = props => {
                   id={`select-${field.shortName}`}
                   label={field.label}
                   value={props[field.shortName]}
-                  onChange={handleChange(field.shortName)}
+                  onChange={onChange(field.shortName)}
                   SelectProps={{ MenuProps: { className: classes.menu } }}
                   helperText={field.helperText}
                   margin="normal"
@@ -120,6 +124,7 @@ const Form = props => {
 
 Form.propTypes = {
   classes: PropTypes.object.isRequired, // MUI withStyles()
+  onChange: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Form);
