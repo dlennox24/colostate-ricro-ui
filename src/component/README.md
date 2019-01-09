@@ -28,7 +28,7 @@ Documentation for available components.
 | classes* | `object` | | Imported via Material UI's `withStyles()`
 | config | `object` | [{default}](#appframeconfigdefault) | Config file for overriding default configs. Recommended to you use `createConfig()` from utils.
 | disableGutters | `bool` | | Removes padding around the content container
-| reducers | `object` | [{default}](#appframereducersdefault) | Redux reducers. Automatically combines with library reducers using Redux's `combineReducers()`. Reducers with the names `user` and `config` are protected as they are already in use and will be overwritten.
+| reducers | `object` | [{default}](#appframereducersdefault) | Redux reducers. Automatically combines with library reducers using Redux's `combineReducers()`. Reducers with the name `user` or `config` will be overwritten as those names are already in use and protected.
 | reduxMiddleware | `func` | [default()](#appframereduxMiddlewaredefault) | [Middleware for Redux](https://redux.js.org/advanced/middleware)
 
 ### Defaults
