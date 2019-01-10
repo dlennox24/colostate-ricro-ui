@@ -18,6 +18,9 @@ const styles = theme => ({
   groupsHeader: {
     marginTop: theme.spacing.unit * 2,
   },
+  noGroups: {
+    marginTop: theme.spacing.unit * 2,
+  },
 });
 
 export default styles;

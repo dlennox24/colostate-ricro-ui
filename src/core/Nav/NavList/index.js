@@ -14,37 +14,40 @@ import SubNavList from '../SubNavList';
 import styles from './styles';
 
 const createNavItem = (navItem, props) => {
-  const { classes, depth = 0, denseListItem, linkPrefix = '', location, setMobileOpen } = props;
   const key = `listItem-${navItem.name}`;
   if (React.isValidElement(navItem)) {
     return <React.Fragment key={key}>{navItem}</React.Fragment>;
   }
-
   if (Array.isArray(navItem.subNav)) {
     return (
       <SubNavList
         key={key}
-        depth={depth + 1}
+        depth={props.depth + 1}
         navItem={navItem}
-        nested={denseListItem}
-        linkPrefix={linkPrefix}
-        setMobileOpen={setMobileOpen}
+        nested={props.denseListItem}
+        linkPrefix={props.linkPrefix}
+        setMobileOpen={props.setMobileOpen}
+        ListProps={props.listProps}
       />
     );
   }
-
-  const active = matchPath(location.pathname, {
-    path: linkPrefix + navItem.link,
-    exact: true,
-  });
   return (
     <ListItem
       key={key}
-      className={classNames(active && classes.active)}
+      className={classNames(
+        matchPath(props.location.pathname, {
+          path: props.linkPrefix + navItem.link,
+          exact: true,
+        }) && props.classes.active,
+      )}
+      dense={props.denseListItem}
+      onClick={() => {
+        if (props.setMobileOpen) props.setMobileOpen(false);
+        if (navItem.onClick) navItem.onClick();
+      }}
+      disabled={navItem.disabled}
       button
-      dense={denseListItem}
-      onClick={setMobileOpen && setMobileOpen(false)}
-      {...createMuiComponentLink(navItem, linkPrefix)}
+      {...createMuiComponentLink(navItem, props.linkPrefix)}
     >
       {navItem.icon && <NavListItemIcon>{navItem.icon}</NavListItemIcon>}
       <ListItemText primary={navItem.name} />
@@ -63,15 +66,21 @@ const NavList = props => {
     keyPrefix = 'navList-',
     linkPrefix = '',
     nav,
+    listProps = {},
     location,
     setMobileOpen,
   } = props;
+
   return (
     <div id={id} className={classNames(classes.root, className)}>
       {nav.map((list, i) => {
         return (
           <React.Fragment key={`${keyPrefix}${list[0].name}`}>
-            <List className={classNames(denseList && classes.subNavList)} dense={denseList}>
+            <List
+              className={classNames(denseList && classes.subNavList)}
+              dense={denseList}
+              {...listProps}
+            >
               {list.map(navItem =>
                 createNavItem(navItem, {
                   classes,
@@ -80,6 +89,7 @@ const NavList = props => {
                   linkPrefix,
                   location,
                   setMobileOpen,
+                  listProps,
                 }),
               )}
             </List>
@@ -100,6 +110,7 @@ NavList.propTypes = {
   id: PropTypes.string,
   keyPrefix: PropTypes.string,
   linkPrefix: PropTypes.string,
+  listProps: PropTypes.object,
   location: PropTypes.object.isRequired, // react-router withRouter()
   nav: PropTypes.arrayOf(
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.element, navItemShape.isRequired])),

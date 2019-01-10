@@ -1,16 +1,10 @@
 import Avatar from '@material-ui/core/Avatar';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Collapse from '@material-ui/core/Collapse';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import Portal from '@material-ui/core/Portal';
 import Snackbar from '@material-ui/core/Snackbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import axios from 'axios';
 import IconAccountCircle from 'mdi-material-ui/AccountCircle';
-import IconChevronDown from 'mdi-material-ui/ChevronDown';
-import IconChevronUp from 'mdi-material-ui/ChevronUp';
 import IconLoginVariant from 'mdi-material-ui/LoginVariant';
 import IconLogoutVariant from 'mdi-material-ui/LogoutVariant';
 import PropTypes from 'prop-types';
@@ -18,6 +12,7 @@ import React from 'react';
 import userDefaultProfileImg from '../../assets/img/default-profile.svg';
 import IconSnackbarContent from '../../component/IconSnackbarContent';
 import UserProfile from '../../component/UserProfile';
+import NavList from '../Nav/NavList';
 import styles from './styles';
 
 const hasLoginSuccess = window.location.hash === '#login-success';
@@ -143,30 +138,42 @@ class LoginLogoutComponent extends React.Component {
       });
   };
 
-  createCollapseList = () => {
-    const { isDropDownOpen, isLogoutLoading } = this.state;
-    const { classes } = this.props;
-    return (
-      <Collapse className={classes.dropDown} in={isDropDownOpen && this.checkIsLoggedIn()}>
-        <ListItem button dense onClick={this.handleOpenUserProfile}>
-          <ListItemIcon>
-            <IconAccountCircle />
-          </ListItemIcon>
-          <ListItemText inset primary="Account" />
-        </ListItem>
-        <ListItem button dense onClick={this.handleLogout} disabled={isLogoutLoading}>
-          <ListItemIcon>
-            {isLogoutLoading ? loadingProgressCircle : <IconLogoutVariant />}
-          </ListItemIcon>
-          <ListItemText inset primary="Logout" />
-        </ListItem>
-      </Collapse>
-    );
+  createNavItems = () => {
+    const { isLoginLoading, isLogoutLoading } = this.state;
+    const { user } = this.props;
+    return [
+      [
+        {
+          name: this.isLoggedIn() ? user.displayName : 'Login',
+          icon: isLoginLoading ? loadingProgressCircle : this.createLoginIcons(),
+          onClick: this.isLoggedIn() ? null : this.handleLogin,
+          disabled: isLoginLoading,
+          dense: true,
+          subNav: !this.isLoggedIn()
+            ? null
+            : [
+                [
+                  {
+                    name: 'Account',
+                    icon: <IconAccountCircle />,
+                    onClick: this.handleOpenUserProfile,
+                  },
+                  {
+                    name: 'Logout',
+                    icon: isLogoutLoading ? loadingProgressCircle : <IconLogoutVariant />,
+                    onClick: this.handleLogout,
+                    disabled: isLogoutLoading,
+                  },
+                ],
+              ],
+        },
+      ],
+    ];
   };
 
   createLoginIcons = () => {
     const { classes, user } = this.props;
-    return this.checkIsLoggedIn() ? (
+    return this.isLoggedIn() ? (
       <Avatar
         className={classes.profileAvatar}
         alt={`${user.displayName}'s profile image`}
@@ -177,7 +184,7 @@ class LoginLogoutComponent extends React.Component {
     );
   };
 
-  checkIsLoggedIn = () => Boolean(this.props.user !== 'loggedout' && this.props.user != null);
+  isLoggedIn = () => Boolean(this.props.user !== 'loggedout' && this.props.user != null);
 
   componentDidMount = () => {
     if (hasLoginSuccess || this.props.hasAutoLogin) {
@@ -187,23 +194,12 @@ class LoginLogoutComponent extends React.Component {
 
   render() {
     const { user } = this.props;
-    const { isDropDownOpen, isLoginLoading, isUserProfileOpen, snackbar } = this.state;
+    const { isUserProfileOpen, snackbar } = this.state;
 
     return (
       <React.Fragment>
-        <ListItem
-          onClick={this.checkIsLoggedIn() ? this.handleToggleDropDown : this.handleLogin}
-          disabled={isLoginLoading}
-          button
-        >
-          <ListItemIcon>
-            {isLoginLoading ? loadingProgressCircle : this.createLoginIcons()}
-          </ListItemIcon>
-          <ListItemText inset primary={this.checkIsLoggedIn() ? user.displayName : 'Login'} />
-          {this.checkIsLoggedIn() && (isDropDownOpen ? <IconChevronUp /> : <IconChevronDown />)}
-        </ListItem>
-        {this.createCollapseList()}
-        {this.checkIsLoggedIn() && (
+        <NavList nav={this.createNavItems()} listProps={{ disablePadding: true }} />
+        {this.isLoggedIn() && (
           <UserProfile
             variant="dialog"
             user={user}

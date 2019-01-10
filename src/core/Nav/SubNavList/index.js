@@ -29,6 +29,7 @@ class SubNavList extends React.Component {
       classes,
       depth,
       linkPrefix = '',
+      listProps,
       location,
       navItem,
       nested,
@@ -58,6 +59,7 @@ class SubNavList extends React.Component {
             keyPrefix={`subNavList-${navItem.name}-`}
             depth={depth}
             setMobileOpen={setMobileOpen}
+            listProps={listProps}
             denseList
             denseListItem
           />
@@ -71,6 +73,7 @@ SubNavList.propTypes = {
   classes: PropTypes.object.isRequired, // MUI withStyles()
   depth: PropTypes.number,
   linkPrefix: PropTypes.string.isRequired,
+  listProps: PropTypes.object,
   location: PropTypes.object.isRequired, // react-router withRouter()
   navItem: navItemShape.isRequired,
   nested: PropTypes.bool,

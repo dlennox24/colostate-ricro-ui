@@ -61,22 +61,26 @@ class ProfileStructure extends React.Component {
   };
 
   createGroupsSection = () => {
-    const { classes, user } = this.props;
-    const userGroups = _.sortBy(user.userGroups, ['alias', 'userGroupTypeId']);
-    return _.isEmpty(userGroups) ? null : (
-      <React.Fragment>
-        <Typography className={classes.groupsHeader} variant="h5">
-          Groups
-        </Typography>
-        <Divider />
-        <List disablePadding>
-          {userGroups.map(userGroup => (
-            <ListItem key={userGroup.alias}>
-              <ListItemText primary={userGroup.alias} secondary={userGroup.description} />
-            </ListItem>
-          ))}
-        </List>
-      </React.Fragment>
+    let userGroups = _.sortBy(this.props.user.userGroups, ['alias', 'userGroupTypeId']);
+    userGroups = [];
+    return _.isEmpty(userGroups) ? (
+      <Typography
+        className={this.props.classes.noGroups}
+        variant="button"
+        align="center"
+        paragraph
+        component="p"
+      >
+        No Groups Associated with This User
+      </Typography>
+    ) : (
+      <List disablePadding>
+        {userGroups.map(userGroup => (
+          <ListItem key={userGroup.alias}>
+            <ListItemText primary={userGroup.alias} secondary={userGroup.description} />
+          </ListItem>
+        ))}
+      </List>
     );
   };
 
