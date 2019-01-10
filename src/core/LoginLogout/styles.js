@@ -1,7 +1,8 @@
+import navItemStyles from '../Nav/SubNavList/styles';
+
 const styles = theme => ({
   dropDown: {
-    marginLeft: theme.spacing.unit * 4,
-    borderLeft: `2px solid ${theme.palette.divider}`,
+    ...navItemStyles.dropDown,
   },
   profileAvatar: {
     width: theme.spacing.unit * 3,

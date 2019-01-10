@@ -177,7 +177,7 @@ class LoginLogoutComponent extends React.Component {
     );
   };
 
-  checkIsLoggedIn = () => this.props.user !== 'loggedout' && this.props.user != null;
+  checkIsLoggedIn = () => Boolean(this.props.user !== 'loggedout' && this.props.user != null);
 
   componentDidMount = () => {
     if (hasLoginSuccess || this.props.hasAutoLogin) {
