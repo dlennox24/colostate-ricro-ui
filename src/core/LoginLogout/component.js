@@ -202,6 +202,7 @@ class LoginLogoutComponent extends React.Component {
           <ListItemText inset primary={this.checkIsLoggedIn() ? user.displayName : 'Login'} />
           {this.checkIsLoggedIn() && (isDropDownOpen ? <IconChevronUp /> : <IconChevronDown />)}
         </ListItem>
+        {this.createCollapseList()}
         {this.checkIsLoggedIn() && (
           <UserProfile
             variant="dialog"
