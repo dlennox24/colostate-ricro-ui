@@ -57,7 +57,6 @@ class LoginLogoutComponent extends React.Component {
     }));
   };
 
-  // eslint-disable-next-line max-lines-per-function
   handleLogin = () => {
     /*
      * When a user logs in and they don't have a current Shibboleth session
