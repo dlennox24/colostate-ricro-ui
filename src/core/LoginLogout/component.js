@@ -1,4 +1,3 @@
-import Snackbar from '@material-ui/core/Snackbar';
 import Avatar from '@material-ui/core/Avatar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
@@ -6,6 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Portal from '@material-ui/core/Portal';
+import Snackbar from '@material-ui/core/Snackbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import axios from 'axios';
 import IconAccountCircle from 'mdi-material-ui/AccountCircle';
@@ -21,6 +21,7 @@ import UserProfile from '../../component/UserProfile';
 import styles from './styles';
 
 const hasLoginSuccess = window.location.hash === '#login-success';
+const loadingProgressCircle = <CircularProgress color="secondary" size={24} />;
 
 class LoginLogoutComponent extends React.Component {
   state = {
@@ -61,6 +62,7 @@ class LoginLogoutComponent extends React.Component {
     }));
   };
 
+  // eslint-disable-next-line max-lines-per-function
   handleLogin = () => {
     /*
      * When a user logs in and they don't have a current Shibboleth session
@@ -141,24 +143,30 @@ class LoginLogoutComponent extends React.Component {
       });
   };
 
-  componentDidMount = () => {
-    if (hasLoginSuccess || this.props.hasAutoLogin) {
-      this.handleLogin();
-    }
+  createCollapseList = () => {
+    const { isDropDownOpen, isLogoutLoading } = this.state;
+    const { classes } = this.props;
+    return (
+      <Collapse className={classes.dropDown} in={isDropDownOpen && this.checkIsLoggedIn()}>
+        <ListItem button dense onClick={this.handleOpenUserProfile}>
+          <ListItemIcon>
+            <IconAccountCircle />
+          </ListItemIcon>
+          <ListItemText inset primary="Account" />
+        </ListItem>
+        <ListItem button dense onClick={this.handleLogout} disabled={isLogoutLoading}>
+          <ListItemIcon>
+            {isLogoutLoading ? loadingProgressCircle : <IconLogoutVariant />}
+          </ListItemIcon>
+          <ListItemText inset primary="Logout" />
+        </ListItem>
+      </Collapse>
+    );
   };
 
-  render() {
+  createLoginIcons = () => {
     const { classes, user } = this.props;
-    const {
-      isDropDownOpen,
-      isLoginLoading,
-      isLogoutLoading,
-      isUserProfileOpen,
-      snackbar,
-    } = this.state;
-    const isLoggedIn = user !== 'loggedout' && user != null;
-
-    const loginIcons = isLoggedIn ? (
+    return this.checkIsLoggedIn() ? (
       <Avatar
         className={classes.profileAvatar}
         alt={`${user.displayName}'s profile image`}
@@ -167,35 +175,34 @@ class LoginLogoutComponent extends React.Component {
     ) : (
       <IconLoginVariant />
     );
+  };
 
-    const loadingProgressCircle = <CircularProgress color="secondary" size={24} />;
+  checkIsLoggedIn = () => this.props.user !== 'loggedout' && this.props.user != null;
+
+  componentDidMount = () => {
+    if (hasLoginSuccess || this.props.hasAutoLogin) {
+      this.handleLogin();
+    }
+  };
+
+  render() {
+    const { user } = this.props;
+    const { isDropDownOpen, isLoginLoading, isUserProfileOpen, snackbar } = this.state;
 
     return (
       <React.Fragment>
         <ListItem
-          button
-          onClick={isLoggedIn ? this.handleToggleDropDown : this.handleLogin}
+          onClick={this.checkIsLoggedIn() ? this.handleToggleDropDown : this.handleLogin}
           disabled={isLoginLoading}
+          button
         >
-          <ListItemIcon>{isLoginLoading ? loadingProgressCircle : loginIcons}</ListItemIcon>
-          <ListItemText inset primary={isLoggedIn ? user.displayName : 'Login'} />
-          {isLoggedIn && (isDropDownOpen ? <IconChevronUp /> : <IconChevronDown />)}
+          <ListItemIcon>
+            {isLoginLoading ? loadingProgressCircle : this.createLoginIcons()}
+          </ListItemIcon>
+          <ListItemText inset primary={this.checkIsLoggedIn() ? user.displayName : 'Login'} />
+          {this.checkIsLoggedIn() && (isDropDownOpen ? <IconChevronUp /> : <IconChevronDown />)}
         </ListItem>
-        <Collapse className={classes.dropDown} in={isDropDownOpen && isLoggedIn}>
-          <ListItem button dense onClick={this.handleOpenUserProfile}>
-            <ListItemIcon>
-              <IconAccountCircle />
-            </ListItemIcon>
-            <ListItemText inset primary="Account" />
-          </ListItem>
-          <ListItem button dense onClick={this.handleLogout} disabled={isLogoutLoading}>
-            <ListItemIcon>
-              {isLogoutLoading ? loadingProgressCircle : <IconLogoutVariant />}
-            </ListItemIcon>
-            <ListItemText inset primary="Logout" />
-          </ListItem>
-        </Collapse>
-        {isLoggedIn && (
+        {this.checkIsLoggedIn() && (
           <UserProfile
             variant="dialog"
             user={user}
@@ -205,10 +212,7 @@ class LoginLogoutComponent extends React.Component {
         )}
         <Portal>
           <Snackbar
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
             open={snackbar.open}
             autoHideDuration={6000}
             onClose={this.handleSnackbarClose}

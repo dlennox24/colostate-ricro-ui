@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-lines-per-function
 const styles = theme => ({
   copyLinks: {
     width: '100%',

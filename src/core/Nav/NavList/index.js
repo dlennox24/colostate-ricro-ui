@@ -13,62 +13,75 @@ import NavListItemIcon from '../NavListItemIcon';
 import SubNavList from '../SubNavList';
 import styles from './styles';
 
-const NavList = ({
-  classes,
-  className,
-  depth = 0,
-  denseList,
-  denseListItem,
-  id,
-  keyPrefix = 'navList-',
-  linkPrefix = '',
-  nav,
-  location,
-  setMobileOpen,
-}) => {
+const createNavItem = (navItem, props) => {
+  const { classes, depth = 0, denseListItem, linkPrefix = '', location, setMobileOpen } = props;
+  const key = `listItem-${navItem.name}`;
+  if (React.isValidElement(navItem)) {
+    return <React.Fragment key={key}>{navItem}</React.Fragment>;
+  }
+
+  if (Array.isArray(navItem.subNav)) {
+    return (
+      <SubNavList
+        key={key}
+        depth={depth + 1}
+        navItem={navItem}
+        nested={denseListItem}
+        linkPrefix={linkPrefix}
+        setMobileOpen={setMobileOpen}
+      />
+    );
+  }
+
+  const active = matchPath(location.pathname, {
+    path: linkPrefix + navItem.link,
+    exact: true,
+  });
+  return (
+    <ListItem
+      key={key}
+      className={classNames(active && classes.active)}
+      button
+      dense={denseListItem}
+      onClick={setMobileOpen && setMobileOpen(false)}
+      {...createMuiComponentLink(navItem, linkPrefix)}
+    >
+      {navItem.icon && <NavListItemIcon>{navItem.icon}</NavListItemIcon>}
+      <ListItemText primary={navItem.name} />
+    </ListItem>
+  );
+};
+
+const NavList = props => {
+  const {
+    classes,
+    className,
+    depth = 0,
+    denseList,
+    denseListItem,
+    id,
+    keyPrefix = 'navList-',
+    linkPrefix = '',
+    nav,
+    location,
+    setMobileOpen,
+  } = props;
   return (
     <div id={id} className={classNames(classes.root, className)}>
       {nav.map((list, i) => {
         return (
           <React.Fragment key={`${keyPrefix}${list[0].name}`}>
             <List className={classNames(denseList && classes.subNavList)} dense={denseList}>
-              {list.map(navItem => {
-                const key = `listItem-${navItem.name}`;
-                if (React.isValidElement(navItem)) {
-                  return <React.Fragment key={key}>{navItem}</React.Fragment>;
-                }
-
-                if (Array.isArray(navItem.subNav)) {
-                  return (
-                    <SubNavList
-                      key={key}
-                      depth={depth + 1}
-                      navItem={navItem}
-                      nested={denseListItem}
-                      linkPrefix={linkPrefix}
-                      setMobileOpen={setMobileOpen}
-                    />
-                  );
-                }
-
-                const active = matchPath(location.pathname, {
-                  path: linkPrefix + navItem.link,
-                  exact: true,
-                });
-                return (
-                  <ListItem
-                    key={key}
-                    className={classNames(active && classes.active)}
-                    button
-                    dense={denseListItem}
-                    onClick={setMobileOpen && setMobileOpen(false)}
-                    {...createMuiComponentLink(navItem, linkPrefix)}
-                  >
-                    {navItem.icon && <NavListItemIcon>{navItem.icon}</NavListItemIcon>}
-                    <ListItemText primary={navItem.name} />
-                  </ListItem>
-                );
-              })}
+              {list.map(navItem =>
+                createNavItem(navItem, {
+                  classes,
+                  depth,
+                  denseListItem,
+                  linkPrefix,
+                  location,
+                  setMobileOpen,
+                }),
+              )}
             </List>
             {i !== nav.length - 1 && <Divider />}
           </React.Fragment>

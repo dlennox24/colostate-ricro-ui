@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-lines-per-function
 const styles = theme => ({
   '@global': {
     'p a, span a': {

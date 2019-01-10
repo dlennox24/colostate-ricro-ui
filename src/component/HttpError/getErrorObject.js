@@ -7,6 +7,23 @@ import IconHelpNetwork from 'mdi-material-ui/HelpNetwork';
 import IconLoginVariant from 'mdi-material-ui/LoginVariant';
 import React from 'react';
 
+const subheader404 = classes => (
+  <React.Fragment>
+    <Typography variant="body1" paragraph>
+      Unable to find this page. If you believe this to be an error please contact us.
+    </Typography>
+    <Chip
+      avatar={
+        <Avatar>
+          <IconHelpNetwork />
+        </Avatar>
+      }
+      label={<Typography variant="h6">{window.location.pathname}</Typography>}
+      className={classes.chip}
+    />
+  </React.Fragment>
+);
+
 const getErrorObject = ({ classes, code, config, linkedButton, subheader }) => {
   const contactUsButton = {
     icon: <IconEmail className={classes.iconLeft} />,
@@ -38,22 +55,7 @@ const getErrorObject = ({ classes, code, config, linkedButton, subheader }) => {
     404: {
       code: 404,
       title: 'Not Found',
-      subheader: (
-        <React.Fragment>
-          <Typography variant="body1" paragraph>
-            Unable to find this page. If you believe this to be an error please contact us.
-          </Typography>
-          <Chip
-            avatar={
-              <Avatar>
-                <IconHelpNetwork />
-              </Avatar>
-            }
-            label={<Typography variant="h6">{window.location.pathname}</Typography>}
-            className={classes.chip}
-          />
-        </React.Fragment>
-      ),
+      subheader: subheader404(classes),
       linkedButton: [appsButton, contactUsButton],
     },
     500: {
