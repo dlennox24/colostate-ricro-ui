@@ -2,7 +2,9 @@
 
 UI extension of [Material UI](https://material-ui.com/) for RICRO based applications
 
-[![NPM](https://img.shields.io/npm/v/colostate-ricro-ui.svg)](https://www.npmjs.com/package/colostate-ricro-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/colostate-ricro-ui.svg)](https://www.npmjs.com/package/colostate-ricro-ui)
+[![Maintainability](https://api.codeclimate.com/v1/badges/fe9eab169ba1cbfe9c09/maintainability)](https://codeclimate.com/github/csu-ricro/colostate-ricro-ui/maintainability)
+[![Build Status](https://travis-ci.com/csu-ricro/colostate-ricro-ui.svg?branch=master)](https://travis-ci.com/csu-ricro/colostate-ricro-ui)
 
 ## Install
 
@@ -10,7 +12,7 @@ UI extension of [Material UI](https://material-ui.com/) for RICRO based applicat
 npm install --save colostate-ricro-ui
 ```
 
-## Usage
+## Basic Usage
 
 ```jsx
 import React from 'react'
@@ -21,7 +23,7 @@ class Example extends Reat.Component {
   render () {
     return (
       <AppFrame config={createConfig(config)}>
-        App Routes
+        {/* App Roots */}
       </AppFrame>
     )
   }
@@ -34,7 +36,7 @@ class Example extends Reat.Component {
 yarn setup
 ```
 ```
-yar start
+yarn start
 ```
 
 ## License
