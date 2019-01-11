@@ -19,9 +19,11 @@ const Code = ({ classes, code, lang, theme = defaultTheme }) => (
         {tokens.map((line, i) => (
           <div {...getLineProps({ line, key: i })}>
             <span className={classes.lineNo}>{i + 1}</span>
-            {line.map((token, key) => (
-              <span {...getTokenProps({ token, key })} />
-            ))}
+            <pre className={classes.pre}>
+              {line.map((token, key) => (
+                <span {...getTokenProps({ token, key })} />
+              ))}
+            </pre>
           </div>
         ))}
       </div>

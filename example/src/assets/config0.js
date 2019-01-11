@@ -28,7 +28,6 @@ export default {
           icon: <IconFormatColorText />,
           link: '/typography',
         },
-        ,
         {
           name: 'CloseableDialog',
           icon: <IconCloseBoxOutline />,

@@ -130,7 +130,7 @@ export default App;
 | DialogProps | `object` | | Any other props passed to `CloseableDialog` will be spread onto the MUI `<Dialog>` |
 | fullScreen* | `bool` | | Imported via Material UI's `withMobileDialog()` |
 | header | `string` | '' | Text to put in the header |
-| headerColor | `string` | `primary` | Passed to Material UI's AppBar in the `color` prop |
+| headerColor | `string` | `"primary"` | Passed to Material UI's AppBar in the `color` prop |
 | onClose* | `func` | | Function to close the dialog |
 
 ### Example
@@ -176,6 +176,35 @@ class ExampleCloseableDialog extends React.Component {
 ```
 
 ## Code
+
+### Props
+
+*\* Required*
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| classes* | `object` | | Imported via Material UI's `withStyles()` |
+| code* | `string` | | String of code to be highlighted |
+| lang | `string` | `"jsx"` | Language to highlight. [View supported languages](https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/vendor/prism/includeLangs.js) |
+| theme | `object` | `{vsDarkPlus}` | Theme for the code background and highlighting. More themes available [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer#theme)
+
+### Example
+
+```jsx
+import { Code } from 'colostate-ricro-ui';
+import React from 'react';
+
+const exampleCode = `
+(function someDemo() {
+  var test = "Hello World!";
+  console.log(test);
+})();
+
+return () => <App />;`;
+
+const CodeExample = () => <Code source={exampleCode} />;
+```
+
 ## Committees
 ## Committee Avatar
 ## Committee Chip

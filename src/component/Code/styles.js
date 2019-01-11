@@ -33,5 +33,10 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     fontWeight: 'bold',
   },
+  pre: {
+    display: 'initial',
+    margin: 0,
+    padding: 0,
+  },
 });
 export default styles;

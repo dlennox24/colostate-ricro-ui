@@ -18,11 +18,11 @@ const Source = ({
   variant,
 }) => {
   const snackbarOptions =
-    autoHideDuration <= 0 ? '' : `\n\t\tautoHideDuration = {${autoHideDuration * 1000}}`;
+    autoHideDuration <= 0 ? '' : `\n    autoHideDuration = {${autoHideDuration * 1000}}`;
   const iscOptions =
-    `${customIcon !== 'none' ? '\n\t\t\ticon={Icon} // imported mdi-material-ui icon' : ''}` +
-    `${isActionDisabled ? '\n\t\t\tdisableAction' : ''}` +
-    `${isIconDisabled ? '\n\t\t\tdisableIcon' : ''}`;
+    `${customIcon !== 'none' ? '\n      icon={Icon} // imported mdi-material-ui icon' : ''}` +
+    `${isActionDisabled ? '\n      disableAction' : ''}` +
+    `${isIconDisabled ? '\n      disableIcon' : ''}`;
   const source = `
 <Portal>
   <Snackbar
