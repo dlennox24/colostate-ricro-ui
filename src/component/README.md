@@ -373,7 +373,26 @@ class ExampleIconSnackbarContent extends React.Component {
 ```
 
 ## MarkdownParser
+
+### Props
+
+All props are inherited from [react-markdown](https://github.com/rexxars/react-markdown#options).
+
+### Example
+
+```jsx
+import { MarkdownParser } from 'colostate-ricro-ui';
+import React from 'React';
+
+const md = '## Example Markdown String';
+
+const MarkdownParserExample = () => (
+  <MarkdownParser source={md} />
+)
+```
+
 ## UserProfile
+
 ### Props
 
 *\* Required*
