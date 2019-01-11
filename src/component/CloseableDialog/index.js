@@ -2,9 +2,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
-// import { withStyles, withTheme } from '@material-ui/core/styles';
 import withStyles from '@material-ui/core/styles/withStyles';
-import withTheme from '@material-ui/core/styles/withTheme';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
@@ -20,10 +18,8 @@ const CloseableDialog = ({
   fullScreen,
   header = '',
   headerColor = 'primary',
-  ModalProps,
   onClose,
-  theme,
-  ...dialogProps
+  ...DialogProps
 }) => {
   const id = `${header.replace(/ /g, '-').toLowerCase()}-header-dialog`;
   return (
@@ -34,7 +30,7 @@ const CloseableDialog = ({
       onClose={onClose}
       fullWidth
       aria-labelledby={id}
-      {...dialogProps}
+      {...DialogProps}
     >
       <DialogTitle classes={{ root: classes.dialogTitleRoot }} disableTypography>
         <AppBar position="static" component="div" color={headerColor}>
@@ -59,13 +55,11 @@ const CloseableDialog = ({
 CloseableDialog.propTypes = {
   children: PropTypes.any,
   classes: PropTypes.object.isRequired, // MUI withStyles()
-  dialogProps: PropTypes.object,
+  DialogProps: PropTypes.object,
   fullScreen: PropTypes.bool.isRequired, // MUI withMobileDialog()
   header: PropTypes.string,
   headerColor: PropTypes.string,
-  ModalProps: PropTypes.object,
   onClose: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired, // MUI withTheme()
 };
 
-export default withMobileDialog()(withTheme()(withStyles(styles)(CloseableDialog)));
+export default withMobileDialog()(withStyles(styles)(CloseableDialog));

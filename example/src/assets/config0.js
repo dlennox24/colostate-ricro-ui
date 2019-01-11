@@ -3,6 +3,7 @@ import IconAccountMultiple from 'mdi-material-ui/AccountMultiple';
 import IconAlertCircle from 'mdi-material-ui/AlertCircle';
 import IconBell from 'mdi-material-ui/Bell';
 import IconChevronDoubleDown from 'mdi-material-ui/ChevronDoubleDown';
+import IconCloseBoxOutline from 'mdi-material-ui/CloseBoxOutline';
 import IconEraser from 'mdi-material-ui/Eraser';
 import IconFileTree from 'mdi-material-ui/FileTree';
 import IconFolderNetwork from 'mdi-material-ui/FolderNetwork';
@@ -22,6 +23,17 @@ export default {
     // hasAutoLogin: true,
     nav: [
       [
+        {
+          name: 'Typography',
+          icon: <IconFormatColorText />,
+          link: '/typography',
+        },
+        ,
+        {
+          name: 'CloseableDialog',
+          icon: <IconCloseBoxOutline />,
+          link: '/closeable-dialog',
+        },
         {
           name: 'Committees',
           icon: <IconAccountMultiple />,
@@ -56,11 +68,6 @@ export default {
           name: 'Snackbars',
           icon: <IconBell />,
           link: '/icon-snackbar-content',
-        },
-        {
-          name: 'Typography',
-          icon: <IconFormatColorText />,
-          link: '/typography',
         },
         {
           name: 'User Profile',
