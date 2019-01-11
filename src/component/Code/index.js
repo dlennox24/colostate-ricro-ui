@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import classNames from 'classnames';
 import Highlight, { defaultProps } from 'prism-react-renderer';
@@ -17,14 +18,14 @@ const Code = ({ classes, code, lang, theme = defaultTheme }) => (
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
       <div className={classNames(classes.root, className)} style={style}>
         {tokens.map((line, i) => (
-          <div {...getLineProps({ line, key: i })}>
+          <Typography {...getLineProps({ line, key: i })} variant="body1" component="div">
             <span className={classes.lineNo}>{i + 1}</span>
             <pre className={classes.pre}>
               {line.map((token, key) => (
                 <span {...getTokenProps({ token, key })} />
               ))}
             </pre>
-          </div>
+          </Typography>
         ))}
       </div>
     )}

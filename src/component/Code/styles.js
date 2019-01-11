@@ -1,17 +1,18 @@
 const styles = theme => ({
   root: {
-    fontFamily: 'monospace',
-    fontSize: theme.typography.body2.fontSize,
+    fontSize: theme.typography.body1.fontSize,
     textAlign: 'left',
-    margin: '1em 0',
-    padding: '0.6em 0.5em',
+    margin: `${theme.spacing.unit * 2}px 0`,
+    padding: theme.spacing.unit * 1.5,
+    paddingLeft: 0,
     overflowX: 'auto',
     width: '99.9%', // Hides background overflow when scrollbar is present
     '& .token-line': {
-      lineHeight: '1.4em',
+      lineHeight: '1.1em',
       whiteSpace: 'nowrap',
-      paddingRight: '0.5em',
+      paddingRight: theme.spacing.unit,
       width: 'fit-content',
+      fontFamily: 'monospace',
     },
     '&:hover::-webkit-scrollbar-thumb': {
       backgroundColor: theme.palette.csu.primary.gold.main,
@@ -27,11 +28,15 @@ const styles = theme => ({
   },
   lineNo: {
     display: 'inline-block',
-    minWidth: '2em',
+    minWidth: '2.4em',
     userSelect: 'none',
     borderRight: '2px solid white',
-    marginRight: theme.spacing.unit,
-    fontWeight: 'bold',
+    marginRight: theme.spacing.unit * 2,
+    fontSize: theme.typography.body1.fontSize,
+    lineHeight: `${theme.spacing.unit * 2}px`,
+    textAlign: 'right',
+    paddingRight: theme.spacing.unit,
+    // fontWeight: 'bold',
   },
   pre: {
     display: 'initial',

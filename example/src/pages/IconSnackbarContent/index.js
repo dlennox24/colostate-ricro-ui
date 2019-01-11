@@ -89,7 +89,7 @@ class IconSnackbarContentPage extends React.Component {
           onSwitchChange={this.handleSwitchChange}
         />
         <Grid container alignItems="center">
-          <Grid className={classes.gridItem} item xs={12} sm={2}>
+          <Grid className={classes.gridItem} item xs={12} md={3}>
             <Button
               variant="contained"
               color="primary"
@@ -99,12 +99,12 @@ class IconSnackbarContentPage extends React.Component {
               Open Snackbar
             </Button>
           </Grid>
-          <Grid className={classes.gridItem} item xs={12} sm={2}>
+          <Grid className={classes.gridItem} item xs={12} md={3}>
             <Button onClick={this.handleToggleSourceOpen} variant="outlined" fullWidth>
               {isSourceOpen ? 'Close Source' : 'View Source'}
             </Button>
           </Grid>
-          <Grid className={classes.gridItem} item xs={12} sm={5}>
+          <Grid className={classes.gridItem} item xs={12} md={6}>
             {this.createSnackbarContentPreview('disableClose')}
           </Grid>
         </Grid>

@@ -22,7 +22,7 @@ const Showcase = ({ classes }) => (
             className={classes.gridItem}
             item
             xs={12}
-            sm={6}
+            md={6}
           >
             <IconSnackbarContent
               variant={snackbar.variant}

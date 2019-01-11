@@ -54,17 +54,18 @@ class Form extends React.Component {
       [
         {
           shortName: 'disables',
-          breakpoints: { xs: 12, sm: 3 },
+          breakpoints: { xs: 12, md: 3 },
           node: this.createFormGroup([
             { label: 'Disable Action', shortName: 'isActionDisabled' },
             { label: 'Disable Icon', shortName: 'isIconDisabled' },
           ]),
         },
-        { label: 'Message', shortName: 'message', breakpoints: { xs: 12, sm: 6 } },
+        { label: 'Message', shortName: 'message', breakpoints: { xs: 12, md: 6 } },
         {
           label: 'Custom Icon',
           shortName: 'customIcon',
           options: Object.keys(customIcons).map(opt => ({ label: opt, node: customIcons[opt] })),
+          breakpoints: { xs: 12, md: 3 },
         },
       ],
     ];
