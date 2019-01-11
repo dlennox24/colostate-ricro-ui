@@ -244,7 +244,7 @@ Any props not listed below will be spread to Material UI's `<Avatar>`.
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | className | `string` | | CSS class to apply to Material UI's `<Avatar>`
-| committee | `string` | | Committee abbreviation (eg `iacuc`). Must be one of the keys in the [{committees}](#committees) object.
+| committee* | `string` | | Committee abbreviation (eg `iacuc`). Must be one of the keys in the [{committees}](#committees) object.
 | disableTooltip | `bool` | `false` | Disables the Material UI's Tooltip popup
 | size | `number` | `1` | Size of the avatar. `1` is 100%. `.2` is 20%.
 
@@ -263,6 +263,31 @@ const CommitteesPage = () => {
 ```
 
 ## Committee Chip
+
+### Props
+
+Any props not listed below will be spread to Material UI's `<Chip>`.
+
+*\* Required*
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| classes* | `object` | | Imported via Material UI's `withStyles()` |
+| committee* | `string` | | Committee abbreviation (eg `iacuc`). Must be one of the keys in the [{committees}](#committees) object.
+
+### Example
+
+```jsx
+import { CommitteeChip, committees } from 'colostate-ricro-ui';
+import React from 'react';
+
+const CommitteesPage = () => {
+  return Object.keys(committees).map((committee, i) => (
+    <CommitteeChip key={committee} size={0.75 * i + 0.75} committee={committee} />
+  ));
+};
+```
+
 ## HttpError
 ## IconSnackbarContent
 ## MarkdownParser

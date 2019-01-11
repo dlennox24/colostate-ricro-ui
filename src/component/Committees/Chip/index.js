@@ -16,7 +16,7 @@ const styles = theme => ({
   },
 });
 
-const CommitteeChip = ({ classes, committee }) => {
+const CommitteeChip = ({ classes, committee, ...ChipProps }) => {
   const committeeObj = Committees[committee];
   return (
     <Tooltip title={committeeObj.name}>
@@ -35,6 +35,7 @@ const CommitteeChip = ({ classes, committee }) => {
             {committeeObj.alias}
           </Typography>
         }
+        {...ChipProps}
       />
     </Tooltip>
   );
