@@ -9,7 +9,7 @@ UI extension of [Material UI](https://material-ui.com/) for RICRO based applicat
 ## Install
 
 ```bash
-npm install --save colostate-ricro-ui
+npm install colostate-ricro-ui
 ```
 
 ## Basic Usage
@@ -34,6 +34,24 @@ const App = () => (
 export default App;
 
 ```
+## More Docs
+
+Be sure to add the font imports to the `index.html` or the head of the HTML document.
+
+```html
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="//static.colostate.edu/fonts/factoria/factoria.css" media="none" onload="this.media='all';">
+  <link rel="stylesheet" href="//static.colostate.edu/fonts/proxima-nova/proxima.css" media="none" onload="this.media='all';">
+```
+
+Ensure the `manifest.json` is up to date. [More info about the manifest](https://developers.google.com/web/fundamentals/web-app-manifest/). Be sure to set the `theme-color` meta tag in the HTML head.
+
+```html
+  <meta name="theme-color" content="#1E4D2B">
+```
+
+- [Components](/src/component/#readme)
+- [Scripts](/src/scripts/#readme)
 
 ## Development
 
@@ -44,10 +62,6 @@ yarn setup
 yarn start
 ```
 
-## More Docs
-
-- [Components](/src/component/#readme)
-- [Scripts](/src/scripts/#readme)
 
 ## License
 

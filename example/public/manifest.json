@@ -1,8 +1,8 @@
 {
-  "short_name": "colostate-ricro-ui",
+  "short_name": "CRU",
   "name": "colostate-ricro-ui",
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#1E4D2B",
   "background_color": "#ffffff"
 }
