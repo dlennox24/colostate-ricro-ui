@@ -2,6 +2,26 @@ import axios from 'axios';
 import _ from 'lodash';
 import defaults, { defaultContactHref } from './defaults';
 
+const createNav = (config, nav) => {
+  /*
+   * Generates the 2D array for the navigation list. Stacks the defaults{} above
+   * the list items from config{}.
+   */
+  if (config.unit.contactHref !== defaultContactHref) {
+    nav[2].link = config.unit.contactHref;
+  }
+  if (!config.app.hasLogin) {
+    nav.splice(1, 1); // remove <LoginLogout />
+  }
+  if (config.app.basename === '/') {
+    // Apps removal of nav item as it is at the server root and "Apps" routes to server root
+    nav.splice(0, 1);
+  }
+  return config.app.nav.length > 0
+    ? [nav, ...config.app.nav.filter(array => array.length > 0)]
+    : [nav];
+};
+
 const createConfig = (config = {}) => {
   /*
    * Grabs default nav list but then clears it before merge to avoid merging the
@@ -21,24 +41,7 @@ const createConfig = (config = {}) => {
   _.defaultsDeep(config, moddedDefaults);
 
   if (config.app.nav) {
-    /*
-     * Generates the 2D array for the navigation list. Stacks the defaults{} above
-     * the list items from config{}.
-     */
-    if (config.unit.contactHref !== defaultContactHref) {
-      nav[2].link = config.unit.contactHref;
-    }
-    if (!config.app.hasLogin) {
-      nav.splice(1, 1); // remove <LoginLogout />
-    }
-    if (config.app.basename === '/') {
-      // Apps removal of nav item as it is at the server root and "Apps" routes to server root
-      nav.splice(0, 1);
-    }
-    config.app.nav =
-      config.app.nav.length > 0
-        ? [nav, ...config.app.nav.filter(array => array.length > 0)]
-        : [nav];
+    config.app.nav = createNav(config, nav);
   }
 
   /*
