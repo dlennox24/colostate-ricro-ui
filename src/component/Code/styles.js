@@ -27,16 +27,16 @@ const styles = theme => ({
     '&::-webkit-scrollbar': { height: 8 },
   },
   lineNo: {
+    color: theme.palette.grey[500],
+    borderRight: `1px solid ${theme.palette.grey[500]}`,
     display: 'inline-block',
     minWidth: '2.4em',
     userSelect: 'none',
-    borderRight: '2px solid white',
     marginRight: theme.spacing.unit * 2,
     fontSize: theme.typography.body1.fontSize,
     lineHeight: `${theme.spacing.unit * 2}px`,
     textAlign: 'right',
     paddingRight: theme.spacing.unit,
-    // fontWeight: 'bold',
   },
   pre: {
     display: 'initial',
