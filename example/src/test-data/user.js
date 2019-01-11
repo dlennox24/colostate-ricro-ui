@@ -1,10 +1,10 @@
 export default {
   csuId: 830126214,
-  eId: 'dlennox',
-  firstName: 'Daniel',
-  lastName: 'Lennox',
-  displayName: 'Daniel Lennox',
-  email: 'daniel.lennox@colostate.edu',
+  eId: 'csuidforuser',
+  firstName: 'FirstName',
+  lastName: 'LastName',
+  displayName: 'Selected Name',
+  email: 'email@colostate.edu',
   userGroups: [
     {
       name: 'protocolStatus',

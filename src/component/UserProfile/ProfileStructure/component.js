@@ -61,8 +61,7 @@ class ProfileStructure extends React.Component {
   };
 
   createGroupsSection = () => {
-    let userGroups = _.sortBy(this.props.user.userGroups, ['alias', 'userGroupTypeId']);
-    userGroups = [];
+    const userGroups = _.sortBy(this.props.user.userGroups, ['alias', 'userGroupTypeId']);
     return _.isEmpty(userGroups) ? (
       <Typography
         className={this.props.classes.noGroups}
