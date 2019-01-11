@@ -8,7 +8,7 @@ Documentation for available components.
 - [AppFrame](#appframe)
 - [CloseableDialog](#closeabledialog)
 - [Code](#code)
-- [Committees](#committees)
+- [committees](#committees)
   - [Committee Avatar](#committee-avatar)
   - [Committee Chip](#committee-chip)
 - [HttpError](#httperror)
@@ -205,7 +205,33 @@ return () => <App />;`;
 const CodeExample = () => <Code source={exampleCode} />;
 ```
 
-## Committees
+## committees
+
+`committees` is not a react component but rather an object containing all RICRO divisions, their colors, names, abbreviations, and icons. Index by their abbreviations (eg Export Control's is `committees.xc`).
+
+### Example
+
+```jsx
+import { committees } from 'colostate-ricro-ui';
+
+console.log(committees.iacuc);
+
+/* Logs
+ *
+ * {
+ *    name: 'Institutional Animal Care and Use Committee',
+ *    alias: 'IACUC',
+ *    textColor: '#000',
+ *    bgColor: red[500],
+ *    iconColor: grey[50],
+ *    iconBgColor: red[800],
+ *    icon: <IconPaw />,
+ * }
+ *
+ */
+
+```
+
 ## Committee Avatar
 ## Committee Chip
 ## HttpError
