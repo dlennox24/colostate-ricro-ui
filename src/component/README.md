@@ -397,12 +397,21 @@ const MarkdownParserExample = () => (
 
 *\* Required*
 
+*\*\* Conditionally Required*
+
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
-| classes* | `object` | | Imported via Material UI's `withStyles()` |
+| onClose** | `func` | | Function to close the dialog. **Only required if `variant` is `dialog`.** |
+| open** | `func` | | State of dialog. **Only required if `variant` is `dialog`.** |
+| user* | `object` | | User object |
+| variant | `string` | `"default"` | Type of UserProfile. Options: `dialog`, `default`.
 
 ### Example
 
 ```jsx
+import { UserProfile } from 'colostate-ricro-ui';
+import React from 'react';
+import user from './test-data/user';
 
+const UserProfileExampel = () => <UserProfile user={user} />;
 ```
