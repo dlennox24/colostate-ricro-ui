@@ -15,19 +15,24 @@ npm install --save colostate-ricro-ui
 ## Basic Usage
 
 ```jsx
-import React from 'react'
-import AppFrame from 'colostate-ricro-ui'
-import config from '<pathToConfig>'
+import AppFrame, { createConfig } from 'colostate-ricro-ui';
+import React from 'react';
+import { Route } from 'react-router-dom';
+import config from './assets/config';
+import AboutPage from './pages/About';
+import CommitteesPage from './pages/Committees';
+import TypographyPage from './pages/Typography';
 
-class Example extends Reat.Component {
-  render () {
-    return (
-      <AppFrame config={createConfig(config)}>
-        {/* App Roots */}
-      </AppFrame>
-    )
-  }
-}
+const App = () => (
+  <AppFrame config={createConfig(config)}>
+    <Route exact path="/" component={AboutPage} />
+    <Route exact path="/typography" component={TypographyPage} />
+    <Route exact path="/committees" component={CommitteesPage} />
+  </AppFrame>
+);
+
+export default App;
+
 ```
 
 ## Development
@@ -38,6 +43,11 @@ yarn setup
 ```
 yarn start
 ```
+
+## More Docs
+
+- [Components](/src/component/#readme)
+- [Scripts](/src/scripts/#readme)
 
 ## License
 
