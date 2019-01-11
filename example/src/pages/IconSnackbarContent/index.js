@@ -62,14 +62,14 @@ class IconSnackbarContentPage extends React.Component {
     }));
   };
 
-  createSnackbarContentPreview = (disableAction = false) => {
+  createSnackbarContentPreview = (disableClose = false) => {
     const { variant, message, isActionDisabled, isIconDisabled, customIcon } = this.state;
     return (
       <IconSnackbarContent
         variant={variant}
-        onClose={this.handleToggleSnackbarOpen}
+        onClose={disableClose ? null : this.handleToggleSnackbarOpen}
         message={message}
-        disableAction={disableAction ? null : isActionDisabled}
+        disableAction={isActionDisabled}
         disableIcon={isIconDisabled}
         icon={customIcons[customIcon]}
       />
@@ -105,7 +105,7 @@ class IconSnackbarContentPage extends React.Component {
             </Button>
           </Grid>
           <Grid className={classes.gridItem} item xs={12} sm={5}>
-            {this.createSnackbarContentPreview()}
+            {this.createSnackbarContentPreview('disableClose')}
           </Grid>
         </Grid>
         <Source {...this.state} />
@@ -118,7 +118,7 @@ class IconSnackbarContentPage extends React.Component {
             autoHideDuration={autoHideDuration <= 0 ? null : autoHideDuration * 1000}
             onClose={this.handleToggleSnackbarOpen}
           >
-            {this.createSnackbarContentPreview(true)}
+            {this.createSnackbarContentPreview()}
           </Snackbar>
         </Portal>
       </React.Fragment>

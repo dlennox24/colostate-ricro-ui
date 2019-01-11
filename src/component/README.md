@@ -316,5 +316,61 @@ const HttpErrorExample = () => (
 ```
 
 ## IconSnackbarContent
+
+### Props
+
+Any props not listed below will be spread to Material UI's `<SnackbarContent>`.
+
+*\* Required*
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| classes* | `object` | | Imported via Material UI's `withStyles()` |
+| className | `string` | | className to be added to Material UI's `<SnackbarContent>` |
+| disableAction | `bool` | | Remove the close action |
+| disableIcon | `bool` | | Remove the icon |
+| icon | `func` | | Icon for the snackbar. |
+| message | `node` | | Message of the snackbar |
+| onClose | `func` | | Function to close the snackbar |
+| variant | `string` | `"default"` | Type of snackbar. Options are `"default"`, `"primary"`, `"secondary"`, `"success"`, `"warning"`, `"error"`, `"info"` |
+
+### Example
+
+```jsx
+import Portal from '@material-ui/core/Portal';
+import Snackbar from '@material-ui/core/Snackbar';
+import { IconSnackbarContent } from 'colostate-ricro-ui';
+import React from 'react';
+
+class ExampleIconSnackbarContent extends React.Component {
+  state = {
+    isOpen: false,
+  };
+
+  handleToggleOpen = () => {
+    this.setState(state => ({ isOpen: !state.isOpen }));
+  };
+
+  render() {
+    return (
+      <Portal>
+        <Snackbar
+          open={this.state.isOpen}
+          autoHideDuration={4000}
+          onClose={this.handleToggleSnackbarOpen}
+        >
+          <IconSnackbarContent
+            variant="info"
+            onClose={this.handleToggleOpen}
+            message="Success! You have a new message!"
+          />
+        </Snackbar>
+      </Portal>
+    );
+  }
+}
+
+```
+
 ## MarkdownParser
 ## UserProfile
