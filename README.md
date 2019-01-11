@@ -14,8 +14,6 @@ npm install colostate-ricro-ui
 
 ## Basic Usage
 
-### App
-
 ```jsx
 import AppFrame, { createConfig } from 'colostate-ricro-ui';
 import React from 'react';
