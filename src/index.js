@@ -1,31 +1,26 @@
-import App from './components/App';
-import Dashboard from './components/Dashboard';
-import Dialog from './components/Dialog';
-import LoadMore from './components/LoadMore';
-import SectionContainer from './components/SectionContainer';
-import HttpError from './components/HttpError';
-import Committees from './components/Committees';
-import CommitteeAvatar from './components/Committees/Avatar';
-import CommitteeChip from './components/Committees/Chip';
-import Login from './redux/Login';
-import Snackbar, { slideTransition } from './components/Snackbar';
-import apiCall from './utils/apiCall';
+import AppFrame from './component/AppFrame';
+import CloseableDialog from './component/CloseableDialog';
+import Code from './component/Code';
+import committees from './component/Committees';
+import CommitteeAvatar from './component/Committees/Avatar';
+import CommitteeChip from './component/Committees/Chip';
+import HttpError from './component/HttpError';
+import IconSnackbarContent from './component/IconSnackbarContent';
+import MarkdownParser from './component/MarkdownParser';
+import UserProfile from './component/UserProfile';
+import createConfig from './utils/config/createConfig';
 
-// export default App;
+export default AppFrame;
 export {
-  // Components
-  App as default,
-  Committees,
+  CloseableDialog,
+  Code,
+  committees,
   CommitteeAvatar,
   CommitteeChip,
-  Dashboard,
-  Dialog,
   HttpError,
-  LoadMore,
-  Login,
-  SectionContainer,
-  Snackbar,
-  // Functions
-  apiCall,
-  slideTransition,
+  IconSnackbarContent,
+  MarkdownParser,
+  UserProfile,
+  // Utils
+  createConfig,
 };

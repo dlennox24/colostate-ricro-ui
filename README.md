@@ -1,100 +1,70 @@
 # colostate-ricro-ui
 
-[![npm version](https://badge.fury.io/js/colostate-ricro-ui.svg)](https://badge.fury.io/js/colostate-ricro-ui) [![Build Status](https://travis-ci.org/dlennox24/colostate-ricro-ui.svg?branch=master)](https://travis-ci.org/dlennox24/colostate-ricro-ui) [![dependencies Status](https://david-dm.org/dlennox24/colostate-ricro-ui/status.svg)](https://david-dm.org/dlennox24/colostate-ricro-ui) [![devDependencies Status](https://david-dm.org/dlennox24/colostate-ricro-ui/dev-status.svg)](https://david-dm.org/dlennox24/colostate-ricro-ui?type=dev)
+UI extension of [Material UI](https://material-ui.com/) for RICRO based applications
+
+[![NPM](https://img.shields.io/npm/v/colostate-ricro-ui.svg)](https://www.npmjs.com/package/colostate-ricro-ui)
+[![Maintainability](https://api.codeclimate.com/v1/badges/fe9eab169ba1cbfe9c09/maintainability)](https://codeclimate.com/github/csu-ricro/colostate-ricro-ui/maintainability)
+[![Build Status](https://travis-ci.com/csu-ricro/colostate-ricro-ui.svg?branch=master)](https://travis-ci.com/csu-ricro/colostate-ricro-ui)
 
 ## Install
 
 ```bash
-npm install --save colostate-ricro-ui
+npm install colostate-ricro-ui
 ```
 
-## Usage
+## Basic Usage
 
 ### App
 
 ```jsx
+import AppFrame, { createConfig } from 'colostate-ricro-ui';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Route } from 'react-router-dom';
-import App from 'colostate-ricro-ui';
-import registerServiceWorker from './registerServiceWorker';
-import Components from './components';
-import config from './config.json';
-import SideNavEx from './SideNavEx';
-import TypographyEx from './TypographyEx';
-import { version, name as appName } from '../package.json';
+import config from './assets/config';
+import AboutPage from './pages/About';
+import CommitteesPage from './pages/Committees';
+import TypographyPage from './pages/Typography';
 
-console.log(`${appName}@${version}`); // eslint-disable-line no-console
-
-const routes = [
-  <Route key={0} path="/" exact component={TypographyEx} />,
-  <Route key={1} path="/component/:component" exact component={Components} />,
-];
-
-const reduxMiddleware =
-  // eslint-disable-next-line no-underscore-dangle
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-
-ReactDOM.render(
-  <App config={config} SideNav={SideNavEx} routes={routes} reduxMiddleware={reduxMiddleware} />,
-  document.getElementById('root'),
+const App = () => (
+  <AppFrame config={createConfig(config)}>
+    <Route exact path="/" component={AboutPage} />
+    <Route exact path="/typography" component={TypographyPage} />
+    <Route exact path="/committees" component={CommitteesPage} />
+  </AppFrame>
 );
 
-registerServiceWorker();
+export default App;
+
 ```
+## More Docs
+
+Be sure to add the font imports to the `index.html` or the head of the HTML document.
+
+```html
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="//static.colostate.edu/fonts/factoria/factoria.css" media="none" onload="this.media='all';">
+  <link rel="stylesheet" href="//static.colostate.edu/fonts/proxima-nova/proxima.css" media="none" onload="this.media='all';">
+```
+
+Ensure the `manifest.json` is up to date. [More info about the manifest](https://developers.google.com/web/fundamentals/web-app-manifest/). Be sure to set the `theme-color` meta tag in the HTML head.
+
+```html
+  <meta name="theme-color" content="#1E4D2B">
+```
+
+- [Components](/src/component/#readme)
+- [Scripts](/src/scripts/#readme)
 
 ## Development
 
-### Installation
-
-```bash
-npm i && npm link && cd example && npm i && npm link colostate-ricro-ui && cd ..
+```
+yarn setup
+```
+```
+yarn start
 ```
 
-### Dev Servers
 
-Starting the **library** build script for development.
+## License
 
-```bash
-npm start
-```
-
-Starting the **example** build script for development.
-
-```bash
-npm run start:example
-```
-
-### Linting (ESLint)
-
-Lint both the library and the example.
-
-```bash
-npm run lint
-```
-
-Lint the library.
-
-```bash
-npm run lint:lib
-```
-
-Lint the example
-
-```bash
-npm run lint:example
-```
-
-### Production Build
-
-Builds the library
-
-```bash
-npm run build
-```
-
-Builds the example
-
-```bash
-npm run build:example
-```
+MIT © [csu-ricro](https://github.com/csu-ricro)
