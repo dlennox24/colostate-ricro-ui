@@ -52,7 +52,7 @@ HttpErrorComponent.propTypes = {
   classes: PropTypes.object.isRequired, // MUI withStyles()
   code: PropTypes.oneOf([401, 403, 404, 500]),
   config: PropTypes.object.isRequired, // redux state
-  linkedButton: PropTypes.object,
+  linkedButton: PropTypes.node,
   subheader: PropTypes.node,
 };
 

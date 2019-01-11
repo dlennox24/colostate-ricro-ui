@@ -273,7 +273,7 @@ Any props not listed below will be spread to Material UI's `<Chip>`.
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | classes* | `object` | | Imported via Material UI's `withStyles()` |
-| committee* | `string` | | Committee abbreviation (eg `iacuc`). Must be one of the keys in the [{committees}](#committees) object.
+| committee* | `string` | | Committee abbreviation (eg `iacuc`). Must be one of the keys in the [{committees}](#committees) object. |
 
 ### Example
 
@@ -289,6 +289,32 @@ const CommitteesPage = () => {
 ```
 
 ## HttpError
+
+### Props
+
+*\* Required*
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| classes* | `object` | | Imported via Material UI's `withStyles()` |
+| code |  `number` | `404` | HTTP Error code number. Valid options: `401`, `403`, `404`, `500` |
+| config* | `object` | | Imported via redux state. No need to pass this. |
+| linkedButton | `node` | | Override button displayed on error page. |
+| subheader | `node` | | Override the subheader displayed on the error page.|
+
+### Example
+
+```jsx
+import { HttpError } from 'colostate-ricro-ui';
+import React from 'react';
+
+const HttpErrorExample = () => (
+  <React.Fragment>
+    <HttpError code={500} />
+  </React.Fragment>
+);
+```
+
 ## IconSnackbarContent
 ## MarkdownParser
 ## UserProfile
