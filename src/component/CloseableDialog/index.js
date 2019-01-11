@@ -55,7 +55,6 @@ const CloseableDialog = ({
 CloseableDialog.propTypes = {
   children: PropTypes.any,
   classes: PropTypes.object.isRequired, // MUI withStyles()
-  DialogProps: PropTypes.object,
   fullScreen: PropTypes.bool.isRequired, // MUI withMobileDialog()
   header: PropTypes.string,
   headerColor: PropTypes.string,

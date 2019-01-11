@@ -121,13 +121,14 @@ export default App;
 
 ### Props
 
+Any props not listed below will be spread to Material UI's `<Dialog>`.
+
 *\* Required*
 
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | children | `any` | | Body of the Dialog |
 | classes* | `object` | | Imported via Material UI's `withStyles()` |
-| DialogProps | `object` | | Any other props passed to `CloseableDialog` will be spread onto the MUI `<Dialog>` |
 | fullScreen* | `bool` | | Imported via Material UI's `withMobileDialog()` |
 | header | `string` | '' | Text to put in the header |
 | headerColor | `string` | `"primary"` | Passed to Material UI's AppBar in the `color` prop |
@@ -233,6 +234,34 @@ console.log(committees.iacuc);
 ```
 
 ## Committee Avatar
+
+### Props
+
+Any props not listed below will be spread to Material UI's `<Avatar>`.
+
+*\* Required*
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| className | `string` | | CSS class to apply to Material UI's `<Avatar>`
+| committee | `string` | | Committee abbreviation (eg `iacuc`). Must be one of the keys in the [{committees}](#committees) object.
+| disableTooltip | `bool` | `false` | Disables the Material UI's Tooltip popup
+| size | `number` | `1` | Size of the avatar. `1` is 100%. `.2` is 20%.
+
+
+### Example
+
+```jsx
+import { CommitteeAvatar, committees } from 'colostate-ricro-ui';
+import React from 'react';
+
+const CommitteesPage = () => {
+  return Object.keys(committees).map((committee, i) => (
+    <CommitteeAvatar key={committee} size={0.75 * i + 0.75} committee={committee} />
+  ));
+};
+```
+
 ## Committee Chip
 ## HttpError
 ## IconSnackbarContent

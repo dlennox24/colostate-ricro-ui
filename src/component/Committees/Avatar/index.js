@@ -14,7 +14,13 @@ TooltipWrapper.propTypes = {
   title: PropTypes.string,
 };
 
-const CommitteeAvatar = ({ className, committee, disableTooltip, size = 1 }) => {
+const CommitteeAvatar = ({
+  className,
+  committee,
+  disableTooltip = false,
+  size = 1,
+  ...AvatarProps
+}) => {
   const committeeObj = Committees[committee];
   const baseSize = 32;
   const bgSize = size < 0 ? baseSize - Math.abs(size * baseSize) : Math.abs(size * baseSize);
@@ -27,6 +33,7 @@ const CommitteeAvatar = ({ className, committee, disableTooltip, size = 1 }) => 
   return (
     <TooltipWrapper title={committeeObj.name} disableTooltip={disableTooltip}>
       <Avatar
+        {...AvatarProps}
         className={classNames(className)}
         style={{
           backgroundColor: committeeObj.iconBgColor,
@@ -42,7 +49,7 @@ const CommitteeAvatar = ({ className, committee, disableTooltip, size = 1 }) => 
 
 CommitteeAvatar.propTypes = {
   className: PropTypes.string,
-  committee: PropTypes.string.isRequired,
+  committee: PropTypes.oneOf(Object.keys(Committees)).isRequired,
   disableTooltip: PropTypes.bool,
   size: PropTypes.number,
 };
