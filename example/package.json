@@ -1,21 +1,14 @@
 {
   "name": "colostate-ricro-ui-example",
-  "homepage": "/__dev/cru/v1/",
+  "homepage": "https://services.ricro.colostate.edu/__dev/cru/v3",
   "version": "0.0.0",
   "license": "MIT",
+  "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free-brands": "^5.0.13",
-    "@fortawesome/fontawesome-free-regular": "^5.0.13",
-    "@fortawesome/fontawesome-free-solid": "^5.0.13",
-    "@fortawesome/react-fontawesome": "0.0.20",
-    "@material-ui/core": "^1.0.0",
-    "classnames": "^2.2.5",
-    "lodash": "^4.17.10",
-    "prop-types": "^15.6.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2"
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "^1.1.4"
   },
   "devDependencies": {
     "eslint-config-airbnb": "^16.1.0",
@@ -28,8 +21,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   }
 }

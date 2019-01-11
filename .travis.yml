@@ -1,7 +1,9 @@
-anguage: node_js
-node_js:
-  - "node"
+language: node_js
+node_js: '10'
+cache: yarn
+before_install:
+  - yarn setup
 script:
-  - npm i -g npm
-  - npm ci
-  - npm test
+  - yarn lint
+  - yarn test
+  - yarn build
