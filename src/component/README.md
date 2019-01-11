@@ -374,3 +374,16 @@ class ExampleIconSnackbarContent extends React.Component {
 
 ## MarkdownParser
 ## UserProfile
+### Props
+
+*\* Required*
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| classes* | `object` | | Imported via Material UI's `withStyles()` |
+
+### Example
+
+```jsx
+
+```
