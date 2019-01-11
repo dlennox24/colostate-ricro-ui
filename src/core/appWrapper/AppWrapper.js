@@ -101,6 +101,20 @@ const styles = theme => ({
       marginTop: 56 + 3, // 3px bottom border on header
     },
   },
+  // mainContent: {
+  //   overflow: 'auto',
+  //   padding: theme.spacing.unit * 2,
+  // },
+  // mainContentContainer: {
+  //   backgroundColor: theme.palette.background.default,
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   flexGrow: 1,
+  //   marginTop: 64 + 3, // 3px bottom border on header
+  //   [theme.breakpoints.down('sm')]: {
+  //     marginTop: 56 + 3, // 3px bottom border on header
+  //   },
+  // },
 });
 
 class AppWrapper extends React.Component {
@@ -162,14 +176,6 @@ class AppWrapper extends React.Component {
                     autoLogin={config.app.hasAutoLogin}
                     userDefaultProfileImg={config.app.userDefaultProfileImg}
                   />
-                  {window.location.pathname !== config.appsRoot && (
-                    <ListItem button component="a" href={config.appsRoot}>
-                      <ListItemIcon>
-                        <Icon>apps</Icon>
-                      </ListItemIcon>
-                      <ListItemText inset primary="Apps" />
-                    </ListItem>
-                  )}
                   <ListItem button component="a" href={config.unit.contactHref}>
                     <ListItemIcon>
                       <Icon>email</Icon>
