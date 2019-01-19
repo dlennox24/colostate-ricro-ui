@@ -14,7 +14,7 @@ import React from 'react';
 
 export default {
   api: {
-    host: 'http://localhost',
+    host: 'https://services.ricro.colostate.edu',
     path: '/api/v3',
   },
   app: {

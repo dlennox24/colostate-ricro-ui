@@ -61,7 +61,7 @@ class LoginLogoutComponent extends React.Component {
     /*
      * When a user logs in and they don't have a current Shibboleth session
      * they are redirected to the Shibboleth login page. When they are returned
-     * by the login page (api.host+api.auth) the application cannot know if it
+     * by the login page (auth.host+auth.loginPath) the application cannot know if it
      * should perform a login check again (unless hasAutoLogin is true in
      * config).
      *
@@ -75,12 +75,15 @@ class LoginLogoutComponent extends React.Component {
      * higher.
      */
     this.setState({ isLoginLoading: true });
-    const { api } = this.props;
+    const { auth } = this.props;
     axios
-      .get(api.host + api.auth)
+      .get(auth.host + auth.loginPath)
       .then(response => {
-        if (response.data === 'redirect') {
-          window.location = `${api.host + api.auth}?return=${window.location.href}`;
+        if (response.data.status === 'redirect') {
+          const redirect = response.data.result.includes('?')
+            ? `${response.data.result}&`
+            : `${response.data.result}?`;
+          window.location = `${redirect}return=${window.location.href}`;
         }
 
         this.props.handleLogin(response.data.result);
@@ -109,11 +112,34 @@ class LoginLogoutComponent extends React.Component {
       });
   };
 
+  checkIsShibbolethLoggedIn = () => {
+    this.setState({ isLoginLoading: true });
+    const { auth } = this.props;
+    axios
+      .get(auth.host + auth.shibPath)
+      .then(response => {
+        if (response.data.status === 'success') {
+          this.props.handleLogin(response.data.result);
+          this.setState({
+            snackbar: {
+              open: true,
+              variant: 'info',
+              message: 'Single sign-on session detected. Automatically logged in!',
+            },
+          });
+        }
+        this.setState({ isLoginLoading: false });
+      })
+      .catch(() => {
+        this.setState({ isLoginLoading: false });
+      });
+  };
+
   handleLogout = () => {
     this.setState({ isLogoutLoading: true });
-    const { api } = this.props;
-    api.axios
-      .get('/user/logout/')
+    const { auth } = this.props;
+    axios
+      .get(auth.host + auth.logoutPath)
       .then(() => {
         this.props.handleLogout();
         this.setState({
@@ -121,7 +147,8 @@ class LoginLogoutComponent extends React.Component {
           snackbar: {
             open: true,
             variant: 'success',
-            message: 'Successfully logged out!',
+            message:
+              'Successfully logged out! You must fully close your browser to logout completely.',
           },
         });
       })
@@ -188,6 +215,8 @@ class LoginLogoutComponent extends React.Component {
   componentDidMount = () => {
     if (hasLoginSuccess || this.props.hasAutoLogin) {
       this.handleLogin();
+    } else {
+      this.checkIsShibbolethLoggedIn();
     }
   };
 
@@ -217,6 +246,7 @@ class LoginLogoutComponent extends React.Component {
               variant={snackbar.variant}
               onClose={this.handleSnackbarClose}
               message={snackbar.message}
+              disableAction
             />
           </Snackbar>
         </Portal>
@@ -226,7 +256,7 @@ class LoginLogoutComponent extends React.Component {
 }
 
 LoginLogoutComponent.propTypes = {
-  api: PropTypes.object.isRequired, // redux state
+  auth: PropTypes.object.isRequired, // redux state
   classes: PropTypes.object.isRequired, // MUI withStyles()
   handleLogin: PropTypes.func.isRequired, // redux - index.js:mapDispatchToProps
   handleLogout: PropTypes.func.isRequired, // redux - index.js:mapDispatchToProps
