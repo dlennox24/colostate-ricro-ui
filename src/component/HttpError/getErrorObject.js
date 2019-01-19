@@ -42,7 +42,7 @@ const getErrorObject = ({ classes, code, config, linkedButton, subheader }) => {
         {
           icon: <IconLoginVariant className={classes.iconLeft} />,
           title: 'Login',
-          link: `${config.api.host + config.api.auth}?return=${window.location.href}`,
+          link: `${config.auth.host + config.auth.loginPath}?return=${window.location.href}`,
         },
       ],
     },

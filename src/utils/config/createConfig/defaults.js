@@ -17,10 +17,15 @@ const defaults = {
     host: defaultHost,
     path: defaultPath,
     baseUrl: defaultHost + defaultPath,
-    auth: '/auth/sso/',
     axios: axios.create({
       baseURL: defaultHost + defaultPath, // axios requires URL to be all caps
     }),
+  },
+  auth: {
+    host: defaultHost,
+    shibPath: '/auth/sso/?v=3',
+    loginPath: '/auth/v3/login/',
+    logoutPath: '/auth/v3/logout/',
   },
   app: {
     name: 'App Template - Defaults',
