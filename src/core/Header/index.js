@@ -2,9 +2,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Fade from '@material-ui/core/Fade';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import $ from 'jquery';
 import PropTypes from 'prop-types';
 import React from 'react';
+
+// This component requires the script https://static.colostate.edu/logo/reslogo/logo.min.js in public/index.html
 
 class Header extends React.Component {
   state = {
@@ -13,10 +14,10 @@ class Header extends React.Component {
   };
 
   componentDidMount() {
-    $.getScript('https://static.colostate.edu/logo/reslogo/logo.min.js').done(() => {
+    if (typeof loadlogo === 'function') {
       this.setState({ isLoaded: true });
-      setTimeout(() => this.setState({ isOpen: true }), 300);
-    });
+      setTimeout(() => this.setState({ isOpen: true }), 50);
+    }
   }
 
   render() {
