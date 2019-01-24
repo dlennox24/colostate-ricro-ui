@@ -25,7 +25,9 @@ test('config with all values customized should return customized values', () => 
       basename: '/some/basename',
       hasLogin: true,
       hasAutoLogin: true,
-      nav: [[{ name: 'Apps', icon: <IconApps />, link: '/', linkComponent: 'a' }]],
+      nav: [
+        [{ name: 'Apps', icon: <IconApps />, link: '/', linkComponent: 'a', disableActive: true }],
+      ],
     },
     debug: false,
     defaultState: {
@@ -50,7 +52,7 @@ test("nav list doesn't contain login option when app.hasLogin is false", () => {
   expect(JSON.stringify(createConfig({ app: { hasLogin: false } }).app.nav)).toBe(
     JSON.stringify([
       [
-        { name: 'Apps', icon: <IconApps />, link: '/', linkComponent: 'a' },
+        { name: 'Apps', icon: <IconApps />, link: '/', linkComponent: 'a', disableActive: true },
         { name: 'Contact Us', icon: <IconEmail />, link: defaultContactHref },
       ],
     ]),
