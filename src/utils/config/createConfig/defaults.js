@@ -34,7 +34,7 @@ const defaults = {
     hasAutoLogin: false,
     nav: [
       [
-        { name: 'Apps', icon: <IconApps />, link: '/', linkComponent: 'a' },
+        { name: 'Apps', icon: <IconApps />, link: '/', linkComponent: 'a', disableActive: true },
         <LoginLogout />,
         { name: 'Contact Us', icon: <IconEmail />, link: defaultContactHref },
       ],

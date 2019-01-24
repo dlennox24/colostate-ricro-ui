@@ -38,7 +38,9 @@ const createNavItem = (navItem, props) => {
         matchPath(props.location.pathname, {
           path: props.linkPrefix + navItem.link,
           exact: true,
-        }) && props.classes.active,
+        }) &&
+          !navItem.disableActive &&
+          props.classes.active,
       )}
       dense={props.denseListItem}
       onClick={() => {
