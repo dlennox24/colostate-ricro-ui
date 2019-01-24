@@ -1,53 +1,57 @@
 import AppBar from '@material-ui/core/AppBar';
 import Fade from '@material-ui/core/Fade';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-// This component requires the script https://static.colostate.edu/logo/reslogo/logo.min.js in public/index.html
-
 class Header extends React.Component {
   state = {
-    isLoaded: false,
     isOpen: false,
   };
 
   componentDidMount() {
-    if (typeof loadlogo === 'function') {
-      this.setState({ isLoaded: true });
-      setTimeout(() => this.setState({ isOpen: true }), 50);
-    }
+    const logoScript = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      document.body.appendChild(script);
+      script.onload = resolve;
+      script.onerror = reject;
+      script.async = true;
+      script.src = 'https://static.colostate.edu/logo/reslogo/logo.min.js';
+    });
+
+    logoScript.then(() => {
+      const checkOpen = setInterval(() => {
+        if (document.getElementById('BrandLogo').children[0].nodeName.toLowerCase() === 'style') {
+          clearInterval(checkOpen);
+          return this.setState({ isOpen: true });
+        }
+        return null;
+      }, 10);
+    });
   }
 
   render() {
     const { unit } = this.props;
-    const { isLoaded, isOpen } = this.state;
+    const { isOpen } = this.state;
     return (
       <AppBar id="csuLogoBar" position="static" color="primary">
         <Toolbar>
-          {!isLoaded ? (
-            <Typography variant="h5" color="inherit">
-              {unit.name}
-            </Typography>
-          ) : (
-            <Fade in={isOpen}>
-              <div className="signature">
-                <section id="BrandLogo" className="fontLarge">
-                  <div className="responsiveLogoContainer">
-                    <div id="responsiveLogo" />
-                    <div id="responsiveLogoSubsytem">
-                      <h2>
-                        <a id="unit-title" href={unit.siteHref}>
-                          {unit.name}
-                        </a>
-                      </h2>
-                    </div>
+          <Fade in={isOpen}>
+            <div className="signature">
+              <section id="BrandLogo" className="fontLarge">
+                <div className="responsiveLogoContainer">
+                  <div id="responsiveLogo" />
+                  <div id="responsiveLogoSubsytem">
+                    <h2>
+                      <a id="unit-title" href={unit.siteHref}>
+                        {unit.name}
+                      </a>
+                    </h2>
                   </div>
-                </section>
-              </div>
-            </Fade>
-          )}
+                </div>
+              </section>
+            </div>
+          </Fade>
         </Toolbar>
       </AppBar>
     );
