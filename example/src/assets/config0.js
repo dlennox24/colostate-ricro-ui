@@ -6,21 +6,19 @@ import IconChevronDoubleDown from 'mdi-material-ui/ChevronDoubleDown';
 import IconCloseBoxOutline from 'mdi-material-ui/CloseBoxOutline';
 import IconEraser from 'mdi-material-ui/Eraser';
 import IconFileTree from 'mdi-material-ui/FileTree';
+import IconFileUpload from 'mdi-material-ui/FileUpload';
 import IconFolderNetwork from 'mdi-material-ui/FolderNetwork';
 import IconFormatColorText from 'mdi-material-ui/FormatColorText';
 import IconGithubCircle from 'mdi-material-ui/GithubCircle';
+import IconMaterialUi from 'mdi-material-ui/MaterialUi';
 import IconNetworkOffOutline from 'mdi-material-ui/NetworkOffOutline';
 import React from 'react';
 
 export default {
-  api: {
-    host: 'https://services.ricro.colostate.edu',
-    path: '/api/v3',
-  },
   app: {
     name: 'colostate-ricro-ui template',
     // hasLogin: false,
-    // hasAutoLogin: true,
+    hasAutoLogin: true,
     nav: [
       [
         {
@@ -72,6 +70,11 @@ export default {
           name: 'User Profile',
           icon: <IconAccount />,
           link: '/user-profile',
+        },
+        {
+          name: 'File Dropzone',
+          icon: <IconFileUpload />,
+          link: '/file-dropzone',
         },
       ],
       [
