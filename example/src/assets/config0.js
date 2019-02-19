@@ -136,6 +136,11 @@ export default {
           icon: <IconGithubCircle />,
           link: 'https://github.com/csu-ricro/colostate-ricro-ui',
         },
+        {
+          name: 'Material UI',
+          icon: <IconMaterialUi />,
+          link: 'https://material-ui.com/',
+        },
       ],
     ],
   },
