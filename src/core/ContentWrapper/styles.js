@@ -1,6 +1,14 @@
+const selection = theme => ({
+  background: theme.palette.secondary.main,
+  color: theme.palette.secondary.contrastText,
+  textShadow: 'none',
+});
+
 // eslint-disable-next-line max-lines-per-function
 const styles = theme => ({
   '@global': {
+    '::-moz-selection': selection(theme),
+    '::selection': selection(theme),
     'p a, span a': {
       color: theme.palette.primary.main,
       '&:hover': {
