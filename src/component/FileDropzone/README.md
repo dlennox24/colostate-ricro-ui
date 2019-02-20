@@ -1,5 +1,8 @@
 ## FileDropzone
 
+[[Back to Docs](../#readme)]
+[[Back to Components](../../#readme)]
+
 ### Props
 
 Any props not listed below will be spread to Material UI's `<Avatar>`.
@@ -69,3 +72,5 @@ FileDropzonePage.propTypes = {
 export default withStyles(styles)(FileDropzonePage);
 
 ```
+
+[[top](#readme)]
