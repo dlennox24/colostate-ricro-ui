@@ -1,6 +1,6 @@
 ## FileDropzone
 
-[[Back to Docs](../../../#readme)]
+[[Back to Docs](/../../#readme)]
 [[Back to Components](../#readme)]
 
 ### Props
