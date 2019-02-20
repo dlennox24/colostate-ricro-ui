@@ -12,7 +12,7 @@ export default PropTypes.shape({
     PropTypes.shape({
       alias: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
     }),
   ),
 });

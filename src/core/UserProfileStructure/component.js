@@ -1,4 +1,3 @@
-import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
@@ -10,20 +9,20 @@ import classNames from 'classnames';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import userDefaultProfileImg from '../../../assets/img/default-profile.svg';
-import { userShape } from '../../../assets/propTypes';
-import EditProfileDisplayName from '../../../core/EditProfileDisplayName';
+import { userShape } from '../../assets/propTypes';
+import EditProfileDisplayName from './EditProfileDisplayName';
+import ProfileImage from './ProfileImage';
 import styles from './styles';
 
 class ProfileStructure extends React.Component {
   createGridArray = () => {
-    const { currentUserId = -1, user } = this.props;
+    const { loggedInUserId, user } = this.props;
     return [
       [
         {
           primary:
-            user.csuId === currentUserId ? (
-              <EditProfileDisplayName displayName={user.displayName} />
+            user.csuId === loggedInUserId ? (
+              <EditProfileDisplayName user={user} />
             ) : (
               user.displayName
             ),
@@ -46,7 +45,15 @@ class ProfileStructure extends React.Component {
     return this.createGridArray().map(row => (
       <Grid key={row[0].secondary} container>
         {row.map(cell => (
-          <Grid key={cell.secondary} item xs={12} md={12 / row.length}>
+          <Grid
+            key={cell.secondary}
+            className={classNames(
+              !React.isValidElement(cell.primary) && this.props.classes.gridFlex,
+            )}
+            item
+            xs={12}
+            md={12 / row.length}
+          >
             {React.isValidElement(cell.primary) ? (
               cell.primary
             ) : (
@@ -61,7 +68,7 @@ class ProfileStructure extends React.Component {
   };
 
   createGroupsSection = () => {
-    const userGroups = _.sortBy(this.props.user.userGroups, ['alias', 'userGroupTypeId']);
+    const userGroups = _.sortBy(this.props.user.userGroups, ['alias', 'id']);
     return _.isEmpty(userGroups) ? (
       <Typography
         className={this.props.classes.noGroups}
@@ -84,23 +91,13 @@ class ProfileStructure extends React.Component {
   };
 
   render() {
-    const { classes, currentUserId = -1, user } = this.props;
+    const { classes, user } = this.props;
     return (
       <Grid container>
-        <Grid className={classNames(classes.column, classes.profileImg)} item xs={12} md={3}>
-          <img src={user.profileImg || userDefaultProfileImg} alt={user.displayName} />
-          {user.csuId === currentUserId && (
-            <Button
-              className={classes.editProfileButton}
-              variant="outlined"
-              color="primary"
-              fullWidth
-            >
-              Change Profile Image
-            </Button>
-          )}
+        <Grid className={classNames(classes.column, classes.profileImg)} item xs={12} md={4} lg={3}>
+          <ProfileImage user={user} />
         </Grid>
-        <Grid className={classes.column} item xs={12} md={9}>
+        <Grid className={classes.column} item xs={12} md={8} lg={9}>
           {[
             { label: 'Account', createFunc: this.createAccountSection },
             { label: 'Groups', createFunc: this.createGroupsSection },
@@ -119,7 +116,7 @@ class ProfileStructure extends React.Component {
 
 ProfileStructure.propTypes = {
   classes: PropTypes.object.isRequired, // MUI withStyles()
-  currentUserId: PropTypes.number, // redux state
+  loggedInUserId: PropTypes.number.isRequired, // redux state
   user: userShape.isRequired,
 };
 

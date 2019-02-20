@@ -4,7 +4,7 @@ import ProfileStructureComponent from './component';
 
 const mapStateToProps = state => {
   return {
-    currentUserId: _.get({ state }, 'state.user.csuId') ? state.user.csuId : null,
+    loggedInUserId: _.get({ state }, 'state.user.csuId', -1),
   };
 };
 

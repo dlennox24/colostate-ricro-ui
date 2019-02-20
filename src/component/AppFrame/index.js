@@ -6,13 +6,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { combineReducers, createStore } from 'redux';
-// import '../../assets/fonts/factoria.css';
-// import '../../assets/fonts/proxima.css';
+import { userReducer } from '../../assets/reducers';
 import theme from '../../assets/theme';
 import ContentWrapper from '../../core/ContentWrapper';
 import Footer from '../../core/Footer';
 import Header from '../../core/Header';
-import userReducer from '../../core/LoginLogout/reducer';
 import createConfig from '../../utils/config/createConfig';
 import HttpError from '../HttpError';
 import styles from './styles';
@@ -32,8 +30,6 @@ const AppFrame = ({
       'AppFrame: Config file validator not used. Reccomend use of createConfig() for config prop',
     );
   }
-
-  // debugger;
 
   document.title = `${config.app.name} - ${config.unit.name}`;
 
