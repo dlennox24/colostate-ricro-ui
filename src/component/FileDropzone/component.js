@@ -161,6 +161,10 @@ class FileDropzoneComponent extends React.Component {
   }
 }
 
+FileDropzoneComponent.defaultProps = {
+  disabled: false,
+};
+
 FileDropzoneComponent.propTypes = {
   api: PropTypes.object.isRequired, // redux state
   axiosData: PropTypes.object,
@@ -174,8 +178,8 @@ FileDropzoneComponent.propTypes = {
   onLoadFunc: PropTypes.func,
   onUploadAlwaysFunc: PropTypes.func,
   onUploadFailedFunc: PropTypes.func,
-  onUploadFunc: PropTypes.func,
   onUploadSuccessFunc: PropTypes.func,
+  uploadFunc: PropTypes.func,
 };
 
 export default withStyles(styles)(FileDropzoneComponent);
