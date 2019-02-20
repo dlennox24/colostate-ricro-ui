@@ -4,6 +4,8 @@ import Code from './component/Code';
 import committees from './component/Committees';
 import CommitteeAvatar from './component/Committees/Avatar';
 import CommitteeChip from './component/Committees/Chip';
+import FileDropzone from './component/FileDropzone';
+import FileDropzoneList from './component/FileDropzoneList';
 import HttpError from './component/HttpError';
 import IconSnackbarContent from './component/IconSnackbarContent';
 import MarkdownParser from './component/MarkdownParser';
@@ -17,6 +19,8 @@ export {
   committees,
   CommitteeAvatar,
   CommitteeChip,
+  FileDropzone,
+  FileDropzoneList,
   HttpError,
   IconSnackbarContent,
   MarkdownParser,

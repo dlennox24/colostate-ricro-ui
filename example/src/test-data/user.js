@@ -7,12 +7,12 @@ export default {
   email: 'email@colostate.edu',
   userGroups: [
     {
-      name: 'protocolStatus',
+      id: 'protocolStatus',
       alias: 'Protocol Status User',
       description: 'Users can view, create, and update the requests in the Protocol Status app',
     },
     {
-      name: 'bsl3-trained',
+      id: 'bsl3-trained',
       alias: 'BSL3 Training',
       description: 'The user has current BSL3 training',
     },
