@@ -198,12 +198,16 @@ class LoginLogoutComponent extends React.Component {
   };
 
   createLoginIcons = () => {
-    const { classes, user } = this.props;
+    const { api, classes, user } = this.props;
     return this.isLoggedIn() ? (
       <Avatar
         className={classes.profileAvatar}
         alt={`${user.displayName}'s profile image`}
-        src={user.profileImg || userDefaultProfileImg}
+        src={
+          user.profileImage
+            ? (api.host + user.profileImage).replace('large', 'icon')
+            : userDefaultProfileImg
+        }
       />
     ) : (
       <IconLoginVariant />
@@ -256,6 +260,7 @@ class LoginLogoutComponent extends React.Component {
 }
 
 LoginLogoutComponent.propTypes = {
+  api: PropTypes.object.isRequired, // redux state
   auth: PropTypes.object.isRequired, // redux state
   classes: PropTypes.object.isRequired, // MUI withStyles()
   handleLogin: PropTypes.func.isRequired, // redux - index.js:mapDispatchToProps

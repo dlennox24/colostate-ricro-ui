@@ -1,13 +1,13 @@
 import DialogContent from '@material-ui/core/DialogContent';
 import PropTypes from 'prop-types';
 import React from 'react';
+import ProfileStructure from '../../core/UserProfileStructure';
 import CloseableDialog from '../CloseableDialog';
-import ProfileStructure from './ProfileStructure';
 
 const UserProfile = ({ onClose, open, user, variant = 'default' }) => {
   return variant === 'dialog' ? (
     <CloseableDialog header="Account" onClose={onClose} open={open} keepMounted>
-      <DialogContent>
+      <DialogContent style={{ padding: 0 }}>
         <ProfileStructure user={user} />
       </DialogContent>
     </CloseableDialog>

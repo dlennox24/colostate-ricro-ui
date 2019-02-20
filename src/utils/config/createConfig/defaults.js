@@ -4,7 +4,7 @@ import IconEmail from 'mdi-material-ui/Email';
 import React from 'react';
 import LoginLogout from '../../../core/LoginLogout';
 
-const defaultContactHref = 'https://vpr.colostate.edu/ricro/contact-us';
+const defaultContactHref = 'https://www.research.colostate.edu/ricro/contact';
 const defaultHost =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost'
@@ -17,8 +17,11 @@ const defaults = {
     host: defaultHost,
     path: defaultPath,
     baseUrl: defaultHost + defaultPath,
+    editDisplayNamePath: '/user/edit-display-name/',
+    editProfileImagePath: '/user/edit-profile-image/',
     axios: axios.create({
       baseURL: defaultHost + defaultPath, // axios requires URL to be all caps
+      withCredentials: true,
     }),
   },
   auth: {
@@ -44,7 +47,7 @@ const defaults = {
   defaultState: {},
   unit: {
     name: 'RICRO',
-    siteHref: 'https://vpr.colostate.edu/ricro/',
+    siteHref: 'https://www.research.colostate.edu/ricro/',
     contactHref: defaultContactHref,
   },
   usedCreateConfigUtil: true,

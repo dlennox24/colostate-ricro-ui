@@ -49,7 +49,7 @@ const createConfig = (config = {}) => {
    */
   if (config.api.path !== moddedDefaults.api.path || config.api.host !== moddedDefaults.api.host) {
     config.api.baseUrl = config.api.host + config.api.path;
-    config.api.axios = axios.create({ baseURL: config.api.baseUrl });
+    config.api.axios = axios.create({ baseURL: config.api.baseUrl, withCredentials: true });
   }
 
   return config;
