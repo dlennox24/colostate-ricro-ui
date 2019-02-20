@@ -11,7 +11,7 @@ Documentation for available components.
 - [committees](#committees)
   - [CommitteeAvatar](#committee-avatar)
   - [CommitteeChip](#committee-chip)
-- [FileDropzone](/FileDropzone/#readme)
+- [FileDropzone](./FileDropzone/#readme)
 - [HttpError](#httperror)
 - [IconSnackbarContent](#iconsnackbarcontent)
 - [MarkdownParser](#markdownparser)
