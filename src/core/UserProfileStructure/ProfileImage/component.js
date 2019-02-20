@@ -31,10 +31,37 @@ class ProfileImage extends React.Component {
     this.props.handleReduxUpdateProfileImage(apiResp.data.result.newPath);
   };
 
-  // eslint-disable-next-line max-lines-per-function
+  createHelpText = () => {
+    const { classes } = this.props;
+    const { dropzoneFunc, files } = this.state;
+    return (
+      <React.Fragment>
+        {!_.isEmpty(dropzoneFunc) && (
+          <Collapse className={classes.fileListContainer} in={files.length > 0}>
+            <FileDropzoneList files={files} onRemoveFile={dropzoneFunc.handleRemove} />
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              onClick={dropzoneFunc.handleUpload}
+            >
+              Update Profile Image
+            </Button>
+          </Collapse>
+        )}
+        <Collapse in={files.length < 1}>
+          <Typography className={classes.uploadInstructions} variant="caption">
+            Click the image above or drag and drop an image file to change the profile image. Images
+            must be square and of the type <code>.jpg</code>.
+          </Typography>
+        </Collapse>
+      </React.Fragment>
+    );
+  };
+
   render() {
     const { api, classes, loggedInUserId, user } = this.props;
-    const { dropzoneFunc, files } = this.state;
+    const { files } = this.state;
     const image = (
       <img
         className={classes.profileImage}
@@ -76,25 +103,7 @@ class ProfileImage extends React.Component {
             </div>
           )}
         </FileDropzone>
-        {!_.isEmpty(dropzoneFunc) && (
-          <Collapse className={classes.fileListContainer} in={files.length > 0}>
-            <FileDropzoneList files={files} onRemoveFile={dropzoneFunc.handleRemove} />
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              onClick={dropzoneFunc.handleUpload}
-            >
-              Update Profile Image
-            </Button>
-          </Collapse>
-        )}
-        <Collapse in={files.length < 1}>
-          <Typography className={classes.uploadInstructions} variant="caption">
-            Click the image above or drag and drop an image file to change the profile image. Images
-            must be square and of the type <code>.jpg</code>.
-          </Typography>
-        </Collapse>
+        {this.createHelpText()}
       </React.Fragment>
     );
   }
