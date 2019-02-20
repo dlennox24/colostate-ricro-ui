@@ -1,21 +1,22 @@
 const toFileSizeString = size => {
+  let fileSize = '0 B';
   if (size > 1e9) {
     // > Gigabyte
-    return `${(size / 1e9).toFixed(1)} GB`;
+    fileSize = `${(size / 1e9).toFixed(1)} GB`;
   }
   if (size > 1e6) {
     // > Megabytes
-    return `${Math.floor(size / 1e6)} MB`;
+    fileSize = `${Math.floor(size / 1e6)} MB`;
   }
   if (size > 1e3) {
     // > Kilabytes
-    return `${Math.floor(size / 1e3)} KB`;
+    fileSize = `${Math.floor(size / 1e3)} KB`;
   }
   if (size >= 1) {
     // > Bytes
-    return `${size} B`;
+    fileSize = `${size} B`;
   }
-  return '0 B';
+  return fileSize;
 };
 
 export default toFileSizeString;

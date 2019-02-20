@@ -1,5 +1,13 @@
 import colorToRgba from '../../../utils/colorToRgba';
 
+const createBackgroundDrag = (color, getContrastText) => {
+  return {
+    background: colorToRgba(color, 0.75),
+    borderColor: color,
+    color: getContrastText(color),
+  };
+};
+
 const styles = theme => ({
   root: {
     height: '100%',
@@ -8,27 +16,18 @@ const styles = theme => ({
     '&:focus': { outline: 'none' },
   },
   blur: { filter: 'blur(2px)' },
-  dragAccept: {
-    background: colorToRgba(theme.palette.alerts.success.dark, 0.75),
-    borderColor: theme.palette.alerts.success.dark,
-    color: theme.palette.getContrastText(theme.palette.alerts.success.dark),
-  },
-  dragDisable: {
-    background: colorToRgba(theme.palette.grey[600], 0.75),
-    borderColor: theme.palette.grey[600],
-    color: theme.palette.getContrastText(theme.palette.grey[600]),
-  },
+  dragAccept: createBackgroundDrag(
+    theme.palette.alerts.success.dark,
+    theme.palette.getContrastText,
+  ),
+  dragDisable: createBackgroundDrag(theme.palette.grey[600], theme.palette.getContrastText),
   dragIconContainer: {
     '&>svg': {
       height: '2rem',
       width: '2rem',
     },
   },
-  dragReject: {
-    background: colorToRgba(theme.palette.alerts.danger.dark, 0.75),
-    borderColor: theme.palette.alerts.danger.dark,
-    color: theme.palette.getContrastText(theme.palette.alerts.danger.dark),
-  },
+  dragReject: createBackgroundDrag(theme.palette.alerts.danger.dark, theme.palette.getContrastText),
   dragRoot: {
     alignItems: 'center',
     borderRadius: 4,
