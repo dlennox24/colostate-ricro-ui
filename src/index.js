@@ -1,3 +1,4 @@
+import defaultProfileSvg from './assets/img/default-profile.svg';
 import AppFrame from './component/AppFrame';
 import CloseableDialog from './component/CloseableDialog';
 import Code from './component/Code';
@@ -25,6 +26,8 @@ export {
   IconSnackbarContent,
   MarkdownParser,
   UserProfile,
+  // Assets
+  defaultProfileSvg,
   // Utils
   createConfig,
 };
