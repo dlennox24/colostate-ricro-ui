@@ -129,7 +129,7 @@ class FileDropzoneComponent extends React.Component {
     const { disabled, files, snackbar } = this.state;
     return (
       <div className={classNames(classes.root, className)}>
-        <Dropzone disableClick {...dropzoneProps} onDrop={this.handleDrop}>
+        <Dropzone onClick={evt => evt.preventDefault()} {...dropzoneProps} onDrop={this.handleDrop}>
           {({ ...props }) => (
             <DropzoneRenderer
               files={files}
