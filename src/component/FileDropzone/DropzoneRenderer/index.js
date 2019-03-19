@@ -70,8 +70,12 @@ DropzoneRenderer.propTypes = {
   disabled: PropTypes.bool,
   disabledText: PropTypes.string,
   dragRootClassName: PropTypes.string,
+  getInputProps: PropTypes.func.isRequired,
+  getRootProps: PropTypes.func.isRequired,
   header: PropTypes.string,
   helperText: PropTypes.node,
+  isDragActive: PropTypes.bool,
+  isDragReject: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(DropzoneRenderer);

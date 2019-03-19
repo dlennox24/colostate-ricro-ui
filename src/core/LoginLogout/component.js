@@ -77,7 +77,7 @@ class LoginLogoutComponent extends React.Component {
     this.setState({ isLoginLoading: true });
     const { auth } = this.props;
     axios
-      .get(auth.host + auth.loginPath)
+      .get(auth.host + auth.loginPath, { withCredentials: true })
       .then(response => {
         if (response.data.status === 'redirect') {
           const redirect = response.data.result.includes('?')
@@ -139,7 +139,7 @@ class LoginLogoutComponent extends React.Component {
     this.setState({ isLogoutLoading: true });
     const { auth } = this.props;
     axios
-      .get(auth.host + auth.logoutPath)
+      .get(auth.host + auth.logoutPath, { withCredentials: true })
       .then(() => {
         this.props.handleLogout();
         this.setState({

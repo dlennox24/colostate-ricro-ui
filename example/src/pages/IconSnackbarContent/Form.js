@@ -128,7 +128,9 @@ class Form extends React.Component {
 }
 
 Form.propTypes = {
+  autoHideDuration: PropTypes.number,
   classes: PropTypes.object.isRequired, // MUI withStyles()
+  customIcons: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   onSwitchChange: PropTypes.func,
 };

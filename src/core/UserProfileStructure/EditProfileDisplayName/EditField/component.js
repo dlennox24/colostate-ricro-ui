@@ -1,5 +1,7 @@
+import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import ListItem from '@material-ui/core/ListItem';
 import Portal from '@material-ui/core/Portal';
 import Snackbar from '@material-ui/core/Snackbar';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -82,26 +84,32 @@ class EditProfileDisplayName extends React.Component {
   };
 
   render() {
-    const { classes, user } = this.props;
+    const { classes, isOpen, user } = this.props;
     const { newDisplayName, snackbar } = this.state;
     const inputProps = this.getInputProps();
+    const helperText =
+      'Must be at least 3 charaters. Using both first and last name is recommended.';
     return (
       <React.Fragment>
-        <TextField
-          autoFocus
-          className={classes.editDisplayName}
-          error={newDisplayName.length < 3 && newDisplayName.length !== 0}
-          fullWidth
-          helperText="Must be at least 3 charaters. Using both first and last name is recommended."
-          id="edit-display-name"
-          InputProps={inputProps}
-          label="Display Name"
-          margin="normal"
-          onChange={this.handleChange}
-          placeholder={user.displayName}
-          value={newDisplayName}
-          variant="outlined"
-        />
+        <Collapse in={isOpen} unmountOnExit>
+          <ListItem>
+            <TextField
+              autoFocus
+              className={classes.editDisplayName}
+              error={newDisplayName.length < 3 && newDisplayName.length !== 0}
+              fullWidth
+              helperText={helperText}
+              id="edit-display-name"
+              InputProps={inputProps}
+              label="Display Name"
+              margin="normal"
+              onChange={this.handleChange}
+              placeholder={user.displayName}
+              value={newDisplayName}
+              variant="outlined"
+            />
+          </ListItem>
+        </Collapse>
         <Portal>
           <Snackbar
             anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
@@ -126,6 +134,7 @@ EditProfileDisplayName.propTypes = {
   api: PropTypes.object.isRequired, // redux state
   classes: PropTypes.object.isRequired, // MUI withStyles()
   handleReduxUpdateDisplayName: PropTypes.func.isRequired, // redux dispatch
+  isOpen: PropTypes.bool.isRequired,
   onToggleOpen: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
 };

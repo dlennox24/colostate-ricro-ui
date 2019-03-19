@@ -80,7 +80,7 @@ class ProfileImage extends React.Component {
           dropzoneProps={{
             accept: 'image/jpeg',
             multiple: false,
-            disableClick: false,
+            onClick: null,
           }}
           maxFiles={1}
           onFilesChange={this.handleUpdateFiles}

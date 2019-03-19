@@ -38,7 +38,7 @@ DefaultDropzoneRenderer.propTypes = {
   classes: PropTypes.object.isRequired, // MUI withStyles()
   files: PropTypes.array,
   helperText: PropTypes.node,
-  onRemoveFiles: PropTypes.func,
+  onRemoveFile: PropTypes.func,
 };
 
 export default withStyles(styles)(DefaultDropzoneRenderer);
