@@ -13,7 +13,7 @@ import NavListItemIcon from '../NavListItemIcon';
 import SubNavList from '../SubNavList';
 import styles from './styles';
 
-const createNavItem = (navItem, props) => {
+const createNavItem = (navItem, parentProps) => {
   const key = `listItem-${navItem.name}`;
   if (React.isValidElement(navItem)) {
     return <React.Fragment key={key}>{navItem}</React.Fragment>;
@@ -22,12 +22,12 @@ const createNavItem = (navItem, props) => {
     return (
       <SubNavList
         key={key}
-        depth={props.depth + 1}
+        depth={parentProps.depth + 1}
         navItem={navItem}
-        nested={props.denseListItem}
-        linkPrefix={props.linkPrefix}
-        setMobileOpen={props.setMobileOpen}
-        ListProps={props.listProps}
+        nested={parentProps.denseListItem}
+        linkPrefix={parentProps.linkPrefix}
+        setMobileOpen={parentProps.setMobileOpen}
+        ListProps={parentProps.listProps}
       />
     );
   }
@@ -35,21 +35,21 @@ const createNavItem = (navItem, props) => {
     <ListItem
       key={key}
       className={classNames(
-        matchPath(props.location.pathname, {
-          path: props.linkPrefix + navItem.link,
+        matchPath(parentProps.location.pathname, {
+          path: parentProps.linkPrefix + navItem.link,
           exact: true,
         }) &&
           !navItem.disableActive &&
-          props.classes.active,
+          parentProps.classes.active,
       )}
-      dense={props.denseListItem}
+      dense={parentProps.denseListItem}
       onClick={() => {
-        if (props.setMobileOpen) props.setMobileOpen(false);
+        if (parentProps.setMobileOpen) parentProps.setMobileOpen(false);
         if (navItem.onClick) navItem.onClick();
       }}
       disabled={navItem.disabled}
       button
-      {...createMuiComponentLink(navItem, props.linkPrefix)}
+      {...createMuiComponentLink(navItem, parentProps.linkPrefix)}
     >
       {navItem.icon && <NavListItemIcon>{navItem.icon}</NavListItemIcon>}
       <ListItemText primary={navItem.name} />
