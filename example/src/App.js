@@ -1,4 +1,4 @@
-import AppFrame, { createConfig } from 'colostate-ricro-ui';
+import AppFrame, { createConfig, LoadingIndicator } from 'colostate-ricro-ui';
 import React from 'react';
 import { Route } from 'react-router-dom';
 import config0 from './assets/config0';
@@ -18,6 +18,7 @@ const routes = [
   { path: '/closeable-dialog', component: CloseableDialogPage },
   { path: '/http-error/:code', component: HttpErrorPage },
   { path: '/icon-snackbar-content', component: IconSnackbarContentPage },
+  { path: '/loading-indicator', component: LoadingIndicator },
   { path: '/user-profile', component: UserProfilePage },
   { path: '/file-dropzone', component: FileDropzonePag },
 ];
