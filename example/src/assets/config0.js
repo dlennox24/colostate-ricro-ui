@@ -10,6 +10,7 @@ import IconFileUpload from 'mdi-material-ui/FileUpload';
 import IconFolderNetwork from 'mdi-material-ui/FolderNetwork';
 import IconFormatColorText from 'mdi-material-ui/FormatColorText';
 import IconGithubCircle from 'mdi-material-ui/GithubCircle';
+import IconLoading from 'mdi-material-ui/Loading';
 import IconMaterialUi from 'mdi-material-ui/MaterialUi';
 import IconNetworkOffOutline from 'mdi-material-ui/NetworkOffOutline';
 import React from 'react';
@@ -62,7 +63,12 @@ export default {
           ],
         },
         {
-          name: 'Snackbars',
+          name: 'LoadingIndicator',
+          icon: <IconLoading />,
+          link: '/loading-indicator',
+        },
+        {
+          name: 'IconSnackbarContent',
           icon: <IconBell />,
           link: '/icon-snackbar-content',
         },

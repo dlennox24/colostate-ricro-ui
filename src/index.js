@@ -9,6 +9,7 @@ import FileDropzone from './component/FileDropzone';
 import FileDropzoneList from './component/FileDropzoneList';
 import HttpError from './component/HttpError';
 import IconSnackbarContent from './component/IconSnackbarContent';
+import LoadingIndicator from './component/LoadingIndicator';
 import MarkdownParser from './component/MarkdownParser';
 import UserProfile from './component/UserProfile';
 import createConfig from './utils/config/createConfig';
@@ -24,6 +25,7 @@ export {
   FileDropzoneList,
   HttpError,
   IconSnackbarContent,
+  LoadingIndicator,
   MarkdownParser,
   UserProfile,
   // Assets
