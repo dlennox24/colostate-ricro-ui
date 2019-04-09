@@ -17,6 +17,7 @@ import React from 'react';
 
 export default {
   app: {
+    logRocketId: 'be8vlm/colostate-ricro-ui-demo',
     name: 'colostate-ricro-ui template',
     // hasLogin: false,
     hasAutoLogin: true,

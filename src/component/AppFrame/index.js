@@ -13,17 +13,11 @@ import Footer from '../../core/Footer';
 import Header from '../../core/Header';
 import createConfig from '../../utils/config/createConfig';
 import HttpError from '../HttpError';
+import LogRocket from './LogRocket';
 import styles from './styles';
 
-const AppFrame = ({
-  classes,
-  children,
-  config = createConfig(),
-  disableGutters,
-  reducers,
-  // eslint-disable-next-line no-underscore-dangle
-  reduxMiddleware = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-}) => {
+const AppFrame = props => {
+  const { children, classes, config, disableGutters, reducers, reduxMiddleware } = props;
   if (!config.usedCreateConfigUtil && process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line
     console.warn(
@@ -47,21 +41,30 @@ const AppFrame = ({
     >
       <MuiThemeProvider theme={theme}>
         <Router basename={process.env.NODE_ENV === 'production' ? config.app.basename : null}>
-          <div id="cru-root" className={classes.root}>
+          <React.Fragment>
+            <LogRocket />
             <CssBaseline />
-            <Header unit={config.unit} />
-            <ContentWrapper app={config.app} disableGutters={disableGutters}>
-              <Switch>
-                {children}
-                <Route component={() => <HttpError code={404} />} />
-              </Switch>
-            </ContentWrapper>
-            <Footer />
-          </div>
+            <div id="cru-root" className={classes.root}>
+              <Header unit={config.unit} />
+              <ContentWrapper app={config.app} disableGutters={disableGutters}>
+                <Switch>
+                  {children}
+                  <Route component={() => <HttpError code={404} />} />
+                </Switch>
+              </ContentWrapper>
+              <Footer />
+            </div>
+          </React.Fragment>
         </Router>
       </MuiThemeProvider>
     </Provider>
   );
+};
+
+AppFrame.defaultProps = {
+  config: createConfig(),
+  // eslint-disable-next-line no-underscore-dangle
+  reduxMiddleware: window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 };
 
 AppFrame.propTypes = {
