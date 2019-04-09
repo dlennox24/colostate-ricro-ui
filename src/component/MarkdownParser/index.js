@@ -21,6 +21,9 @@ const StyledTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
+// eslint-disable-next-line jsx-a11y/alt-text
+const image = withStyles(styles)(props => <img className={props.classes.image} {...props} />);
+
 /* eslint-disable react/prop-types */
 const renderers = {
   root: withStyles(styles)(({ classes, ...props }) => <div className={classes.root} {...props} />),
@@ -29,10 +32,8 @@ const renderers = {
   },
   heading: props => <Heading {...props} />,
   html: () => null,
-  // eslint-disable-next-line jsx-a11y/alt-text
-  image: withStyles(styles)(props => <img className={props.classes.image} {...props} />),
-  // eslint-disable-next-line jsx-a11y/alt-text
-  imageReference: withStyles(styles)(props => <img className={props.classes.image} {...props} />),
+  image,
+  imageReference: image,
   list: withStyles(styles)(({ classes, depth, tight, ordered, theme, ...props }) => (
     <Typography className={classes.list} component={ordered ? 'ol' : 'ul'} {...props} />
   )),
