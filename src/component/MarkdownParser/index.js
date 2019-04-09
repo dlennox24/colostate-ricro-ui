@@ -7,10 +7,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
-import classNames from 'classnames';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import Code from '../Code';
+import Heading from './Heading';
 import styles from './styles';
 
 const StyledTableCell = withStyles(theme => ({
@@ -21,47 +21,20 @@ const StyledTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
+// eslint-disable-next-line jsx-a11y/alt-text
+const image = withStyles(styles)(props => <img className={props.classes.image} {...props} />);
+
 /* eslint-disable react/prop-types */
 const renderers = {
   root: withStyles(styles)(({ classes, ...props }) => <div className={classes.root} {...props} />),
   code: ({ language, value: code }) => {
     return <Code lang={language} code={code} />;
   },
-  heading: withStyles(styles)(({ level, classes, ...props }) => {
-    const id = props.children[0].props.children.replace(/\s+/g, '-').toLowerCase();
-    let variant;
-    switch (level) {
-      case 1:
-        variant = 'h3';
-        break;
-      case 2:
-        variant = 'h4';
-        break;
-      case 3:
-        variant = 'h5';
-        break;
-      case 4:
-        variant = 'h6';
-        break;
-      default:
-        variant = 'body1';
-        break;
-    }
-
-    return (
-      <React.Fragment>
-        <div className={classes.headingLink} id={id} />
-        <Typography
-          className={classNames(classes.heading, level > 3 && classes.headingBold)}
-          variant={variant}
-          {...props}
-        />
-        {level < 4 && <Divider className={classes.headingDivider} />}
-      </React.Fragment>
-    );
-  }),
+  heading: props => <Heading {...props} />,
   html: () => null,
-  list: withStyles(styles)(({ classes, tight, ordered, ...props }) => (
+  image,
+  imageReference: image,
+  list: withStyles(styles)(({ classes, depth, tight, ordered, theme, ...props }) => (
     <Typography className={classes.list} component={ordered ? 'ol' : 'ul'} {...props} />
   )),
   listItem: withStyles(styles)(({ classes, tight, ordered, ...props }) => (
