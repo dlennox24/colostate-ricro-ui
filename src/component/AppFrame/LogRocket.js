@@ -4,8 +4,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const LogRocketConnect = ({ config, user }) => {
-  if (process.env.NODE_ENV === 'production' && _.get(config, 'app.logRocketId', false)) {
-    LogRocket.init(config.app.logRocketId);
+  if (
+    process.env.NODE_ENV === 'production' &&
+    _.get(config, 'app.LogRocket.id', false) &&
+    !_.get(config, 'app.LogRocket.disable', false)
+  ) {
+    LogRocket.init(config.app.LogRocket.id);
     if (!_.isEmpty(user)) {
       LogRocket.identify(user.csuId, {
         name: user.displayName,

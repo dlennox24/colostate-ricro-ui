@@ -1,5 +1,12 @@
 {
   "name": "colostate-ricro-ui",
+  "jest":{
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/src/index.js"
+    ]
+  },
   "version": "3.5.0",
   "description": "UI extention of Material UI for RICRO based applications.",
   "author": "dlennox24",
