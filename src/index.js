@@ -1,4 +1,5 @@
 import defaultProfileSvg from './assets/img/default-profile.svg';
+import ApiTable from './component/ApiTable';
 import AppFrame from './component/AppFrame';
 import CloseableDialog from './component/CloseableDialog';
 import Code from './component/Code';
@@ -16,6 +17,7 @@ import createConfig from './utils/config/createConfig';
 
 export default AppFrame;
 export {
+  ApiTable,
   CloseableDialog,
   Code,
   committees,

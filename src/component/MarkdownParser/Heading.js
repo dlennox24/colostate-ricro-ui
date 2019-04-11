@@ -14,7 +14,7 @@ const styles = theme => ({
     '&:hover svg': { display: 'inline-block' },
   },
   headingLinkIcon: {
-    fontSize: 'inherit',
+    fontSize: '1.3rem',
     margin: `0 ${theme.spacing.unit}px`,
     verticalAlign: 'middle',
     color: theme.palette.grey[500],
@@ -25,19 +25,34 @@ const styles = theme => ({
   headingBold: { fontWeight: 'bold' },
   headingDivider: { margin: `${theme.spacing.unit}px 0 ${theme.spacing.unit * 2}px` },
   headingLink: {
-    marginTop: -56 - bottomBorderWidth,
+    marginTop: -56 - 3 * theme.spacing.unit - bottomBorderWidth,
     position: 'absolute',
-    '@media (min-width: 1px) and (orientation: landscape)': { marginTop: -48 - bottomBorderWidth },
-    [theme.breakpoints.up('sm')]: { marginTop: -64 - bottomBorderWidth },
+    '@media (min-width: 1px) and (orientation: landscape)': {
+      marginTop: -48 - 3 * theme.spacing.unit - bottomBorderWidth,
+    },
+    [theme.breakpoints.up('sm')]: { marginTop: -64 - 3 * theme.spacing.unit - bottomBorderWidth },
   },
 });
 
 class Heading extends React.Component {
   state = { tooltip: 'Copy permalink' };
 
-  handleCopy = () => {
+  handleCopy = id => () => {
     this.setState({ tooltip: 'Copied!' });
+    const el = document.createElement('textarea');
+    el.value = `${window.location.origin + window.location.pathname}#${id}`;
+    el.setAttribute('readonly', '');
+    el.style = { position: 'absolute', left: '-9999px' };
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
     setTimeout(() => this.setState({ tooltip: 'Copy permalink' }), 6e3);
+  };
+
+  handleScrollToHeader = id => () => {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    window.history.pushState(null, null, `${window.location.pathname}#${id}`);
   };
 
   render() {
@@ -67,22 +82,22 @@ class Heading extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.headingLink} id={id} />
-        <Tooltip title={tooltip} placement="bottom-start">
-          <Typography
-            className={classNames(
-              classes.heading,
-              level > 3 && classes.headingBold,
-              level === 4 && classes.headingH4,
-            )}
-            variant={variant}
-            onClick={this.handleCopy}
-            component={variant.charAt(0) === 'h' ? variant : null}
-            {...props}
-          >
-            <IconLink className={classes.headingLinkIcon} />
-            {children[0]}
-          </Typography>
-        </Tooltip>
+        <Typography
+          className={classNames(
+            classes.heading,
+            level > 3 && classes.headingBold,
+            level === 4 && classes.headingH4,
+          )}
+          variant={variant}
+          onClick={this.handleScrollToHeader(id)}
+          component={variant.charAt(0) === 'h' ? variant : null}
+          {...props}
+        >
+          {children[0]}
+          <Tooltip title={tooltip}>
+            <IconLink className={classes.headingLinkIcon} onClick={this.handleCopy(id)} />
+          </Tooltip>
+        </Typography>
         {level < 4 && <Divider className={classes.headingDivider} />}
       </div>
     );
