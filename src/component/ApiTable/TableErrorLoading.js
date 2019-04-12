@@ -1,5 +1,5 @@
-import { withStyles } from '@material-ui/core';
 import Collapse from '@material-ui/core/Collapse';
+import withStyles from '@material-ui/core/styles/withStyles';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
