@@ -11,11 +11,6 @@ const styles = theme => ({
       width: '100%',
     },
   },
-  stickyNav: {
-    display: 'table',
-    position: 'sticky',
-    top: 67, // height of sticky header + its bottom border
-  },
   swipeableDrawerToolbar: {
     display: 'flex',
     flex: 1,
