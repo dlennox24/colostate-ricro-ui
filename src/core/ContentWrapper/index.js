@@ -22,7 +22,6 @@ class ContentWrapper extends React.Component {
 
   render() {
     const { app, classes, children, container, disableGutters } = this.props;
-
     return (
       <React.Fragment>
         <div className={classes.root}>
@@ -42,9 +41,6 @@ class ContentWrapper extends React.Component {
             </Toolbar>
           </AppBar>
           <div className={classes.flex}>
-            <a className={classes.skipNavLink} href="#main-content">
-              Skip navigation
-            </a>
             {app.nav && (
               <Nav
                 nav={app.nav}

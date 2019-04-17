@@ -1,6 +1,9 @@
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -39,6 +42,11 @@ const Nav = ({ classes, container, isMobileOpen, nav, setMobileOpen }) => (
     </Hidden>
     <Hidden className={classes.drawerDocked} mdDown implementation="css">
       <Paper className={classes.swipeableDrawerToolbar} square>
+        <List className={classes.skipNavLink}>
+          <ListItem button component="a" href="#main-content">
+            <ListItemText primary="Skip Navigation" />
+          </ListItem>
+        </List>
         <NavList className={classes.stickyNav} nav={nav} />
       </Paper>
     </Hidden>

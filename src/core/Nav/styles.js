@@ -19,6 +19,14 @@ const styles = theme => ({
   swipeableDrawerToolbar: {
     display: 'flex',
     flex: 1,
+  skipNavLink: {
+    height: 0,
+    padding: 0,
+    overflow: 'hidden',
+    '&:focus-within': {
+      height: 'initial',
+      padding: 'initial',
+    },
   },
 });
 
