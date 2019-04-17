@@ -13,6 +13,7 @@ import IconGithubCircle from 'mdi-material-ui/GithubCircle';
 import IconLoading from 'mdi-material-ui/Loading';
 import IconMaterialUi from 'mdi-material-ui/MaterialUi';
 import IconNetworkOffOutline from 'mdi-material-ui/NetworkOffOutline';
+import IconTable from 'mdi-material-ui/Table';
 import React from 'react';
 
 export default {
@@ -27,6 +28,11 @@ export default {
           name: 'Typography',
           icon: <IconFormatColorText />,
           link: '/typography',
+        },
+        {
+          name: 'ApiTable',
+          icon: <IconTable />,
+          link: '/api-table',
         },
         {
           name: 'CloseableDialog',
