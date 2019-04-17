@@ -19,6 +19,8 @@ const styles = theme => ({
   swipeableDrawerToolbar: {
     display: 'flex',
     flex: 1,
+    flexDirection: 'column',
+  },
   skipNavLink: {
     height: 0,
     padding: 0,
