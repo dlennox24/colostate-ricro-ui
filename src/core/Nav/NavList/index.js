@@ -44,7 +44,9 @@ const createNavItem = (navItem, parentProps) => {
       )}
       dense={parentProps.denseListItem}
       onClick={() => {
-        if (parentProps.setMobileOpen) parentProps.setMobileOpen(false);
+        if (parentProps.setMobileOpen) {
+          parentProps.setMobileOpen(false)();
+        }
         if (navItem.onClick) navItem.onClick();
       }}
       disabled={navItem.disabled}
