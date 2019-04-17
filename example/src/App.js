@@ -5,11 +5,12 @@ import config0 from './assets/config0';
 import AboutPage from './pages/About';
 import CloseableDialogPage from './pages/CloseableDialog';
 import CommitteesPage from './pages/Committees';
-import FileDropzonePag from './pages/FileDropzone';
+import FileDropzonePage from './pages/FileDropzone';
 import HttpErrorPage from './pages/HttpError';
 import IconSnackbarContentPage from './pages/IconSnackbarContent';
 import TypographyPage from './pages/Typography';
 import UserProfilePage from './pages/User';
+import ApiTablePage from './pages/ApiTable';
 
 const routes = [
   { path: '/', component: AboutPage },
@@ -20,7 +21,8 @@ const routes = [
   { path: '/icon-snackbar-content', component: IconSnackbarContentPage },
   { path: '/loading-indicator', component: LoadingIndicator },
   { path: '/user-profile', component: UserProfilePage },
-  { path: '/file-dropzone', component: FileDropzonePag },
+  { path: '/file-dropzone', component: FileDropzonePage },
+  { path: '/api-table', component: ApiTablePage },
 ];
 
 const App = () => (

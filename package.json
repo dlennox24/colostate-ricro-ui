@@ -1,6 +1,6 @@
 {
   "name": "colostate-ricro-ui",
-  "jest":{
+  "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!<rootDir>/node_modules/",
@@ -87,7 +87,7 @@
     "dist"
   ],
   "dependencies": {
-    "@material-ui/core": "^3.9.2",
+    "@material-ui/core": "^3.9.3",
     "axios": "^0.18.0",
     "fuse.js": "^3.4.4",
     "logrocket": "^0.6.20",
