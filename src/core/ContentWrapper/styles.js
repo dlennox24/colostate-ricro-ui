@@ -24,10 +24,11 @@ const styles = theme => ({
       color: theme.palette.csu.primary.green.contrastText,
     },
     blockquote: {
+      margin: theme.spacing.unit,
       fontSize: ' 1.4em',
       fontStyle: 'italic',
       color: theme.palette.csu.secondary.black.main,
-      padding: '1.2em 30px 1.2em 75px',
+      padding: '.8em 24px .8em 43px',
       borderLeft: `8px solid ${theme.palette.primary.light}`,
       position: 'relative',
       background: theme.palette.grey[200],
@@ -38,10 +39,10 @@ const styles = theme => ({
         fontFamily: 'Arial',
         content: '"\\201C"',
         color: theme.palette.csu.primary.gold.main,
-        fontSize: '4em',
+        fontSize: '2.5em',
         position: 'absolute',
-        left: ' 10px',
-        top: '10px',
+        left: theme.spacing.unit,
+        top: 0,
       },
 
       '&::after': {
