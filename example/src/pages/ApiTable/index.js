@@ -4,7 +4,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
 import { ApiTable, defaultProfileSvg } from 'colostate-ricro-ui';
 import MdiAccountPlus from 'mdi-material-ui/AccountPlus';
@@ -48,7 +47,7 @@ const ApiTablePage = ({ api, location }) => {
         {({ row }) => {
           const to = `${location.pathname}/edit/${row.csuId}`;
           return (
-            <TableRow hover>
+            <React.Fragment>
               <TableCell>
                 <ListItem dense>
                   <ListItemIcon>
@@ -73,7 +72,7 @@ const ApiTablePage = ({ api, location }) => {
                   </IconButton>
                 </Tooltip>
               </TableCell>
-            </TableRow>
+            </React.Fragment>
           );
         }}
       </ApiTable>

@@ -1,4 +1,5 @@
 import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -19,10 +20,15 @@ const EnhancedTableBody = props => {
   const renderData = rootData.search
     .sort(getSorting(order, orderBy))
     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+
   return (
     <TableBody>
-      {renderData.map((row, i) => (
-        <TableRowRenderer key={row[uniqueDataKey]} row={row} index={i} />
+      {renderData.map(row => (
+        <TableRow hover key={row[uniqueDataKey]}>
+          {React.Children.map(TableRowRenderer({ row: row || {} }).props.children, tableCell =>
+            React.cloneElement(tableCell, { row, variant: 'body', ...tableCell.props }),
+          )}
+        </TableRow>
       ))}
     </TableBody>
   );
