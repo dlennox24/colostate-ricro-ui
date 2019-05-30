@@ -26,14 +26,17 @@ const defaults = {
   },
   auth: {
     host: defaultHost,
+    // Path that is protected by shibboleth
     shibPath: '/auth/sso/?v=3',
     loginPath: '/auth/v3/login/',
     logoutPath: '/auth/v3/logout/',
   },
   app: {
     name: 'App Template - Defaults',
+    // redux basename
     basename: defaultBasename,
     hasLogin: true,
+    // if hasLogin is false hasAutoLogin is ignored
     hasAutoLogin: false,
     nav: [
       [
@@ -42,6 +45,13 @@ const defaults = {
         { name: 'Contact Us', icon: <IconEmail />, link: defaultContactHref },
       ],
     ],
+
+    // LogRocket object contains a string, `id`, that contains the LogRocket App ID
+    // This ID can be found under the LogRocket project settings > General Settings
+    // LogRocket: {
+    //   id: 'id string'
+    // }
+    LogRocket: null,
   },
   debug: false,
   defaultState: {},
