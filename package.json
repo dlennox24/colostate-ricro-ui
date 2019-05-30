@@ -88,7 +88,7 @@
   ],
   "dependencies": {
     "@material-ui/core": "^3.9.3",
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "fuse.js": "^3.4.4",
     "logrocket": "^0.6.20",
     "mdi-material-ui": "^5.9.0",
