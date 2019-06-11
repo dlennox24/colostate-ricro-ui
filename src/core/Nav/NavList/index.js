@@ -10,6 +10,7 @@ import { matchPath, withRouter } from 'react-router-dom';
 import { navItemShape } from '../../../assets/propTypes';
 import createMuiComponentLink from '../../../utils/createMuiComponentLink';
 import NavListItemIcon from '../NavListItemIcon';
+// eslint-disable-next-line import/no-cycle
 import SubNavList from '../SubNavList';
 import styles from './styles';
 

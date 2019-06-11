@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { matchPath, withRouter } from 'react-router-dom';
 import { navItemShape } from '../../../assets/propTypes';
+// eslint-disable-next-line import/no-cycle
 import NavList from '../NavList';
 import NavListItemIcon from '../NavListItemIcon';
 import styles from './styles';
