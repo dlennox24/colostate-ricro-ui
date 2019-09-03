@@ -7,7 +7,7 @@ const styles = theme => ({
     color: theme.palette.common.white,
     margin: 0,
     [theme.breakpoints.down('sm')]: {
-      marginBottom: theme.spacing.unit,
+      marginBottom: theme.spacing(1),
       textAlign: 'center',
     },
   },
@@ -20,7 +20,7 @@ const styles = theme => ({
     },
   },
   footer: {
-    padding: theme.spacing.unit * 1.5,
+    padding: theme.spacing(1.5),
     '& img': {
       maxHeight: 50,
       width: 'fit-content',
@@ -47,7 +47,7 @@ const styles = theme => ({
     },
   },
   footerLinksContainer: {
-    lineHeight: `${theme.spacing.unit * 4}px`,
+    lineHeight: `${theme.spacing(4)}px`,
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
     },

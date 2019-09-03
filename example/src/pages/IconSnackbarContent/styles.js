@@ -1,16 +1,16 @@
 const styles = theme => ({
   gridItem: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
   divider: {
-    margin: `${theme.spacing.unit * 3}px 0`,
+    margin: theme.spacing(3, 0),
   },
   icon: {
     fontSize: 20,
   },
   iconVariant: {
     opacity: 0.9,
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
     verticalAlign: 'middle',
   },
 });

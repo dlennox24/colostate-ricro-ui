@@ -44,7 +44,7 @@ const styles = theme => ({
   },
   uploadInstructions: {
     textAlign: 'center',
-    padding: `${theme.spacing.unit}px 0`,
+    padding: theme.spacing(1, 0),
   },
 });
 

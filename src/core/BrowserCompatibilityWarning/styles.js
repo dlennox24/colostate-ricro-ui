@@ -3,10 +3,10 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing(3),
   },
   contentContainer: {
-    paddingTop: theme.spacing.unit * 2,
+    paddingTop: theme.spacing(2),
   },
 });
 

@@ -13,7 +13,7 @@ import React from 'react';
 import IconSnackbarContent from '../../../../component/IconSnackbarContent';
 
 const styles = theme => ({
-  editDisplayName: { marginTop: theme.spacing.unit },
+  editDisplayName: { marginTop: theme.spacing(1) },
 });
 
 class EditProfileDisplayName extends React.Component {

@@ -13,10 +13,10 @@ const styles = theme => ({
     },
   },
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
   iconLeft: {
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
   },
   root: {
     display: 'flex',

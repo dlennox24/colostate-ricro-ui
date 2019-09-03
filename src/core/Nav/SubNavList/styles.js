@@ -1,6 +1,6 @@
 const styles = theme => ({
   dropDown: {
-    marginLeft: theme.spacing.unit * 4,
+    marginLeft: theme.spacing(4),
     borderLeft: `2px solid ${theme.palette.divider}`,
   },
   active: {

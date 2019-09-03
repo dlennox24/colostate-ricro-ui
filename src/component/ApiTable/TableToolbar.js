@@ -13,7 +13,7 @@ import TableFilter from './TableFilter';
 const styles = theme => ({
   actions: { display: 'flex' },
   root: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    padding: theme.spacing(1, 2),
     flexWrap: 'wrap',
   },
   spacer: { flex: 'auto' },

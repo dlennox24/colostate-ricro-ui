@@ -5,8 +5,8 @@ const styles = theme => ({
     ...navItemStyles.dropDown,
   },
   profileAvatar: {
-    width: theme.spacing.unit * 3,
-    height: theme.spacing.unit * 3,
+    width: theme.spacing(3),
+    height: theme.spacing(3),
   },
 });
 

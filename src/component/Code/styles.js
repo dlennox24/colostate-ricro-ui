@@ -2,15 +2,15 @@ const styles = theme => ({
   root: {
     fontSize: theme.typography.body1.fontSize,
     textAlign: 'left',
-    margin: `${theme.spacing.unit * 2}px 0`,
-    padding: theme.spacing.unit * 1.5,
+    margin: theme.spacing(2, 0),
+    padding: theme.spacing(1.5),
     paddingLeft: 0,
     overflowX: 'auto',
     width: '99.9%', // Hides background overflow when scrollbar is present
     '& .token-line': {
       lineHeight: '1.1em',
       whiteSpace: 'nowrap',
-      paddingRight: theme.spacing.unit,
+      paddingRight: theme.spacing(1),
       width: 'fit-content',
       fontFamily: 'monospace',
     },
@@ -32,11 +32,11 @@ const styles = theme => ({
     display: 'inline-block',
     minWidth: '2.4em',
     userSelect: 'none',
-    marginRight: theme.spacing.unit * 2,
+    marginRight: theme.spacing(2),
     fontSize: theme.typography.body1.fontSize,
-    lineHeight: `${theme.spacing.unit * 2}px`,
+    lineHeight: theme.spacing(2),
     textAlign: 'right',
-    paddingRight: theme.spacing.unit,
+    paddingRight: theme.spacing(1),
   },
   pre: {
     display: 'initial',

@@ -3,16 +3,16 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
   column: {
     [theme.breakpoints.up('md')]: {
-      padding: theme.spacing.unit * 3,
+      padding: theme.spacing(3),
     },
   },
   gridFlex: { display: 'flex' },
-  groupsHeader: { marginTop: theme.spacing.unit * 2 },
-  noGroups: { marginTop: theme.spacing.unit * 2 },
+  groupsHeader: { marginTop: theme.spacing(2) },
+  noGroups: { marginTop: theme.spacing(2) },
   sectionHeader: {
     display: 'flex',
     justifyContent: 'space-between',

@@ -24,7 +24,7 @@ const styles = theme => ({
       color: theme.palette.csu.primary.green.contrastText,
     },
     blockquote: {
-      margin: theme.spacing.unit,
+      margin: theme.spacing(1),
       fontSize: ' 1.4em',
       fontStyle: 'italic',
       color: theme.palette.csu.secondary.black.main,
@@ -41,7 +41,7 @@ const styles = theme => ({
         color: theme.palette.csu.primary.gold.main,
         fontSize: '2.5em',
         position: 'absolute',
-        left: theme.spacing.unit,
+        left: theme.spacing(1),
         top: 0,
       },
 
@@ -72,7 +72,7 @@ const styles = theme => ({
     },
   },
   gutters: {
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing(3),
   },
   content: {
     overflowX: 'auto',

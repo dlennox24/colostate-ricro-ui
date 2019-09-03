@@ -9,10 +9,10 @@ import CommitteeAvatar from '../Avatar';
 
 const styles = theme => ({
   chip: {
-    margin: theme.spacing.unit / 3,
+    margin: theme.spacing(1 / 3),
   },
   avatarRoot: {
-    marginRight: -1 * (theme.spacing.unit / 2),
+    marginRight: theme.spacing(-1 / 2),
   },
 });
 

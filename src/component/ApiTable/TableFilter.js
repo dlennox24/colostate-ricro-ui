@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const styles = theme => ({
-  gridRoot: { padding: theme.spacing.unit * 3 },
+  gridRoot: { padding: theme.spacing(3) },
 });
 
 class TableFilter extends React.Component {

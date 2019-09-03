@@ -15,22 +15,22 @@ const styles = theme => ({
   },
   headingLinkIcon: {
     fontSize: '1.3rem',
-    margin: `0 ${theme.spacing.unit}px`,
+    margin: theme.spacing(0, 1),
     verticalAlign: 'middle',
     color: theme.palette.grey[500],
     display: 'none',
   },
-  heading: { marginTop: theme.spacing.unit * 4 },
+  heading: { marginTop: theme.spacing(4) },
   headingH4: { fontFamily: '"prox-light", "Helvetica", "Arial", sans-serif' },
   headingBold: { fontWeight: 'bold' },
-  headingDivider: { margin: `${theme.spacing.unit}px 0 ${theme.spacing.unit * 2}px` },
+  headingDivider: { margin: theme.spacing(1, 0, 2) },
   headingLink: {
-    marginTop: -56 - 3 * theme.spacing.unit - bottomBorderWidth,
+    marginTop: -56 - 3 * theme.spacing(1) - bottomBorderWidth,
     position: 'absolute',
     '@media (min-width: 1px) and (orientation: landscape)': {
-      marginTop: -48 - 3 * theme.spacing.unit - bottomBorderWidth,
+      marginTop: -48 - 3 * theme.spacing(1) - bottomBorderWidth,
     },
-    [theme.breakpoints.up('sm')]: { marginTop: -64 - 3 * theme.spacing.unit - bottomBorderWidth },
+    [theme.breakpoints.up('sm')]: { marginTop: -64 - 3 * theme.spacing(1) - bottomBorderWidth },
   },
 });
 
