@@ -4,7 +4,7 @@
  *    ["path"]: string array of path from top level object. Order matters: Left -> Right
  *
  * Pops the correct amount of keys off the path array to go up to the next object. Helper
- * funciton for augmentColorObjects()
+ * function for augmentColorObjects()
  *
  */
 const goToParentKeyInPath = (keys, path) => {
@@ -32,7 +32,7 @@ const goToParentKeyInPath = (keys, path) => {
  * and are children of the any of the keys specified in the `modKeys` array.
  * Other top level keys are ignored and not traversed. Lowest level objects must
  * have a `main` key with a color valid specified to allow for MUI's augmentColor
- * funciton to work.
+ * function to work.
  *
  * Modifies the object that is passed.
  */

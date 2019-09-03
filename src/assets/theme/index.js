@@ -44,7 +44,6 @@ const theme = createMuiTheme({
     csu: _.cloneDeep(csu),
   },
   typography: {
-    useNextVariants: true,
     fontFamily: '"prox-regular", "Helvetica", "Arial", sans-serif',
     h1: { fontFamily: '"factoria-book", "Helvetica", "Arial", sans-serif' },
     h2: { fontFamily: '"factoria-book", "Helvetica", "Arial", sans-serif' },

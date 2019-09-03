@@ -14,9 +14,6 @@ const augmentColorObjectsFunc = augmentColorObjects({
   obj: palette,
   augmentColorFunc: createMuiTheme({
     palette,
-    typography: {
-      useNextVariants: true,
-    },
   }).palette.augmentColor,
   modKeys: ['alerts', 'csu'],
 });
