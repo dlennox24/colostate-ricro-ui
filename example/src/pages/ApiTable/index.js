@@ -51,9 +51,7 @@ const ApiTablePage = ({ api, location }) => {
               <TableCell>
                 <ListItem dense>
                   <ListItemIcon>
-                    <Avatar
-                      src={row.profileImage ? api.host + row.profileImage : defaultProfileSvg}
-                    />
+                    <Avatar src={row.profileImage ? row.profileImage : defaultProfileSvg} />
                   </ListItemIcon>
                   <ListItemText primary={row.displayName} />
                 </ListItem>
