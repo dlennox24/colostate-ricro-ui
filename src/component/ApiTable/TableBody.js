@@ -3,11 +3,12 @@ import TableRow from '@material-ui/core/TableRow';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const getSorting = (order, orderBy) => {
-  return order === 'asc'
-    ? (a, b) => (a[orderBy] > b[orderBy] ? -1 : 1)
-    : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1);
-};
+const lower = value => (typeof value === 'string' ? value.toLowerCase() : value);
+
+const getSorting = (order, orderBy) =>
+  order === 'asc'
+    ? (a, b) => (lower(a[orderBy]) > lower(b[orderBy]) ? -1 : 1)
+    : (a, b) => (lower(a[orderBy]) < lower(b[orderBy]) ? -1 : 1);
 
 const EnhancedTableBody = props => {
   const { rootData } = props.enhancedTable;
