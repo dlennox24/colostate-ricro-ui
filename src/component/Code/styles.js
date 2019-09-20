@@ -34,7 +34,7 @@ const styles = theme => ({
     userSelect: 'none',
     marginRight: theme.spacing(2),
     fontSize: theme.typography.body1.fontSize,
-    lineHeight: theme.spacing(2),
+    lineHeight: theme.spacing(2) + 'px',
     textAlign: 'right',
     paddingRight: theme.spacing(1),
   },

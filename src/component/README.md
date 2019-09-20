@@ -188,7 +188,7 @@ class ExampleCloseableDialog extends React.Component {
 | classes* | `object` | | Imported via Material UI's `withStyles()` |
 | code* | `string` | | String of code to be highlighted |
 | lang | `string` | `"jsx"` | Language to highlight. [View supported languages](https://github.com/FormidableLabs/prism-react-renderer/blob/master/src/vendor/prism/includeLangs.js) |
-| theme | `object` | `{vsDarkPlus}` | Theme for the code background and highlighting. More themes available [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer#theme)
+| theme | `object` | `{vsDark}` | Theme for the code background and highlighting. More themes available [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer#theme)
 
 ### Example
 

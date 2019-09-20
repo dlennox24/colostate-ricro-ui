@@ -2,7 +2,7 @@ import IconButton from '@material-ui/core/IconButton';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
-import MdiOpenInApp from 'mdi-material-ui/OpenInApp';
+import IconOpenInApp from 'mdi-material-ui/OpenInApp';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
@@ -43,7 +43,7 @@ test('renders with required props', () => {
               <TableCell align="center">
                 <Tooltip title={`View ${row.id}`}>
                   <IconButton component={Link} to={'/'}>
-                    <MdiOpenInApp />
+                    <IconOpenInApp />
                   </IconButton>
                 </Tooltip>
               </TableCell>

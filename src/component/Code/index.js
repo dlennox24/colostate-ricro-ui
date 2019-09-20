@@ -2,7 +2,7 @@ import { Typography } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import classNames from 'classnames';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-import defaultTheme from 'prism-react-renderer/themes/vsDarkPlus';
+import defaultTheme from 'prism-react-renderer/themes/vsDark';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './styles';

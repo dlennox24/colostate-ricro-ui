@@ -21,9 +21,11 @@ class Header extends React.Component {
 
     logoScript.then(() => {
       const checkOpen = setInterval(() => {
-        if (document.getElementById('BrandLogo').children[0].nodeName.toLowerCase() === 'style') {
-          clearInterval(checkOpen);
-          return this.setState({ isOpen: true });
+        if (document.getElementById('BrandLogo') !== null) {
+          if (document.getElementById('BrandLogo').children[0].nodeName.toLowerCase() === 'style') {
+            clearInterval(checkOpen);
+            return this.setState({ isOpen: true });
+          }
         }
         return null;
       }, 10);
