@@ -10,7 +10,6 @@ import MdiAccountPlus from 'mdi-material-ui/AccountPlus';
 import MdiOpenInApp from 'mdi-material-ui/OpenInApp';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 
@@ -31,7 +30,7 @@ const searchKeys = [
   { id: 'lastName', label: 'Last Name' },
 ].sort((a, b) => (a.label < b.label ? -1 : 1));
 
-const ApiTablePage = ({ api, location }) => {
+const ApiTablePage = ({ location }) => {
   return (
     <React.Fragment>
       <ApiTable
@@ -79,10 +78,7 @@ const ApiTablePage = ({ api, location }) => {
 };
 
 ApiTablePage.propTypes = {
-  api: PropTypes.object.isRequired, // redux state
   location: PropTypes.object.isRequired, // react-router withRouter()
 };
 
-const mapStateToProps = state => ({ api: state.config.api });
-
-export default connect(mapStateToProps)(withRouter(ApiTablePage));
+export default withRouter(ApiTablePage);
