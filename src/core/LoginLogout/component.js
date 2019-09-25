@@ -256,7 +256,6 @@ class LoginLogoutComponent extends React.Component {
 }
 
 LoginLogoutComponent.propTypes = {
-  api: PropTypes.object.isRequired, // redux state
   auth: PropTypes.object.isRequired, // redux state
   classes: PropTypes.object.isRequired, // MUI withStyles()
   handleLogin: PropTypes.func.isRequired, // redux - index.js:mapDispatchToProps
