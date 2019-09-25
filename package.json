@@ -7,7 +7,7 @@
       "!<rootDir>/src/index.js"
     ]
   },
-  "version": "3.5.7",
+  "version": "3.5.8",
   "description": "UI extention of Material UI for RICRO based applications.",
   "author": "dlennox24",
   "license": "MIT",
