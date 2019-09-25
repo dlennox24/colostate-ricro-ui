@@ -65,7 +65,7 @@ class ProfileImage extends React.Component {
     const image = (
       <img
         className={classes.profileImage}
-        src={user.profileImage ? api.host + user.profileImage : userDefaultProfileImg}
+        src={user.profileImage ? user.profileImage : userDefaultProfileImg}
         alt={user.displayName}
       />
     );

@@ -4,7 +4,6 @@ import LoginLogoutComponent from './component';
 
 const mapStateToProps = state => {
   return {
-    api: state.config.api,
     auth: state.config.auth,
     hasAutoLogin: state.config.app.hasAutoLogin,
     user: state.user,
