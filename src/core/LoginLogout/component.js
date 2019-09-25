@@ -198,16 +198,12 @@ class LoginLogoutComponent extends React.Component {
   };
 
   createLoginIcons = () => {
-    const { api, classes, user } = this.props;
+    const { classes, user } = this.props;
     return this.isLoggedIn() ? (
       <Avatar
         className={classes.profileAvatar}
         alt={`${user.displayName}'s profile image`}
-        src={
-          user.profileImage
-            ? (api.host + user.profileImage).replace('large', 'icon')
-            : userDefaultProfileImg
-        }
+        src={user.profileImage ? user.profileImage.replace('large', 'icon') : userDefaultProfileImg}
       />
     ) : (
       <IconLoginVariant />
